@@ -9,7 +9,7 @@
 [Text To Speech Model](docs/Text-To-Speech-Unlimited.zip)
 
 ## Call Response Interface Demo:
-![Demo video](docs/Demo.mp4)
+<video src="https://github.com/user-attachments/assets/35e05298-a1ef-47f5-a2ea-d81375fa492e" style="max-width: 100%;">Demo Video</video>
 
 ## Logic Flow
 ![logic flow](docs/logic-flow.png)
