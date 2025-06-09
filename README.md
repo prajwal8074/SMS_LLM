@@ -2,14 +2,20 @@
 
 1st week progress:
 ## Discussion
-[Minutes of Discussion](Minutes-of-Discussion.docx)
+[Minutes of Discussion](docs/Minutes-of-Discussion.docx)
 ## Research Results
-[Indian Languages Translation Model](Translate-100-languages.zip)
+[Indian Languages Translation Model](docs/Translate-100-languages.zip)
 
-[Text To Speech Model](Text-To-Speech-Unlimited.zip)
+[Text To Speech Model](docs/Text-To-Speech-Unlimited.zip)
 
 ## Call Response Interface Demo:
 [Demo Video](Demo.mp4)
+
+## Logic Flow
+![logic flow](docs/logic-flow.png)
+
+## Tech Flow
+![code flow](docs/code-flow.png)
 
 ## How to reproduce call response interface
 ### Requirements: Ubuntu system with PulseAudio, Android device
