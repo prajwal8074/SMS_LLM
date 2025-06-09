@@ -2,7 +2,7 @@
 
 1st week progress:
 ## Discussion
-[Minutes of Discussion](docs/Minutes-of-Discussion.docx)
+[Minutes of Discussion](Minutes-of-Discussion/readme.md)
 ## Research Results
 [Indian Languages Translation Model](docs/Translate-100-languages.zip)
 
