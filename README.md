@@ -1,3 +1,5 @@
+
+https://github.com/user-attachments/assets/1b5e4f4d-7d12-40b3-a291-b3cc760d7218
 # LLM accessibility for farmers
 
 1st week progress:
@@ -9,9 +11,7 @@
 [Text To Speech Model](docs/Text-To-Speech-Unlimited.zip)
 
 ## Call Response Interface Demo:
-<video src="Demo.mp4">
-  Your browser does not support the video tag.
-</video>
+https://github.com/user-attachments/assets/861de73a-b63e-484d-9bdd-b5ff44d6a6cb
 
 ## Logic Flow
 ![logic flow](docs/logic-flow.png)
