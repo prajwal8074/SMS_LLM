@@ -10,11 +10,12 @@
 
 ## Call Response Interface Demo:
 
-<video src="https://github.com/user-attachments/assets/861de73a-b63e-484d-9bdd-b5ff44d6a6cb" controls="controls" style="max-width: 100%;">
-</video>
-
 ## Logic Flow
 ![logic flow](docs/logic-flow.png)
+
+
+https://github.com/user-attachments/assets/35e05298-a1ef-47f5-a2ea-d81375fa492e
+
 
 ## Tech Flow
 ![code flow](docs/code-flow.png)
