@@ -13,9 +13,10 @@
 ## Logic Flow
 ![logic flow](docs/logic-flow.png)
 
+##Demo video
 
-https://github.com/user-attachments/assets/35e05298-a1ef-47f5-a2ea-d81375fa492e
-
+<video src="https://github.com/user-attachments/assets/35e05298-a1ef-47f5-a2ea-d81375fa492e" controls="controls" style="max-width: 100%;">
+</video>
 
 ## Tech Flow
 ![code flow](docs/code-flow.png)
