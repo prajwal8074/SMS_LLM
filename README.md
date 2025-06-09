@@ -9,7 +9,9 @@
 [Text To Speech Model](docs/Text-To-Speech-Unlimited.zip)
 
 ## Call Response Interface Demo:
-[Demo Video](Demo.mp4)
+<video src="Demo.mp4" controls preload="auto" style="max-width: 100%;">
+  Your browser does not support the video tag.
+</video>
 
 ## Logic Flow
 ![logic flow](docs/logic-flow.png)
