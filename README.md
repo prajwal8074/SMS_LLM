@@ -12,7 +12,7 @@
 <video src="https://github.com/user-attachments/assets/35e05298-a1ef-47f5-a2ea-d81375fa492e" style="max-width: 100%;">Demo Video</video>
 
 ## Logic Flow
-<img src="docs/logic-flow.png" alt="logic flow" height="720">
+<img src="docs/logic-flow.png" alt="logic flow" height="480">
 
 ## Code Flow
 <img src="docs/code-flow.png" alt="code flow" height="720">
