@@ -15,7 +15,7 @@
 <img src="docs/logic-flow.png" alt="logic flow" height="720">
 
 ## Code Flow
-<img src="docs/code-flow.png" alt="code flow" height="1080">
+<img src="docs/code-flow.png" alt="code flow" height="720">
 
 ## How to reproduce call response interface
 ### Requirements: Ubuntu system with PulseAudio, Android device
