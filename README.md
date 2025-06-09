@@ -10,7 +10,7 @@
 
 ## Call Response Interface Demo:
 
-<video src="https://github.com/user-attachments/assets/35e05298-a1ef-47f5-a2ea-d81375fa492e" autoplay loop muted playsinline style="max-width: 100%;">
+<video src="https://github.com/user-attachments/assets/35e05298-a1ef-47f5-a2ea-d81375fa492e" autoplay style="max-width: 100%;">
 </video>
 
 ## Logic Flow
