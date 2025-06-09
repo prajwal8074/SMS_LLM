@@ -2,11 +2,12 @@
 
 1st week progress:
 ## Discussion
-[Minutes of Discussion](Minutes-of-Discussion/readme.md)
-## Research Results
-[Indian Languages Translation Model](docs/Translate-100-languages.zip)
+[Minutes of Discussion](Minutes-of-Discussion/README.md)
 
-[Text To Speech Model](docs/Text-To-Speech-Unlimited.zip)
+## Research Results
+[Indian Languages Translation Model](Translate-100-languages)
+
+[Text To Speech Model](Text-To-Speech-Unlimited)
 
 ## Call Response Interface Demo:
 <video src="https://github.com/user-attachments/assets/35e05298-a1ef-47f5-a2ea-d81375fa492e" style="max-width: 100%;">Demo Video</video>
