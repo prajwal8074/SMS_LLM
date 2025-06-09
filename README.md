@@ -1,5 +1,3 @@
-
-https://github.com/user-attachments/assets/1b5e4f4d-7d12-40b3-a291-b3cc760d7218
 # LLM accessibility for farmers
 
 1st week progress:
