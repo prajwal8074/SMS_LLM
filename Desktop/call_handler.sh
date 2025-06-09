@@ -85,7 +85,27 @@ revert_pulseaudio_source() {
     fi
 }
 
+# Function to handle cleanup on script interruption (Ctrl+C, etc.)
+cleanup_on_interrupt() {
+    echo "Interrupt signal received. Performing cleanup..."
+    stop_recording_incoming_voice
+    revert_pulseaudio_source
+    systemctl --user daemon-reload
+    systemctl --user --now disable pulseaudio.service pulseaudio.socket
+    systemctl --user --now enable pipewire pipewire-pulse
+    echo "Cleanup complete. Exiting."
+    exit 0
+}
+
 # --- Main Logic ---
+
+# Trap interrupt signals (Ctrl+C, termination)
+trap cleanup_on_interrupt INT TERM EXIT
+
+systemctl --user unmask pulseaudio
+systemctl --user --now disable pipewire-media-session.service
+systemctl --user --now disable pipewire pipewire-pulse
+systemctl --user --now enable pulseaudio.service pulseaudio.socket
 
 echo "Clearing adb logcat buffer..."
 adb logcat -c # Clear the logcat buffer
@@ -107,6 +127,7 @@ adb logcat -v raw AutoCall:I *:S | while IFS= read -r line; do
     elif echo "$line" | grep -q "Call ended"; then
         echo "Detected: Call ended"
         stop_recording_incoming_voice
+        revert_pulseaudio_source # Revert source when call ends
     fi
 done
 
