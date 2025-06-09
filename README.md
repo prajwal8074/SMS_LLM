@@ -14,7 +14,7 @@
 ## Logic Flow
 ![logic flow](docs/logic-flow.png)
 
-## Tech Flow
+## Code Flow
 ![code flow](docs/code-flow.png)
 
 ## How to reproduce call response interface
