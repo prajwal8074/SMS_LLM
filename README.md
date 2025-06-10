@@ -32,22 +32,23 @@
 9. Now calls on the connected android device should play an audio message and save caller voice message in the CallRecordings folder
 
 - [ ] Week 2 Core Infrastructure
-  - Basic IVR system
-  - FAQ database for common farming questions
-  - Voice recording system
-  - AWS EC2 instance
+  - Text, Image, Voice query system via JioChat
+  - Pre-trained LLM and language translation
+  - Speech language detection for language translation model
+  - Basic speech-to-text and text to speech
+  - Integration of all models
+  - Testing via API Gateway
 - [ ] Week 3 AI & Knowledge
-  - Pre-trained LLM for SMS responses
-  - Basic speech-to-text
-  - SMS parsing system
-  - Telephony setup (Twilio/local SMS gateway)
-  - Response templates for top 20 farming questions
+  - Integrate API gateway with call and sms response interface
+  - FAQ database for common farming questions
   - Simple caching system
 - [ ] Week 4 User Experience
-  - End-to-end SMS flow
-  - Hindi localization
+  - Set up all Indian agricultural products' information database
+  - Image classification into agricultural products for Image queries
+  - Integration (Fetch product information after image classification)
 - [ ] Week 5 Pilot Launch
   - Basic analytics tracking
   - User documentation
   - System monitoring
   - Feedback collection
+- [ ] Week 6 Buffer Week
