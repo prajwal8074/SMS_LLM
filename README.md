@@ -38,11 +38,11 @@
   - Basic speech-to-text and text to speech
   - Integration of all models
   - Testing via API Gateway
-- [ ] Week 3 AI & Knowledge
+- [ ] Week 3 Caching
   - Integrate API gateway with call and sms response interface
   - FAQ database for common farming questions
   - Simple caching system
-- [ ] Week 4 User Experience
+- [ ] Week 4 Domain Specific Knowledge
   - Set up all Indian agricultural products' information database
   - Image classification into agricultural products for Image queries
   - Integration (Fetch product information after image classification)
