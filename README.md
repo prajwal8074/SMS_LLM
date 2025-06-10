@@ -1,6 +1,6 @@
 # LLM accessibility for farmers
 
-- [ ] 1st week progress:
+- [ ]1st week progress:
 ## Discussion
 [Minutes of Discussion](docs/Minutes-of-Discussion/README.md)
 
