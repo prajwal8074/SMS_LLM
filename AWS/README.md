@@ -2,10 +2,13 @@
 
 This AWS Lambda function processes voice inputs from farmers, generates AI responses using Gemini, and returns audio responses. The system handles multilingual conversations using AWS Transcribe, Translate, and Polly services.
 
-## System Architecture
+## Process
+![process](https://github.com/user-attachments/assets/5c39c36b-e3a8-4c67-8f65-d6130d45ee48)
 
 
 ## Demo Video
+https://github.com/user-attachments/assets/17e0aef0-bae6-435f-b930-706cfd088f27
+
 
 
 # How to Reproduce
