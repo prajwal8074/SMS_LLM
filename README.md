@@ -10,15 +10,18 @@
   - [x] Setup: [Call Interface Setup](Call-Interface/README.md)
 
 - Week 2 Core Infrastructure
-  - [ ] Text, Image, Voice query system via JioChat
-  - [ ] Ensure reproducibility using containers(Docker)
+  - [ ] Text, Image, Voice query system via JioChat (**Aditya**)
+  - Reproducibility of
+    - [ ] Call & SMS Interfaces using containers (Docker) (**Prajwal**)
+    - [ ] AWS Setup using AWS CloudFormation (**Shubham**)
   - [x] Pre-trained LLM and language translation
   - [x] Speech language detection for language translation model
   - [x] Basic speech-to-text and text to speech
   - [x] Integration of all models
-  - [ ] In Depth testing of the Lambda Function
-- Week 3 Caching
+  - [ ] In Depth testing of the Lambda Function (**Akash & Sandip**)
+- Week 3 Pipeline & Caching
   - [ ] Integrate API gateway with call and sms response interface
+  - [ ] Set Up CI/CD pipline using GitHub Actions
   - [ ] FAQ database for common farming questions
   - [ ] Simple caching system
 - Week 4 Domain Specific Knowledge
