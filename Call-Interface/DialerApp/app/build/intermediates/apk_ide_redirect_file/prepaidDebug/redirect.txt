@@ -1,2 +1,0 @@
-#- File Locator -
-listingFile=../../../outputs/apk/prepaid/debug/output-metadata.json
