@@ -1,0 +1,98 @@
+[
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/dialog_manage_visible_tabs.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/dialog_manage_visible_tabs.xml"
+    },
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/layout_simple_recycler_view.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/layout_simple_recycler_view.xml"
+    },
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/dialog_filter_contact_sources.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/dialog_filter_contact_sources.xml"
+    },
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/dialog_select_sim.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/dialog_select_sim.xml"
+    },
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/activity_dialpad.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/activity_dialpad.xml"
+    },
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/dialpad.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/dialpad.xml"
+    },
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/item_recent_call.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/item_recent_call.xml"
+    },
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/item_speed_dial.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/item_speed_dial.xml"
+    },
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/activity_call.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/activity_call.xml"
+    },
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/activity_manage_speed_dial.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/activity_manage_speed_dial.xml"
+    },
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/fragment_letters_layout.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/fragment_letters_layout.xml"
+    },
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/fragment_contacts.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/fragment_contacts.xml"
+    },
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/dialog_export_call_history.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/dialog_export_call_history.xml"
+    },
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/fragment_favorites.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/fragment_favorites.xml"
+    },
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/call_notification.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/call_notification.xml"
+    },
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/fragment_recents.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/fragment_recents.xml"
+    },
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/item_filter_contact_source.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/item_filter_contact_source.xml"
+    },
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/item_conference_call.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/item_conference_call.xml"
+    },
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/dialog_show_grouped_calls.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/dialog_show_grouped_calls.xml"
+    },
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/activity_settings.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/activity_settings.xml"
+    },
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/dialog_select_contact.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/dialog_select_contact.xml"
+    },
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/activity_conference.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/activity_conference.xml"
+    },
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/activity_main.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.simplemobiletools.dialer.app-mergePrepaidDebugResources-71:/layout/dialog_change_sorting.xml",
+        "source": "com.simplemobiletools.dialer.app-main-74:/layout/dialog_change_sorting.xml"
+    }
+]

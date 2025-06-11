@@ -1,0 +1,1020 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.simplemobiletools.dialer.debug"
+4    android:installLocation="auto"
+5    android:versionCode="57"
+6    android:versionName="5.18.1" >
+7
+8    <uses-sdk
+9        android:minSdkVersion="23"
+10        android:targetSdkVersion="34" />
+11
+12    <uses-permission android:name="android.permission.READ_CONTACTS" />
+12-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:6:5-72
+12-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:6:22-69
+13    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+13-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:7:5-73
+13-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:7:22-70
+14    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+14-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:8:5-75
+14-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:8:22-72
+15    <uses-permission android:name="android.permission.CALL_PHONE" />
+15-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:9:5-69
+15-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:9:22-66
+16    <uses-permission android:name="android.permission.CALL_PRIVILEGED" />
+16-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:10:5-74
+16-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:10:22-71
+17    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+17-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:11:5-72
+17-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:11:22-69
+18    <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
+18-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:12:5-73
+18-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:12:22-70
+19    <uses-permission android:name="android.permission.WAKE_LOCK" />
+19-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:13:5-68
+19-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:13:22-65
+20    <uses-permission android:name="android.permission.ANSWER_PHONE_CALLS" />
+20-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:14:5-77
+20-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:14:22-74
+21    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+21-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:15:5-77
+21-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:15:22-74
+22    <uses-permission android:name="android.permission.MANAGE_OWN_CALLS" />
+22-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:16:5-75
+22-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:16:22-72
+23    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+23-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:17:5-80
+23-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:17:22-77
+24    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+24-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:18:5-71
+24-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:18:22-68
+25    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+25-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:19:5-78
+25-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:19:22-75
+26    <uses-permission android:name="android.telecom.action.CONFIGURE_PHONE_ACCOUNT" />
+26-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:20:5-86
+26-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:20:22-83
+27    <uses-permission android:name="android.permission.VIBRATE" />
+27-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:21:5-66
+27-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:21:22-63
+28    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+28-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:22:5-77
+28-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:22:22-74
+29    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+29-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:23:5-77
+29-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:23:22-74
+30    <uses-permission
+30-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:25:5-27:38
+31        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+31-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:26:9-65
+32        android:maxSdkVersion="28" />
+32-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:27:9-35
+33
+34    <queries>
+34-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:33:5-36:15
+35        <package android:name="com.simplemobiletools.contacts.pro.debug" />
+35-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:34:9-76
+35-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:34:18-73
+36        <package android:name="com.simplemobiletools.contacts.pro" />
+36-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:35:9-70
+36-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:35:18-67
+37        <package android:name="com.simplemobiletools.thankyou.debug" />
+37-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:9:9-72
+37-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:9:18-69
+38        <package android:name="com.simplemobiletools.thankyou" />
+38-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:10:9-66
+38-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:10:18-63
+39    </queries>
+40
+41    <uses-feature
+41-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:13:5-15:36
+42        android:name="android.hardware.faketouch"
+42-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:14:9-50
+43        android:required="false" />
+43-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:15:9-33
+44    <uses-feature
+44-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:16:5-18:36
+45        android:name="android.hardware.screen.portrait"
+45-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:17:9-56
+46        android:required="false" />
+46-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:18:9-33
+47
+48    <permission
+48-->[androidx.core:core:1.12.0] /home/prajwal/.gradle/caches/transforms-3/62aca5a29436925a8becb6c89252b5eb/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+49        android:name="com.simplemobiletools.dialer.debug.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+49-->[androidx.core:core:1.12.0] /home/prajwal/.gradle/caches/transforms-3/62aca5a29436925a8becb6c89252b5eb/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+50        android:protectionLevel="signature" />
+50-->[androidx.core:core:1.12.0] /home/prajwal/.gradle/caches/transforms-3/62aca5a29436925a8becb6c89252b5eb/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+51
+52    <application
+52-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:38:5-467:19
+53        android:name="com.simplemobiletools.dialer.App"
+53-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:39:9-28
+54        android:allowBackup="true"
+54-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:40:9-35
+55        android:appCategory="productivity"
+55-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:41:9-43
+56        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+56-->[androidx.core:core:1.12.0] /home/prajwal/.gradle/caches/transforms-3/62aca5a29436925a8becb6c89252b5eb/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
+57        android:debuggable="true"
+58        android:extractNativeLibs="false"
+59        android:icon="@mipmap/ic_launcher"
+59-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:42:9-43
+60        android:label="@string/app_launcher_name"
+60-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:43:9-50
+61        android:localeConfig="@xml/locale_config"
+61-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:44:9-50
+62        android:roundIcon="@mipmap/ic_launcher"
+62-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:45:9-48
+63        android:supportsRtl="true"
+63-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:32:18-44
+64        android:theme="@style/AppTheme" >
+64-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:46:9-40
+65        <activity
+65-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:48:9-51:50
+66            android:name="com.simplemobiletools.dialer.activities.SplashActivity"
+66-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:49:13-54
+67            android:exported="false"
+67-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:50:13-37
+68            android:theme="@style/SplashTheme" />
+68-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:51:13-47
+69
+70        <activity-alias
+70-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:454:9-466:26
+71            android:name="com.simplemobiletools.dialer.activities.SplashActivity.Grey_black"
+71-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:455:13-65
+72            android:enabled="false"
+72-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:456:13-36
+73            android:exported="true"
+73-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:457:13-36
+74            android:icon="@mipmap/ic_launcher_grey_black"
+74-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:458:13-58
+75            android:roundIcon="@mipmap/ic_launcher_grey_black"
+75-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:459:13-63
+76            android:targetActivity="com.simplemobiletools.dialer.activities.SplashActivity" >
+76-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:460:13-64
+77            <intent-filter>
+77-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:211:13-214:29
+78                <action android:name="android.intent.action.MAIN" />
+78-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:17-69
+78-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:25-66
+79
+80                <category android:name="android.intent.category.LAUNCHER" />
+80-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:17-77
+80-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:27-74
+81            </intent-filter>
+82        </activity-alias>
+83        <activity-alias
+83-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:440:9-452:26
+84            android:name="com.simplemobiletools.dialer.activities.SplashActivity.Blue_grey"
+84-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:441:13-64
+85            android:enabled="false"
+85-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:442:13-36
+86            android:exported="true"
+86-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:443:13-36
+87            android:icon="@mipmap/ic_launcher_blue_grey"
+87-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:444:13-57
+88            android:roundIcon="@mipmap/ic_launcher_blue_grey"
+88-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:445:13-62
+89            android:targetActivity="com.simplemobiletools.dialer.activities.SplashActivity" >
+89-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:446:13-64
+90            <intent-filter>
+90-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:211:13-214:29
+91                <action android:name="android.intent.action.MAIN" />
+91-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:17-69
+91-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:25-66
+92
+93                <category android:name="android.intent.category.LAUNCHER" />
+93-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:17-77
+93-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:27-74
+94            </intent-filter>
+95        </activity-alias>
+96        <activity-alias
+96-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:426:9-438:26
+97            android:name="com.simplemobiletools.dialer.activities.SplashActivity.Brown"
+97-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:427:13-60
+98            android:enabled="false"
+98-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:428:13-36
+99            android:exported="true"
+99-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:429:13-36
+100            android:icon="@mipmap/ic_launcher_brown"
+100-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:430:13-53
+101            android:roundIcon="@mipmap/ic_launcher_brown"
+101-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:431:13-58
+102            android:targetActivity="com.simplemobiletools.dialer.activities.SplashActivity" >
+102-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:432:13-64
+103            <intent-filter>
+103-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:211:13-214:29
+104                <action android:name="android.intent.action.MAIN" />
+104-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:17-69
+104-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:25-66
+105
+106                <category android:name="android.intent.category.LAUNCHER" />
+106-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:17-77
+106-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:27-74
+107            </intent-filter>
+108        </activity-alias>
+109        <activity-alias
+109-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:412:9-424:26
+110            android:name="com.simplemobiletools.dialer.activities.SplashActivity.Deep_orange"
+110-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:413:13-66
+111            android:enabled="false"
+111-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:414:13-36
+112            android:exported="true"
+112-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:415:13-36
+113            android:icon="@mipmap/ic_launcher_deep_orange"
+113-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:416:13-59
+114            android:roundIcon="@mipmap/ic_launcher_deep_orange"
+114-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:417:13-64
+115            android:targetActivity="com.simplemobiletools.dialer.activities.SplashActivity" >
+115-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:418:13-64
+116            <intent-filter>
+116-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:211:13-214:29
+117                <action android:name="android.intent.action.MAIN" />
+117-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:17-69
+117-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:25-66
+118
+119                <category android:name="android.intent.category.LAUNCHER" />
+119-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:17-77
+119-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:27-74
+120            </intent-filter>
+121        </activity-alias>
+122        <activity-alias
+122-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:399:9-410:26
+123            android:name="com.simplemobiletools.dialer.activities.SplashActivity.Orange"
+123-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:400:13-61
+124            android:enabled="true"
+124-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:401:13-35
+125            android:exported="true"
+125-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:402:13-36
+126            android:icon="@mipmap/ic_launcher"
+126-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:403:13-47
+127            android:roundIcon="@mipmap/ic_launcher"
+127-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:404:13-52
+128            android:targetActivity="com.simplemobiletools.dialer.activities.SplashActivity" >
+128-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:405:13-64
+129            <intent-filter>
+129-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:211:13-214:29
+130                <action android:name="android.intent.action.MAIN" />
+130-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:17-69
+130-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:25-66
+131
+132                <category android:name="android.intent.category.LAUNCHER" />
+132-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:17-77
+132-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:27-74
+133            </intent-filter>
+134        </activity-alias>
+135        <activity-alias
+135-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:385:9-397:26
+136            android:name="com.simplemobiletools.dialer.activities.SplashActivity.Amber"
+136-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:386:13-60
+137            android:enabled="false"
+137-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:387:13-36
+138            android:exported="true"
+138-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:388:13-36
+139            android:icon="@mipmap/ic_launcher_amber"
+139-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:389:13-53
+140            android:roundIcon="@mipmap/ic_launcher_amber"
+140-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:390:13-58
+141            android:targetActivity="com.simplemobiletools.dialer.activities.SplashActivity" >
+141-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:391:13-64
+142            <intent-filter>
+142-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:211:13-214:29
+143                <action android:name="android.intent.action.MAIN" />
+143-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:17-69
+143-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:25-66
+144
+145                <category android:name="android.intent.category.LAUNCHER" />
+145-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:17-77
+145-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:27-74
+146            </intent-filter>
+147        </activity-alias>
+148        <activity-alias
+148-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:371:9-383:26
+149            android:name="com.simplemobiletools.dialer.activities.SplashActivity.Yellow"
+149-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:372:13-61
+150            android:enabled="false"
+150-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:373:13-36
+151            android:exported="true"
+151-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:374:13-36
+152            android:icon="@mipmap/ic_launcher_yellow"
+152-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:375:13-54
+153            android:roundIcon="@mipmap/ic_launcher_yellow"
+153-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:376:13-59
+154            android:targetActivity="com.simplemobiletools.dialer.activities.SplashActivity" >
+154-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:377:13-64
+155            <intent-filter>
+155-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:211:13-214:29
+156                <action android:name="android.intent.action.MAIN" />
+156-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:17-69
+156-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:25-66
+157
+158                <category android:name="android.intent.category.LAUNCHER" />
+158-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:17-77
+158-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:27-74
+159            </intent-filter>
+160        </activity-alias>
+161        <activity-alias
+161-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:357:9-369:26
+162            android:name="com.simplemobiletools.dialer.activities.SplashActivity.Lime"
+162-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:358:13-59
+163            android:enabled="false"
+163-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:359:13-36
+164            android:exported="true"
+164-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:360:13-36
+165            android:icon="@mipmap/ic_launcher_lime"
+165-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:361:13-52
+166            android:roundIcon="@mipmap/ic_launcher_lime"
+166-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:362:13-57
+167            android:targetActivity="com.simplemobiletools.dialer.activities.SplashActivity" >
+167-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:363:13-64
+168            <intent-filter>
+168-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:211:13-214:29
+169                <action android:name="android.intent.action.MAIN" />
+169-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:17-69
+169-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:25-66
+170
+171                <category android:name="android.intent.category.LAUNCHER" />
+171-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:17-77
+171-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:27-74
+172            </intent-filter>
+173        </activity-alias>
+174        <activity-alias
+174-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:343:9-355:26
+175            android:name="com.simplemobiletools.dialer.activities.SplashActivity.Light_green"
+175-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:344:13-66
+176            android:enabled="false"
+176-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:345:13-36
+177            android:exported="true"
+177-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:346:13-36
+178            android:icon="@mipmap/ic_launcher_light_green"
+178-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:347:13-59
+179            android:roundIcon="@mipmap/ic_launcher_light_green"
+179-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:348:13-64
+180            android:targetActivity="com.simplemobiletools.dialer.activities.SplashActivity" >
+180-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:349:13-64
+181            <intent-filter>
+181-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:211:13-214:29
+182                <action android:name="android.intent.action.MAIN" />
+182-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:17-69
+182-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:25-66
+183
+184                <category android:name="android.intent.category.LAUNCHER" />
+184-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:17-77
+184-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:27-74
+185            </intent-filter>
+186        </activity-alias>
+187        <activity-alias
+187-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:329:9-341:26
+188            android:name="com.simplemobiletools.dialer.activities.SplashActivity.Green"
+188-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:330:13-60
+189            android:enabled="false"
+189-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:331:13-36
+190            android:exported="true"
+190-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:332:13-36
+191            android:icon="@mipmap/ic_launcher_green"
+191-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:333:13-53
+192            android:roundIcon="@mipmap/ic_launcher_green"
+192-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:334:13-58
+193            android:targetActivity="com.simplemobiletools.dialer.activities.SplashActivity" >
+193-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:335:13-64
+194            <intent-filter>
+194-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:211:13-214:29
+195                <action android:name="android.intent.action.MAIN" />
+195-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:17-69
+195-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:25-66
+196
+197                <category android:name="android.intent.category.LAUNCHER" />
+197-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:17-77
+197-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:27-74
+198            </intent-filter>
+199        </activity-alias>
+200        <activity-alias
+200-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:315:9-327:26
+201            android:name="com.simplemobiletools.dialer.activities.SplashActivity.Teal"
+201-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:316:13-59
+202            android:enabled="false"
+202-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:317:13-36
+203            android:exported="true"
+203-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:318:13-36
+204            android:icon="@mipmap/ic_launcher_teal"
+204-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:319:13-52
+205            android:roundIcon="@mipmap/ic_launcher_teal"
+205-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:320:13-57
+206            android:targetActivity="com.simplemobiletools.dialer.activities.SplashActivity" >
+206-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:321:13-64
+207            <intent-filter>
+207-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:211:13-214:29
+208                <action android:name="android.intent.action.MAIN" />
+208-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:17-69
+208-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:25-66
+209
+210                <category android:name="android.intent.category.LAUNCHER" />
+210-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:17-77
+210-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:27-74
+211            </intent-filter>
+212        </activity-alias>
+213        <activity-alias
+213-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:301:9-313:26
+214            android:name="com.simplemobiletools.dialer.activities.SplashActivity.Cyan"
+214-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:302:13-59
+215            android:enabled="false"
+215-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:303:13-36
+216            android:exported="true"
+216-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:304:13-36
+217            android:icon="@mipmap/ic_launcher_cyan"
+217-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:305:13-52
+218            android:roundIcon="@mipmap/ic_launcher_cyan"
+218-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:306:13-57
+219            android:targetActivity="com.simplemobiletools.dialer.activities.SplashActivity" >
+219-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:307:13-64
+220            <intent-filter>
+220-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:211:13-214:29
+221                <action android:name="android.intent.action.MAIN" />
+221-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:17-69
+221-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:25-66
+222
+223                <category android:name="android.intent.category.LAUNCHER" />
+223-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:17-77
+223-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:27-74
+224            </intent-filter>
+225        </activity-alias>
+226        <activity-alias
+226-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:287:9-299:26
+227            android:name="com.simplemobiletools.dialer.activities.SplashActivity.Light_blue"
+227-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:288:13-65
+228            android:enabled="false"
+228-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:289:13-36
+229            android:exported="true"
+229-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:290:13-36
+230            android:icon="@mipmap/ic_launcher_light_blue"
+230-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:291:13-58
+231            android:roundIcon="@mipmap/ic_launcher_light_blue"
+231-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:292:13-63
+232            android:targetActivity="com.simplemobiletools.dialer.activities.SplashActivity" >
+232-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:293:13-64
+233            <intent-filter>
+233-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:211:13-214:29
+234                <action android:name="android.intent.action.MAIN" />
+234-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:17-69
+234-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:25-66
+235
+236                <category android:name="android.intent.category.LAUNCHER" />
+236-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:17-77
+236-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:27-74
+237            </intent-filter>
+238        </activity-alias>
+239        <activity-alias
+239-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:273:9-285:26
+240            android:name="com.simplemobiletools.dialer.activities.SplashActivity.Blue"
+240-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:274:13-59
+241            android:enabled="false"
+241-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:275:13-36
+242            android:exported="true"
+242-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:276:13-36
+243            android:icon="@mipmap/ic_launcher_blue"
+243-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:277:13-52
+244            android:roundIcon="@mipmap/ic_launcher_blue"
+244-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:278:13-57
+245            android:targetActivity="com.simplemobiletools.dialer.activities.SplashActivity" >
+245-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:279:13-64
+246            <intent-filter>
+246-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:211:13-214:29
+247                <action android:name="android.intent.action.MAIN" />
+247-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:17-69
+247-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:25-66
+248
+249                <category android:name="android.intent.category.LAUNCHER" />
+249-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:17-77
+249-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:27-74
+250            </intent-filter>
+251        </activity-alias>
+252        <activity-alias
+252-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:259:9-271:26
+253            android:name="com.simplemobiletools.dialer.activities.SplashActivity.Indigo"
+253-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:260:13-61
+254            android:enabled="false"
+254-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:261:13-36
+255            android:exported="true"
+255-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:262:13-36
+256            android:icon="@mipmap/ic_launcher_indigo"
+256-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:263:13-54
+257            android:roundIcon="@mipmap/ic_launcher_indigo"
+257-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:264:13-59
+258            android:targetActivity="com.simplemobiletools.dialer.activities.SplashActivity" >
+258-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:265:13-64
+259            <intent-filter>
+259-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:211:13-214:29
+260                <action android:name="android.intent.action.MAIN" />
+260-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:17-69
+260-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:25-66
+261
+262                <category android:name="android.intent.category.LAUNCHER" />
+262-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:17-77
+262-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:27-74
+263            </intent-filter>
+264        </activity-alias>
+265        <activity-alias
+265-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:245:9-257:26
+266            android:name="com.simplemobiletools.dialer.activities.SplashActivity.Deep_purple"
+266-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:246:13-66
+267            android:enabled="false"
+267-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:247:13-36
+268            android:exported="true"
+268-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:248:13-36
+269            android:icon="@mipmap/ic_launcher_deep_purple"
+269-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:249:13-59
+270            android:roundIcon="@mipmap/ic_launcher_deep_purple"
+270-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:250:13-64
+271            android:targetActivity="com.simplemobiletools.dialer.activities.SplashActivity" >
+271-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:251:13-64
+272            <intent-filter>
+272-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:211:13-214:29
+273                <action android:name="android.intent.action.MAIN" />
+273-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:17-69
+273-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:25-66
+274
+275                <category android:name="android.intent.category.LAUNCHER" />
+275-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:17-77
+275-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:27-74
+276            </intent-filter>
+277        </activity-alias>
+278        <activity-alias
+278-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:231:9-243:26
+279            android:name="com.simplemobiletools.dialer.activities.SplashActivity.Purple"
+279-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:232:13-61
+280            android:enabled="false"
+280-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:233:13-36
+281            android:exported="true"
+281-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:234:13-36
+282            android:icon="@mipmap/ic_launcher_purple"
+282-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:235:13-54
+283            android:roundIcon="@mipmap/ic_launcher_purple"
+283-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:236:13-59
+284            android:targetActivity="com.simplemobiletools.dialer.activities.SplashActivity" >
+284-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:237:13-64
+285            <intent-filter>
+285-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:211:13-214:29
+286                <action android:name="android.intent.action.MAIN" />
+286-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:17-69
+286-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:25-66
+287
+288                <category android:name="android.intent.category.LAUNCHER" />
+288-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:17-77
+288-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:27-74
+289            </intent-filter>
+290        </activity-alias>
+291        <activity-alias
+291-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:217:9-229:26
+292            android:name="com.simplemobiletools.dialer.activities.SplashActivity.Pink"
+292-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:218:13-59
+293            android:enabled="false"
+293-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:219:13-36
+294            android:exported="true"
+294-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:220:13-36
+295            android:icon="@mipmap/ic_launcher_pink"
+295-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:221:13-52
+296            android:roundIcon="@mipmap/ic_launcher_pink"
+296-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:222:13-57
+297            android:targetActivity="com.simplemobiletools.dialer.activities.SplashActivity" >
+297-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:223:13-64
+298            <intent-filter>
+298-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:211:13-214:29
+299                <action android:name="android.intent.action.MAIN" />
+299-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:17-69
+299-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:25-66
+300
+301                <category android:name="android.intent.category.LAUNCHER" />
+301-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:17-77
+301-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:27-74
+302            </intent-filter>
+303        </activity-alias>
+304        <activity-alias
+304-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:203:9-215:26
+305            android:name="com.simplemobiletools.dialer.activities.SplashActivity.Red"
+305-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:204:13-58
+306            android:enabled="false"
+306-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:205:13-36
+307            android:exported="true"
+307-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:206:13-36
+308            android:icon="@mipmap/ic_launcher_red"
+308-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:207:13-51
+309            android:roundIcon="@mipmap/ic_launcher_red"
+309-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:208:13-56
+310            android:targetActivity="com.simplemobiletools.dialer.activities.SplashActivity" >
+310-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:209:13-64
+311            <intent-filter>
+311-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:211:13-214:29
+312                <action android:name="android.intent.action.MAIN" />
+312-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:17-69
+312-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:25-66
+313
+314                <category android:name="android.intent.category.LAUNCHER" />
+314-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:17-77
+314-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:27-74
+315            </intent-filter>
+316        </activity-alias>
+317
+318        <activity
+318-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:53:9-63:20
+319            android:name="com.simplemobiletools.dialer.activities.MainActivity"
+319-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:54:13-52
+320            android:configChanges="orientation|screenSize"
+320-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:55:13-59
+321            android:exported="true" >
+321-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:56:13-36
+322            <intent-filter>
+322-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:58:13-62:29
+323                <action android:name="android.intent.action.VIEW" />
+323-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:59:17-69
+323-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:59:25-66
+324
+325                <data android:mimeType="vnd.android.cursor.dir/calls" />
+325-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:60:17-73
+325-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:60:23-70
+326
+327                <category android:name="android.intent.category.DEFAULT" />
+327-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:61:17-76
+327-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:61:27-73
+328            </intent-filter>
+329        </activity>
+330        <activity
+330-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:65:9-70:69
+331            android:name="com.simplemobiletools.commons.activities.AboutActivity"
+331-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:66:13-82
+332            android:configChanges="orientation"
+332-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:67:13-48
+333            android:exported="false"
+333-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:68:13-37
+334            android:label="@string/about"
+334-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:69:13-42
+335            android:parentActivityName="com.simplemobiletools.dialer.activities.MainActivity" />
+335-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:70:13-66
+336        <activity
+336-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:72:9-77:73
+337            android:name="com.simplemobiletools.commons.activities.CustomizationActivity"
+337-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:73:13-90
+338            android:configChanges="orientation"
+338-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:74:13-48
+339            android:exported="false"
+339-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:75:13-37
+340            android:label="@string/customize_colors"
+340-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:76:13-53
+341            android:parentActivityName="com.simplemobiletools.dialer.activities.SettingsActivity" />
+341-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:77:13-70
+342        <activity
+342-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:79:9-85:45
+343            android:name="com.simplemobiletools.commons.activities.ManageBlockedNumbersActivity"
+343-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:80:13-97
+344            android:configChanges="orientation"
+344-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:81:13-48
+345            android:enableOnBackInvokedCallback="true"
+345-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:54:13-55
+346            android:exported="false"
+346-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:82:13-37
+347            android:label="@string/blocked_numbers"
+347-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:83:13-52
+348            android:parentActivityName="com.simplemobiletools.dialer.activities.SettingsActivity" />
+348-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:84:13-70
+349        <activity
+349-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:87:9-92:73
+350            android:name="com.simplemobiletools.dialer.activities.ManageSpeedDialActivity"
+350-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:88:13-63
+351            android:configChanges="orientation"
+351-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:89:13-48
+352            android:exported="false"
+352-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:90:13-37
+353            android:label="@string/speed_dial"
+353-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:91:13-47
+354            android:parentActivityName="com.simplemobiletools.dialer.activities.SettingsActivity" />
+354-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:92:13-70
+355        <activity
+355-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:94:9-99:69
+356            android:name="com.simplemobiletools.dialer.activities.ConferenceActivity"
+356-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:95:13-58
+357            android:configChanges="orientation"
+357-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:96:13-48
+358            android:exported="false"
+358-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:97:13-37
+359            android:label="@string/conference"
+359-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:98:13-47
+360            android:parentActivityName="com.simplemobiletools.dialer.activities.CallActivity" />
+360-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:99:13-66
+361        <activity
+361-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:101:9-112:20
+362            android:name="com.simplemobiletools.dialer.activities.SettingsActivity"
+362-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:102:13-56
+363            android:configChanges="orientation"
+363-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:103:13-48
+364            android:exported="true"
+364-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:104:13-36
+365            android:label="@string/settings"
+365-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:105:13-45
+366            android:parentActivityName="com.simplemobiletools.dialer.activities.MainActivity" >
+366-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:106:13-66
+367            <intent-filter>
+367-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:108:13-111:29
+368                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
+368-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:109:17-88
+368-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:109:25-85
+369
+370                <category android:name="android.intent.category.DEFAULT" />
+370-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:61:17-76
+370-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:61:27-73
+371            </intent-filter>
+372        </activity>
+373        <activity
+373-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:114:9-121:47
+374            android:name="com.simplemobiletools.dialer.activities.CallActivity"
+374-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:115:13-52
+375            android:excludeFromRecents="true"
+375-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:116:13-46
+376            android:exported="false"
+376-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:117:13-37
+377            android:label="@string/ongoing_call"
+377-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:118:13-49
+378            android:launchMode="singleTask"
+378-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:119:13-44
+379            android:screenOrientation="portrait"
+379-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:120:13-49
+380            android:showOnLockScreen="true" />
+380-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:121:13-44
+381        <activity
+381-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:123:9-153:20
+382            android:name="com.simplemobiletools.dialer.activities.DialpadActivity"
+382-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:124:13-55
+383            android:exported="true"
+383-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:125:13-36
+384            android:label="@string/dialpad"
+384-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:126:13-44
+385            android:parentActivityName="com.simplemobiletools.dialer.activities.MainActivity"
+385-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:127:13-66
+386            android:screenOrientation="portrait"
+386-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:128:13-49
+387            android:windowSoftInputMode="stateHidden" >
+387-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:129:13-54
+388            <intent-filter>
+388-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:131:13-136:29
+389                <action android:name="android.intent.action.DIAL" />
+389-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:132:17-69
+389-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:132:25-66
+390
+391                <category android:name="android.intent.category.DEFAULT" />
+391-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:61:17-76
+391-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:61:27-73
+392
+393                <data android:scheme="tel" />
+393-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:60:17-73
+393-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:135:23-43
+394            </intent-filter>
+395            <intent-filter>
+395-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:138:13-142:29
+396                <action android:name="android.intent.action.DIAL" />
+396-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:132:17-69
+396-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:132:25-66
+397
+398                <category android:name="android.intent.category.DEFAULT" />
+398-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:61:17-76
+398-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:61:27-73
+399            </intent-filter>
+400            <intent-filter>
+400-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:144:13-152:29
+401                <action android:name="android.intent.action.VIEW" />
+401-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:59:17-69
+401-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:59:25-66
+402                <action android:name="android.intent.action.DIAL" />
+402-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:132:17-69
+402-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:132:25-66
+403
+404                <category android:name="android.intent.category.DEFAULT" />
+404-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:61:17-76
+404-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:61:27-73
+405                <category android:name="android.intent.category.BROWSABLE" />
+405-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:149:17-78
+405-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:149:27-75
+406
+407                <data android:scheme="tel" />
+407-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:60:17-73
+407-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:135:23-43
+408            </intent-filter>
+409        </activity>
+410        <activity
+410-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:155:9-168:20
+411            android:name="com.simplemobiletools.dialer.activities.DialerActivity"
+411-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:156:13-54
+412            android:configChanges="orientation"
+412-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:157:13-48
+413            android:exported="true"
+413-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:158:13-36
+414            android:label="@string/dialer"
+414-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:159:13-43
+415            android:theme="@style/Theme.Transparent" >
+415-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:160:13-53
+416            <intent-filter>
+416-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:162:13-167:29
+417                <action android:name="android.intent.action.CALL" />
+417-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:163:17-69
+417-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:163:25-66
+418
+419                <category android:name="android.intent.category.DEFAULT" />
+419-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:61:17-76
+419-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:61:27-73
+420
+421                <data android:scheme="tel" />
+421-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:60:17-73
+421-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:135:23-43
+422            </intent-filter>
+423        </activity>
+424
+425        <service
+425-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:170:9-182:19
+426            android:name="com.simplemobiletools.dialer.services.CallService"
+426-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:171:13-49
+427            android:enabled="true"
+427-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:172:13-35
+428            android:exported="true"
+428-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:173:13-36
+429            android:permission="android.permission.BIND_INCALL_SERVICE" >
+429-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:174:13-72
+430            <meta-data
+430-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:175:13-177:40
+431                android:name="android.telecom.IN_CALL_SERVICE_UI"
+431-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:176:17-66
+432                android:value="true" />
+432-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:177:17-37
+433
+434            <intent-filter>
+434-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:179:13-181:29
+435                <action android:name="android.telecom.InCallService" />
+435-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:180:17-72
+435-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:180:25-69
+436            </intent-filter>
+437        </service>
+438        <service
+438-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:184:9-191:19
+439            android:name="com.simplemobiletools.dialer.services.SimpleCallScreeningService"
+439-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:185:13-64
+440            android:exported="true"
+440-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:186:13-36
+441            android:permission="android.permission.BIND_SCREENING_SERVICE" >
+441-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:187:13-75
+442            <intent-filter>
+442-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:188:13-190:29
+443                <action android:name="android.telecom.CallScreeningService" />
+443-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:189:17-79
+443-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:189:25-76
+444            </intent-filter>
+445        </service>
+446
+447        <receiver
+447-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:193:9-201:20
+448            android:name="com.simplemobiletools.dialer.receivers.CallActionReceiver"
+448-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:194:13-57
+449            android:enabled="true"
+449-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:195:13-35
+450            android:exported="true" >
+450-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:196:13-36
+451            <intent-filter>
+451-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:197:13-200:29
+452                <action android:name="com.simplemobiletools.dialer.action.ACCEPT_CALL" />
+452-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:198:17-90
+452-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:198:25-87
+453                <action android:name="com.simplemobiletools.dialer.action.DECLINE_CALL" />
+453-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:199:17-91
+453-->/home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:199:25-88
+454            </intent-filter>
+455        </receiver>
+456
+457        <activity
+457-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:33:9-38:99
+458            android:name="com.simplemobiletools.commons.activities.ContributorsActivity"
+458-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:34:13-89
+459            android:configChanges="orientation"
+459-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:35:13-48
+460            android:exported="false"
+460-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:36:13-37
+461            android:label="@string/contributors"
+461-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:37:13-49
+462            android:parentActivityName="com.simplemobiletools.commons.activities.AboutActivity" />
+462-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:38:13-96
+463        <activity
+463-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:39:9-44:99
+464            android:name="com.simplemobiletools.commons.activities.FAQActivity"
+464-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:40:13-80
+465            android:configChanges="orientation"
+465-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:41:13-48
+466            android:exported="false"
+466-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:42:13-37
+467            android:label="@string/frequently_asked_questions"
+467-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:43:13-63
+468            android:parentActivityName="com.simplemobiletools.commons.activities.AboutActivity" />
+468-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:44:13-96
+469        <activity
+469-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:45:9-50:99
+470            android:name="com.simplemobiletools.commons.activities.LicenseActivity"
+470-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:46:13-84
+471            android:configChanges="orientation"
+471-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:47:13-48
+472            android:exported="false"
+472-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:48:13-37
+473            android:label="@string/third_party_licences"
+473-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:49:13-57
+474            android:parentActivityName="com.simplemobiletools.commons.activities.AboutActivity" />
+474-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:50:13-96
+475
+476        <receiver
+476-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:58:9-66:20
+477            android:name="com.simplemobiletools.commons.receivers.SharedThemeReceiver"
+477-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:59:13-87
+478            android:enabled="true"
+478-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:60:13-35
+479            android:exported="true" >
+479-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:61:13-36
+480            <intent-filter>
+480-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:62:13-65:29
+481                <action android:name="com.simplemobiletools.commons.SHARED_THEME_ACTIVATED" />
+481-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:63:17-95
+481-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:63:25-92
+482                <action android:name="com.simplemobiletools.commons.SHARED_THEME_UPDATED" />
+482-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:64:17-93
+482-->[com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:64:25-90
+483            </intent-filter>
+484        </receiver>
+485
+486        <provider
+486-->[androidx.emoji2:emoji2:1.3.0] /home/prajwal/.gradle/caches/transforms-3/4783fe821f83237f1f2faf35b2d4c6e9/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+487            android:name="androidx.startup.InitializationProvider"
+487-->[androidx.emoji2:emoji2:1.3.0] /home/prajwal/.gradle/caches/transforms-3/4783fe821f83237f1f2faf35b2d4c6e9/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:25:13-67
+488            android:authorities="com.simplemobiletools.dialer.debug.androidx-startup"
+488-->[androidx.emoji2:emoji2:1.3.0] /home/prajwal/.gradle/caches/transforms-3/4783fe821f83237f1f2faf35b2d4c6e9/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:26:13-68
+489            android:exported="false" >
+489-->[androidx.emoji2:emoji2:1.3.0] /home/prajwal/.gradle/caches/transforms-3/4783fe821f83237f1f2faf35b2d4c6e9/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:27:13-37
+490            <meta-data
+490-->[androidx.emoji2:emoji2:1.3.0] /home/prajwal/.gradle/caches/transforms-3/4783fe821f83237f1f2faf35b2d4c6e9/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+491                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+491-->[androidx.emoji2:emoji2:1.3.0] /home/prajwal/.gradle/caches/transforms-3/4783fe821f83237f1f2faf35b2d4c6e9/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:30:17-75
+492                android:value="androidx.startup" />
+492-->[androidx.emoji2:emoji2:1.3.0] /home/prajwal/.gradle/caches/transforms-3/4783fe821f83237f1f2faf35b2d4c6e9/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:31:17-49
+493            <meta-data
+493-->[androidx.lifecycle:lifecycle-process:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/cb423baff121f1d00fae1e9ca421c4a0/transformed/jetified-lifecycle-process-2.7.0-alpha02/AndroidManifest.xml:29:13-31:52
+494                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+494-->[androidx.lifecycle:lifecycle-process:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/cb423baff121f1d00fae1e9ca421c4a0/transformed/jetified-lifecycle-process-2.7.0-alpha02/AndroidManifest.xml:30:17-78
+495                android:value="androidx.startup" />
+495-->[androidx.lifecycle:lifecycle-process:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/cb423baff121f1d00fae1e9ca421c4a0/transformed/jetified-lifecycle-process-2.7.0-alpha02/AndroidManifest.xml:31:17-49
+496            <meta-data
+496-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+497                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+497-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
+498                android:value="androidx.startup" />
+498-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+499        </provider>
+500
+501        <service
+501-->[androidx.room:room-runtime:2.6.0-beta01] /home/prajwal/.gradle/caches/transforms-3/6e31d778a9dbd9364653ae24b30de4c9/transformed/room-runtime-2.6.0-beta01/AndroidManifest.xml:24:9-28:63
+502            android:name="androidx.room.MultiInstanceInvalidationService"
+502-->[androidx.room:room-runtime:2.6.0-beta01] /home/prajwal/.gradle/caches/transforms-3/6e31d778a9dbd9364653ae24b30de4c9/transformed/room-runtime-2.6.0-beta01/AndroidManifest.xml:25:13-74
+503            android:directBootAware="true"
+503-->[androidx.room:room-runtime:2.6.0-beta01] /home/prajwal/.gradle/caches/transforms-3/6e31d778a9dbd9364653ae24b30de4c9/transformed/room-runtime-2.6.0-beta01/AndroidManifest.xml:26:13-43
+504            android:exported="false" />
+504-->[androidx.room:room-runtime:2.6.0-beta01] /home/prajwal/.gradle/caches/transforms-3/6e31d778a9dbd9364653ae24b30de4c9/transformed/room-runtime-2.6.0-beta01/AndroidManifest.xml:27:13-37
+505
+506        <receiver
+506-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+507            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+507-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+508            android:directBootAware="false"
+508-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+509            android:enabled="true"
+509-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+510            android:exported="true"
+510-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+511            android:permission="android.permission.DUMP" >
+511-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+512            <intent-filter>
+512-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+513                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+513-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+513-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+514            </intent-filter>
+515            <intent-filter>
+515-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+516                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+516-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+516-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+517            </intent-filter>
+518            <intent-filter>
+518-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+519                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+519-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+519-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+520            </intent-filter>
+521            <intent-filter>
+521-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+522                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+522-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+522-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
+523            </intent-filter>
+524        </receiver>
+525    </application>
+526
+527</manifest>

@@ -1,0 +1,1144 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:2:1-468:12
+INJECTED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:2:1-468:12
+INJECTED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:2:1-468:12
+INJECTED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:2:1-468:12
+MERGED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:2:1-69:12
+MERGED from [androidx.databinding:viewbinding:8.1.1] /home/prajwal/.gradle/caches/transforms-3/c6b2e5c5f53e9b4fdad11fa1a98d3761/transformed/jetified-viewbinding-8.1.1/AndroidManifest.xml:2:1-7:12
+MERGED from [com.github.tibbi:IndicatorFastScroll:4524cd0b61] /home/prajwal/.gradle/caches/transforms-3/9422bef29369478082ebdce46c980302/transformed/jetified-IndicatorFastScroll-4524cd0b61/AndroidManifest.xml:2:1-9:12
+MERGED from [com.github.tibbi:RecyclerView-FastScroller:5a95285b1f] /home/prajwal/.gradle/caches/transforms-3/9b65bdb607bb355627d0bd2386f045e2/transformed/jetified-RecyclerView-FastScroller-5a95285b1f/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.material:material:1.9.0] /home/prajwal/.gradle/caches/transforms-3/f6f9980f55aca267d8ef542f9b0cce44/transformed/material-1.9.0/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/prajwal/.gradle/caches/transforms-3/3c82b58b801c29ba4f91ebaa7716c12e/transformed/constraintlayout-2.1.4/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.biometric:biometric-ktx:1.2.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/aaebf353799e8d7ec36ba6c26512a3a3/transformed/jetified-biometric-ktx-1.2.0-alpha05/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.biometric:biometric:1.2.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/3e4a5819df3a070834fad20da16fada1/transformed/biometric-1.2.0-alpha05/AndroidManifest.xml:17:1-27:12
+MERGED from [com.github.tibbi.reprint:tests:2cb206415d] /home/prajwal/.gradle/caches/transforms-3/d8c443e7245f11cfb87c88193192e3ec/transformed/jetified-tests-2cb206415d/AndroidManifest.xml:2:1-7:12
+MERGED from [com.github.tibbi.reprint:rxjava:2cb206415d] /home/prajwal/.gradle/caches/transforms-3/0cfe1db8721d4ea1507ef20cbeebb86f/transformed/jetified-rxjava-2cb206415d/AndroidManifest.xml:2:1-7:12
+MERGED from [com.github.tibbi.reprint:rxjava2:2cb206415d] /home/prajwal/.gradle/caches/transforms-3/fc15952d9ab2f3405fc7a2604c7be525/transformed/jetified-rxjava2-2cb206415d/AndroidManifest.xml:2:1-7:12
+MERGED from [com.github.tibbi.reprint:core:2cb206415d] /home/prajwal/.gradle/caches/transforms-3/0f8c1fec4cb2716baea33fca10a277aa/transformed/jetified-core-2cb206415d/AndroidManifest.xml:2:1-9:12
+MERGED from [com.github.aritraroy.patternLockView:patternlockview-reactive:a90b0d4bf0] /home/prajwal/.gradle/caches/transforms-3/d080d896e315ef5b52fca32fe6168732/transformed/jetified-patternlockview-reactive-a90b0d4bf0/AndroidManifest.xml:2:1-12:12
+MERGED from [com.github.aritraroy.patternLockView:patternlockview:a90b0d4bf0] /home/prajwal/.gradle/caches/transforms-3/f9f51c6f25e63d963855cd27013bffe1/transformed/jetified-patternlockview-a90b0d4bf0/AndroidManifest.xml:2:1-12:12
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /home/prajwal/.gradle/caches/transforms-3/e9c8027f1b926184ff513620b319a68a/transformed/jetified-appcompat-resources-1.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.appcompat:appcompat:1.6.1] /home/prajwal/.gradle/caches/transforms-3/6df2e91d74ede8ee5709c4bd45f41abe/transformed/appcompat-1.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.material3:material3-android:1.2.0-alpha07] /home/prajwal/.gradle/caches/transforms-3/0af576d82e5a98d2e09b0525dc4e6615/transformed/jetified-material3-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/0625b3c60ae92aedae0cfd4a857786cb/transformed/jetified-foundation-layout-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-icons-core-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/e93cd155e07a904c2a614375a1ed098c/transformed/jetified-material-icons-core-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-icons-extended-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/3f3af13326ce7bc4a894da5c1ffb0ef0/transformed/jetified-material-icons-extended-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-ripple-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/b21cf157bc77c8919ec49d4bfff42ebe/transformed/jetified-material-ripple-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/a545fe965394acaf1b2b777d01d07ece/transformed/jetified-foundation-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-core-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/0a26fb394ceb53b6b1fef4e1cadecd21/transformed/jetified-animation-core-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/4219fbceb925f6cc70e6ea38fe756bf7/transformed/jetified-animation-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-unit-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/f1f666111763c1633df08d38fbf63b55/transformed/jetified-ui-unit-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-graphics-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/9e9880ed0f768362d7bcecdd4ded9638/transformed/jetified-ui-graphics-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-text-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/aad5355675b61ba2eb8f502097010d57/transformed/jetified-ui-text-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-util-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/dcf0cccd8ee8c0632632c428eb73943a/transformed/jetified-ui-util-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-geometry-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/cea7e89ec7e94bc6920245f7d9a2c9f6/transformed/jetified-ui-geometry-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/bd2175578a13caa87240cfae0f1485e9/transformed/jetified-ui-tooling-preview-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.ui:ui-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/934e9ff830b0ead59deeaece3be53ad5/transformed/jetified-ui-release/AndroidManifest.xml:2:1-7:12
+MERGED from [com.github.bumptech.glide:glide:4.16.0] /home/prajwal/.gradle/caches/transforms-3/6546d62be89a28aad81908604e1ab46b/transformed/jetified-glide-4.16.0/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/prajwal/.gradle/caches/transforms-3/3f4deefe2bfa6cf41d6daa846f1d9211/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.3.6] /home/prajwal/.gradle/caches/transforms-3/b0f6e5e890e5ce0163035b19e3fdaec2/transformed/fragment-1.3.6/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.8.0-beta01] /home/prajwal/.gradle/caches/transforms-3/940f43d5450129675129f7ce67a5e333/transformed/jetified-activity-1.8.0-beta01/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity-ktx:1.8.0-beta01] /home/prajwal/.gradle/caches/transforms-3/f9be1688396f6c4269fb08b52269e720/transformed/jetified-activity-ktx-1.8.0-beta01/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.activity:activity-compose:1.8.0-beta01] /home/prajwal/.gradle/caches/transforms-3/0f99d3a7e9eaca25b98ffb405e2df36d/transformed/jetified-activity-compose-1.8.0-beta01/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /home/prajwal/.gradle/caches/transforms-3/06fda7d8fb6e26d942dacbdefc098532/transformed/jetified-savedstate-ktx-1.2.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.2.1] /home/prajwal/.gradle/caches/transforms-3/540db3ea1d5395bb1e4297c67ec673a2/transformed/jetified-savedstate-1.2.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /home/prajwal/.gradle/caches/transforms-3/84678d52c9939eb624cd6fe9e8dfaf4e/transformed/jetified-emoji2-views-helper-1.3.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.3.0] /home/prajwal/.gradle/caches/transforms-3/4783fe821f83237f1f2faf35b2d4c6e9/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /home/prajwal/.gradle/caches/transforms-3/df794a4c8e942f3ac0a8a2aa73aaaef8/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/prajwal/.gradle/caches/transforms-3/b623c581450502e183d310b65c14e9a3/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /home/prajwal/.gradle/caches/transforms-3/d537ec1ab170d1b37272896381e1b046/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/5787fa2793d7d7fdee226cf6aba736b0/transformed/jetified-lifecycle-livedata-core-ktx-2.7.0-alpha02/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/114e7d2c3eb8672798ecc97d4cdd200c/transformed/lifecycle-livedata-2.7.0-alpha02/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/cb423baff121f1d00fae1e9ca421c4a0/transformed/jetified-lifecycle-process-2.7.0-alpha02/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/3e8185f8cacc43a880dc6a1c52e4e689/transformed/lifecycle-livedata-core-2.7.0-alpha02/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/d42622244970a06862aad28541c2a8fa/transformed/jetified-lifecycle-viewmodel-savedstate-2.7.0-alpha02/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/6decf1b4669bd98a62745332f179e439/transformed/lifecycle-viewmodel-2.7.0-alpha02/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] /home/prajwal/.gradle/caches/transforms-3/4bbd2bd593fac6d877a177574a991825/transformed/swiperefreshlayout-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /home/prajwal/.gradle/caches/transforms-3/baa094612710fe7cc73b1b959a01d99b/transformed/jetified-customview-poolingcontainer-1.0.0/AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.core:core-ktx:1.12.0] /home/prajwal/.gradle/caches/transforms-3/154ed2091c7e39f944be10d65458449f/transformed/jetified-core-ktx-1.12.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.recyclerview:recyclerview:1.2.1] /home/prajwal/.gradle/caches/transforms-3/41ac0c03fa5f17481bb87b5ebda6c85f/transformed/recyclerview-1.2.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /home/prajwal/.gradle/caches/transforms-3/fcaddd2d39e71b171bb9a4fc40b118d3/transformed/drawerlayout-1.1.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/prajwal/.gradle/caches/transforms-3/f1fc789c335450ec4ffd4f8b0ea17749/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.transition:transition:1.2.0] /home/prajwal/.gradle/caches/transforms-3/812b06a7f731282b7772bf2af6e261bf/transformed/transition-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/prajwal/.gradle/caches/transforms-3/f314eb4c6d7d8a55e339c1bfee56a4b2/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/prajwal/.gradle/caches/transforms-3/d7f04a10ecd449f7f7dd2934e0b3b91c/transformed/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.autofill:autofill:1.0.0] /home/prajwal/.gradle/caches/transforms-3/6bbc08bf534f0691ae2865eb80e8d396/transformed/jetified-autofill-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/prajwal/.gradle/caches/transforms-3/6e5c7c453c13e5efe2a420988b4b6f25/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.1.0] /home/prajwal/.gradle/caches/transforms-3/662023c872a773fe5d0277c8e2012447/transformed/customview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.12.0] /home/prajwal/.gradle/caches/transforms-3/62aca5a29436925a8becb6c89252b5eb/transformed/core-1.12.0/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/22e0b4eea152f56d39bc466ee32ddd3f/transformed/lifecycle-runtime-2.7.0-alpha02/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/484da14ed933d23310dfe5cf5f8e6d55/transformed/jetified-lifecycle-viewmodel-compose-2.7.0-alpha02/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/6cba025e32edf5b64510b64f5d7865c8/transformed/jetified-lifecycle-viewmodel-ktx-2.7.0-alpha02/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/f518a9d310fc0b798cb67e6c71ec6a37/transformed/jetified-lifecycle-runtime-compose-2.7.0-alpha02/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/1b1b2c310a3a4fb538f456c093bbbdad/transformed/jetified-lifecycle-runtime-ktx-2.7.0-alpha02/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.room:room-runtime:2.6.0-beta01] /home/prajwal/.gradle/caches/transforms-3/6e31d778a9dbd9364653ae24b30de4c9/transformed/room-runtime-2.6.0-beta01/AndroidManifest.xml:17:1-31:12
+MERGED from [androidx.room:room-ktx:2.6.0-beta01] /home/prajwal/.gradle/caches/transforms-3/a8e6342dcf417e2ec1580d984dea9d66/transformed/jetified-room-ktx-2.6.0-beta01/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/9fb5416d78a43905a9fa5861a45da819/transformed/jetified-runtime-saveable-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.runtime:runtime-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/fb8c45162aab5821d3f300fdf4630713/transformed/jetified-runtime-release/AndroidManifest.xml:2:1-7:12
+MERGED from [me.grantland:autofittextview:0.2.1] /home/prajwal/.gradle/caches/transforms-3/6b327fa50abb8df031e3b8f919e248a4/transformed/jetified-autofittextview-0.2.1/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.documentfile:documentfile:1.0.1] /home/prajwal/.gradle/caches/transforms-3/7c4ef2b5de2a641d0c5a8f175953bca2/transformed/documentfile-1.0.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.6] /home/prajwal/.gradle/caches/transforms-3/2864fc650bdf47e6973e1f2e9abee981/transformed/exifinterface-1.3.6/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/prajwal/.gradle/caches/transforms-3/131803e2502f2f599b8ba98dd3eb2cd4/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/prajwal/.gradle/caches/transforms-3/76b793dafa1917629da7f51b60e05445/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cardview:cardview:1.0.0] /home/prajwal/.gradle/caches/transforms-3/30eabd05ef08987f8e14c7209a53f7ea/transformed/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.16.0] /home/prajwal/.gradle/caches/transforms-3/c32f6fdb4be3fc5a14dd2993799bccb6/transformed/jetified-gifdecoder-4.16.0/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/prajwal/.gradle/caches/transforms-3/17b7aecc49278c4bcf52b66aba02afb7/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] /home/prajwal/.gradle/caches/transforms-3/f46e9638fa2acf186725557e344e09a4/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/prajwal/.gradle/caches/transforms-3/9a91fdea81bf34c4c8dc740a953efa25/transformed/core-runtime-2.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.sqlite:sqlite-framework:2.4.0-beta01] /home/prajwal/.gradle/caches/transforms-3/6f8250cce19c6b5972c337f903a54d84/transformed/sqlite-framework-2.4.0-beta01/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.sqlite:sqlite:2.4.0-beta01] /home/prajwal/.gradle/caches/transforms-3/f7bdf3b3050e48162dc7d9d4245e1c4f/transformed/sqlite-2.4.0-beta01/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/prajwal/.gradle/caches/transforms-3/7976d15d5562259886c20d18c2782984/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/prajwal/.gradle/caches/transforms-3/e42480e7f888166a144efa49423239f0/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /home/prajwal/.gradle/caches/transforms-3/d49e0e0f4c4e9327f94f9dbeedafaa6e/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /home/prajwal/.gradle/caches/transforms-3/864eba26c7542647dd16dfe414256d49/transformed/jetified-annotation-experimental-1.3.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.duolingo:rtl-viewpager:940f12724f] /home/prajwal/.gradle/caches/transforms-3/eb77894bf8840ed34d2498c59a2e926c/transformed/jetified-rtl-viewpager-940f12724f/AndroidManifest.xml:17:1-24:12
+MERGED from [io.reactivex.rxjava2:rxandroid:2.0.0] /home/prajwal/.gradle/caches/transforms-3/46774b99dae2245eede597e2e3dd1566/transformed/jetified-rxandroid-2.0.0/AndroidManifest.xml:15:1-21:12
+	package
+		INJECTED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:2:11-69
+	android:installLocation
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:4:5-35
+uses-permission#android.permission.READ_CONTACTS
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:6:5-72
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:6:22-69
+uses-permission#android.permission.WRITE_CONTACTS
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:7:5-73
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:7:22-70
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:8:5-75
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:8:22-72
+uses-permission#android.permission.CALL_PHONE
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:9:5-69
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:9:22-66
+uses-permission#android.permission.CALL_PRIVILEGED
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:10:5-74
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:10:22-71
+uses-permission#android.permission.READ_CALL_LOG
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:11:5-72
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:11:22-69
+uses-permission#android.permission.WRITE_CALL_LOG
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:12:5-73
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:12:22-70
+uses-permission#android.permission.WAKE_LOCK
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:13:5-68
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:13:22-65
+uses-permission#android.permission.ANSWER_PHONE_CALLS
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:14:5-77
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:14:22-74
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:15:5-77
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:15:22-74
+uses-permission#android.permission.MANAGE_OWN_CALLS
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:16:5-75
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:16:22-72
+uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:17:5-80
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:17:22-77
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:18:5-71
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:18:22-68
+uses-permission#android.permission.SYSTEM_ALERT_WINDOW
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:19:5-78
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:19:22-75
+uses-permission#android.telecom.action.CONFIGURE_PHONE_ACCOUNT
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:20:5-86
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:20:22-83
+uses-permission#android.permission.VIBRATE
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:21:5-66
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:21:22-63
+uses-permission#android.permission.POST_NOTIFICATIONS
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:22:5-77
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:22:22-74
+uses-permission#android.permission.READ_SYNC_SETTINGS
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:23:5-77
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:23:22-74
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:25:5-27:38
+	android:maxSdkVersion
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:27:9-35
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:26:9-65
+uses-permission#android.permission.USE_FINGERPRINT
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:29:5-31:31
+REJECTED from [androidx.biometric:biometric:1.2.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/3e4a5819df3a070834fad20da16fada1/transformed/biometric-1.2.0-alpha05/AndroidManifest.xml:25:5-74
+REJECTED from [com.github.tibbi.reprint:core:2cb206415d] /home/prajwal/.gradle/caches/transforms-3/0f8c1fec4cb2716baea33fca10a277aa/transformed/jetified-core-2cb206415d/AndroidManifest.xml:7:5-74
+	tools:node
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:31:9-28
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:30:9-58
+queries
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:33:5-36:15
+MERGED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:8:5-11:15
+MERGED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:8:5-11:15
+package#com.simplemobiletools.contacts.pro.debug
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:34:9-76
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:34:18-73
+package#com.simplemobiletools.contacts.pro
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:35:9-70
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:35:18-67
+application
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:38:5-467:19
+INJECTED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:38:5-467:19
+MERGED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:32:5-67:19
+MERGED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:32:5-67:19
+MERGED from [com.google.android.material:material:1.9.0] /home/prajwal/.gradle/caches/transforms-3/f6f9980f55aca267d8ef542f9b0cce44/transformed/material-1.9.0/AndroidManifest.xml:24:5-20
+MERGED from [com.google.android.material:material:1.9.0] /home/prajwal/.gradle/caches/transforms-3/f6f9980f55aca267d8ef542f9b0cce44/transformed/material-1.9.0/AndroidManifest.xml:24:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/prajwal/.gradle/caches/transforms-3/3c82b58b801c29ba4f91ebaa7716c12e/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/prajwal/.gradle/caches/transforms-3/3c82b58b801c29ba4f91ebaa7716c12e/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
+MERGED from [androidx.emoji2:emoji2:1.3.0] /home/prajwal/.gradle/caches/transforms-3/4783fe821f83237f1f2faf35b2d4c6e9/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] /home/prajwal/.gradle/caches/transforms-3/4783fe821f83237f1f2faf35b2d4c6e9/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/cb423baff121f1d00fae1e9ca421c4a0/transformed/jetified-lifecycle-process-2.7.0-alpha02/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/cb423baff121f1d00fae1e9ca421c4a0/transformed/jetified-lifecycle-process-2.7.0-alpha02/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.12.0] /home/prajwal/.gradle/caches/transforms-3/62aca5a29436925a8becb6c89252b5eb/transformed/core-1.12.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.12.0] /home/prajwal/.gradle/caches/transforms-3/62aca5a29436925a8becb6c89252b5eb/transformed/core-1.12.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.room:room-runtime:2.6.0-beta01] /home/prajwal/.gradle/caches/transforms-3/6e31d778a9dbd9364653ae24b30de4c9/transformed/room-runtime-2.6.0-beta01/AndroidManifest.xml:23:5-29:19
+MERGED from [androidx.room:room-runtime:2.6.0-beta01] /home/prajwal/.gradle/caches/transforms-3/6e31d778a9dbd9364653ae24b30de4c9/transformed/room-runtime-2.6.0-beta01/AndroidManifest.xml:23:5-29:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/prajwal/.gradle/caches/transforms-3/17b7aecc49278c4bcf52b66aba02afb7/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/prajwal/.gradle/caches/transforms-3/17b7aecc49278c4bcf52b66aba02afb7/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/prajwal/.gradle/caches/transforms-3/7976d15d5562259886c20d18c2782984/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/prajwal/.gradle/caches/transforms-3/7976d15d5562259886c20d18c2782984/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+	android:extractNativeLibs
+		INJECTED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml
+	android:localeConfig
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:44:9-50
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.12.0] /home/prajwal/.gradle/caches/transforms-3/62aca5a29436925a8becb6c89252b5eb/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:32:18-44
+	android:label
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:43:9-50
+	android:appCategory
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:41:9-43
+	android:roundIcon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:45:9-48
+	android:icon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:42:9-43
+	android:allowBackup
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:40:9-35
+	android:theme
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:46:9-40
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:39:9-28
+activity#com.simplemobiletools.dialer.activities.SplashActivity
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:48:9-51:50
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:50:13-37
+	android:theme
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:51:13-47
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:49:13-54
+activity#com.simplemobiletools.dialer.activities.MainActivity
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:53:9-63:20
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:56:13-36
+	android:configChanges
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:55:13-59
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:54:13-52
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.DEFAULT+data:mimeType:vnd.android.cursor.dir/calls
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:58:13-62:29
+action#android.intent.action.VIEW
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:59:17-69
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:59:25-66
+data
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:60:17-73
+	android:scheme
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:135:23-43
+	android:mimeType
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:60:23-70
+category#android.intent.category.DEFAULT
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:61:17-76
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:61:27-73
+activity#com.simplemobiletools.commons.activities.AboutActivity
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:65:9-70:69
+	android:parentActivityName
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:70:13-66
+	android:label
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:69:13-42
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:68:13-37
+	android:configChanges
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:67:13-48
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:66:13-82
+activity#com.simplemobiletools.commons.activities.CustomizationActivity
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:72:9-77:73
+	android:parentActivityName
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:77:13-70
+	android:label
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:76:13-53
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:75:13-37
+	android:configChanges
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:74:13-48
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:73:13-90
+activity#com.simplemobiletools.commons.activities.ManageBlockedNumbersActivity
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:79:9-85:45
+MERGED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:51:9-56:62
+MERGED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:51:9-56:62
+	android:parentActivityName
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:84:13-70
+	android:label
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:83:13-52
+		REJECTED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:56:13-59
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:82:13-37
+	android:configChanges
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:81:13-48
+	android:enableOnBackInvokedCallback
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:54:13-55
+	tools:replace
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:85:13-42
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:80:13-97
+activity#com.simplemobiletools.dialer.activities.ManageSpeedDialActivity
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:87:9-92:73
+	android:parentActivityName
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:92:13-70
+	android:label
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:91:13-47
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:90:13-37
+	android:configChanges
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:89:13-48
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:88:13-63
+activity#com.simplemobiletools.dialer.activities.ConferenceActivity
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:94:9-99:69
+	android:parentActivityName
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:99:13-66
+	android:label
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:98:13-47
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:97:13-37
+	android:configChanges
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:96:13-48
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:95:13-58
+activity#com.simplemobiletools.dialer.activities.SettingsActivity
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:101:9-112:20
+	android:parentActivityName
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:106:13-66
+	android:label
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:105:13-45
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:104:13-36
+	android:configChanges
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:103:13-48
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:102:13-56
+intent-filter#action:name:android.intent.action.APPLICATION_PREFERENCES+category:name:android.intent.category.DEFAULT
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:108:13-111:29
+action#android.intent.action.APPLICATION_PREFERENCES
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:109:17-88
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:109:25-85
+activity#com.simplemobiletools.dialer.activities.CallActivity
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:114:9-121:47
+	android:screenOrientation
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:120:13-49
+	android:label
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:118:13-49
+	android:excludeFromRecents
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:116:13-46
+	android:launchMode
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:119:13-44
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:117:13-37
+	android:showOnLockScreen
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:121:13-44
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:115:13-52
+activity#com.simplemobiletools.dialer.activities.DialpadActivity
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:123:9-153:20
+	android:screenOrientation
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:128:13-49
+	android:parentActivityName
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:127:13-66
+	android:label
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:126:13-44
+	android:windowSoftInputMode
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:129:13-54
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:125:13-36
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:124:13-55
+intent-filter#action:name:android.intent.action.DIAL+category:name:android.intent.category.DEFAULT+data:scheme:tel
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:131:13-136:29
+action#android.intent.action.DIAL
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:132:17-69
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:132:25-66
+intent-filter#action:name:android.intent.action.DIAL+category:name:android.intent.category.DEFAULT
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:138:13-142:29
+intent-filter#action:name:android.intent.action.DIAL+action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:scheme:tel
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:144:13-152:29
+category#android.intent.category.BROWSABLE
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:149:17-78
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:149:27-75
+activity#com.simplemobiletools.dialer.activities.DialerActivity
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:155:9-168:20
+	android:label
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:159:13-43
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:158:13-36
+	android:configChanges
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:157:13-48
+	android:theme
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:160:13-53
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:156:13-54
+intent-filter#action:name:android.intent.action.CALL+category:name:android.intent.category.DEFAULT+data:scheme:tel
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:162:13-167:29
+action#android.intent.action.CALL
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:163:17-69
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:163:25-66
+service#com.simplemobiletools.dialer.services.CallService
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:170:9-182:19
+	android:enabled
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:172:13-35
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:173:13-36
+	android:permission
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:174:13-72
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:171:13-49
+meta-data#android.telecom.IN_CALL_SERVICE_UI
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:175:13-177:40
+	android:value
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:177:17-37
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:176:17-66
+intent-filter#action:name:android.telecom.InCallService
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:179:13-181:29
+action#android.telecom.InCallService
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:180:17-72
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:180:25-69
+service#com.simplemobiletools.dialer.services.SimpleCallScreeningService
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:184:9-191:19
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:186:13-36
+	android:permission
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:187:13-75
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:185:13-64
+intent-filter#action:name:android.telecom.CallScreeningService
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:188:13-190:29
+action#android.telecom.CallScreeningService
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:189:17-79
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:189:25-76
+receiver#com.simplemobiletools.dialer.receivers.CallActionReceiver
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:193:9-201:20
+	android:enabled
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:195:13-35
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:196:13-36
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:194:13-57
+intent-filter#action:name:com.simplemobiletools.dialer.action.ACCEPT_CALL+action:name:com.simplemobiletools.dialer.action.DECLINE_CALL
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:197:13-200:29
+action#com.simplemobiletools.dialer.action.ACCEPT_CALL
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:198:17-90
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:198:25-87
+action#com.simplemobiletools.dialer.action.DECLINE_CALL
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:199:17-91
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:199:25-88
+activity-alias#com.simplemobiletools.dialer.activities.SplashActivity.Red
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:203:9-215:26
+	android:enabled
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:205:13-36
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:206:13-36
+	android:targetActivity
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:209:13-64
+	android:roundIcon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:208:13-56
+	android:icon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:207:13-51
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:204:13-58
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:211:13-214:29
+action#android.intent.action.MAIN
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:17-69
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:212:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:17-77
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:213:27-74
+activity-alias#com.simplemobiletools.dialer.activities.SplashActivity.Pink
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:217:9-229:26
+	android:enabled
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:219:13-36
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:220:13-36
+	android:targetActivity
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:223:13-64
+	android:roundIcon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:222:13-57
+	android:icon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:221:13-52
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:218:13-59
+activity-alias#com.simplemobiletools.dialer.activities.SplashActivity.Purple
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:231:9-243:26
+	android:enabled
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:233:13-36
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:234:13-36
+	android:targetActivity
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:237:13-64
+	android:roundIcon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:236:13-59
+	android:icon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:235:13-54
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:232:13-61
+activity-alias#com.simplemobiletools.dialer.activities.SplashActivity.Deep_purple
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:245:9-257:26
+	android:enabled
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:247:13-36
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:248:13-36
+	android:targetActivity
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:251:13-64
+	android:roundIcon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:250:13-64
+	android:icon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:249:13-59
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:246:13-66
+activity-alias#com.simplemobiletools.dialer.activities.SplashActivity.Indigo
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:259:9-271:26
+	android:enabled
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:261:13-36
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:262:13-36
+	android:targetActivity
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:265:13-64
+	android:roundIcon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:264:13-59
+	android:icon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:263:13-54
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:260:13-61
+activity-alias#com.simplemobiletools.dialer.activities.SplashActivity.Blue
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:273:9-285:26
+	android:enabled
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:275:13-36
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:276:13-36
+	android:targetActivity
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:279:13-64
+	android:roundIcon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:278:13-57
+	android:icon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:277:13-52
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:274:13-59
+activity-alias#com.simplemobiletools.dialer.activities.SplashActivity.Light_blue
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:287:9-299:26
+	android:enabled
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:289:13-36
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:290:13-36
+	android:targetActivity
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:293:13-64
+	android:roundIcon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:292:13-63
+	android:icon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:291:13-58
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:288:13-65
+activity-alias#com.simplemobiletools.dialer.activities.SplashActivity.Cyan
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:301:9-313:26
+	android:enabled
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:303:13-36
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:304:13-36
+	android:targetActivity
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:307:13-64
+	android:roundIcon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:306:13-57
+	android:icon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:305:13-52
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:302:13-59
+activity-alias#com.simplemobiletools.dialer.activities.SplashActivity.Teal
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:315:9-327:26
+	android:enabled
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:317:13-36
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:318:13-36
+	android:targetActivity
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:321:13-64
+	android:roundIcon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:320:13-57
+	android:icon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:319:13-52
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:316:13-59
+activity-alias#com.simplemobiletools.dialer.activities.SplashActivity.Green
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:329:9-341:26
+	android:enabled
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:331:13-36
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:332:13-36
+	android:targetActivity
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:335:13-64
+	android:roundIcon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:334:13-58
+	android:icon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:333:13-53
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:330:13-60
+activity-alias#com.simplemobiletools.dialer.activities.SplashActivity.Light_green
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:343:9-355:26
+	android:enabled
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:345:13-36
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:346:13-36
+	android:targetActivity
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:349:13-64
+	android:roundIcon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:348:13-64
+	android:icon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:347:13-59
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:344:13-66
+activity-alias#com.simplemobiletools.dialer.activities.SplashActivity.Lime
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:357:9-369:26
+	android:enabled
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:359:13-36
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:360:13-36
+	android:targetActivity
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:363:13-64
+	android:roundIcon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:362:13-57
+	android:icon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:361:13-52
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:358:13-59
+activity-alias#com.simplemobiletools.dialer.activities.SplashActivity.Yellow
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:371:9-383:26
+	android:enabled
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:373:13-36
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:374:13-36
+	android:targetActivity
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:377:13-64
+	android:roundIcon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:376:13-59
+	android:icon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:375:13-54
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:372:13-61
+activity-alias#com.simplemobiletools.dialer.activities.SplashActivity.Amber
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:385:9-397:26
+	android:enabled
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:387:13-36
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:388:13-36
+	android:targetActivity
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:391:13-64
+	android:roundIcon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:390:13-58
+	android:icon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:389:13-53
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:386:13-60
+activity-alias#com.simplemobiletools.dialer.activities.SplashActivity.Orange
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:399:9-410:26
+	android:enabled
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:401:13-35
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:402:13-36
+	android:targetActivity
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:405:13-64
+	android:roundIcon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:404:13-52
+	android:icon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:403:13-47
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:400:13-61
+activity-alias#com.simplemobiletools.dialer.activities.SplashActivity.Deep_orange
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:412:9-424:26
+	android:enabled
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:414:13-36
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:415:13-36
+	android:targetActivity
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:418:13-64
+	android:roundIcon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:417:13-64
+	android:icon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:416:13-59
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:413:13-66
+activity-alias#com.simplemobiletools.dialer.activities.SplashActivity.Brown
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:426:9-438:26
+	android:enabled
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:428:13-36
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:429:13-36
+	android:targetActivity
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:432:13-64
+	android:roundIcon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:431:13-58
+	android:icon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:430:13-53
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:427:13-60
+activity-alias#com.simplemobiletools.dialer.activities.SplashActivity.Blue_grey
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:440:9-452:26
+	android:enabled
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:442:13-36
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:443:13-36
+	android:targetActivity
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:446:13-64
+	android:roundIcon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:445:13-62
+	android:icon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:444:13-57
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:441:13-64
+activity-alias#com.simplemobiletools.dialer.activities.SplashActivity.Grey_black
+ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:454:9-466:26
+	android:enabled
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:456:13-36
+	android:exported
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:457:13-36
+	android:targetActivity
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:460:13-64
+	android:roundIcon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:459:13-63
+	android:icon
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:458:13-58
+	android:name
+		ADDED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml:455:13-65
+uses-sdk
+INJECTED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml
+INJECTED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml
+MERGED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:6:5-44
+MERGED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:6:5-44
+MERGED from [androidx.databinding:viewbinding:8.1.1] /home/prajwal/.gradle/caches/transforms-3/c6b2e5c5f53e9b4fdad11fa1a98d3761/transformed/jetified-viewbinding-8.1.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.databinding:viewbinding:8.1.1] /home/prajwal/.gradle/caches/transforms-3/c6b2e5c5f53e9b4fdad11fa1a98d3761/transformed/jetified-viewbinding-8.1.1/AndroidManifest.xml:5:5-44
+MERGED from [com.github.tibbi:IndicatorFastScroll:4524cd0b61] /home/prajwal/.gradle/caches/transforms-3/9422bef29369478082ebdce46c980302/transformed/jetified-IndicatorFastScroll-4524cd0b61/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.tibbi:IndicatorFastScroll:4524cd0b61] /home/prajwal/.gradle/caches/transforms-3/9422bef29369478082ebdce46c980302/transformed/jetified-IndicatorFastScroll-4524cd0b61/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.tibbi:RecyclerView-FastScroller:5a95285b1f] /home/prajwal/.gradle/caches/transforms-3/9b65bdb607bb355627d0bd2386f045e2/transformed/jetified-RecyclerView-FastScroller-5a95285b1f/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.tibbi:RecyclerView-FastScroller:5a95285b1f] /home/prajwal/.gradle/caches/transforms-3/9b65bdb607bb355627d0bd2386f045e2/transformed/jetified-RecyclerView-FastScroller-5a95285b1f/AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.android.material:material:1.9.0] /home/prajwal/.gradle/caches/transforms-3/f6f9980f55aca267d8ef542f9b0cce44/transformed/material-1.9.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.material:material:1.9.0] /home/prajwal/.gradle/caches/transforms-3/f6f9980f55aca267d8ef542f9b0cce44/transformed/material-1.9.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/prajwal/.gradle/caches/transforms-3/3c82b58b801c29ba4f91ebaa7716c12e/transformed/constraintlayout-2.1.4/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/prajwal/.gradle/caches/transforms-3/3c82b58b801c29ba4f91ebaa7716c12e/transformed/constraintlayout-2.1.4/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.biometric:biometric-ktx:1.2.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/aaebf353799e8d7ec36ba6c26512a3a3/transformed/jetified-biometric-ktx-1.2.0-alpha05/AndroidManifest.xml:5:5-44
+MERGED from [androidx.biometric:biometric-ktx:1.2.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/aaebf353799e8d7ec36ba6c26512a3a3/transformed/jetified-biometric-ktx-1.2.0-alpha05/AndroidManifest.xml:5:5-44
+MERGED from [androidx.biometric:biometric:1.2.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/3e4a5819df3a070834fad20da16fada1/transformed/biometric-1.2.0-alpha05/AndroidManifest.xml:20:5-44
+MERGED from [androidx.biometric:biometric:1.2.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/3e4a5819df3a070834fad20da16fada1/transformed/biometric-1.2.0-alpha05/AndroidManifest.xml:20:5-44
+MERGED from [com.github.tibbi.reprint:tests:2cb206415d] /home/prajwal/.gradle/caches/transforms-3/d8c443e7245f11cfb87c88193192e3ec/transformed/jetified-tests-2cb206415d/AndroidManifest.xml:5:5-44
+MERGED from [com.github.tibbi.reprint:tests:2cb206415d] /home/prajwal/.gradle/caches/transforms-3/d8c443e7245f11cfb87c88193192e3ec/transformed/jetified-tests-2cb206415d/AndroidManifest.xml:5:5-44
+MERGED from [com.github.tibbi.reprint:rxjava:2cb206415d] /home/prajwal/.gradle/caches/transforms-3/0cfe1db8721d4ea1507ef20cbeebb86f/transformed/jetified-rxjava-2cb206415d/AndroidManifest.xml:5:5-44
+MERGED from [com.github.tibbi.reprint:rxjava:2cb206415d] /home/prajwal/.gradle/caches/transforms-3/0cfe1db8721d4ea1507ef20cbeebb86f/transformed/jetified-rxjava-2cb206415d/AndroidManifest.xml:5:5-44
+MERGED from [com.github.tibbi.reprint:rxjava2:2cb206415d] /home/prajwal/.gradle/caches/transforms-3/fc15952d9ab2f3405fc7a2604c7be525/transformed/jetified-rxjava2-2cb206415d/AndroidManifest.xml:5:5-44
+MERGED from [com.github.tibbi.reprint:rxjava2:2cb206415d] /home/prajwal/.gradle/caches/transforms-3/fc15952d9ab2f3405fc7a2604c7be525/transformed/jetified-rxjava2-2cb206415d/AndroidManifest.xml:5:5-44
+MERGED from [com.github.tibbi.reprint:core:2cb206415d] /home/prajwal/.gradle/caches/transforms-3/0f8c1fec4cb2716baea33fca10a277aa/transformed/jetified-core-2cb206415d/AndroidManifest.xml:5:5-44
+MERGED from [com.github.tibbi.reprint:core:2cb206415d] /home/prajwal/.gradle/caches/transforms-3/0f8c1fec4cb2716baea33fca10a277aa/transformed/jetified-core-2cb206415d/AndroidManifest.xml:5:5-44
+MERGED from [com.github.aritraroy.patternLockView:patternlockview-reactive:a90b0d4bf0] /home/prajwal/.gradle/caches/transforms-3/d080d896e315ef5b52fca32fe6168732/transformed/jetified-patternlockview-reactive-a90b0d4bf0/AndroidManifest.xml:8:5-10:41
+MERGED from [com.github.aritraroy.patternLockView:patternlockview-reactive:a90b0d4bf0] /home/prajwal/.gradle/caches/transforms-3/d080d896e315ef5b52fca32fe6168732/transformed/jetified-patternlockview-reactive-a90b0d4bf0/AndroidManifest.xml:8:5-10:41
+MERGED from [com.github.aritraroy.patternLockView:patternlockview:a90b0d4bf0] /home/prajwal/.gradle/caches/transforms-3/f9f51c6f25e63d963855cd27013bffe1/transformed/jetified-patternlockview-a90b0d4bf0/AndroidManifest.xml:8:5-10:41
+MERGED from [com.github.aritraroy.patternLockView:patternlockview:a90b0d4bf0] /home/prajwal/.gradle/caches/transforms-3/f9f51c6f25e63d963855cd27013bffe1/transformed/jetified-patternlockview-a90b0d4bf0/AndroidManifest.xml:8:5-10:41
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /home/prajwal/.gradle/caches/transforms-3/e9c8027f1b926184ff513620b319a68a/transformed/jetified-appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /home/prajwal/.gradle/caches/transforms-3/e9c8027f1b926184ff513620b319a68a/transformed/jetified-appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.6.1] /home/prajwal/.gradle/caches/transforms-3/6df2e91d74ede8ee5709c4bd45f41abe/transformed/appcompat-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.6.1] /home/prajwal/.gradle/caches/transforms-3/6df2e91d74ede8ee5709c4bd45f41abe/transformed/appcompat-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material3:material3-android:1.2.0-alpha07] /home/prajwal/.gradle/caches/transforms-3/0af576d82e5a98d2e09b0525dc4e6615/transformed/jetified-material3-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material3:material3-android:1.2.0-alpha07] /home/prajwal/.gradle/caches/transforms-3/0af576d82e5a98d2e09b0525dc4e6615/transformed/jetified-material3-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/0625b3c60ae92aedae0cfd4a857786cb/transformed/jetified-foundation-layout-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/0625b3c60ae92aedae0cfd4a857786cb/transformed/jetified-foundation-layout-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/e93cd155e07a904c2a614375a1ed098c/transformed/jetified-material-icons-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/e93cd155e07a904c2a614375a1ed098c/transformed/jetified-material-icons-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/3f3af13326ce7bc4a894da5c1ffb0ef0/transformed/jetified-material-icons-extended-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/3f3af13326ce7bc4a894da5c1ffb0ef0/transformed/jetified-material-icons-extended-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/b21cf157bc77c8919ec49d4bfff42ebe/transformed/jetified-material-ripple-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/b21cf157bc77c8919ec49d4bfff42ebe/transformed/jetified-material-ripple-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/a545fe965394acaf1b2b777d01d07ece/transformed/jetified-foundation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/a545fe965394acaf1b2b777d01d07ece/transformed/jetified-foundation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/0a26fb394ceb53b6b1fef4e1cadecd21/transformed/jetified-animation-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/0a26fb394ceb53b6b1fef4e1cadecd21/transformed/jetified-animation-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/4219fbceb925f6cc70e6ea38fe756bf7/transformed/jetified-animation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/4219fbceb925f6cc70e6ea38fe756bf7/transformed/jetified-animation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/f1f666111763c1633df08d38fbf63b55/transformed/jetified-ui-unit-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/f1f666111763c1633df08d38fbf63b55/transformed/jetified-ui-unit-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/9e9880ed0f768362d7bcecdd4ded9638/transformed/jetified-ui-graphics-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/9e9880ed0f768362d7bcecdd4ded9638/transformed/jetified-ui-graphics-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/aad5355675b61ba2eb8f502097010d57/transformed/jetified-ui-text-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/aad5355675b61ba2eb8f502097010d57/transformed/jetified-ui-text-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/dcf0cccd8ee8c0632632c428eb73943a/transformed/jetified-ui-util-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/dcf0cccd8ee8c0632632c428eb73943a/transformed/jetified-ui-util-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/cea7e89ec7e94bc6920245f7d9a2c9f6/transformed/jetified-ui-geometry-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/cea7e89ec7e94bc6920245f7d9a2c9f6/transformed/jetified-ui-geometry-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/bd2175578a13caa87240cfae0f1485e9/transformed/jetified-ui-tooling-preview-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/bd2175578a13caa87240cfae0f1485e9/transformed/jetified-ui-tooling-preview-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/934e9ff830b0ead59deeaece3be53ad5/transformed/jetified-ui-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/934e9ff830b0ead59deeaece3be53ad5/transformed/jetified-ui-release/AndroidManifest.xml:5:5-44
+MERGED from [com.github.bumptech.glide:glide:4.16.0] /home/prajwal/.gradle/caches/transforms-3/6546d62be89a28aad81908604e1ab46b/transformed/jetified-glide-4.16.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:glide:4.16.0] /home/prajwal/.gradle/caches/transforms-3/6546d62be89a28aad81908604e1ab46b/transformed/jetified-glide-4.16.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/prajwal/.gradle/caches/transforms-3/3f4deefe2bfa6cf41d6daa846f1d9211/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/prajwal/.gradle/caches/transforms-3/3f4deefe2bfa6cf41d6daa846f1d9211/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] /home/prajwal/.gradle/caches/transforms-3/b0f6e5e890e5ce0163035b19e3fdaec2/transformed/fragment-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] /home/prajwal/.gradle/caches/transforms-3/b0f6e5e890e5ce0163035b19e3fdaec2/transformed/fragment-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.8.0-beta01] /home/prajwal/.gradle/caches/transforms-3/940f43d5450129675129f7ce67a5e333/transformed/jetified-activity-1.8.0-beta01/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.8.0-beta01] /home/prajwal/.gradle/caches/transforms-3/940f43d5450129675129f7ce67a5e333/transformed/jetified-activity-1.8.0-beta01/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity-ktx:1.8.0-beta01] /home/prajwal/.gradle/caches/transforms-3/f9be1688396f6c4269fb08b52269e720/transformed/jetified-activity-ktx-1.8.0-beta01/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.8.0-beta01] /home/prajwal/.gradle/caches/transforms-3/f9be1688396f6c4269fb08b52269e720/transformed/jetified-activity-ktx-1.8.0-beta01/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-compose:1.8.0-beta01] /home/prajwal/.gradle/caches/transforms-3/0f99d3a7e9eaca25b98ffb405e2df36d/transformed/jetified-activity-compose-1.8.0-beta01/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-compose:1.8.0-beta01] /home/prajwal/.gradle/caches/transforms-3/0f99d3a7e9eaca25b98ffb405e2df36d/transformed/jetified-activity-compose-1.8.0-beta01/AndroidManifest.xml:5:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /home/prajwal/.gradle/caches/transforms-3/06fda7d8fb6e26d942dacbdefc098532/transformed/jetified-savedstate-ktx-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /home/prajwal/.gradle/caches/transforms-3/06fda7d8fb6e26d942dacbdefc098532/transformed/jetified-savedstate-ktx-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] /home/prajwal/.gradle/caches/transforms-3/540db3ea1d5395bb1e4297c67ec673a2/transformed/jetified-savedstate-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] /home/prajwal/.gradle/caches/transforms-3/540db3ea1d5395bb1e4297c67ec673a2/transformed/jetified-savedstate-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /home/prajwal/.gradle/caches/transforms-3/84678d52c9939eb624cd6fe9e8dfaf4e/transformed/jetified-emoji2-views-helper-1.3.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /home/prajwal/.gradle/caches/transforms-3/84678d52c9939eb624cd6fe9e8dfaf4e/transformed/jetified-emoji2-views-helper-1.3.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] /home/prajwal/.gradle/caches/transforms-3/4783fe821f83237f1f2faf35b2d4c6e9/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] /home/prajwal/.gradle/caches/transforms-3/4783fe821f83237f1f2faf35b2d4c6e9/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /home/prajwal/.gradle/caches/transforms-3/df794a4c8e942f3ac0a8a2aa73aaaef8/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /home/prajwal/.gradle/caches/transforms-3/df794a4c8e942f3ac0a8a2aa73aaaef8/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/prajwal/.gradle/caches/transforms-3/b623c581450502e183d310b65c14e9a3/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/prajwal/.gradle/caches/transforms-3/b623c581450502e183d310b65c14e9a3/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/prajwal/.gradle/caches/transforms-3/d537ec1ab170d1b37272896381e1b046/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/prajwal/.gradle/caches/transforms-3/d537ec1ab170d1b37272896381e1b046/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/5787fa2793d7d7fdee226cf6aba736b0/transformed/jetified-lifecycle-livedata-core-ktx-2.7.0-alpha02/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/5787fa2793d7d7fdee226cf6aba736b0/transformed/jetified-lifecycle-livedata-core-ktx-2.7.0-alpha02/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/114e7d2c3eb8672798ecc97d4cdd200c/transformed/lifecycle-livedata-2.7.0-alpha02/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/114e7d2c3eb8672798ecc97d4cdd200c/transformed/lifecycle-livedata-2.7.0-alpha02/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/cb423baff121f1d00fae1e9ca421c4a0/transformed/jetified-lifecycle-process-2.7.0-alpha02/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/cb423baff121f1d00fae1e9ca421c4a0/transformed/jetified-lifecycle-process-2.7.0-alpha02/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/3e8185f8cacc43a880dc6a1c52e4e689/transformed/lifecycle-livedata-core-2.7.0-alpha02/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/3e8185f8cacc43a880dc6a1c52e4e689/transformed/lifecycle-livedata-core-2.7.0-alpha02/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/d42622244970a06862aad28541c2a8fa/transformed/jetified-lifecycle-viewmodel-savedstate-2.7.0-alpha02/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/d42622244970a06862aad28541c2a8fa/transformed/jetified-lifecycle-viewmodel-savedstate-2.7.0-alpha02/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/6decf1b4669bd98a62745332f179e439/transformed/lifecycle-viewmodel-2.7.0-alpha02/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/6decf1b4669bd98a62745332f179e439/transformed/lifecycle-viewmodel-2.7.0-alpha02/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] /home/prajwal/.gradle/caches/transforms-3/4bbd2bd593fac6d877a177574a991825/transformed/swiperefreshlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] /home/prajwal/.gradle/caches/transforms-3/4bbd2bd593fac6d877a177574a991825/transformed/swiperefreshlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /home/prajwal/.gradle/caches/transforms-3/baa094612710fe7cc73b1b959a01d99b/transformed/jetified-customview-poolingcontainer-1.0.0/AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /home/prajwal/.gradle/caches/transforms-3/baa094612710fe7cc73b1b959a01d99b/transformed/jetified-customview-poolingcontainer-1.0.0/AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.core:core-ktx:1.12.0] /home/prajwal/.gradle/caches/transforms-3/154ed2091c7e39f944be10d65458449f/transformed/jetified-core-ktx-1.12.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.12.0] /home/prajwal/.gradle/caches/transforms-3/154ed2091c7e39f944be10d65458449f/transformed/jetified-core-ktx-1.12.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.2.1] /home/prajwal/.gradle/caches/transforms-3/41ac0c03fa5f17481bb87b5ebda6c85f/transformed/recyclerview-1.2.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.2.1] /home/prajwal/.gradle/caches/transforms-3/41ac0c03fa5f17481bb87b5ebda6c85f/transformed/recyclerview-1.2.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /home/prajwal/.gradle/caches/transforms-3/fcaddd2d39e71b171bb9a4fc40b118d3/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /home/prajwal/.gradle/caches/transforms-3/fcaddd2d39e71b171bb9a4fc40b118d3/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/prajwal/.gradle/caches/transforms-3/f1fc789c335450ec4ffd4f8b0ea17749/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/prajwal/.gradle/caches/transforms-3/f1fc789c335450ec4ffd4f8b0ea17749/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] /home/prajwal/.gradle/caches/transforms-3/812b06a7f731282b7772bf2af6e261bf/transformed/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] /home/prajwal/.gradle/caches/transforms-3/812b06a7f731282b7772bf2af6e261bf/transformed/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/prajwal/.gradle/caches/transforms-3/f314eb4c6d7d8a55e339c1bfee56a4b2/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/prajwal/.gradle/caches/transforms-3/f314eb4c6d7d8a55e339c1bfee56a4b2/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/prajwal/.gradle/caches/transforms-3/d7f04a10ecd449f7f7dd2934e0b3b91c/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/prajwal/.gradle/caches/transforms-3/d7f04a10ecd449f7f7dd2934e0b3b91c/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.autofill:autofill:1.0.0] /home/prajwal/.gradle/caches/transforms-3/6bbc08bf534f0691ae2865eb80e8d396/transformed/jetified-autofill-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.autofill:autofill:1.0.0] /home/prajwal/.gradle/caches/transforms-3/6bbc08bf534f0691ae2865eb80e8d396/transformed/jetified-autofill-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/prajwal/.gradle/caches/transforms-3/6e5c7c453c13e5efe2a420988b4b6f25/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/prajwal/.gradle/caches/transforms-3/6e5c7c453c13e5efe2a420988b4b6f25/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.1.0] /home/prajwal/.gradle/caches/transforms-3/662023c872a773fe5d0277c8e2012447/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] /home/prajwal/.gradle/caches/transforms-3/662023c872a773fe5d0277c8e2012447/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.12.0] /home/prajwal/.gradle/caches/transforms-3/62aca5a29436925a8becb6c89252b5eb/transformed/core-1.12.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.12.0] /home/prajwal/.gradle/caches/transforms-3/62aca5a29436925a8becb6c89252b5eb/transformed/core-1.12.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/22e0b4eea152f56d39bc466ee32ddd3f/transformed/lifecycle-runtime-2.7.0-alpha02/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/22e0b4eea152f56d39bc466ee32ddd3f/transformed/lifecycle-runtime-2.7.0-alpha02/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/484da14ed933d23310dfe5cf5f8e6d55/transformed/jetified-lifecycle-viewmodel-compose-2.7.0-alpha02/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/484da14ed933d23310dfe5cf5f8e6d55/transformed/jetified-lifecycle-viewmodel-compose-2.7.0-alpha02/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/6cba025e32edf5b64510b64f5d7865c8/transformed/jetified-lifecycle-viewmodel-ktx-2.7.0-alpha02/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/6cba025e32edf5b64510b64f5d7865c8/transformed/jetified-lifecycle-viewmodel-ktx-2.7.0-alpha02/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/f518a9d310fc0b798cb67e6c71ec6a37/transformed/jetified-lifecycle-runtime-compose-2.7.0-alpha02/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/f518a9d310fc0b798cb67e6c71ec6a37/transformed/jetified-lifecycle-runtime-compose-2.7.0-alpha02/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/1b1b2c310a3a4fb538f456c093bbbdad/transformed/jetified-lifecycle-runtime-ktx-2.7.0-alpha02/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/1b1b2c310a3a4fb538f456c093bbbdad/transformed/jetified-lifecycle-runtime-ktx-2.7.0-alpha02/AndroidManifest.xml:20:5-44
+MERGED from [androidx.room:room-runtime:2.6.0-beta01] /home/prajwal/.gradle/caches/transforms-3/6e31d778a9dbd9364653ae24b30de4c9/transformed/room-runtime-2.6.0-beta01/AndroidManifest.xml:21:5-44
+MERGED from [androidx.room:room-runtime:2.6.0-beta01] /home/prajwal/.gradle/caches/transforms-3/6e31d778a9dbd9364653ae24b30de4c9/transformed/room-runtime-2.6.0-beta01/AndroidManifest.xml:21:5-44
+MERGED from [androidx.room:room-ktx:2.6.0-beta01] /home/prajwal/.gradle/caches/transforms-3/a8e6342dcf417e2ec1580d984dea9d66/transformed/jetified-room-ktx-2.6.0-beta01/AndroidManifest.xml:20:5-44
+MERGED from [androidx.room:room-ktx:2.6.0-beta01] /home/prajwal/.gradle/caches/transforms-3/a8e6342dcf417e2ec1580d984dea9d66/transformed/jetified-room-ktx-2.6.0-beta01/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/9fb5416d78a43905a9fa5861a45da819/transformed/jetified-runtime-saveable-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/9fb5416d78a43905a9fa5861a45da819/transformed/jetified-runtime-saveable-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/fb8c45162aab5821d3f300fdf4630713/transformed/jetified-runtime-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.6.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/fb8c45162aab5821d3f300fdf4630713/transformed/jetified-runtime-release/AndroidManifest.xml:5:5-44
+MERGED from [me.grantland:autofittextview:0.2.1] /home/prajwal/.gradle/caches/transforms-3/6b327fa50abb8df031e3b8f919e248a4/transformed/jetified-autofittextview-0.2.1/AndroidManifest.xml:7:5-9:41
+MERGED from [me.grantland:autofittextview:0.2.1] /home/prajwal/.gradle/caches/transforms-3/6b327fa50abb8df031e3b8f919e248a4/transformed/jetified-autofittextview-0.2.1/AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.documentfile:documentfile:1.0.1] /home/prajwal/.gradle/caches/transforms-3/7c4ef2b5de2a641d0c5a8f175953bca2/transformed/documentfile-1.0.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.1] /home/prajwal/.gradle/caches/transforms-3/7c4ef2b5de2a641d0c5a8f175953bca2/transformed/documentfile-1.0.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.3.6] /home/prajwal/.gradle/caches/transforms-3/2864fc650bdf47e6973e1f2e9abee981/transformed/exifinterface-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.6] /home/prajwal/.gradle/caches/transforms-3/2864fc650bdf47e6973e1f2e9abee981/transformed/exifinterface-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/prajwal/.gradle/caches/transforms-3/131803e2502f2f599b8ba98dd3eb2cd4/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/prajwal/.gradle/caches/transforms-3/131803e2502f2f599b8ba98dd3eb2cd4/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/prajwal/.gradle/caches/transforms-3/76b793dafa1917629da7f51b60e05445/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/prajwal/.gradle/caches/transforms-3/76b793dafa1917629da7f51b60e05445/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /home/prajwal/.gradle/caches/transforms-3/30eabd05ef08987f8e14c7209a53f7ea/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /home/prajwal/.gradle/caches/transforms-3/30eabd05ef08987f8e14c7209a53f7ea/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.github.bumptech.glide:gifdecoder:4.16.0] /home/prajwal/.gradle/caches/transforms-3/c32f6fdb4be3fc5a14dd2993799bccb6/transformed/jetified-gifdecoder-4.16.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.16.0] /home/prajwal/.gradle/caches/transforms-3/c32f6fdb4be3fc5a14dd2993799bccb6/transformed/jetified-gifdecoder-4.16.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/prajwal/.gradle/caches/transforms-3/17b7aecc49278c4bcf52b66aba02afb7/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/prajwal/.gradle/caches/transforms-3/17b7aecc49278c4bcf52b66aba02afb7/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] /home/prajwal/.gradle/caches/transforms-3/f46e9638fa2acf186725557e344e09a4/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /home/prajwal/.gradle/caches/transforms-3/f46e9638fa2acf186725557e344e09a4/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/prajwal/.gradle/caches/transforms-3/9a91fdea81bf34c4c8dc740a953efa25/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/prajwal/.gradle/caches/transforms-3/9a91fdea81bf34c4c8dc740a953efa25/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite-framework:2.4.0-beta01] /home/prajwal/.gradle/caches/transforms-3/6f8250cce19c6b5972c337f903a54d84/transformed/sqlite-framework-2.4.0-beta01/AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite-framework:2.4.0-beta01] /home/prajwal/.gradle/caches/transforms-3/6f8250cce19c6b5972c337f903a54d84/transformed/sqlite-framework-2.4.0-beta01/AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.4.0-beta01] /home/prajwal/.gradle/caches/transforms-3/f7bdf3b3050e48162dc7d9d4245e1c4f/transformed/sqlite-2.4.0-beta01/AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.4.0-beta01] /home/prajwal/.gradle/caches/transforms-3/f7bdf3b3050e48162dc7d9d4245e1c4f/transformed/sqlite-2.4.0-beta01/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/prajwal/.gradle/caches/transforms-3/7976d15d5562259886c20d18c2782984/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/prajwal/.gradle/caches/transforms-3/7976d15d5562259886c20d18c2782984/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/prajwal/.gradle/caches/transforms-3/e42480e7f888166a144efa49423239f0/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/prajwal/.gradle/caches/transforms-3/e42480e7f888166a144efa49423239f0/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/prajwal/.gradle/caches/transforms-3/d49e0e0f4c4e9327f94f9dbeedafaa6e/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/prajwal/.gradle/caches/transforms-3/d49e0e0f4c4e9327f94f9dbeedafaa6e/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /home/prajwal/.gradle/caches/transforms-3/864eba26c7542647dd16dfe414256d49/transformed/jetified-annotation-experimental-1.3.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /home/prajwal/.gradle/caches/transforms-3/864eba26c7542647dd16dfe414256d49/transformed/jetified-annotation-experimental-1.3.0/AndroidManifest.xml:20:5-44
+MERGED from [com.github.duolingo:rtl-viewpager:940f12724f] /home/prajwal/.gradle/caches/transforms-3/eb77894bf8840ed34d2498c59a2e926c/transformed/jetified-rtl-viewpager-940f12724f/AndroidManifest.xml:20:5-22:41
+MERGED from [com.github.duolingo:rtl-viewpager:940f12724f] /home/prajwal/.gradle/caches/transforms-3/eb77894bf8840ed34d2498c59a2e926c/transformed/jetified-rtl-viewpager-940f12724f/AndroidManifest.xml:20:5-22:41
+MERGED from [io.reactivex.rxjava2:rxandroid:2.0.0] /home/prajwal/.gradle/caches/transforms-3/46774b99dae2245eede597e2e3dd1566/transformed/jetified-rxandroid-2.0.0/AndroidManifest.xml:19:5-43
+MERGED from [io.reactivex.rxjava2:rxandroid:2.0.0] /home/prajwal/.gradle/caches/transforms-3/46774b99dae2245eede597e2e3dd1566/transformed/jetified-rxandroid-2.0.0/AndroidManifest.xml:19:5-43
+	android:targetSdkVersion
+		INJECTED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/prajwal/DialerApp/app/src/main/AndroidManifest.xml
+package#com.simplemobiletools.thankyou.debug
+ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:9:9-72
+	android:name
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:9:18-69
+package#com.simplemobiletools.thankyou
+ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:10:9-66
+	android:name
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:10:18-63
+uses-feature#android.hardware.faketouch
+ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:13:5-15:36
+	android:required
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:15:9-33
+	android:name
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:14:9-50
+uses-feature#android.hardware.screen.portrait
+ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:16:5-18:36
+	android:required
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:18:9-33
+	android:name
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:17:9-56
+uses-permission#android.permission.USE_BIOMETRIC
+ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:20:5-22:31
+REJECTED from [androidx.biometric:biometric:1.2.0-alpha05] /home/prajwal/.gradle/caches/transforms-3/3e4a5819df3a070834fad20da16fada1/transformed/biometric-1.2.0-alpha05/AndroidManifest.xml:22:5-72
+	tools:node
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:22:9-28
+	android:name
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:21:9-56
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:23:5-25:31
+REJECTED from [androidx.core:core:1.12.0] /home/prajwal/.gradle/caches/transforms-3/62aca5a29436925a8becb6c89252b5eb/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
+	tools:node
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:25:9-28
+	android:name
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:24:9-81
+uses-permission#com.simplemobiletools.dialer.debug.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:23:5-25:31
+REJECTED from [androidx.core:core:1.12.0] /home/prajwal/.gradle/caches/transforms-3/62aca5a29436925a8becb6c89252b5eb/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
+	tools:node
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:25:9-28
+	android:name
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:24:9-81
+uses-permission#com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY
+ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:28:5-30:31
+	tools:node
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:30:9-28
+	android:name
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:29:9-101
+activity#com.simplemobiletools.commons.activities.ContributorsActivity
+ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:33:9-38:99
+	android:parentActivityName
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:38:13-96
+	android:label
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:37:13-49
+	android:exported
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:36:13-37
+	android:configChanges
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:35:13-48
+	android:name
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:34:13-89
+activity#com.simplemobiletools.commons.activities.FAQActivity
+ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:39:9-44:99
+	android:parentActivityName
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:44:13-96
+	android:label
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:43:13-63
+	android:exported
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:42:13-37
+	android:configChanges
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:41:13-48
+	android:name
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:40:13-80
+activity#com.simplemobiletools.commons.activities.LicenseActivity
+ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:45:9-50:99
+	android:parentActivityName
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:50:13-96
+	android:label
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:49:13-57
+	android:exported
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:48:13-37
+	android:configChanges
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:47:13-48
+	android:name
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:46:13-84
+receiver#com.simplemobiletools.commons.receivers.SharedThemeReceiver
+ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:58:9-66:20
+	android:enabled
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:60:13-35
+	android:exported
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:61:13-36
+	android:name
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:59:13-87
+intent-filter#action:name:com.simplemobiletools.commons.SHARED_THEME_ACTIVATED+action:name:com.simplemobiletools.commons.SHARED_THEME_UPDATED
+ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:62:13-65:29
+action#com.simplemobiletools.commons.SHARED_THEME_ACTIVATED
+ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:63:17-95
+	android:name
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:63:25-92
+action#com.simplemobiletools.commons.SHARED_THEME_UPDATED
+ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:64:17-93
+	android:name
+		ADDED from [com.github.SimpleMobileTools:Simple-Commons:eceb48949e] /home/prajwal/.gradle/caches/transforms-3/112f11cce5f352eb485069059c99b011/transformed/jetified-Simple-Commons-eceb48949e/AndroidManifest.xml:64:25-90
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.3.0] /home/prajwal/.gradle/caches/transforms-3/4783fe821f83237f1f2faf35b2d4c6e9/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/cb423baff121f1d00fae1e9ca421c4a0/transformed/jetified-lifecycle-process-2.7.0-alpha02/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/cb423baff121f1d00fae1e9ca421c4a0/transformed/jetified-lifecycle-process-2.7.0-alpha02/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/prajwal/.gradle/caches/transforms-3/17b7aecc49278c4bcf52b66aba02afb7/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/prajwal/.gradle/caches/transforms-3/17b7aecc49278c4bcf52b66aba02afb7/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/prajwal/.gradle/caches/transforms-3/4783fe821f83237f1f2faf35b2d4c6e9/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/prajwal/.gradle/caches/transforms-3/4783fe821f83237f1f2faf35b2d4c6e9/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/prajwal/.gradle/caches/transforms-3/4783fe821f83237f1f2faf35b2d4c6e9/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/prajwal/.gradle/caches/transforms-3/4783fe821f83237f1f2faf35b2d4c6e9/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:25:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.3.0] /home/prajwal/.gradle/caches/transforms-3/4783fe821f83237f1f2faf35b2d4c6e9/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/prajwal/.gradle/caches/transforms-3/4783fe821f83237f1f2faf35b2d4c6e9/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/prajwal/.gradle/caches/transforms-3/4783fe821f83237f1f2faf35b2d4c6e9/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:30:17-75
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/cb423baff121f1d00fae1e9ca421c4a0/transformed/jetified-lifecycle-process-2.7.0-alpha02/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/cb423baff121f1d00fae1e9ca421c4a0/transformed/jetified-lifecycle-process-2.7.0-alpha02/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.7.0-alpha02] /home/prajwal/.gradle/caches/transforms-3/cb423baff121f1d00fae1e9ca421c4a0/transformed/jetified-lifecycle-process-2.7.0-alpha02/AndroidManifest.xml:30:17-78
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.12.0] /home/prajwal/.gradle/caches/transforms-3/62aca5a29436925a8becb6c89252b5eb/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.12.0] /home/prajwal/.gradle/caches/transforms-3/62aca5a29436925a8becb6c89252b5eb/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.12.0] /home/prajwal/.gradle/caches/transforms-3/62aca5a29436925a8becb6c89252b5eb/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+permission#com.simplemobiletools.dialer.debug.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.12.0] /home/prajwal/.gradle/caches/transforms-3/62aca5a29436925a8becb6c89252b5eb/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.12.0] /home/prajwal/.gradle/caches/transforms-3/62aca5a29436925a8becb6c89252b5eb/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.12.0] /home/prajwal/.gradle/caches/transforms-3/62aca5a29436925a8becb6c89252b5eb/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+service#androidx.room.MultiInstanceInvalidationService
+ADDED from [androidx.room:room-runtime:2.6.0-beta01] /home/prajwal/.gradle/caches/transforms-3/6e31d778a9dbd9364653ae24b30de4c9/transformed/room-runtime-2.6.0-beta01/AndroidManifest.xml:24:9-28:63
+	android:exported
+		ADDED from [androidx.room:room-runtime:2.6.0-beta01] /home/prajwal/.gradle/caches/transforms-3/6e31d778a9dbd9364653ae24b30de4c9/transformed/room-runtime-2.6.0-beta01/AndroidManifest.xml:27:13-37
+	tools:ignore
+		ADDED from [androidx.room:room-runtime:2.6.0-beta01] /home/prajwal/.gradle/caches/transforms-3/6e31d778a9dbd9364653ae24b30de4c9/transformed/room-runtime-2.6.0-beta01/AndroidManifest.xml:28:13-60
+	android:directBootAware
+		ADDED from [androidx.room:room-runtime:2.6.0-beta01] /home/prajwal/.gradle/caches/transforms-3/6e31d778a9dbd9364653ae24b30de4c9/transformed/room-runtime-2.6.0-beta01/AndroidManifest.xml:26:13-43
+	android:name
+		ADDED from [androidx.room:room-runtime:2.6.0-beta01] /home/prajwal/.gradle/caches/transforms-3/6e31d778a9dbd9364653ae24b30de4c9/transformed/room-runtime-2.6.0-beta01/AndroidManifest.xml:25:13-74
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+	android:permission
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+	android:directBootAware
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+action#androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+action#androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+action#androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+action#androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/prajwal/.gradle/caches/transforms-3/fb54596db7ad3ed90e3673ecfed045cf/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
