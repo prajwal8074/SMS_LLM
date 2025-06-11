@@ -2,6 +2,10 @@
 
 - Week 1 Ideation and Setup
   - [x] Discussion: [Minutes of Discussion](docs/Minutes-of-Discussion/README.md)
+  - [x] Ideas:
+    - [SMS LLM](docs/SMS_LLM.pdf)
+    - [Marketplace MCP](docs/MarketplaceMCP.pdf)
+  - [x] Initial Plan: [6 week plan](docs/6_week_plan.pdf)
   - [x] Research Results: [Indian Languages Translation Model](docs/Translate-100-languages) [Text To Speech Model](docs/Text-To-Speech-Unlimited)
   - [x] Setup: [Call Interface Setup](Call-Interface/README.md)
 
