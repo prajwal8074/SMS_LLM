@@ -11,11 +11,12 @@
 
 - Week 2 Core Infrastructure
   - [ ] Text, Image, Voice query system via JioChat
+  - [ ] Ensure reproducibility using containers(Docker)
   - [x] Pre-trained LLM and language translation
-  - [ ] Speech language detection for language translation model
+  - [x] Speech language detection for language translation model
   - [x] Basic speech-to-text and text to speech
-  - [ ] Integration of all models
-  - [x] Testing via API Gateway
+  - [x] Integration of all models
+  - [ ] In Depth testing of the Lambda Function
 - Week 3 Caching
   - [ ] Integrate API gateway with call and sms response interface
   - [ ] FAQ database for common farming questions
