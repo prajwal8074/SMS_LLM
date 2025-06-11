@@ -5,10 +5,10 @@
 <video src="https://github.com/user-attachments/assets/35e05298-a1ef-47f5-a2ea-d81375fa492e" style="max-width: 100%;">Demo Video</video>
 
 ## Logic Flow
-<img src="docs/logic-flow.png" alt="logic flow" height="480">
+<img src="https://github.com/user-attachments/assets/38691b86-39eb-4d6c-9e60-42240da08091" alt="logic flow" height="480">
 
 ## Code Flow
-<img src="docs/code-flow.png" alt="code flow" height="720">
+<img src="https://github.com/user-attachments/assets/987a0f67-5f7f-4017-b3a8-f101abde1dde" alt="code flow" height="720">
 
 ## How to reproduce call response interface
 ### Requirements: Ubuntu system with PulseAudio, Android device
