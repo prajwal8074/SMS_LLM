@@ -18,7 +18,7 @@
   - [x] Speech language detection for language translation model
   - [x] Basic speech-to-text and text to speech
   - [x] Integration of all models
-  - [ ] In Depth testing of the Lambda Function (**Akash & Sandip**)
+  - [ ] In Depth testing of the Lambda Function (**Akash**)
 - Week 3 Pipeline & Caching
   - [ ] Integrate API gateway with call and sms response interface
   - [ ] Set Up CI/CD pipline using GitHub Actions
