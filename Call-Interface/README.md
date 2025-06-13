@@ -10,16 +10,15 @@
 ## Code Flow
 <img src="https://github.com/user-attachments/assets/987a0f67-5f7f-4017-b3a8-f101abde1dde" alt="code flow" height="720">
 
-## How to reproduce call response interface
-### Requirements: Ubuntu system with PulseAudio, Android device
+## How to reproduce
+### Requirements: Ubuntu system, Android device
 ### Steps:
 1. To connect ubuntu as handsfree, [follow this](https://askubuntu.com/a/1512854)
-2. Uninstall pipewire [instructions](https://askubuntu.com/a/1441491) and restart ubuntu when done
-3. Connect to ubuntu device on android via bluetooth, it shoud appear as an audio device
-4. Clone Repository
-5. Connect android device to ubuntu system via usb cable, Enble USB Debugging in developer options
-6. Open a terminal in the Desktop folder of the cloned repo
-7. Create a folder named CallRecordings (```mkdir CallRecordings```)
-8. Install [Dialer App](DialerApp/app/build/outputs/apk/core/debug/dialer-core-debug.apk) on connected android device
-9. Run ```./call_handler.sh```
-10. Now calls on the connected android device should play an audio message and save caller voice message in the CallRecordings folder
+2. Connect to ubuntu device on android via bluetooth, it shoud appear as an audio device
+3. Clone Repository
+4. Open terminal in the 'Call-Interface' folder
+5. Connect android device to ubuntu system via usb, enble USB Debugging in developer options
+6. Install [Dialer App](DialerApp/app/build/outputs/apk/core/debug/dialer-core-debug.apk) on connected android device (```adb install DialerApp/app/build/outputs/apk/core/debug/dialer-core-debug.apk```)
+7. Create a folder named CallRecordings in the 'Desktop' folder (```mkdir Desktop/CallRecordings```)
+8. Run ```./Desktop/call_handler.sh```
+9. Now calls on the connected android device should play an audio message and save caller voice message in the CallRecordings folder
