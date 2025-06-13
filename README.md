@@ -13,10 +13,11 @@
   - [ ] Text, Image, Voice query system via WhatsApp (**Aditya**)
   - [ ] Reproducibility of AWS Setup using AWS CloudFormation (**Shubham**)
   - [ ] Integrate API gateway with call and sms response interface (**Prajwal**)
-  - [x] Pre-trained LLM and language translation
-  - [x] Speech language detection for language translation model
-  - [x] Basic speech-to-text and text to speech
-  - [x] Integration of all models
+  - [AWS Setup](AWS)
+    - [x] Pre-trained LLM and language translation
+    - [x] Speech language detection for language translation model
+    - [x] Basic speech-to-text and text to speech
+    - [x] Integration of all models
   - [ ] In Depth testing of the Lambda Function (**Akash**)
 - Week 3 Pipeline & Caching
   - [ ] Set Up CI/CD pipline using GitHub Actions
