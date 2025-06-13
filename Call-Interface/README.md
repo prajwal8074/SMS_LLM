@@ -18,7 +18,7 @@
 3. Clone Repository
 4. Open terminal in the 'Call-Interface' folder
 5. Connect android device to ubuntu system via usb, enble USB Debugging in developer options
-6. Install [Dialer App](DialerApp/app/build/outputs/apk/core/debug/dialer-core-debug.apk) on connected android device (```adb install DialerApp/app/build/outputs/apk/core/debug/dialer-core-debug.apk```)
+6. Install 'Dialer App' on connected android device (```adb install DialerApp/app/build/outputs/apk/core/debug/dialer-core-debug.apk```)
 7. Create a folder named CallRecordings in the 'Desktop' folder (```mkdir Desktop/CallRecordings```)
 8. Run ```./Desktop/call_handler.sh```
 9. Now calls on the connected android device should play an audio message and save caller voice message in the CallRecordings folder
