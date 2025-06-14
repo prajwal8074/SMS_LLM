@@ -1,19 +1,52 @@
 #!/bin/bash
 
 # --- Configuration ---
-BLUETOOTH_SINK="bluez_sink.60_D4_E9_20_8F_DC.handsfree_audio_gateway" # IMPORTANT: Replace with your actual Bluetooth sink name
-BLUETOOTH_SOURCE="bluez_source.60_D4_E9_20_8F_DC.handsfree_audio_gateway" # IMPORTANT: Replace with your actual Bluetooth source name
-AUDIO_FILE_TO_PLAY="response.mp3" # IMPORTANT: Replace with your audio file
+BLUETOOTH_SINK="" # IMPORTANT: Replace with your actual Bluetooth sink name
+BLUETOOTH_SOURCE="" # IMPORTANT: Replace with your actual Bluetooth source name
 RECORDING_DIR="CallRecordings"
-INCOMING_VOICE_RECORDING_FILENAME=""
+FILE_PATH="CallRecordings/caller_input_temp.wav"
+FINAL_FILE_PATH="CallRecordings/caller_input.wav"
 RECORDING_PROCESS_PID=""
 
 # Define your desired USB microphone source
-USB_MIC_SOURCE="alsa_input.usb-C-Media_Electronics_Inc._C-Media_R__Audio-00.mono-fallback"
+NULL_SOURCE=""
 # Variable to store the original default source
 ORIGINAL_DEFAULT_SOURCE=""
 
+# Voice Detection Configuration
+SILENCE_THRESHOLD="1%"            # Initial silence threshold (percentage)
+CALIBRATION_DURATION=3             # Seconds for initial silence calibration
+MAX_RECORDING_DURATION=10
+VOICE_RECORDING_PID=""             # PID of the voice detection process
+VOICE_RECORDING_ACTIVE=false       # Track if voice recording is active
+SOURCE_STATUS="SUSPENDED"
+
+BLANK_DURATION=0.5 # seconds
+BLANK_FILE="temp_blank.wav" # Temporary file for the blank audio
+
+RESPONSE_PATH="output_response.mp3"
+
 # --- Functions ---
+# Define the function in your script or shell
+extract_bluetooth_devices() {
+    BLUETOOTH_SOURCE=$(pactl list short sources | awk '/bluez_source/ {print $2}')
+    export BLUETOOTH_SOURCE
+
+    BLUETOOTH_SINK=$(pactl list short sinks | awk '/bluez_sink/ {print $2}')
+    export BLUETOOTH_SINK
+
+    if [ -z "$BLUETOOTH_SOURCE" ]; then
+        echo "Warning: BLUETOOTH_SOURCE not found."
+    else
+        echo "BLUETOOTH_SOURCE set to: $BLUETOOTH_SOURCE"
+    fi
+
+    if [ -z "$BLUETOOTH_SINK" ]; then
+        echo "Warning: BLUETOOTH_SINK not found."
+    else
+        echo "BLUETOOTH_SINK set to: $BLUETOOTH_SINK"
+    fi
+}
 
 # Function to play audio to the phone (Bluetooth sink)
 play_audio_to_phone() {
@@ -23,38 +56,6 @@ play_audio_to_phone() {
     paplay --device="$BLUETOOTH_SINK" "$audio_file" &> /dev/null
     if [ $? -ne 0 ]; then
         echo "Error playing audio file."
-    fi
-}
-
-# Function to start incoming voice recording
-start_recording_incoming_voice() {
-    local timestamp=$(date +"%Y%m%d_%H%M%S")
-    INCOMING_VOICE_RECORDING_FILENAME="${RECORDING_DIR}/incoming_voice_${timestamp}.wav"
-
-    mkdir -p "$RECORDING_DIR"
-
-    echo "Starting incoming voice recording from source: $BLUETOOTH_SOURCE to: $INCOMING_VOICE_RECORDING_FILENAME"
-    # Using parecord, which is more reliable for PulseAudio sources
-    # --raw is not needed as --file-format=wav handles it
-    parecord --device="$BLUETOOTH_SOURCE" --file-format=wav "$INCOMING_VOICE_RECORDING_FILENAME" &
-    RECORDING_PROCESS_PID=$!
-    echo "Recording process PID: $RECORDING_PROCESS_PID"
-    if [ $? -ne 0 ]; then
-        echo "Error starting recording with parecord. Check if pulseaudio-utils is installed and source name is correct."
-    fi
-}
-
-# Function to stop incoming voice recording
-stop_recording_incoming_voice() {
-    if [ -n "$RECORDING_PROCESS_PID" ]; then
-        echo "Stopping incoming voice recording (PID: $RECORDING_PROCESS_PID)"
-        kill "$RECORDING_PROCESS_PID"
-        wait "$RECORDING_PROCESS_PID" 2>/dev/null # Wait for the process to terminate
-        echo "Recording saved to: $INCOMING_VOICE_RECORDING_FILENAME"
-        RECORDING_PROCESS_PID=""
-        INCOMING_VOICE_RECORDING_FILENAME=""
-    else
-        echo "No active recording process to stop."
     fi
 }
 
@@ -71,25 +72,68 @@ change_pulseaudio_source() {
     fi
 }
 
-# Function to revert to the original PulseAudio source
-revert_pulseaudio_source() {
-    if [ -n "$ORIGINAL_DEFAULT_SOURCE" ]; then
-        echo "Reverting default PulseAudio source to: $ORIGINAL_DEFAULT_SOURCE"
-        pactl set-default-source "$ORIGINAL_DEFAULT_SOURCE"
-        if [ $? -ne 0 ]; then
-            echo "Error reverting default PulseAudio source to $ORIGINAL_DEFAULT_SOURCE."
-        fi
-        ORIGINAL_DEFAULT_SOURCE="" # Clear the stored original source
+get_source_status() {
+    local source_name="$1"
+    # Get the status of the specific source using pactl and awk
+    # awk will look for lines containing the source_name and print the last field (status)
+    pactl list short sources | awk -v name="$source_name" '$0 ~ name {print $NF}'
+}
+
+# Function to calibrate silence threshold
+calibrate_silence_threshold() {
+    echo "Calibrating silence threshold for ${CALIBRATION_DURATION} seconds..."
+    local calibration_file="${RECORDING_DIR}/calibration_temp.wav"
+    
+    # Record calibration sample from Bluetooth source
+    timeout $CALIBRATION_DURATION parecord --device="$BLUETOOTH_SOURCE" "$calibration_file"
+    
+    # Calculate threshold (1% above calibrated noise floor)
+    SILENCE_THRESHOLD=$(sox "$calibration_file" -n stat 2>&1 | awk '/Maximum delta/{print $3 * 1.01 "%"}')
+    rm -f "$calibration_file"
+    
+    if [ -z "$SILENCE_THRESHOLD" ]; then
+        SILENCE_THRESHOLD="1%"
+        echo "Calibration failed! Using default threshold: $SILENCE_THRESHOLD"
     else
-        echo "No original default source to revert to."
+        echo "Calibration complete. New threshold: $SILENCE_THRESHOLD"
     fi
+}
+
+# Function to start voice-triggered recording
+start_voice_recording() {
+
+    echo "Voice detection ENABLED (Threshold: $SILENCE_THRESHOLD)"
+
+    local output_file="$FILE_PATH"
+
+    echo "Listening for voice input from $BLUETOOTH_SOURCE (max ${MAX_RECORDING_DURATION}s)..."
+
+    # Record with silence detection from Bluetooth source, with an overall timeout
+    # Redirect sox's output to /dev/null to keep the console clean
+    # The `timeout` command wraps `sox`
+    timeout "${MAX_RECORDING_DURATION}" sox -t pulseaudio "$BLUETOOTH_SOURCE" "$output_file" \
+        silence 1 0.1 "$SILENCE_THRESHOLD" \
+        1 0.5 "$SILENCE_THRESHOLD"
+
+    VOICE_RECORDING_PID=$! # This PID will now be of the 'timeout' command
+    echo "Voice recording started (PID: $VOICE_RECORDING_PID). Output file: $output_file"
+}
+
+# Function to stop voice-triggered recording
+stop_voice_recording() {
+    # Ensure any remaining processes are cleaned up
+    if [ -n "$VOICE_RECORDING_PID" ]; then
+        kill $VOICE_RECORDING_PID 2>/dev/null
+        wait $VOICE_RECORDING_PID 2>/dev/null
+        VOICE_RECORDING_PID=""
+    fi
+    echo "Voice recording stopped"
 }
 
 # Function to handle cleanup on script interruption (Ctrl+C, etc.)
 cleanup_on_interrupt() {
     echo "Interrupt signal received. Performing cleanup..."
-    stop_recording_incoming_voice
-    revert_pulseaudio_source
+    stop_voice_recording
     systemctl --user daemon-reload
     systemctl --user --now disable pulseaudio.service pulseaudio.socket
     systemctl --user --now enable pipewire pipewire-pulse
@@ -98,6 +142,7 @@ cleanup_on_interrupt() {
 }
 
 # --- Main Logic ---
+source venv/bin/activate
 
 # Trap interrupt signals (Ctrl+C, termination)
 trap cleanup_on_interrupt INT TERM EXIT
@@ -106,6 +151,18 @@ systemctl --user unmask pulseaudio
 systemctl --user --now disable pipewire-media-session.service
 systemctl --user --now disable pipewire pipewire-pulse
 systemctl --user --now enable pulseaudio.service pulseaudio.socket
+
+pactl load-module module-null-sink   sink_name=null_output
+NULL_SOURCE="null_output.monitor"
+
+sleep 3
+
+# Call the function to set the variables
+extract_bluetooth_devices
+
+# Now you can use the variables
+echo "Bluetooth Source is: $BLUETOOTH_SOURCE"
+echo "Bluetooth Sink is: $BLUETOOTH_SINK"
 
 echo "Clearing adb logcat buffer..."
 adb logcat -c # Clear the logcat buffer
@@ -117,18 +174,56 @@ adb logcat -v raw AutoCall:I *:S | while IFS= read -r line; do
 
     if echo "$line" | grep -q "Call picked up"; then
         echo "Detected: Call picked up"
-        stop_recording_incoming_voice # Ensure any previous recording is stopped
-        change_pulseaudio_source "$USB_MIC_SOURCE" # Change source when call is picked up
-        echo "Delaying audio playback by 2 seconds..."
-        sleep 2
-        play_audio_to_phone "$AUDIO_FILE_TO_PLAY"
-        start_recording_incoming_voice
+        echo "Delaying audio playback by 1 second..."
+        sleep 1
 
-    elif echo "$line" | grep -q "Call ended"; then
+        #play_audio_to_phone "calibration.wav"
+
+        # Calibrate silence threshold from Bluetooth source
+        #calibrate_silence_threshold
+
+        SOURCE_STATUS=$(get_source_status "$BLUETOOTH_SOURCE")
+        
+        while [ "$SOURCE_STATUS" == "RUNNING" ]; do
+            change_pulseaudio_source "$NULL_SOURCE" # Change source when call is picked up
+        
+            mkdir "${RECORDING_DIR}"
+            play_audio_to_phone "ask.wav"
+        
+            # Start voice-triggered recording after audio playback
+            start_voice_recording
+            wait $VOICE_RECORDING_PID
+            echo "Recording Completed"
+
+            if [ -f "$FILE_PATH" ]; then
+                echo "File '$FILE_PATH' exists."
+                play_audio_to_phone "processing.wav"
+
+                # Get sample rate and number of channels from the input file
+                SR=$(soxi -r "$FILE_PATH")
+                CH=$(soxi -c "$FILE_PATH")
+
+                sox -n -r "$SR" -c "$CH" "$BLANK_FILE" trim 0.0 "$BLANK_DURATION"
+
+                # 2. Concatenate the blank audio with your input audio file
+                # The order depends on whether you want the blank audio at the beginning or end.
+
+                # To add 0.5 seconds of blank audio to the BEGINNING:
+                sox "$BLANK_FILE" "$FILE_PATH" "$FINAL_FILE_PATH"
+                python3 get_response.py
+                rm -r "${RECORDING_DIR}"
+                play_audio_to_phone "$RESPONSE_PATH"
+            else
+                echo "File '$FILE_PATH' does NOT exist."
+            fi
+
+            SOURCE_STATUS=$(get_source_status "$BLUETOOTH_SOURCE")
+        done
+
         echo "Detected: Call ended"
-        stop_recording_incoming_voice
-        revert_pulseaudio_source # Revert source when call ends
+        stop_voice_recording
     fi
+
 done
 
 echo "adb logcat monitoring stopped."
