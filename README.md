@@ -12,7 +12,7 @@
 - Week 2 Core Infrastructure
   - [ ] Text, Image, Voice query system via WhatsApp (**Aditya**)
   - [ ] Reproducibility of AWS Setup using AWS CloudFormation (**Shubham**)
-  - [ ] Integrate API gateway with call and sms response interface (**Prajwal**)
+  - [x] Integrate API gateway with call interface (**Prajwal**)
   - [AWS Setup](AWS)
     - [x] Pre-trained LLM and language translation
     - [x] Speech language detection for language translation model
