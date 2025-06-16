@@ -6,18 +6,17 @@
     - ✅ [SMS LLM](docs/SMS_LLM.pdf)
     - ❌ [Marketplace MCP](docs/MarketplaceMCP.pdf)
   - [x] Initial Plan: [6 week plan](docs/6_week_plan.pdf)
-  - [x] Research Results: [Indian Languages Translation Model](docs/Translate-100-languages) [Text To Speech Model](docs/Text-To-Speech-Unlimited)
-  - [x] Setup: [Call Interface Setup](Call-Interface/README.md)
+  - [x] Research Results: [Indian Languages Translation Model](docs/Translate-100-languages) [Text To Speech Model](docs/Text-To-Speech-Unlimited) (**Aditya**)
+  - [x] Setup: [Call Interface Setup](Call-Interface/README.md) (**Prajwal**)
 
 - Week 2 Core Infrastructure
-  - [ ] Text, Image, Voice query system via WhatsApp (**Aditya**)
-  - [ ] Reproducibility of AWS Setup using AWS CloudFormation (**Shubham**)
   - [x] Integrate API gateway with call interface (**Prajwal**)
-  - [x] [AWS Setup](AWS)
-    - [x] Pre-trained LLM and language translation
+  - [x] [AWS Setup](AWS) (**Shubham**)
+    - [x] Pre-trained LLM API(Gemini 2.5 Flash) and language translation
     - [x] Speech language detection for language translation model
     - [x] Basic speech-to-text and text to speech
     - [x] Integration of all models
+  - [ ] Reproducibility of AWS Setup using AWS CloudFormation (**Aditya**)
   - [ ] In Depth testing of the Lambda Function (**Akash**)
 - Week 3 Pipeline & Caching
   - [ ] Set Up CI/CD pipline using GitHub Actions
