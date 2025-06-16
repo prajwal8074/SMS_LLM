@@ -13,7 +13,7 @@
   - [ ] Text, Image, Voice query system via WhatsApp (**Aditya**)
   - [ ] Reproducibility of AWS Setup using AWS CloudFormation (**Shubham**)
   - [x] Integrate API gateway with call interface (**Prajwal**)
-  - [AWS Setup](AWS)
+  - [x] [AWS Setup](AWS)
     - [x] Pre-trained LLM and language translation
     - [x] Speech language detection for language translation model
     - [x] Basic speech-to-text and text to speech
