@@ -10,7 +10,7 @@
   - [x] Setup: [Call Interface Setup](Call-Interface/README.md) <p align="right">(**Prajwal**)</p>
 
 - Week 2 Core Infrastructure
-  - [x] Integrate API gateway with call interface <p align="right">(**Prajwal**)</p>
+  - [x] Integrate API gateway with call interface, [Check Demo](Call-Interface) <p align="right">(**Prajwal**)</p>
   - [x] [AWS Setup](AWS) <p align="right">(**Shubham**)</p>
     - [x] Pre-trained LLM API(Gemini 2.5 Flash) and language translation
     - [x] Speech language detection for language translation model
