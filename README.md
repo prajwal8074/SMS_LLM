@@ -1,4 +1,6 @@
-# LLM accessibility for farmers
+# Enabling easy LLM and Marketplace access to Farmers and those unfamiliar with Modern Tech
+
+### This project empowers farmers and tech-unfamiliar individuals by providing easy access to LLMs and an online marketplace via phone calls. Users simply talk to an AI in their local language to list products, get orders, and fulfill them. Authentication is simplified, using only a salted hashed phone number, with the call itself serving as verification. This brings the power of AI and e-commerce to everyone, no complex tech needed.
 
 - Week 1 Ideation and Setup
   - [x] Discussion: [Minutes of Discussion](docs/Minutes-of-Discussion/README.md)
