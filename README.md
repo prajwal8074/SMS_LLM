@@ -11,12 +11,12 @@
 
 - Week 2 Core Infrastructure
   - [x] Integrate API gateway with call interface, [Check Demo](Call-Interface) <p align="right">(**Prajwal**)</p>
-  - [x] [AWS Setup](AWS) <p align="right">(**Shubham**)</p>
-    - [x] Pre-trained LLM API(Gemini 2.5 Flash) and language translation
-    - [x] Speech language detection for language translation model
-    - [x] Basic speech-to-text and text to speech
-    - [x] Integration of all models
-  - [x] Reproducibility of AWS Setup using AWS CloudFormation <p align="right">(**Aditya**)</p>
+  - [x] [AWS Setup](AWS) 
+    - [x] Pre-trained LLM API(Gemini 2.5 Flash) and language translation <p align="right">(**Aditya**)</p>
+    - [x] Speech language detection for language translation model <p align="right">(**Aditya**)</p>
+    - [x] Basic speech-to-text and text to speech <p align="right">(**Shubham**)</p>
+    - [x] Integration of all models <p align="right">(**Shubham**)</p>
+    - [x] Reproducibility of AWS Setup using AWS CloudFormation <p align="right">(**Shubham**)</p>
   - [x] In Depth testing of the Lambda Function <p align="right">(**Akash**)</p>
 
 - Week 3 MCP Server & Caching
