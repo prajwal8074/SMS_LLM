@@ -18,17 +18,19 @@
     - [x] Integration of all models
   - [ ] Reproducibility of AWS Setup using AWS CloudFormation (**Aditya**)
   - [ ] In Depth testing of the Lambda Function (**Akash**)
-- Week 3 Pipeline & Caching
-  - [ ] Set Up CI/CD pipline using GitHub Actions
-  - [ ] FAQ database for common farming questions
-  - [ ] Simple caching system
-- Week 4 Domain Specific Knowledge
-  - [ ] Set up all Indian agricultural products' information database
-  - [ ] Image classification into agricultural products for Image queries
-  - [ ] Integration (Fetch product information after image classification)
+
+- Week 3 MCP Server & Caching
+  - [ ] Create a simple marketplace where session login is done using an active phone call and user id is phone number (**Shubham**)
+  - [ ] Set up CI/CD pipeline on github ensuring marketplace security (**Akash**)
+  - [ ] Simple caching system & FAQ database for common farming questions (**Aditya**)
+  - [ ] MCP Server for the marketplace and establish secure communication between AWS server and marketplace by salted hashing phone numbers (**Prajwal**)
+
+- Week 4 Buffer Week 1
+  
 - Week 5 Pilot Launch
   - [ ] Basic analytics tracking
   - [ ] User documentation
   - [ ] System monitoring
   - [ ] Feedback collection
-- Week 6 Buffer Week
+
+- Week 6 Buffer Week 2
