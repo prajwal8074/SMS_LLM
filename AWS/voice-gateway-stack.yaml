@@ -1,0 +1,620 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS CloudFormation template for a Voice Gateway using Lambda, S3, Transcribe, Translate, Polly, and API Gateway.
+
+Parameters:
+  # S3 Bucket Name Prefix: A unique prefix for your S3 bucket name.
+  # The actual bucket name will be generated with a unique suffix.
+  BucketNamePrefix:
+    Type: String
+    Description: A unique prefix for the S3 bucket name where audio and transcripts will be stored.
+    MinLength: 3
+    MaxLength: 50
+    AllowedPattern: "[a-z0-9](-*[a-z0-9])*"
+    ConstraintDescription: Must be lowercase alphanumeric characters and hyphens, and start/end with alphanumeric.
+
+  # Gemini API Key for LLM Integration
+  GeminiApiKey:
+    Type: String
+    Description: The API Key for the Google Gemini LLM service. Set this as 'empty' if you manage it differently.
+    NoEcho: true # Hides the value in CloudFormation console after deployment
+
+  # ElevenLabs API Key for TTS Integration
+  ElevenLabsApiKey:
+    Type: String
+    Description: The API Key for the ElevenLabs Text-to-Speech service. Set this as 'empty' if you manage it differently.
+    NoEcho: true # Hides the value in CloudFormation console after deployment
+
+  LambdaMemory:
+    Type: Number
+    Default: 512
+    Description: Memory allocated to the Lambda function in MB.
+    MinValue: 128
+    MaxValue: 1024
+
+  LambdaTimeout:
+    Type: Number
+    Default: 90
+    Description: Maximum execution time for the Lambda function in seconds.
+    MinValue: 10
+    MaxValue: 300
+
+Resources:
+  # S3 Bucket for Audio and Transcripts
+  VoiceGatewayBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${BucketNamePrefix}-${AWS::AccountId}-${AWS::Region}"
+      Tags:
+        - Key: Project
+          Value: VoiceGateway
+    DeletionPolicy: Retain # IMPORTANT: Retains the bucket upon stack deletion to prevent data loss.
+
+  # IAM Role for Lambda Function
+  VoiceGatewayLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        # Policy for CloudWatch Logs
+        - PolicyName: VoiceGatewayCloudWatchLogsPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${VoiceGatewayLambdaFunction}:*"
+        # Policy for S3, Transcribe, Translate, and Polly access
+        - PolicyName: VoiceGatewayServiceAccessPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              # S3 permissions for Lambda and Transcribe output
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:PutObject
+                  - s3:ListBucket
+                  - s3:DeleteObject # For cleanup of input/transcript files
+                Resource:
+                  - !GetAtt VoiceGatewayBucket.Arn # Specific bucket ARN
+                  - !Sub "${VoiceGatewayBucket.Arn}/*" # All objects within the bucket
+              # Amazon Transcribe permissions
+              - Effect: Allow
+                Action:
+                  - transcribe:*
+                Resource: "*"
+              # Amazon Translate permissions
+              - Effect: Allow
+                Action:
+                  - translate:*
+                Resource: "*"
+              # Amazon Polly permissions
+              - Effect: Allow
+                Action:
+                  - polly:*
+                Resource: "*"
+
+  # Lambda Function
+  VoiceGatewayLambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub "VoiceGatewayProcessor-${AWS::Region}"
+      Handler: index.lambda_handler
+      Runtime: python3.9 # Or python3.10, python3.11 based on availability and preference
+      MemorySize: !Ref LambdaMemory
+      Timeout: !Ref LambdaTimeout
+      Role: !GetAtt VoiceGatewayLambdaRole.Arn
+      Code:
+        ZipFile: |
+          import json
+          import base64
+          import os
+          import boto3
+          import uuid
+          from botocore.exceptions import ClientError
+          import time
+          from urllib.request import Request, urlopen, HTTPError
+
+          # Initialize AWS clients
+          s3_client = boto3.client('s3')
+          transcribe_client = boto3.client('transcribe')
+          translate_client = boto3.client('translate')
+          polly_client = boto3.client('polly')
+
+          # --- Configuration ---
+          S3_BUCKET_NAME = os.environ.get('S3_BUCKET_NAME') # Will be passed via CloudFormation
+          GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY')
+          ELEVENLABS_API_KEY = os.environ.get('ELEVENLABS_API_KEY')
+
+          DEFAULT_LANGUAGE_CODE = 'hi-IN'
+
+          # List of languages Transcribe should try to identify.
+          SUPPORTED_TRANSCRIPT_LANGUAGE_OPTIONS = [
+              'en-US', 'en-IN', 'hi-IN',
+              'gu-IN', 'mr-IN', 'bn-IN',
+              'ta-IN', 'te-IN', 'ml-IN',
+              'kn-IN', 'pa-IN', 'ur-PK'
+          ]
+
+          # Mapping for TTS voices based on language code.
+          TTS_VOICE_MAP = {
+              'hi-IN': {'service': 'polly', 'VoiceId': 'Kajal', 'Engine': 'neural', 'LanguageCode': 'hi-IN'},
+              'en-US': {'service': 'polly', 'VoiceId': 'Joanna', 'Engine': 'neural', 'LanguageCode': 'en-US'},
+              'en-IN': {'service': 'polly', 'VoiceId': 'Raveena', 'Engine': 'neural', 'LanguageCode': 'en-IN'},
+              'es-US': {'service': 'polly', 'VoiceId': 'Lupe', 'Engine': 'neural', 'LanguageCode': 'es-US'},
+              'fr-FR': {'service': 'polly', 'VoiceId': 'Celine', 'Engine': 'neural', 'LanguageCode': 'fr-FR'},
+
+              # ElevenLabs Voices (placeholders, replace with actual VoiceIds from your ElevenLabs account)
+              # These are examples of popular ElevenLabs voices, but verify their existence and language support
+              'gu-IN': {'service': 'elevenlabs', 'VoiceId': '21m00Tzpb8oCwMBgJS6Y', 'LanguageCode': 'gu-IN'}, # Rachel or similar
+              'mr-IN': {'service': 'elevenlabs', 'VoiceId': 'pNqMgbvUf2nBh8XGq9Qf', 'LanguageCode': 'mr-IN'}, # Domi or similar
+              'bn-IN': {'service': 'elevenlabs', 'VoiceId': 'EXAVITQu4vr4xnSDxMaL', 'LanguageCode': 'bn-IN'}, # Bella or similar
+              'ta-IN': {'service': 'elevenlabs', 'VoiceId': 'XB0f5Zc3Po8IjopGxXKd', 'LanguageCode': 'ta-IN'}, # Antoni or similar
+              'te-IN': {'service': 'elevenlabs', 'VoiceId': 'ErXwMpFz6Xn8i58Vw8Y4', 'LanguageCode': 'te-IN'}, # Arnold or similar
+              'ml-IN': {'service': 'elevenlabs', 'VoiceId': 'ZQe5zACU3M2gJqV3b52N', 'LanguageCode': 'ml-IN'}, # Placeholder
+              'kn-IN': {'service': 'elevenlabs', 'VoiceId': 'gW46H8g1Yf6vjB8YgW64', 'LanguageCode': 'kn-IN'}, # Placeholder
+              'pa-IN': {'service': 'elevenlabs', 'VoiceId': 'XYB52X2w5v2Q2Xw4Y1Z2', 'LanguageCode': 'pa-IN'}, # Placeholder
+              'ur-PK': {'service': 'elevenlabs', 'VoiceId': 'ABY77X2w5v2Q2Xw4Y1Z2', 'LanguageCode': 'ur-PK'}, # Placeholder
+          }
+
+          def lambda_handler(event, context):
+              print("--- Full Lambda Event Received ---")
+              print(json.dumps(event, indent=2))
+
+              http_method = event.get('httpMethod')
+
+              # --- Webhook Verification Logic (GET requests) ---
+              if http_method == 'GET':
+                  print("Received GET request for Webhook verification.")
+                  query_params = event.get('queryStringParameters', {})
+                  mode = query_params.get('hub.mode')
+                  token = query_params.get('hub.verify_token')
+                  challenge = query_params.get('hub.challenge')
+
+                  # FB_VERIFY_TOKEN would be managed by your Facebook integration, not directly in this lambda for now.
+                  # This part is illustrative if you were setting up a Facebook Messenger webhook.
+                  # For this generic gateway, we'll return 200 for any GET request that looks like a verification
+                  # but you might want to add a custom token here from an environment variable.
+                  if mode == 'subscribe' and challenge:
+                      print(f"Webhook verification successful. Returning challenge: {challenge}")
+                      return {
+                          'statusCode': 200,
+                          'headers': {
+                              'Content-Type': 'text/plain'
+                          },
+                          'body': challenge
+                      }
+                  else:
+                      print("Webhook verification failed: Invalid mode or token.")
+                      return {
+                          'statusCode': 403,
+                          'body': 'Verification failed'
+                      }
+
+              # --- Voice Processing Logic (for POST requests) ---
+              elif http_method == 'POST':
+                  print("Received POST request for voice processing.")
+                  body_data = {}
+
+                  try:
+                      raw_body_from_event = event.get('body', None)
+                      if raw_body_from_event:
+                          print("Attempting Base64 decode of raw body...")
+                          # API Gateway performs Base64 decoding if binary media types are configured.
+                          # If the body is already decoded (e.g. from an API Gateway Proxy integration with binary media types),
+                          # the `isBase64Encoded` flag in the event will be true, and event['body'] will be the raw bytes.
+                          # If `isBase64Encoded` is false (e.g., plain JSON POST), event['body'] is a string.
+                          if event.get('isBase64Encoded', False):
+                              decoded_bytes = base64.b64decode(raw_body_from_event)
+                              decoded_string = decoded_bytes.decode('utf-8')
+                          else:
+                              # Assume it's already a UTF-8 string if not Base64 encoded by API Gateway
+                              decoded_string = raw_body_from_event
+                          
+                          print("Successfully decoded. Attempting JSON parse.")
+                          body_data = json.loads(decoded_string)
+                      else:
+                          raise ValueError("Received empty or None body from API Gateway.")
+
+                  except json.JSONDecodeError as e:
+                      print(f"CRITICAL ERROR: JSON Decode Failed - {e}")
+                      decoded_string_peek = locals().get('decoded_string', 'N/A')
+                      print(f"String that failed JSON parse (first 200 chars): {decoded_string_peek[:200]}")
+                      return {
+                          'statusCode': 500,
+                          'body': json.dumps({'message': f'Failed to parse JSON body after decode: {str(e)}'})
+                      }
+                  except UnicodeDecodeError as e:
+                      print(f"CRITICAL ERROR: Unicode Decode Failed - {e}")
+                      return {
+                          'statusCode': 500,
+                          'body': json.dumps({'message': f'Failed to decode Base64 to UTF-8: {str(e)}'})
+                      }
+                  except Exception as e:
+                      print(f"CRITICAL ERROR: Unexpected exception during body processing - {e}")
+                      return {
+                          'statusCode': 500,
+                          'body': json.dumps({'message': f'An unexpected error occurred during body parsing: {str(e)}'})
+                      }
+
+                  # --- Extract audio data ---
+                  audio_base64 = body_data.get('audio_data')
+
+                  if not audio_base64:
+                      print("Validation Error: Missing audio_data in request body.")
+                      return {
+                          'statusCode': 400,
+                          'body': json.dumps({'message': 'Missing audio_data in request body'})
+                      }
+
+                  # --- 2. Upload Audio to S3 ---
+                  try:
+                      audio_binary_data = base64.b64decode(audio_base64)
+                      audio_filename = f"incoming_audio/{uuid.uuid4()}.mp3" # Assuming MP3 for common testing
+                      s3_client.put_object(Bucket=S3_BUCKET_NAME, Key=audio_filename, Body=audio_binary_data)
+                      audio_s3_uri = f"s3://{S3_BUCKET_NAME}/{audio_filename}"
+                      print(f"Audio uploaded to S3: {audio_s3_uri}")
+                  except ClientError as e:
+                      print(f"S3 Upload Error: {e}")
+                      return {
+                          'statusCode': 500,
+                          'body': json.dumps({'message': f'Failed to upload audio to S3: {str(e)}'})
+                      }
+
+                  # --- 3. Transcribe Audio (using Amazon Transcribe with language identification) ---
+                  transcription_job_name = f"voice-transcript-{uuid.uuid4()}"
+                  transcribed_text = ""
+                  detected_language = DEFAULT_LANGUAGE_CODE # Initialize with default for safety
+
+                  try:
+                      print(f"Starting transcribe job with language identification. Options: {SUPPORTED_TRANSCRIPT_LANGUAGE_OPTIONS}")
+                      transcribe_client.start_transcription_job(
+                          TranscriptionJobName=transcription_job_name,
+                          IdentifyLanguage=True,
+                          LanguageOptions=SUPPORTED_TRANSCRIPT_LANGUAGE_OPTIONS,
+                          MediaFormat='mp3', # Ensure this matches your audio input format
+                          Media={'MediaFileUri': audio_s3_uri},
+                          OutputBucketName=S3_BUCKET_NAME,
+                          OutputKey=f'transcripts/{transcription_job_name}.json'
+                      )
+                      print(f"Transcribe job started: {transcription_job_name}")
+
+                      max_attempts = 120 # 120 * 5 seconds = 10 minutes (adjust as needed for long audio)
+                      for i in range(max_attempts):
+                          job_status = transcribe_client.get_transcription_job(TranscriptionJobName=transcription_job_name)
+                          status = job_status['TranscriptionJob']['TranscriptionJobStatus']
+                          if status == 'COMPLETED':
+                              print("Transcription job completed successfully.")
+                              transcript_uri = job_status['TranscriptionJob']['Transcript']['TranscriptFileUri']
+                              detected_language = job_status['TranscriptionJob'].get('LanguageCode', DEFAULT_LANGUAGE_CODE)
+                              print(f"Detected Language: {detected_language}")
+
+                              response = urlopen(transcript_uri)
+                              transcript_content = json.loads(response.read().decode('utf-8'))
+                              transcribed_text = transcript_content['results']['transcripts'][0]['transcript']
+                              print(f"Transcribed Text: {transcribed_text}")
+                              break
+                          elif status == 'FAILED':
+                              failure_reason = job_status['TranscriptionJob'].get('FailureReason', 'Unknown reason')
+                              print(f"Transcription job failed: {failure_reason}")
+                              raise Exception(f"Transcription failed: {failure_reason}")
+                          print(f"Transcription job status: {status}. Waiting... ({i+1}/{max_attempts})")
+                          time.sleep(5)
+                      else:
+                          raise Exception("Transcription job timed out.")
+
+                  except Exception as e:
+                      print(f"Transcribe Error: {e}")
+                      return {
+                          'statusCode': 500,
+                          'body': json.dumps({'message': f'An AWS service error occurred during transcription: {str(e)}'})
+                      }
+
+                  # --- 4. Send Transcribed Text to LLM (Gemini API) ---
+                  llm_response_text = ""
+                  try:
+                      if not GEMINI_API_KEY:
+                          raise ValueError("GEMINI_API_KEY environment variable not set.")
+
+                      prompt = (
+                          f"The farmer said: '{transcribed_text}'. "
+                          f"Provide a concise, helpful, and empathetic response as if you are a local agricultural expert. "
+                          f"Your response should be brief, directly address the farmer's query or concern, and encourage further interaction. "
+                          f"If the farmer is asking a question, provide a direct answer. "
+                          f"**Respond in the same language as the farmer's query, which was detected as {detected_language}.**"
+                      )
+
+                      chat_history = [{"role": "user", "parts": [{"text": prompt}]}]
+                      payload = {"contents": chat_history}
+                      apiUrl = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GEMINI_API_KEY}";
+
+                      req = Request(
+                          apiUrl,
+                          data=json.dumps(payload).encode('utf-8'),
+                          headers={'Content-Type': 'application/json'},
+                          method='POST'
+                      )
+
+                      with urlopen(req, timeout=30) as res:
+                          llm_api_response = json.loads(res.read().decode('utf-8'))
+                          if llm_api_response and llm_api_response.get('candidates'):
+                              llm_response_text = llm_api_response['candidates'][0]['content']['parts'][0]['text']
+                              print(f"LLM Response: {llm_response_text}")
+                          else:
+                              print(f"LLM API did not return expected content: {llm_api_response}")
+                              llm_response_text = "I'm sorry, I couldn't generate a response at this time."
+
+                  except ValueError as e:
+                      print(f"LLM API Configuration Error: {e}")
+                      llm_response_text = f"An internal configuration error occurred with the AI assistant: {str(e)}"
+                  except Exception as e:
+                      print(f"LLM API Call Error: {e}")
+                      llm_response_text = f"I'm sorry, I couldn't get a response from the AI assistant: {str(e)}"
+
+                  final_spoken_text = llm_response_text # Start with LLM's response
+
+                  # --- 5. Determine TTS Service and Voice Configuration ---
+                  tts_config = TTS_VOICE_MAP.get(detected_language)
+                  actual_tts_language_code = detected_language # The language we *intend* to speak
+
+                  # Fallback if no direct voice mapping is found
+                  if not tts_config:
+                      print(f"No direct TTS voice found for detected language {detected_language}. Translating to {DEFAULT_LANGUAGE_CODE} for voice output.")
+                      try:
+                          # Use base language code for Translate
+                          source_lang_for_translate = detected_language.split('-')[0]
+                          target_lang_for_translate = DEFAULT_LANGUAGE_CODE.split('-')[0]
+
+                          if source_lang_for_translate != target_lang_for_translate:
+                              translate_response = translate_client.translate_text(
+                                  Text=llm_response_text,
+                                  SourceLanguageCode=source_lang_for_translate,
+                                  TargetLanguageCode=target_lang_for_translate
+                              )
+                              final_spoken_text = translate_response['TranslatedText']
+                              print(f"Translated LLM response to {DEFAULT_LANGUAGE_CODE} for fallback voice: {final_spoken_text}")
+                          else:
+                              print(f"Detected language is same as default, no translation needed for fallback.")
+
+                      except ClientError as e:
+                          print(f"Translate Error during TTS fallback: {e}")
+                          final_spoken_text = "I couldn't translate the message for voice output."
+                      except Exception as e:
+                          print(f"Unexpected error during TTS fallback translation: {e}")
+                          final_spoken_text = "An error occurred during voice translation fallback."
+
+                      # After potential translation, set TTS config to the default language's voice (Polly Hindi)
+                      tts_config = TTS_VOICE_MAP.get(DEFAULT_LANGUAGE_CODE)
+                      actual_tts_language_code = DEFAULT_LANGUAGE_CODE
+
+                  # Final safety check: if even default language voice config is missing (should not happen with robust map)
+                  if not tts_config:
+                      print("CRITICAL: No TTS voice available even for default language. Falling back to generic English Polly.")
+                      tts_config = {'service': 'polly', 'VoiceId': 'Joanna', 'Engine': 'neural', 'LanguageCode': 'en-US'}
+                      actual_tts_language_code = 'en-US'
+
+
+                  # --- 6. Synthesize Speech using the determined service ---
+                  audio_response_base64 = ""
+                  try:
+                      if tts_config['service'] == 'polly':
+                          print(f"Synthesizing speech with Polly VoiceId: {tts_config['VoiceId']} (Lang: {actual_tts_language_code}), Engine: {tts_config.get('Engine', 'standard')}")
+                          polly_response = polly_client.synthesize_speech(
+                              Text=final_spoken_text,
+                              OutputFormat='mp3',
+                              VoiceId=tts_config['VoiceId'],
+                              LanguageCode=actual_tts_language_code,
+                              Engine=tts_config.get('Engine', 'standard')
+                          )
+                          audio_stream = polly_response['AudioStream'].read()
+                          audio_response_base64 = base64.b64encode(audio_stream).decode('utf-8')
+                          print("Speech synthesized with Polly.")
+
+                      elif tts_config['service'] == 'elevenlabs':
+                          if not ELEVENLABS_API_KEY:
+                              raise ValueError("ELEVENLABS_API_KEY environment variable not set for ElevenLabs.")
+
+                          # ElevenLabs API requires JSON payload
+                          elevenlabs_url = f"https://api.elevenlabs.io/v1/text-to-speech/{tts_config['VoiceId']}"
+                          elevenlabs_payload = {
+                              "text": final_spoken_text,
+                              "model_id": "eleven_multilingual_v2",
+                              "voice_settings": {
+                                  "stability": 0.5,
+                                  "similarity_boost": 0.7
+                              }
+                          }
+                          headers = {
+                              "Content-Type": "application/json",
+                              "xi-api-key": ELEVENLABS_API_KEY
+                          }
+
+                          req = Request(
+                              elevenlabs_url,
+                              data=json.dumps(elevenlabs_payload).encode('utf-8'),
+                              headers=headers,
+                              method='POST'
+                          )
+
+                          with urlopen(req, timeout=10) as res:
+                              audio_stream = res.read()
+                              audio_response_base64 = base64.b64encode(audio_stream).decode('utf-8')
+                              print("Speech synthesized with ElevenLabs.")
+
+                      else:
+                          raise ValueError(f"Unknown TTS service specified: {tts_config['service']}")
+
+                  except ValueError as e:
+                      print(f"TTS Configuration Error: {e}")
+                      return {
+                          'statusCode': 500,
+                          'body': json.dumps({'message': f'TTS service configuration error: {str(e)}'})
+                      }
+                  except HTTPError as e:
+                      print(f"HTTP Error during TTS call: Status {e.code}, Reason: {e.reason}, Body: {e.read().decode('utf-8')}")
+                      return {
+                          'statusCode': e.code,
+                          'body': json.dumps({'message': f'External TTS API error: {e.reason}'})
+                      }
+                  except Exception as e:
+                      print(f"General TTS Error: {e}")
+                      return {
+                          'statusCode': 500,
+                          'body': json.dumps({'message': f'An unexpected error occurred during speech synthesis from TTS service: {str(e)}'})
+                      }
+
+                  # --- 7. Clean up (Optional but Recommended) ---
+                  try:
+                      s3_client.delete_object(Bucket=S3_BUCKET_NAME, Key=audio_filename)
+                      s3_client.delete_object(Bucket=S3_BUCKET_NAME, Key=f'transcripts/{transcription_job_name}.json')
+                      print("Cleaned up temporary S3 files.")
+                  except ClientError as e:
+                      print(f"Warning: Failed to cleanup S3 objects: {e}")
+
+                  # --- 8. Return Synthesized Audio ---
+                  return {
+                      'statusCode': 200,
+                      'headers': {
+                          'Content-Type': 'application/json',
+                          'Access-Control-Allow-Origin': '*' # Required for CORS if frontend is separate
+                      },
+                      'body': json.dumps({
+                          'message': 'Processing complete',
+                          'transcribed_text': transcribed_text,
+                          'llm_response': llm_response_text,
+                          'final_spoken_text': final_spoken_text,
+                          'audio_response_base64': audio_response_base64,
+                          'detected_language': detected_language
+                      })
+                  }
+              else:
+                  print(f"Unsupported HTTP method: {http_method}")
+                  return {
+                      'statusCode': 405,
+                      'body': json.dumps({'message': 'Method Not Allowed'})
+                  }
+
+      Environment:
+        Variables:
+          S3_BUCKET_NAME: !Ref VoiceGatewayBucket
+          GEMINI_API_KEY: !Ref GeminiApiKey
+          ELEVENLABS_API_KEY: !Ref ElevenLabsApiKey
+
+  # API Gateway REST API
+  VoiceGatewayRestApi:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: VoiceGatewayAPI
+      Description: API for processing voice input and returning AI-generated speech.
+      EndpointConfiguration:
+        Types:
+          - REGIONAL
+
+  # API Gateway Resource (e.g., /process-voice)
+  ProcessVoiceResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId: !GetAtt VoiceGatewayRestApi.RootResourceId
+      PathPart: process-voice
+      RestApiId: !Ref VoiceGatewayRestApi
+
+  # API Gateway POST Method for Lambda integration
+  ProcessVoiceMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      HttpMethod: POST
+      ResourceId: !Ref ProcessVoiceResource
+      RestApiId: !Ref VoiceGatewayRestApi
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY # Lambda Proxy Integration
+        Uri: !Sub
+          - arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations
+          - LambdaArn: !GetAtt VoiceGatewayLambdaFunction.Arn
+      MethodResponses:
+        - StatusCode: '200'
+          ResponseModels:
+            application/json: "Empty" # Define response model (e.g., Empty, or define a schema)
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true # For CORS
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Headers: true
+      RequestParameters: {} # No request parameters defined for simplicity, but can be added.
+
+  # API Gateway OPTIONS Method for CORS preflight requests
+  ProcessVoiceOptionsMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      HttpMethod: OPTIONS
+      ResourceId: !Ref ProcessVoiceResource
+      RestApiId: !Ref VoiceGatewayRestApi
+      Integration:
+        IntegrationResponses:
+          - StatusCode: '200'
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'"
+              method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: ""
+        PassthroughBehavior: WHEN_NO_MATCH
+        RequestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        Type: MOCK
+      MethodResponses:
+        - StatusCode: '200'
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # API Gateway Deployment
+  ApiGatewayDeployment:
+    Type: AWS::ApiGateway::Deployment
+    DependsOn:
+      - ProcessVoiceMethod # Ensures method is created before deployment
+      - ProcessVoiceOptionsMethod # Ensures OPTIONS method is created
+    Properties:
+      RestApiId: !Ref VoiceGatewayRestApi
+      Description: Initial deployment of Voice Gateway API
+
+  # API Gateway Stage
+  ApiGatewayStage:
+    Type: AWS::ApiGateway::Stage
+    Properties:
+      StageName: v1
+      RestApiId: !Ref VoiceGatewayRestApi
+      DeploymentId: !Ref ApiGatewayDeployment
+      # Caching is disabled by default, which is fine for this use case.
+      # Logging can be enabled for troubleshooting in a real environment.
+
+  # Permission for API Gateway to invoke Lambda Function
+  LambdaApiGatewayInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !GetAtt VoiceGatewayLambdaFunction.Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${VoiceGatewayRestApi}/*/*"
+
+Outputs:
+  # Outputs the S3 Bucket Name
+  S3BucketName:
+    Description: Name of the S3 bucket used for audio and transcription storage.
+    Value: !Ref VoiceGatewayBucket
+
+  # Outputs the API Gateway Invoke URL
+  ApiGatewayInvokeURL:
+    Description: The invoke URL for the Voice Gateway API.
+    Value: !Sub "https://${VoiceGatewayRestApi}.execute-api.${AWS::Region}.amazonaws.com/${ApiGatewayStage.StageName}/process-voice"
