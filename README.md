@@ -16,8 +16,8 @@
     - [x] Speech language detection for language translation model
     - [x] Basic speech-to-text and text to speech
     - [x] Integration of all models
-  - [ ] Reproducibility of AWS Setup using AWS CloudFormation <p align="right">(**Aditya**)</p>
-  - [ ] In Depth testing of the Lambda Function <p align="right">(**Akash**)</p>
+  - [x] Reproducibility of AWS Setup using AWS CloudFormation <p align="right">(**Aditya**)</p>
+  - [x] In Depth testing of the Lambda Function <p align="right">(**Akash**)</p>
 
 - Week 3 MCP Server & Caching
   - [ ] Create a simple marketplace where session login is done using an active phone call and user id is phone number <p align="right">(**Shubham**)</p>
