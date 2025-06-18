@@ -8,16 +8,6 @@ https://github.com/user-attachments/assets/17e0aef0-bae6-435f-b930-706cfd088f27
 ## Process
 ![process](https://github.com/user-attachments/assets/5c39c36b-e3a8-4c67-8f65-d6130d45ee48)
 
-# Voice Processing Gateway for Agricultural Assistance
-
-This AWS Lambda function processes voice inputs from farmers, generates AI responses using Gemini, and returns audio responses. The system handles multilingual conversations using AWS Transcribe, Translate, and Polly services.
-
-## Demo Video
-https://github.com/user-attachments/assets/17e0aef0-bae6-435f-b930-706cfd088f27
-
-## Process
-![process](https://github.com/user-attachments/assets/5c39c36b-e3a8-4c67-8f65-d6130d45ee48)
-
 # Farm Assist Voice Gateway
 
 A serverless voice gateway solution for agricultural assistance, leveraging AWS services and AI technologies.
