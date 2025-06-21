@@ -1,7 +1,5 @@
 """
-Integration test for the Lambda pipeline.
-This script simulates a client sending a request to the API endpoint,
-validates the response, and checks for correct processing and security policies.
+Integration test for the Lambda pipeline
 """
 
 import os
