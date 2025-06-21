@@ -22,7 +22,7 @@ If you discover a security vulnerability in this project, we strongly encourage 
 
 - **How to Report:**  
   Please send an email with details of the vulnerability to:  
-  [annam.ai.sms_llm@mayhem.com](mailto:annam.ai.sms_llm@mayhem.com)
+  [annam.ai.sms_llm@gmail.com](mailto:annam.ai.sms_llm@gmail.com)
 
 - **What to Include:**  
   - A clear and concise description of the vulnerability.
