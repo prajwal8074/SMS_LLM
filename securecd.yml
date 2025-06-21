@@ -222,8 +222,8 @@ jobs:
       - name: Notify security contact of deployment
         uses: dawidd6/action-send-mail@v3
         with:
-          server_address: smtp.mayhem.com
-          server_port: 587
+          server_address: 
+          server_port: 
           username: ${{ secrets.SECURITY_EMAIL_USER }}
           password: ${{ secrets.SECURITY_EMAIL_PASS }}
           subject: "Marketplace Deployed to Production"
@@ -252,8 +252,8 @@ jobs:
       - name: Notify on rollback
         uses: dawidd6/action-send-mail@v3
         with:
-          server_address: smtp.mayhem.com
-          server_port: 587
+          server_address: 
+          server_port: 
           username: ${{ secrets.SECURITY_EMAIL_USER }}
           password: ${{ secrets.SECURITY_EMAIL_PASS }}
           subject: "Marketplace Rollback Executed"
@@ -265,9 +265,3 @@ jobs:
           from: github-actions@mayhem.com
 
 # END OF PIPELINE
-#
-# Each job and step is elaborately commented to clarify its place in a secure, compliant, and robust marketplace deployment pipeline.
-# Add cloud-provider-specific deployment and rollback details as needed.
-# This pipeline is intentionally verbose and redundant for full security and process transparency.
-#
-# To expand further, add SAST/DAST, review-app previews, staged deployments, or canary releases as needed for your marketplace.
