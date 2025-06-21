@@ -11,7 +11,7 @@ load_dotenv()
 cache = RedisCache()
 
 # Configure Gemini - using environment variable for API key
-genai.configure(api_key=os.getenv('GEMINI_API_KEY', 'AIzaSyAxnWJY4ZDbUJsFvdtYXfhIneNBq6KQM9w'))
+genai.configure(api_key=os.getenv('GEMINI_API_KEY')
 
 def call_gemini(query: str) -> str:
     """Call Google Gemini API"""
