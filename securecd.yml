@@ -16,7 +16,7 @@ on:
 env:
   # Used for deployment and notification steps, reference secrets for real usage.
   DEPLOY_ENV: "production"
-  SECURITY_CONTACT: "annam.ai.sms_llm@mayhem.com"
+  SECURITY_CONTACT: "annam.ai.sms_llm@gmail.com"
 
 jobs:
   # --- 1. Build and Test Job ---
