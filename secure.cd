@@ -1,0 +1,273 @@
+# Marketplace Security Continuous Deployment (CD) Pipeline
+# This workflow automates secure deployment for a marketplace project,
+# ensuring best security practices, compliance, and thorough documentation at each step.
+# It is triggered on pushes to main, PR merges, and can be manually dispatched.
+
+name: Marketplace Security CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    types: [closed]
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  # Used for deployment and notification steps, reference secrets for real usage.
+  DEPLOY_ENV: "production"
+  SECURITY_CONTACT: "annam.ai.sms_llm@mayhem.com"
+
+jobs:
+  # --- 1. Build and Test Job ---
+  build-and-test:
+    name: Build, Test, and Pre-deploy Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code from repository.
+      - name: Checkout code
+        uses: actions/checkout@v4
+        # Ensures the latest code is available for build and test.
+
+      # Step 2: Set up Python for build/test.
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      # Step 3: Install dependencies for application and testing.
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest flake8 coverage python-dotenv requests
+
+      # Step 4: Run code style and security checks with flake8 (fail on error).
+      - name: Lint with flake8 (critical errors)
+        run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+      - name: Lint with flake8 (style and complexity)
+        run: flake8 . --count --max-complexity=10 --max-line-length=127 --statistics
+
+      # Step 5: Run unit tests and collect coverage.
+      - name: Run unit tests
+        run: |
+          python -m unittest discover AWS/Test '*Unittest.py'
+          python -m unittest discover AWS/Test '*test.py'
+
+      # Step 6: Run integration tests.
+      - name: Run integration tests
+        run: python AWS/Test/integrating_test.py
+
+      # Step 7: Run end-to-end tests.
+      - name: Run end-to-end tests
+        run: python AWS/Test/end_to_end_testing.py
+
+      # Step 8: Collect code coverage and display report.
+      - name: Collect coverage and show report
+        run: |
+          coverage run -m unittest discover AWS/Test
+          coverage report -m
+
+  # --- 2. Security Audit and Policy Checks ---
+  security-audit:
+    name: Security Audit and Policy Enforcement
+    runs-on: ubuntu-latest
+    needs: build-and-test
+
+    steps:
+      # Step 1: Checkout code.
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Dependency vulnerability scanning.
+      - name: Run Python safety check
+        run: |
+          pip install safety
+          safety check --full-report
+
+      # Step 3: pip-audit for additional dependency security.
+      - name: Run pip-audit
+        run: |
+          pip install pip-audit
+          pip-audit
+
+      # Step 4: Secret scanning with trufflehog.
+      - name: Scan for secrets with trufflehog
+        uses: trufflesecurity/trufflehog@main
+        with:
+          scanArguments: --path=.
+
+      # Step 5: Check for presence of SECURITY.md policy file.
+      - name: Ensure SECURITY.md policy file exists
+        run: |
+          if [ ! -f "SECURITY.md" ] && [ ! -f ".github/SECURITY.md" ]; then
+            echo "SECURITY.md missing! Please add a security policy."
+            exit 1
+          else
+            echo "SECURITY.md found."
+          fi
+
+      # Step 6: Check for logging of PII in codebase.
+      - name: Check for logging of sensitive info
+        run: |
+          grep -r --include="*.py" "log" . | grep -iE "user.*id|phone|mobile|email" && \
+            (echo "Sensitive info might be logged! Review needed." && exit 1) || \
+            echo "No logging of sensitive PII detected."
+
+      # Step 7: Check for unsafe Python usage (eval, HTTP, bare excepts).
+      - name: Check for unsafe Python patterns
+        run: |
+          grep -r --include="*.py" "eval(" . && \
+            (echo "Use of eval detected! Review needed." && exit 1) || \
+            echo "No use of eval detected."
+          grep -r --include="*.py" "http://" . && \
+            (echo "Insecure HTTP API call detected! Review needed." && exit 1) || \
+            echo "No insecure HTTP API calls detected."
+          grep -r --include="*.py" -E "except:$" . && \
+            (echo "Bare except detected! Review needed." && exit 1) || \
+            echo "No bare excepts detected."
+
+      # Step 8: Check for TODOs and FIXMEs in code.
+      - name: Check for TODOs and FIXMEs
+        run: |
+          grep -r --include="*.py" -Ei "TODO|FIXME" . && \
+            (echo "TODO or FIXME found! Review needed." && exit 1) || \
+            echo "No TODOs/FIXMEs detected."
+
+      # Step 9: Check for world-writable files.
+      - name: Check for dangerous file permissions
+        run: |
+          find . -type f -perm -o+w -not -path "./.git/*" && \
+            (echo "World-writable files found! Review needed." && exit 1) || \
+            echo "No world-writable files found."
+
+      # Step 10: Ensure .env.example (if present) does not contain secrets.
+      - name: Check .env.example for real secrets
+        run: |
+          if [ -f ".env.example" ]; then
+            grep -iE "(password|key|secret|token)[=]" .env.example && \
+              (echo ".env.example contains sensitive data! Review needed." && exit 1) || \
+              echo ".env.example does not contain sensitive data."
+          else
+            echo ".env.example not found (OK if not using .env)."
+          fi
+
+  # --- 3. Static Security Analysis ---
+  codeql-analysis:
+    name: CodeQL Security Scan
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    steps:
+      # Step 1: Checkout repository.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Initialize CodeQL for Python.
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: python
+
+      # Step 3: Autobuild/prepare environment (Python).
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
+
+      # Step 4: Perform CodeQL static security analysis.
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
+  # --- 4. Deployment Job ---
+  deploy:
+    name: Deploy to Production (Marketplace)
+    runs-on: ubuntu-latest
+    needs: [build-and-test, security-audit, codeql-analysis]
+
+    environment:
+      name: production
+      url: ${{ steps.deployment.outputs.deployment_url }}
+
+    steps:
+      # Step 1: Checkout code (again, for deployment context).
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up deployment secrets (placeholder).
+      - name: Set up deployment secrets
+        run: echo "Setting up deployment secrets (encrypted via GH Actions)..."
+        # In real use, this step would fetch and export cloud/infra secrets securely.
+
+      # Step 3: Deploy using a deployment script or tool (placeholder).
+      - name: Deploy to production environment
+        id: deployment
+        run: |
+          echo "Deploying to $DEPLOY_ENV environment..."
+          # Insert real deployment commands here (e.g., AWS CLI, kubectl, SCP, etc.).
+          echo "::set-output name=deployment_url::https://marketplace.example.com"
+
+      # Step 4: Post-deployment health check (placeholder).
+      - name: Post-deployment health check
+        run: |
+          curl -fsSL https://marketplace.example.com/healthz || \
+            (echo "Health check failed!" && exit 1)
+          echo "Deployment health check passed."
+
+      # Step 5: Notify security contact of deployment.
+      - name: Notify security contact of deployment
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.mayhem.com
+          server_port: 587
+          username: ${{ secrets.SECURITY_EMAIL_USER }}
+          password: ${{ secrets.SECURITY_EMAIL_PASS }}
+          subject: "Marketplace Deployed to Production"
+          body: |
+            The Marketplace has been deployed to production.
+            Build: ${{ github.run_id }}
+            Environment: ${{ env.DEPLOY_ENV }}
+            URL: https://marketplace.example.com
+          to: ${{ env.SECURITY_CONTACT }}
+          from: github-actions@mayhem.com
+
+  # --- 5. Rollback on Failure (Optional/Expandable) ---
+  rollback-on-failure:
+    name: Rollback if Deployment Fails
+    runs-on: ubuntu-latest
+    needs: deploy
+    if: failure()
+    steps:
+      - name: Rollback deployment
+        run: |
+          echo "Deployment failed. Initiating rollback..."
+          # Insert real rollback commands here (e.g., revert infra, redeploy previous version, etc.)
+          echo "Rollback completed."
+
+      # Notify security contact on rollback.
+      - name: Notify on rollback
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.mayhem.com
+          server_port: 587
+          username: ${{ secrets.SECURITY_EMAIL_USER }}
+          password: ${{ secrets.SECURITY_EMAIL_PASS }}
+          subject: "Marketplace Rollback Executed"
+          body: |
+            The Marketplace deployment failed and a rollback was executed.
+            Run ID: ${{ github.run_id }}
+            Environment: ${{ env.DEPLOY_ENV }}
+          to: ${{ env.SECURITY_CONTACT }}
+          from: github-actions@mayhem.com
+
+# END OF PIPELINE
+#
+# Each job and step is elaborately commented to clarify its place in a secure, compliant, and robust marketplace deployment pipeline.
+# Add cloud-provider-specific deployment and rollback details as needed.
+# This pipeline is intentionally verbose and redundant for full security and process transparency.
+#
+# To expand further, add SAST/DAST, review-app previews, staged deployments, or canary releases as needed for your marketplace.
