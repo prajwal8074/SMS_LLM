@@ -25,7 +25,7 @@
 
 - **Week 3 MCP Server & Caching**
   - [ ] Create a simple marketplace where session login is done using an active phone call and user id is salted hashed phone number <p align="right">(**Shubham**)</p>
-  - [ ] Set up CI/CD pipeline on github focusing on marketplace security <p align="right">(**Akash**)</p>
+  - [x] Set up CI/CD pipeline on github focusing on marketplace security <p align="right">(**Akash**)</p>
   - [x] Simple caching system & FAQ database for common farming questions <p align="right">(**Aditya**)</p>
   - [ ] Create an MCP Server for the marketplace <p align="right">(**Prajwal**)</p>
 
