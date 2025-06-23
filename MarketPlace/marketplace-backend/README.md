@@ -1,7 +1,7 @@
 # Marketplace Application
 
 - This project provides a basic mock marketplace application, demonstrating a backend API (Flask + PostgreSQL) containerized with Docker
-- A Python client that integrates tool calling (using gemini-2.0-flash) with the OpenAI Library for multi-modal compatibility.
+- A Python client that integrates tool calling (using gemini-2.0-flash) with the OpenAI Library for multi-LLM compatibility.
 
 ## Features
 
@@ -26,6 +26,7 @@
     * **Requests**: Python HTTP library for making API calls to the Flask backend.
 
 ## Project Structure
+```
 marketplace-backend/
 ├── server/
 │   ├── Dockerfile             # Defines how to build the Flask app Docker image
@@ -36,7 +37,7 @@ marketplace-backend/
 │   └── init.sql               # SQL script for initial database schema setup
 ├── client.py                  # gemini client using OpenAI library, implements function calling
 └── docker-compose.yml         # Defines and links the 'app' and 'db' services
-
+```
 ## Setup (local for now)
 ### Start Docker container
 <img src="https://github.com/user-attachments/assets/c0eadcbb-2db3-44ba-9b78-5e58830aa0a5" height="480">
