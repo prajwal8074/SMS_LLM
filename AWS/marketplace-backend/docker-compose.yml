@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine # Using a lightweight PostgreSQL image
+    restart: always # Always restart if it stops
+    environment:
+      POSTGRES_DB: marketplace_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432" # Expose PostgreSQL port (only for local access, remove in prod unless needed)
+    volumes:
+      - db_data:/var/lib/postgresql/data # Persistent data volume for PostgreSQL
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql # Init script for schema
+
+  app:
+    build: ./server # Build the image from the server/Dockerfile
+    restart: always
+    ports:
+      - "5000:5000" # Expose Flask app port
+    environment:
+      DATABASE_URL: postgresql://user:password@db:5432/marketplace_db # Connect to the 'db' service
+    depends_on:
+      - db # Ensure 'db' service starts before 'app'
+    # Optional: For development, bind mount the source code
+    # to see changes without rebuilding the image.
+    # volumes:
+    #   - ./server:/app
+
+volumes:
+  db_data: # Define the named volume for database persistence
