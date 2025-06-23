@@ -38,12 +38,20 @@ marketplace-backend/
 └── docker-compose.yml         # Defines and links the 'app' and 'db' services
 
 ## Setup (local for now)
+### Start Docker container
+<img src="https://github.com/user-attachments/assets/c0eadcbb-2db3-44ba-9b78-5e58830aa0a5" height="480">
 
-![Screenshot from 2025-06-23 13-24-04](https://github.com/user-attachments/assets/bed1133b-9548-46ad-9430-7b5950e8135e)
-![Screenshot from 2025-06-23 13-24-10](https://github.com/user-attachments/assets/af915d6e-73a9-4e04-a9b0-0a1e6e96f240)
-![Screenshot from 2025-06-23 13-24-23](https://github.com/user-attachments/assets/ee7849f4-0779-4457-a51f-ecc09cea4375)
-![Screenshot from 2025-06-23 13-24-27](https://github.com/user-attachments/assets/6974305b-b1be-4e86-b449-bb7297162b33)
+### Check if both containers are running
+<img src="https://github.com/user-attachments/assets/af915d6e-73a9-4e04-a9b0-0a1e6e96f240" height="480">
 
+### Check Database before function call
+<img src="https://github.com/user-attachments/assets/824760a5-b7fd-47c4-b078-62d05f3d9724" height="480">
+
+### Run client which should create a function call
+<img src="https://github.com/user-attachments/assets/70444895-81be-4e60-8547-2e729639433a" height="480">
+
+### Check Database after function call
+<img src="https://github.com/user-attachments/assets/fdf9500a-0e1e-4276-8ef3-56fb9360de8d" height="480">
 
 
 
