@@ -42,6 +42,7 @@ MarketPlace/
    └── docker-compose.yml         # Defines and links the 'app' and 'db' services
 ```
 ## Setup (local for now)
+*Updated terminal path: Marketplace/backend/*
 ### Start Docker container
 <img src="https://github.com/user-attachments/assets/c0eadcbb-2db3-44ba-9b78-5e58830aa0a5" height="480">
 
@@ -58,6 +59,8 @@ MarketPlace/
 <img src="https://github.com/user-attachments/assets/fdf9500a-0e1e-4276-8ef3-56fb9360de8d" height="480">
 
 ### Website after function call
+*Open html file in 'frontend' folder*
+
 ![Screenshot (8)](https://github.com/user-attachments/assets/3556c633-9abb-4620-9e84-7c669f9efd2e)
 
 
