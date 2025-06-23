@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmBasket - Marketplace for Farming Products</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .category-card:hover .category-overlay {
+            opacity: 1;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3');
+            background-size: cover;
+            background-position: center;
+        }
+        .farmer-card:hover {
+            transform: scale(1.02);
+        }
+        .cart-item {
+            transition: all 0.3s ease;
+        }
+        .cart-item:hover {
+            background-color: #f0fdf4;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-green-700 text-white sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <div class="text-2xl font-bold flex items-center">
+                    <i class="fas fa-leaf mr-2"></i>
+                    <span>FarmBasket</span>
+                </div>
+                <div class="hidden md:flex items-center bg-white rounded-md overflow-hidden flex-1 max-w-xl">
+                    <input type="text" placeholder="Search for grains, vegetables..." class="px-4 py-2 w-full text-gray-800 focus:outline-none">
+                    <button class="bg-green-600 px-4 py-2">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-6">
+                <div class="hidden md:block">
+                    <div class="text-xs">Hello, Sign in</div>
+                    <div class="font-bold text-sm">Accounts</div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="text-xs">Returns</div>
+                    <div class="font-bold text-sm">& Orders</div>
+                </div>
+                <div class="relative">
+                    <i class="fas fa-shopping-cart text-2xl"></i>
+                    <span class="absolute -top-2 -right-2 bg-yellow-400 text-black rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">0</span>
+                </div>
+                <button id="mobile-menu-button" class="md:hidden text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Search -->
+        <div class="md:hidden px-4 pb-3">
+            <div class="flex items-center bg-white rounded-md overflow-hidden">
+                <input type="text" placeholder="Search for grains, vegetables..." class="px-4 py-2 w-full text-gray-800 focus:outline-none">
+                <button class="bg-green-600 px-4 py-2 text-white">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Navigation -->
+        <nav class="bg-green-800 hidden md:block">
+            <div class="container mx-auto px-4 py-2 flex items-center space-x-6 text-sm">
+                <a href="#" class="flex items-center hover:bg-green-700 px-2 py-1 rounded">
+                    <i class="fas fa-bars mr-1"></i>
+                    <span>All</span>
+                </a>
+                <a href="#" class="hover:bg-green-700 px-2 py-1 rounded">Grains</a>
+                <a href="#" class="hover:bg-green-700 px-2 py-1 rounded">Vegetables</a>
+                <a href="#" class="hover:bg-green-700 px-2 py-1 rounded">Fruits</a>
+                <a href="#" class="hover:bg-green-700 px-2 py-1 rounded">Dairy</a>
+                <a href="#" class="hover:bg-green-700 px-2 py-1 rounded">Organic</a>
+                <a href="#" class="hover:bg-green-700 px-2 py-1 rounded">Farm Tools</a>
+                <a href="#" class="hover:bg-green-700 px-2 py-1 rounded">Today's Deals</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden bg-white shadow-lg absolute w-full z-50">
+        <div class="px-4 py-3 border-b">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-user-circle text-gray-600"></i>
+                <span class="font-medium">Hello, Sign In</span>
+            </div>
+        </div>
+        <div class="px-4 py-3 border-b">
+            <h3 class="font-bold mb-2">Shop by Category</h3>
+            <ul class="space-y-2">
+                <li><a href="#" class="block py-1">Grains</a></li>
+                <li><a href="#" class="block py-1">Vegetables</a></li>
+                <li><a href="#" class="block py-1">Fruits</a></li>
+                <li><a href="#" class="block py-1">Dairy</a></li>
+                <li><a href="#" class="block py-1">Organic</a></li>
+                <li><a href="#" class="block py-1">Farm Tools</a></li>
+            </ul>
+        </div>
+        <div class="px-4 py-3">
+            <h3 class="font-bold mb-2">Help & Settings</h3>
+            <ul class="space-y-2">
+                <li><a href="#" class="block py-1">Your Account</a></li>
+                <li><a href="#" class="block py-1">Customer Service</a></li>
+                <li><a href="#" class="block py-1">Sign Out</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-white">
+        <div class="container mx-auto px-4 py-16 md:py-24">
+            <div class="max-w-xl">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Fresh From the Farm to Your Doorstep</h1>
+                <p class="text-lg mb-6">Shop the best quality grains, vegetables, and farm products directly from local farmers.</p>
+                <button class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-6 rounded-md shadow-lg transition duration-300">
+                    Shop Now
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="container mx-auto px-4 py-8">
+        <h2 class="text-2xl font-bold mb-6">Shop by Category</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <div class="category-card bg-white rounded-lg overflow-hidden shadow-md relative">
+                <img src="https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?ixlib=rb-4.0.3" alt="Grains" class="w-full h-32 object-cover">
+                <div class="p-3">
+                    <h3 class="font-medium">Grains</h3>
+                </div>
+                <div class="category-overlay absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 transition-opacity duration-300">
+                    <a href="#" class="bg-white text-green-700 font-bold py-2 px-4 rounded">Shop Now</a>
+                </div>
+            </div>
+            <div class="category-card bg-white rounded-lg overflow-hidden shadow-md relative">
+                <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?ixlib=rb-4.0.3" alt="Vegetables" class="w-full h-32 object-cover">
+                <div class="p-3">
+                    <h3 class="font-medium">Vegetables</h3>
+                </div>
+                <div class="category-overlay absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 transition-opacity duration-300">
+                    <a href="#" class="bg-white text-green-700 font-bold py-2 px-4 rounded">Shop Now</a>
+                </div>
+            </div>
+            <div class="category-card bg-white rounded-lg overflow-hidden shadow-md relative">
+                <img src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?ixlib=rb-4.0.3" alt="Fruits" class="w-full h-32 object-cover">
+                <div class="p-3">
+                    <h3 class="font-medium">Fruits</h3>
+                </div>
+                <div class="category-overlay absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 transition-opacity duration-300">
+                    <a href="#" class="bg-white text-green-700 font-bold py-2 px-4 rounded">Shop Now</a>
+                </div>
+            </div>
+            <div class="category-card bg-white rounded-lg overflow-hidden shadow-md relative">
+                <img src="https://images.unsplash.com/photo-1550583720-4fb31b4354b1?ixlib=rb-4.0.3" alt="Dairy" class="w-full h-32 object-cover">
+                <div class="p-3">
+                    <h3 class="font-medium">Dairy</h3>
+                </div>
+                <div class="category-overlay absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 transition-opacity duration-300">
+                    <a href="#" class="bg-white text-green-700 font-bold py-2 px-4 rounded">Shop Now</a>
+                </div>
+            </div>
+            <div class="category-card bg-white rounded-lg overflow-hidden shadow-md relative">
+                <img src="https://images.unsplash.com/photo-1542838134-7a3c1f1d3d5e?ixlib=rb-4.0.3" alt="Organic" class="w-full h-32 object-cover">
+                <div class="p-3">
+                    <h3 class="font-medium">Organic</h3>
+                </div>
+                <div class="category-overlay absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 transition-opacity duration-300">
+                    <a href="#" class="bg-white text-green-700 font-bold py-2 px-4 rounded">Shop Now</a>
+                </div>
+            </div>
+            <div class="category-card bg-white rounded-lg overflow-hidden shadow-md relative">
+                <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3" alt="Farm Tools" class="w-full h-32 object-cover">
+                <div class="p-3">
+                    <h3 class="font-medium">Farm Tools</h3>
+                </div>
+                <div class="category-overlay absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 transition-opacity duration-300">
+                    <a href="#" class="bg-white text-green-700 font-bold py-2 px-4 rounded">Shop Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="container mx-auto px-4 py-8 bg-gray-100 rounded-lg">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold">Featured Products</h2>
+            <a href="#" class="text-green-700 font-medium hover:underline">See all</a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Product 1 -->
+            <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1603569283847-aa6a53b5db04?ixlib=rb-4.0.3" alt="Organic Wheat" class="w-full h-48 object-cover">
+                    <div class="absolute top-2 right-2 bg-yellow-400 text-black text-xs font-bold px-2 py-1 rounded">Bestseller</div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-medium text-lg mb-1">Organic Wheat Flour</h3>
+                    <div class="flex items-center mb-2">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-gray-600 text-sm ml-2">(124)</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-gray-500 line-through text-sm">$5.99</span>
+                            <span class="text-green-700 font-bold ml-2">$4.49</span>
+                            <span class="block text-xs text-green-600">Save 25%</span>
+                        </div>
+                        <button class="bg-green-600 hover:bg-green-700 text-white p-2 rounded-full">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?ixlib=rb-4.0.3" alt="Fresh Carrots" class="w-full h-48 object-cover">
+                    <div class="absolute top-2 right-2 bg-green-600 text-white text-xs font-bold px-2 py-1 rounded">Organic</div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-medium text-lg mb-1">Fresh Carrots (1kg)</h3>
+                    <div class="flex items-center mb-2">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <span class="text-gray-600 text-sm ml-2">(89)</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-green-700 font-bold">$2.99</span>
+                            <span class="block text-xs text-gray-500">$2.99/kg</span>
+                        </div>
+                        <button class="bg-green-600 hover:bg-green-700 text-white p-2 rounded-full">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1550583720-4fb31b4354b1?ixlib=rb-4.0.3" alt="Fresh Milk" class="w-full h-48 object-cover">
+                    <div class="absolute top-2 right-2 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">New</div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-medium text-lg mb-1">Fresh Cow Milk (1L)</h3>
+                    <div class="flex items-center mb-2">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-gray-600 text-sm ml-2">(256)</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-green-700 font-bold">$3.25</span>
+                            <span class="block text-xs text-gray-500">$3.25/L</span>
+                        </div>
+                        <button class="bg-green-600 hover:bg-green-700 text-white p-2 rounded-full">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1589927986089-35812388d1b4?ixlib=rb-4.0.3" alt="Basmati Rice" class="w-full h-48 object-cover">
+                    <div class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">Limited</div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-medium text-lg mb-1">Premium Basmati Rice (5kg)</h3>
+                    <div class="flex items-center mb-2">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-gray-600 text-sm ml-2">(187)</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-gray-500 line-through text-sm">$12.99</span>
+                            <span class="text-green-700 font-bold ml-2">$9.99</span>
+                            <span class="block text-xs text-green-600">Save 23%</span>
+                        </div>
+                        <button class="bg-green-600 hover:bg-green-700 text-white p-2 rounded-full">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Farmers Spotlight -->
+    <section class="container mx-auto px-4 py-8">
+        <h2 class="text-2xl font-bold mb-6">Farmers Spotlight</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Farmer 1 -->
+            <div class="farmer-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-4.0.3" alt="Farmer John" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold text-lg mb-1">Green Valley Organic Farm</h3>
+                    <p class="text-gray-600 text-sm mb-3">Specializing in organic vegetables and fruits since 2010</p>
+                    <div class="flex items-center text-sm">
+                        <i class="fas fa-map-marker-alt text-green-600 mr-2"></i>
+                        <span>California, USA</span>
+                    </div>
+                    <div class="mt-4">
+                        <a href="#" class="text-green-700 font-medium hover:underline">View Products</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Farmer 2 -->
+            <div class="farmer-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                <img src="https://images.unsplash.com/photo-1556760544-74068565f05c?ixlib=rb-4.0.3" alt="Farmer Maria" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold text-lg mb-1">Sunny Acres Dairy</h3>
+                    <p class="text-gray-600 text-sm mb-3">Premium dairy products from grass-fed cows</p>
+                    <div class="flex items-center text-sm">
+                        <i class="fas fa-map-marker-alt text-green-600 mr-2"></i>
+                        <span>Wisconsin, USA</span>
+                    </div>
+                    <div class="mt-4">
+                        <a href="#" class="text-green-700 font-medium hover:underline">View Products</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Farmer 3 -->
+            <div class="farmer-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3" alt="Farmer Singh" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold text-lg mb-1">Golden Grains Farm</h3>
+                    <p class="text-gray-600 text-sm mb-3">Traditional farming methods for premium quality grains</p>
+                    <div class="flex items-center text-sm">
+                        <i class="fas fa-map-marker-alt text-green-600 mr-2"></i>
+                        <span>Punjab, India</span>
+                    </div>
+                    <div class="mt-4">
+                        <a href="#" class="text-green-700 font-medium hover:underline">View Products</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seasonal Offers -->
+    <section class="bg-green-50 py-8">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-6">Seasonal Offers</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg overflow-hidden shadow-md flex">
+                    <div class="w-1/3">
+                        <img src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?ixlib=rb-4.0.3" alt="Summer Fruits" class="w-full h-full object-cover">
+                    </div>
+                    <div class="w-2/3 p-4">
+                        <h3 class="font-bold text-lg mb-2">Summer Fruit Basket</h3>
+                        <p class="text-gray-600 mb-3">Get 15% off on all seasonal fruits including mangoes, berries, and melons.</p>
+                        <button class="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-md">
+                            Shop Now
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg overflow-hidden shadow-md flex">
+                    <div class="w-1/3">
+                        <img src="https://images.unsplash.com/photo-1603569283847-aa6a53b5db04?ixlib=rb-4.0.3" alt="Grains" class="w-full h-full object-cover">
+                    </div>
+                    <div class="w-2/3 p-4">
+                        <h3 class="font-bold text-lg mb-2">Grains Combo Pack</h3>
+                        <p class="text-gray-600 mb-3">Buy any 3 grain products and get 1 free. Limited time offer!</p>
+                        <button class="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-md">
+                            Shop Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="container mx-auto px-4 py-8">
+        <h2 class="text-2xl font-bold mb-6">What Our Customers Say</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Testimonial 1 -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="flex text-yellow-400 mr-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="text-sm text-gray-600">2 days ago</span>
+                </div>
+                <p class="text-gray-700 mb-4">"The organic vegetables I received were incredibly fresh and lasted much longer than store-bought ones. Will definitely order again!"</p>
+                <div class="flex items-center">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah J." class="w-10 h-10 rounded-full mr-3">
+                    <div>
+                        <h4 class="font-medium">Sarah J.</h4>
+                        <p class="text-sm text-gray-600">Verified Buyer</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonial 2 -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="flex text-yellow-400 mr-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="text-sm text-gray-600">1 week ago</span>
+                </div>
+                <p class="text-gray-700 mb-4">"I love supporting local farmers through FarmBasket. The quality is exceptional and the prices are fair. Highly recommended!"</p>
+                <div class="flex items-center">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael T." class="w-10 h-10 rounded-full mr-3">
+                    <div>
+                        <h4 class="font-medium">Michael T.</h4>
+                        <p class="text-sm text-gray-600">Verified Buyer</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonial 3 -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="flex text-yellow-400 mr-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <span class="text-sm text-gray-600">3 days ago</span>
+                </div>
+                <p class="text-gray-700 mb-4">"The delivery was prompt and everything was packed with care. The basmati rice is the best I've ever tasted. Thank you!"</p>
+                <div class="flex items-center">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Priya K." class="w-10 h-10 rounded-full mr-3">
+                    <div>
+                        <h4 class="font-medium">Priya K.</h4>
+                        <p class="text-sm text-gray-600">Verified Buyer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="bg-green-700 text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Stay Updated</h2>
+            <p class="max-w-2xl mx-auto mb-6">Subscribe to our newsletter for seasonal offers, farming tips, and exclusive deals.</p>
+            <div class="max-w-md mx-auto flex">
+                <input type="email" placeholder="Your email address" class="flex-1 px-4 py-3 rounded-l-md focus:outline-none text-gray-900">
+                <button class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-6 py-3 rounded-r-md">
+                    Subscribe
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <!-- Column 1 -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4">FarmBasket</h3>
+                    <p class="text-gray-400 mb-4">Connecting farmers directly with consumers for fresher, better quality farm products.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Column 2 -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Shop</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Grains</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Vegetables</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Fruits</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Dairy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Organic</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Farm Tools</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3 -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Help</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Returns & Refunds</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Track Order</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 4 -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2 text-gray-400"></i>
+                            <span class="text-gray-400">123 Farm Road, Agriculture City, USA</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-2 text-gray-400"></i>
+                            <span class="text-gray-400">+1 (800) 123-4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-gray-400"></i>
+                            <span class="text-gray-400">support@farmbasket.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2023 FarmBasket. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed top-0 right-0 w-full md:w-96 h-full bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50 overflow-y-auto">
+        <div class="p-4 border-b flex justify-between items-center">
+            <h3 class="text-lg font-bold">Your Cart (3)</h3>
+            <button id="close-cart" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="p-4 space-y-4">
+            <!-- Cart Item 1 -->
+            <div class="cart-item flex border-b pb-4">
+                <div class="w-20 h-20 bg-gray-100 rounded-md overflow-hidden mr-4">
+                    <img src="https://images.unsplash.com/photo-1603569283847-aa6a53b5db04?ixlib=rb-4.0.3" alt="Organic Wheat Flour" class="w-full h-full object-cover">
+                </div>
+                <div class="flex-1">
+                    <h4 class="font-medium">Organic Wheat Flour</h4>
+                    <p class="text-sm text-gray-600 mb-1">1kg</p>
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold">$4.49</span>
+                        <div class="flex items-center border rounded-md">
+                            <button class="px-2 py-1 text-gray-600 hover:bg-gray-100">-</button>
+                            <span class="px-2">1</span>
+                            <button class="px-2 py-1 text-gray-600 hover:bg-gray-100">+</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="ml-2 text-gray-400 hover:text-red-500">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+            
+            <!-- Cart Item 2 -->
+            <div class="cart-item flex border-b pb-4">
+                <div class="w-20 h-20 bg-gray-100 rounded-md overflow-hidden mr-4">
+                    <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?ixlib=rb-4.0.3" alt="Fresh Carrots" class="w-full h-full object-cover">
+                </div>
+                <div class="flex-1">
+                    <h4 class="font-medium">Fresh Carrots</h4>
+                    <p class="text-sm text-gray-600 mb-1">1kg</p>
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold">$2.99</span>
+                        <div class="flex items-center border rounded-md">
+                            <button class="px-2 py-1 text-gray-600 hover:bg-gray-100">-</button>
+                            <span class="px-2">2</span>
+                            <button class="px-2 py-1 text-gray-600 hover:bg-gray-100">+</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="ml-2 text-gray-400 hover:text-red-500">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+            
+            <!-- Cart Summary -->
+            <div class="border-t pt-4">
+                <div class="flex justify-between mb-2">
+                    <span class="text-gray-600">Subtotal</span>
+                    <span class="font-bold">$10.47</span>
+                </div>
+                <div class="flex justify-between mb-2">
+                    <span class="text-gray-600">Shipping</span>
+                    <span class="font-bold">$2.99</span>
+                </div>
+                <div class="flex justify-between mb-4 font-bold text-lg">
+                    <span>Total</span>
+                    <span>$13.46</span>
+                </div>
+                <button class="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-md font-bold">
+                    Proceed to Checkout
+                </button>
+                <button class="w-full mt-2 border border-green-600 text-green-600 hover:bg-green-50 py-3 px-4 rounded-md font-bold">
+                    Continue Shopping
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="cart-overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40"></div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const cartSidebar = document.getElementById('cart-sidebar');
+        const cartOverlay = document.getElementById('cart-overlay');
+        const closeCart = document.getElementById('close-cart');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Cart toggle
+        document.querySelector('.relative').addEventListener('click', () => {
+            cartSidebar.classList.remove('translate-x-full');
+            cartOverlay.classList.remove('hidden');
+        });
+
+        closeCart.addEventListener('click', () => {
+            cartSidebar.classList.add('translate-x-full');
+            cartOverlay.classList.add('hidden');
+        });
+
+        cartOverlay.addEventListener('click', () => {
+            cartSidebar.classList.add('translate-x-full');
+            cartOverlay.classList.add('hidden');
+        });
+
+        // Product quantity adjustment
+        document.querySelectorAll('.product-card button').forEach(button => {
+            button.addEventListener('click', function() {
+                const cartCount = document.querySelector('.relative span');
+                let count = parseInt(cartCount.textContent);
+                cartCount.textContent = count + 1;
+                
+                // Show cart sidebar
+                cartSidebar.classList.remove('translate-x-full');
+                cartOverlay.classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
