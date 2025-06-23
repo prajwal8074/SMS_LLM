@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KrishiBazaar - India's Farm Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .whatsapp-btn {
+            background-color: #25D366;
+        }
+        .call-btn {
+            background-color: #34B7F1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-green-700 text-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-tractor text-2xl"></i>
+                <h1 class="text-2xl font-bold">KrishiBazaar</h1>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#" class="hover:text-green-200">Home</a>
+                <a href="#" class="hover:text-green-200">Products</a>
+                <a href="#" class="hover:text-green-200">Sell</a>
+                <a href="#" class="hover:text-green-200">About</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden bg-green-800 md:hidden">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-2">
+                <a href="#" class="py-2 hover:text-green-200">Home</a>
+                <a href="#" class="py-2 hover:text-green-200">Products</a>
+                <a href="#" class="py-2 hover:text-green-200">Sell</a>
+                <a href="#" class="py-2 hover:text-green-200">About</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Direct from Farm to Your Home</h1>
+            <p class="text-xl mb-8">Buy fresh farm products directly from Indian farmers at best prices</p>
+            <div class="max-w-md mx-auto relative">
+                <input type="text" placeholder="Search for products..." class="w-full py-3 px-4 rounded-full text-gray-800 focus:outline-none">
+                <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-green-600 text-white p-2 rounded-full">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="container mx-auto px-4 py-12">
+        <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Fresh Farm Products</h2>
+        
+        <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Initial loading message -->
+            <p class="text-center text-gray-600 col-span-full">Loading products...</p>
+        </div>
+
+        <div class="text-center mt-8">
+            <button id="load-more-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">
+                Load More Products
+            </button>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="bg-green-50 py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Why Choose KrishiBazaar?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="text-green-600 text-4xl mb-4">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Fresh from Farms</h3>
+                    <p class="text-gray-600">Directly sourced from farmers within 24 hours of harvest for maximum freshness.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="text-green-600 text-4xl mb-4">
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Fair Prices</h3>
+                    <p class="text-gray-600">Farmers get fair prices while you save up to 30% compared to retail markets.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="text-green-600 text-4xl mb-4">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Direct Connection</h3>
+                    <p class="text-gray-600">Connect directly with farmers, know your food source, and build trust.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Farmer Testimonials -->
+    <section class="container mx-auto px-4 py-12">
+        <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">What Our Farmers Say</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="flex items-center mb-4">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Farmer" class="w-12 h-12 rounded-full mr-4">
+                    <div>
+                        <h4 class="font-semibold">Rajesh Patil</h4>
+                        <p class="text-sm text-gray-500">Tomato Farmer, Nashik</p>
+                    </div>
+                </div>
+                <p class="text-gray-600">"KrishiBazaar has changed my life. Earlier, middlemen used to take most of the profit. Now I get fair prices and can sell directly to customers across India."</p>
+                <div class="mt-3 flex">
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="flex items-center mb-4">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Farmer" class="w-12 h-12 rounded-full mr-4">
+                    <div>
+                        <h4 class="font-semibold">Lakshmi Reddy</h4>
+                        <p class="text-sm text-gray-500">Poultry Farmer, Andhra Pradesh</p>
+                    </div>
+                </div>
+                <p class="text-gray-600">"With KrishiBazaar, I can now sell my eggs directly to customers without worrying about storage or transportation. The platform handles everything efficiently."</p>
+                <div class="mt-3 flex">
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star-half-alt text-yellow-400"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="bg-green-700 text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Ready to Experience Farm Fresh Products?</h2>
+            <p class="text-xl mb-8">Join thousands of happy customers enjoying fresh produce directly from farms</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <button class="bg-white text-green-700 hover:bg-gray-100 font-bold py-3 px-6 rounded-full transition duration-300">
+                    Shop Now
+                </button>
+                <button class="border-2 border-white hover:bg-green-800 font-bold py-3 px-6 rounded-full transition duration-300">
+                    Sell Your Products
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-tractor mr-2"></i> KrishiBazaar
+                    </h3>
+                    <p class="text-gray-400">Connecting farmers directly with consumers for fresh, affordable farm products.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Products</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Sell With Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact Us</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2"></i> Bangalore, India</li>
+                        <li class="flex items-center"><i class="fas fa-phone mr-2"></i> +91 9876543210</li>
+                        <li class="flex items-center"><i class="fas fa-envelope mr-2"></i> contact@krishibazaar.com</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-400">Download our app:</p>
+                        <div class="flex space-x-2 mt-2">
+                            <img src="https://via.placeholder.com/120x40?text=App+Store" alt="App Store" class="h-10">
+                            <img src="https://via.placeholder.com/120x40?text=Play+Store" alt="Play Store" class="h-10">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2023 KrishiBazaar. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Get the container for product listings and the load more button
+        const productListContainer = document.getElementById('product-list');
+        const loadMoreButton = document.getElementById('load-more-btn');
+
+        async function fetchListings() {
+            try {
+                // Display loading message
+                productListContainer.innerHTML = '<p class="text-center text-gray-600 col-span-full">Loading products...</p>';
+
+                // Fetch data from your Flask backend API
+                // Ensure this URL matches where your Flask app is running (e.g., http://localhost:5000)
+                const response = await fetch('http://localhost:5000/get_all_listings');
+
+                // Check if the request was successful
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                // Parse the JSON data
+                const data = await response.json();
+                const listings = data.listings; // Assuming your Flask app returns data in a 'listings' key
+
+                // Clear the loading message/static content
+                productListContainer.innerHTML = '';
+
+                // Iterate over the listings and create HTML for each product card
+                if (listings && listings.length > 0) {
+                    listings.forEach(listing => {
+                        // Map database fields to frontend display names
+                        const imageUrl = listing.image_url || `https://via.placeholder.com/400x300?text=${encodeURIComponent(listing.item_name || 'Product')}`;
+                        const farmerName = listing.seller_name || 'Unknown Farmer'; // Use seller_name
+                        const contactNumber = listing.seller_contact ? String(listing.seller_contact) : 'N/A'; // Use seller_contact
+                        
+                        // These fields are not in your current init.sql, so they will use defaults/placeholders
+                        const stockQuantity = listing.stock_quantity !== undefined ? `${listing.stock_quantity}` : 'N/A';
+                        const unit = listing.unit || ''; // This would be 'kg', 'dozen', 'liter' etc. if available
+
+                        const priceDisplay = listing.price ? `₹${parseFloat(listing.price).toFixed(2)}` : 'Price N/A';
+
+                        const productCard = `
+                            <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                                <div class="h-48 overflow-hidden">
+                                    <img src="${imageUrl}" alt="${listing.item_name}" class="w-full h-full object-cover">
+                                </div>
+                                <div class="p-4">
+                                    <h3 class="text-xl font-semibold mb-2 text-gray-800">${listing.item_name}</h3>
+                                    <p class="text-gray-600 mb-3">${listing.description || 'No description provided.'}</p>
+                                    <div class="flex justify-between items-center mb-3">
+                                        <span class="text-green-700 font-bold">${priceDisplay}${unit ? `/${unit}` : ''}</span>
+                                        <span class="text-sm text-gray-500">In stock: ${stockQuantity}${unit ? ` ${unit}` : ''}</span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p class="text-sm text-gray-600"><i class="fas fa-user mr-2"></i> Farmer: ${farmerName}</p>
+                                        <p class="text-sm text-gray-600"><i class="fas fa-phone mr-2"></i> Contact: ${contactNumber}</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="whatsapp-btn text-white py-2 px-4 rounded-full text-sm flex items-center" data-phone="${contactNumber}">
+                                            <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+                                        </button>
+                                        <button class="call-btn text-white py-2 px-4 rounded-full text-sm flex items-center" data-phone="${contactNumber}">
+                                            <i class="fas fa-phone mr-2"></i> Call
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        productListContainer.insertAdjacentHTML('beforeend', productCard);
+                    });
+                     // Re-attach event listeners after products are added to the DOM
+                    attachProductButtonListeners();
+                } else {
+                    productListContainer.innerHTML = '<p class="text-gray-600 text-center col-span-full">No active listings found.</p>';
+                }
+
+            } catch (error) {
+                console.error('There was a problem fetching the listings:', error);
+                productListContainer.innerHTML = '<p class="text-red-500 text-center col-span-full">Failed to load products. Please ensure the backend server is running and accessible.</p>';
+            }
+        }
+
+        // Function to attach event listeners to dynamically created buttons
+        function attachProductButtonListeners() {
+            // Remove previous listeners to avoid duplicates if fetchListings is called multiple times
+            // This is a simple approach; for more complex apps, consider event delegation
+            document.querySelectorAll('.whatsapp-btn').forEach(button => {
+                // Ensure listener is not added multiple times for the same button
+                if (!button.dataset.listenerAttached) {
+                    button.addEventListener('click', function() {
+                        const phone = this.dataset.phone;
+                        if (phone && phone !== 'N/A') {
+                            window.open(`https://wa.me/91${phone}?text=I'm interested in your product on KrishiBazaar`);
+                        } else {
+                            // Using a custom message box instead of alert()
+                            showCustomMessageBox('Contact number not available for this listing.');
+                        }
+                    });
+                    button.dataset.listenerAttached = true; // Mark as attached
+                }
+            });
+
+            document.querySelectorAll('.call-btn').forEach(button => {
+                if (!button.dataset.listenerAttached) {
+                    button.addEventListener('click', function() {
+                        const phone = this.dataset.phone;
+                        if (phone && phone !== 'N/A') {
+                            window.open(`tel:${phone}`);
+                        } else {
+                            // Using a custom message box instead of alert()
+                            showCustomMessageBox('Contact number not available for this listing.');
+                        }
+                    });
+                    button.dataset.listenerAttached = true; // Mark as attached
+                }
+            });
+        }
+
+        // Custom message box function (replaces alert and confirm)
+        function showCustomMessageBox(message, type = 'alert', callback = null) {
+            const existingMessageBox = document.getElementById('custom-message-box');
+            if (existingMessageBox) {
+                existingMessageBox.remove();
+            }
+
+            const messageBox = document.createElement('div');
+            messageBox.id = 'custom-message-box';
+            messageBox.className = 'fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50';
+            messageBox.innerHTML = `
+                <div class="bg-white p-6 rounded-lg shadow-xl max-w-sm w-full mx-4 text-center">
+                    <p class="text-gray-800 text-lg mb-4">${message}</p>
+                    <div class="flex justify-center space-x-4">
+                        <button id="message-box-ok-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-5 rounded-md transition duration-300">OK</button>
+                        ${type === 'confirm' ? '<button id="message-box-cancel-btn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-5 rounded-md transition duration-300">Cancel</button>' : ''}
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(messageBox);
+
+            document.getElementById('message-box-ok-btn').addEventListener('click', () => {
+                messageBox.remove();
+                if (callback) callback(true);
+            });
+
+            if (type === 'confirm') {
+                document.getElementById('message-box-cancel-btn').addEventListener('click', () => {
+                    messageBox.remove();
+                    if (callback) callback(false);
+                });
+            }
+        }
+
+
+        // Call the function to fetch listings when the page loads
+        document.addEventListener('DOMContentLoaded', fetchListings);
+
+        // Load More Products button functionality
+        loadMoreButton.addEventListener('click', function() {
+            showCustomMessageBox('More products would be loaded here from the server in a real application, possibly with pagination.');
+        });
+    </script>
+</body>
+</html>
