@@ -4,11 +4,11 @@
 - A Python client that integrates tool calling (using gemini-2.0-flash) with the OpenAI Library for multi-LLM compatibility.
 
 ## Features
-
 * **Add Listing**: Add new items for sale to the marketplace.
 * **Sell Item**: Mark existing items as sold.
 * **Get All Listings**: Retrieve a list of all active items on the marketplace.
 * **AI Integration**: A Python client capable of interacting with the OpenAI API to trigger these marketplace functions through natural language prompts.
+* **View Listings**: Mock Marketplace website to view listings in the database
 
 ## Technologies Used
 
@@ -27,16 +27,19 @@
 
 ## Project Structure
 ```
-backend/
-├── server/
-│   ├── Dockerfile             # Defines how to build the Flask app Docker image
-│   ├── app.py                 # Flask application with API endpoints
-│   ├── database.py            # Database connection utility
-│   └── requirements.txt       # Python dependencies for the Flask app
-├── postgres/
-│   └── init.sql               # SQL script for initial database schema setup
-├── client.py                  # gemini client using OpenAI library, implements function calling
-└── docker-compose.yml         # Defines and links the 'app' and 'db' services
+MarketPlace/
+├── frontend/
+│   └── FarmBasket.html           # Mock Marketplace website
+└── backend/
+   ├── server/
+   │   ├── Dockerfile             # Defines how to build the Flask app Docker image
+   │   ├── app.py                 # Flask application with API endpoints
+   │   ├── database.py            # Database connection utility
+   │   └── requirements.txt       # Python dependencies for the Flask app
+   ├── postgres/
+   │   └── init.sql               # SQL script for initial database schema setup
+   ├── client.py                  # gemini client using OpenAI library, implements function calling
+   └── docker-compose.yml         # Defines and links the 'app' and 'db' services
 ```
 ## Setup (local for now)
 ### Start Docker container
