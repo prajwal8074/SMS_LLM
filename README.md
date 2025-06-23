@@ -23,11 +23,12 @@
     - [x] Reproducibility of AWS Setup using AWS CloudFormation <p align="right">(**Shubham**)</p>
   - [x] In Depth testing of the Lambda Function <p align="right">(**Akash**)</p>
 
-- **Week 3 MCP Server & Caching**
-  - [ ] Create a simple marketplace where session login is done using an active phone call and user id is salted hashed phone number <p align="right">(**Shubham**)</p>
+- **Week 3 Function Calling & Caching**
   - [x] Set up CI/CD pipeline on github focusing on marketplace security <p align="right">(**Akash**)</p>
   - [x] Simple caching system & FAQ database for common farming questions <p align="right">(**Aditya**)</p>
-  - [ ] Create an MCP Server for the marketplace <p align="right">(**Prajwal**)</p>
+  - [x] Mock Marketplace Frontend <p align="right">(**Aditya**)</p>
+  - [ ] Mock Marketplace Backend <p align="right">(**Shubham**)</p>
+  - [x] Create an OpenAI client with function calling for the mock marketplace <p align="right">(**Prajwal**)</p>
 
 - **Week 4 Buffer Week 1**
   
