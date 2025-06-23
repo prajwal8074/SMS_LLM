@@ -9,6 +9,8 @@ from dotenv import load_dotenv
 # --- Configuration for your deployed server ---
 # Replace with the actual public IP/DNS of your EC2 instance and the port your Flask app is exposed on
 FLASK_SERVER_BASE_URL = "http://localhost:5000"
+DEMO_SELLER_NAME = 'DEMO SELLER'
+DEMO_SELLER_CONTACT = "9876543210"
 
 load_dotenv()
 
@@ -27,7 +29,9 @@ def add_listing_api(item_name: str, price: float, description: str = None):
     payload = {
         "item_name": item_name,
         "price": price,
-        "description": description
+        "description": description,
+        "seller_name" : DEMO_SELLER_NAME,
+        "seller_contact" : DEMO_SELLER_CONTACT,
     }
     try:
         response = requests.post(url, json=payload)

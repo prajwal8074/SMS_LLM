@@ -15,6 +15,8 @@ def add_listing():
     item_name = data.get('item_name')
     price = data.get('price')
     description = data.get('description')
+    seller_name = data.get('seller_name')
+    seller_contact = data.get('seller_contact')
 
     if not item_name or price is None:
         return jsonify({"error": "item_name and price are required"}), 400
@@ -26,11 +28,11 @@ def add_listing():
         # For this example, we'll let the DB handle it for simplicity
         cur.execute(
             """
-            INSERT INTO listings (item_name, price, description, status)
-            VALUES (%s, %s, %s, 'active')
+            INSERT INTO listings (item_name, price, description, status, seller_name, seller_contact)
+            VALUES (%s, %s, %s, 'active', %s, %s)
             RETURNING id;
             """,
-            (item_name, price, description)
+            (item_name, price, description, seller_name, seller_contact)
         )
         new_listing_id = cur.fetchone()[0]
         conn.commit()
