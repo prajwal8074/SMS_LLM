@@ -53,3 +53,8 @@ backend/
 
 ### Check Database after function call
 <img src="https://github.com/user-attachments/assets/fdf9500a-0e1e-4276-8ef3-56fb9360de8d" height="480">
+
+### Website after function call
+![Screenshot (8)](https://github.com/user-attachments/assets/3556c633-9abb-4620-9e84-7c669f9efd2e)
+
+
