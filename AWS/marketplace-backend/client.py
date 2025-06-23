@@ -3,13 +3,17 @@ import requests # Used for making HTTP requests
 from openai.types.chat import ChatCompletion, ChatCompletionMessage, ChatCompletionMessageToolCall
 from openai.types.chat.chat_completion_message_tool_call import Function
 from openai import OpenAI
+import os
+from dotenv import load_dotenv
 
 # --- Configuration for your deployed server ---
 # Replace with the actual public IP/DNS of your EC2 instance and the port your Flask app is exposed on
 FLASK_SERVER_BASE_URL = "http://localhost:5000"
 
+load_dotenv()
+
 client = OpenAI(
-    api_key="AIzaSyC07Au_Ufxv_anjwG0_bKsqyLxg1T5ow7g",
+    api_key=os.getenv("GEMINI_API_KEY"),
     base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
 )
 
