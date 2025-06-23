@@ -27,7 +27,7 @@
 
 ## Project Structure
 ```
-marketplace-backend/
+backend/
 ├── server/
 │   ├── Dockerfile             # Defines how to build the Flask app Docker image
 │   ├── app.py                 # Flask application with API endpoints
