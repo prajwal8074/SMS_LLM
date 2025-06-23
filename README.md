@@ -27,7 +27,7 @@
   - [x] Set up CI/CD pipeline on github focusing on marketplace security <p align="right">(**Akash**)</p>
   - [x] Simple caching system & FAQ database for common farming questions <p align="right">(**Aditya**)</p>
   - [x] Mock Marketplace Frontend <p align="right">(**Aditya**)</p>
-  - [ ] Mock Marketplace Backend <p align="right">(**Shubham**)</p>
+  - [x] Mock Marketplace Backend <p align="right">(**Shubham**)</p>
   - [x] Create an OpenAI client with function calling for the mock marketplace <p align="right">(**Prajwal**)</p>
 
 - **Week 4 Buffer Week 1**
