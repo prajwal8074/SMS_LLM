@@ -31,7 +31,8 @@
   - [x] Create an OpenAI client with function calling for the mock marketplace <p align="right">(**Prajwal**)</p>
 
 - **Week 4 Buffer Week 1**
-  
+  - [ ] Integrate all individual systems and deploy on AWS <p align="right">(**ALL**)</p>
+
 - **Week 5 Pilot Launch**
   - [ ] Basic analytics tracking
   - [ ] User documentation
