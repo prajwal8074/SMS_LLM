@@ -65,11 +65,11 @@ jobs:
           coverage run -m unittest discover AWS/Test
           coverage report -m
 
-      # Step 7: (Optional) Upload coverage to Codecov or another reporting service.
-      # - name: Upload coverage to Codecov
-      #   uses: codecov/codecov-action@v3
-      #   with:
-      #     files: ./coverage.xml
+      # Step 7: Upload coverage to Codecov or another reporting service.
+        name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage.xml
 
 # 2. Dependency and Static Security Job
   security-audit:
@@ -264,3 +264,4 @@ jobs:
             Environment: ${{ env.DEPLOY_ENV }}
           to: ${{ env.SECURITY_CONTACT }}
           from: github-actions@mayhem.com
+          
