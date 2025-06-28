@@ -1,4 +1,4 @@
-name: Marketplace Security CI/CD
+name: Marketplace Security CI
 
 on:
   push:
