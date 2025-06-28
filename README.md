@@ -24,16 +24,17 @@
   - [x] In Depth testing of the Lambda Function <p align="right">(**Akash**)</p>
 
 - **Week 3 Function Calling & Caching**
-  - [x] Set up CI/CD pipeline on github focusing on marketplace security <p align="right">(**Akash**)</p>
+  - [x] Set up CI pipeline on github focusing on marketplace security <p align="right">(**Akash**)</p>
   - [x] Simple caching system & FAQ database for common farming questions <p align="right">(**Aditya**)</p>
   - [x] Mock Marketplace Frontend <p align="right">(**Aditya**)</p>
   - [x] Mock Marketplace Backend <p align="right">(**Shubham**)</p>
   - [x] Create an OpenAI client with function calling for the mock marketplace <p align="right">(**Prajwal**)</p>
 
-- **Week 4 Buffer Week 1**
-  - [ ] Integrate all individual systems <p align="right">(**ALL**)</p>
-  - [ ] Deploy on AWS
-  - [ ] Set up CI/CD pipeline for deployment and unit tests
+- **Week 4 Integration**
+  - [ ] Integrate old lambda function into OpenAI Client <p align="right">(**Shubham**)</p>
+  - [ ] Integrate caching system with OpenAI Client <p align="right">(**Aditya**)</p>
+  - [ ] Create unit tests for CI pipeline <p align="right">(**Prajwal**)</p>
+  - [ ] Integrate new unit tests into CI pipeline <p align="right">(**Akash**)</p>
 
 - **Week 5 Pilot Launch**
   - [ ] Basic analytics tracking
