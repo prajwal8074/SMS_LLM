@@ -7,11 +7,26 @@ from botocore.exceptions import ClientError
 import time
 from urllib.request import Request, urlopen
 
+import requests # Used for making HTTP requests
+from openai.types.chat import ChatCompletion, ChatCompletionMessage, ChatCompletionMessageToolCall
+from openai.types.chat.chat_completion_message_tool_call import Function
+from openai import OpenAI
+from dotenv import load_dotenv
+
+import marketplace_tools
+
+load_dotenv()
+
 # Initialize AWS clients
 s3_client = boto3.client('s3')
 transcribe_client = boto3.client('transcribe')
 translate_client = boto3.client('translate')
 polly_client = boto3.client('polly')
+
+client = OpenAI(
+    api_key=os.getenv("GEMINI_API_KEY"),
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+)
 
 S3_BUCKET_NAME = os.environ.get('S3_BUCKET_NAME', 'farmassist-voice-gateway-audio')
 TARGET_LLM_LANGUAGE = 'en'
@@ -98,32 +113,22 @@ def lambda_handler(event, context):
         # 5. Generate Response with LLM
         llm_response_text = ""
         try:
-            gemini_api_key = os.environ.get('GEMINI_API_KEY')
-
-            if not gemini_api_key:
-                raise ValueError("GEMINI_API_KEY environment variable is not set.")
-
             llm_prompt = f"You are an agricultural assistant. Based on the following farmer's query, provide a concise and helpful response (max 3 sentences): '{text_for_llm}'"
-            chat_history = [{'role': 'user', 'parts': [{'text': llm_prompt}]}]
-            payload = {'contents': chat_history}
-            headers = {
-                'Content-Type': 'application/json'
-            }
 
-            req = Request(
-                f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={gemini_api_key}",
-                data=json.dumps(payload).encode('utf-8'),
-                headers=headers
-            )
+            messages = [{"role": "user", "content": llm_prompt}]
 
             print("Calling Gemini API...")
-            with urlopen(req, timeout=10) as res: # Add a timeout for safety
-                llm_result = json.loads(res.read().decode('utf-8'))
-                if llm_result and 'candidates' in llm_result and len(llm_result['candidates']) > 0:
-                    llm_response_text = llm_result['candidates'][0]['content']['parts'][0]['text']
-                else:
-                    llm_response_text = "I'm sorry, the AI did not provide a valid response."
-                    print(f"Warning: Invalid Gemini API response structure: {llm_result}")
+            response = client.chat.completions.create(
+              model="gemini-2.0-flash",
+              messages=messages,
+              tools=marketplace_tools.tools,
+              tool_choice="auto"
+            )
+
+            if not process_tool_calls(response):
+                llm_response_text = response.choices[0].message.content
+            else:
+                llm_response_text = "task completed"
 
             print(f"LLM Raw Response: {llm_response_text}")
 
