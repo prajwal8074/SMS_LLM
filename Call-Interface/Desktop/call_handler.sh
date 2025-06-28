@@ -7,6 +7,8 @@ RECORDING_DIR="CallRecordings"
 FILE_PATH="CallRecordings/caller_input_temp.wav"
 FINAL_FILE_PATH="CallRecordings/caller_input.wav"
 RECORDING_PROCESS_PID=""
+PAPLAY_PID=""
+LOOP_PROCESS_PID=""
 
 # Define your desired USB microphone source
 NULL_SOURCE=""
@@ -19,7 +21,7 @@ CALIBRATION_DURATION=3             # Seconds for initial silence calibration
 MAX_RECORDING_DURATION=10
 VOICE_RECORDING_PID=""             # PID of the voice detection process
 VOICE_RECORDING_ACTIVE=false       # Track if voice recording is active
-SOURCE_STATUS="SUSPENDED"
+# SOURCE_STATUS="SUSPENDED"
 
 BLANK_DURATION=0.5 # seconds
 BLANK_FILE="temp_blank.wav" # Temporary file for the blank audio
@@ -52,10 +54,34 @@ extract_bluetooth_devices() {
 play_audio_to_phone() {
     local audio_file="$1"
     echo "Playing audio file: $audio_file to sink: $BLUETOOTH_SINK"
-    # Using paplay for simplicity, redirecting its output to /dev/null
-    paplay --device="$BLUETOOTH_SINK" "$audio_file" &> /dev/null
+
+    # Start paplay in the background and store its PID
+    paplay --device="$BLUETOOTH_SINK" "$audio_file" &> /dev/null &
+    PAPLAY_PID=$! # Store the PID of the last background process
+
+    # Wait for paplay to finish, or until interrupted
+    wait "$PAPLAY_PID"
+
+    # Clear the PID once paplay has finished naturally
+    PAPLAY_PID=""
+
     if [ $? -ne 0 ]; then
-        echo "Error playing audio file."
+        # Check if the error was due to being killed by SIGTERM (143) or SIGINT (130)
+        # 143 = 128 + 15 (SIGTERM)
+        # 130 = 128 + 2 (SIGINT)
+        if [ $? -eq 143 ] || [ $? -eq 130 ]; then
+            echo "Audio playback was stopped by interruption."
+        else
+            echo "Error playing audio file."
+        fi
+    fi
+}
+
+stop_playing() {
+    echo -e "\nInterruption detected. Stopping audio playback..."
+    if [ -n "$PAPLAY_PID" ]; then # Check if PAPLAY_PID is not empty
+        kill "$PAPLAY_PID" 2>/dev/null # Send SIGTERM to paplay process
+        wait "$PAPLAY_PID" 2>/dev/null # Wait for it to terminate
     fi
 }
 
@@ -72,12 +98,12 @@ change_pulseaudio_source() {
     fi
 }
 
-get_source_status() {
-    local source_name="$1"
-    # Get the status of the specific source using pactl and awk
-    # awk will look for lines containing the source_name and print the last field (status)
-    pactl list short sources | awk -v name="$source_name" '$0 ~ name {print $NF}'
-}
+# get_source_status() {
+#     local source_name="$1"
+#     # Get the status of the specific source using pactl and awk
+#     # awk will look for lines containing the source_name and print the last field (status)
+#     pactl list short sources | awk -v name="$source_name" '$0 ~ name {print $NF}'
+# }
 
 # Function to calibrate silence threshold
 calibrate_silence_threshold() {
@@ -130,6 +156,59 @@ stop_voice_recording() {
     echo "Voice recording stopped"
 }
 
+run_main_loop() {
+    while true; do
+        change_pulseaudio_source "$NULL_SOURCE" # Change source when call is picked up
+    
+        mkdir "${RECORDING_DIR}"
+        play_audio_to_phone "ask.wav"
+    
+        # Start voice-triggered recording after audio playback
+        start_voice_recording
+        wait $VOICE_RECORDING_PID
+        echo "Recording Completed"
+
+        if [ -f "$FILE_PATH" ]; then
+            echo "File '$FILE_PATH' exists."
+            play_audio_to_phone "processing.wav"
+
+            # Get sample rate and number of channels from the input file
+            SR=$(soxi -r "$FILE_PATH")
+            CH=$(soxi -c "$FILE_PATH")
+
+            sox -n -r "$SR" -c "$CH" "$BLANK_FILE" trim 0.0 "$BLANK_DURATION"
+
+            # 2. Concatenate the blank audio with your input audio file
+            # The order depends on whether you want the blank audio at the beginning or end.
+
+            # To add 0.5 seconds of blank audio to the BEGINNING:
+            sox "$BLANK_FILE" "$FILE_PATH" "$FINAL_FILE_PATH"
+            python3 get_response.py
+            rm -r "${RECORDING_DIR}"
+            play_audio_to_phone "$RESPONSE_PATH"
+        else
+            echo "File '$FILE_PATH' does NOT exist."
+        fi
+
+        # SOURCE_STATUS=$(get_source_status "$BLUETOOTH_SOURCE")
+    done
+}
+
+stop_main_loop() {
+    echo -e "\nMain script interrupted. Cleaning up..."
+    # Kill the background loop process if it's running
+    if [ -n "$LOOP_PROCESS_PID" ]; then
+        echo "Sending SIGTERM to background loop (PID: $LOOP_PROCESS_PID)..."
+        kill "$LOOP_PROCESS_PID" 2>/dev/null # Send polite termination signal
+        wait "$LOOP_PROCESS_PID" 2>/dev/null # Wait for it to terminate
+        if [ $? -ne 0 ]; then
+             echo "Background loop (PID: $LOOP_PROCESS_PID) might not have terminated cleanly."
+        else
+             echo "Background loop terminated."
+        fi
+    fi
+}
+
 # Function to handle cleanup on script interruption (Ctrl+C, etc.)
 cleanup_on_interrupt() {
     echo "Interrupt signal received. Performing cleanup..."
@@ -173,7 +252,6 @@ adb logcat -v raw AutoCall:I *:S | while IFS= read -r line; do
     echo "Logcat output: $line"
 
     if echo "$line" | grep -q "Call picked up"; then
-        echo "Detected: Call picked up"
         echo "Delaying audio playback by 1 second..."
         sleep 1
 
@@ -184,44 +262,17 @@ adb logcat -v raw AutoCall:I *:S | while IFS= read -r line; do
 
         SOURCE_STATUS=$(get_source_status "$BLUETOOTH_SOURCE")
         
-        while [ "$SOURCE_STATUS" == "RUNNING" ]; do
-            change_pulseaudio_source "$NULL_SOURCE" # Change source when call is picked up
-        
-            mkdir "${RECORDING_DIR}"
-            play_audio_to_phone "ask.wav"
-        
-            # Start voice-triggered recording after audio playback
-            start_voice_recording
-            wait $VOICE_RECORDING_PID
-            echo "Recording Completed"
+        # Run the run_main_loop function in a subshell and background it
+        ( run_main_loop ) &
+        LOOP_PROCESS_PID=$! # Capture the PID of the background subshell
 
-            if [ -f "$FILE_PATH" ]; then
-                echo "File '$FILE_PATH' exists."
-                play_audio_to_phone "processing.wav"
-
-                # Get sample rate and number of channels from the input file
-                SR=$(soxi -r "$FILE_PATH")
-                CH=$(soxi -c "$FILE_PATH")
-
-                sox -n -r "$SR" -c "$CH" "$BLANK_FILE" trim 0.0 "$BLANK_DURATION"
-
-                # 2. Concatenate the blank audio with your input audio file
-                # The order depends on whether you want the blank audio at the beginning or end.
-
-                # To add 0.5 seconds of blank audio to the BEGINNING:
-                sox "$BLANK_FILE" "$FILE_PATH" "$FINAL_FILE_PATH"
-                python3 get_response.py
-                rm -r "${RECORDING_DIR}"
-                play_audio_to_phone "$RESPONSE_PATH"
-            else
-                echo "File '$FILE_PATH' does NOT exist."
-            fi
-
-            SOURCE_STATUS=$(get_source_status "$BLUETOOTH_SOURCE")
-        done
-
-        echo "Detected: Call ended"
         stop_voice_recording
+    else
+        if echo "$line" | grep -q "Call ended"; then
+            stop_voice_recording
+            stop_playing
+            stop_main_loop
+        fi
     fi
 
 done
