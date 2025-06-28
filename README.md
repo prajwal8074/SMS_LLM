@@ -31,7 +31,8 @@
   - [x] Create an OpenAI client with function calling for the mock marketplace <p align="right">(**Prajwal**)</p>
 
 - **Week 4 Integration**
-  - [ ] Integrate old lambda function into OpenAI Client <p align="right">(**Shubham**)</p>
+  - [ ] Implement OpenAI Client in old lambda function and integrate with Marketplace function calling  <p align="right">(**Prajwal**)</p>
+  - [ ] Deploy Marketplace, Caching and lambda function on AWS and resolve any errors <p align="right">(**Shubham**)</p>
   - [ ] Add FAQs as permanent cache <p align="right">(**Aditya**)</p>
   - [ ] Integrate caching system with OpenAI Client <p align="right">(**Aditya**)</p>
   - [ ] Create unit tests for CI pipeline <p align="right">(**Prajwal**)</p>
