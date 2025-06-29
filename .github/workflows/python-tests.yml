@@ -40,5 +40,5 @@ jobs:
     - name: Stop Marketplace backend
       run: |
         cd AWS/MarketPlace/backend
-        docker-compose down
+        docker compose down
         sudo systemctl stop postgresql
