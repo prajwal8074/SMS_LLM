@@ -29,7 +29,7 @@ jobs:
     - name: Setup Marketplace backend
       run: |
         cd AWS/MarketPlace/backend
-        docker-compose up
+        docker compose up
 
     - name: Run AWS tests
       env:
