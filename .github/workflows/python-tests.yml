@@ -54,6 +54,7 @@ jobs:
 
     - name: Print database
       run: |
+        cd AWS/MarketPlace/backend
         sudo docker compose exec db psql -U user marketplace_db -c "SELECT * FROM listings;"
 
     - name: Stop Marketplace backend
