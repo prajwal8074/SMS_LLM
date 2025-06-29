@@ -32,8 +32,8 @@ jobs:
         docker compose up -d
 
     - name: List running containers (initial check)
-        run: |
-          docker ps
+      run: |
+        docker ps
 
     - name: Wait for PostgreSQL to be ready
       run: |
