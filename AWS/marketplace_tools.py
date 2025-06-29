@@ -6,9 +6,11 @@ from openai import OpenAI
 import os
 from dotenv import load_dotenv
 
+load_dotenv()
+
 # --- Configuration for your deployed server ---
 # Replace with the actual public IP/DNS of your EC2 instance and the port your Flask app is exposed on
-FLASK_SERVER_BASE_URL = "http://localhost:5000"
+FLASK_SERVER_BASE_URL = os.getenv('FLASK_SERVER_BASE_URL')
 DEMO_SELLER_NAME = 'DEMO SELLER'
 DEMO_SELLER_CONTACT = "9876543210"
 

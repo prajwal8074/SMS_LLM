@@ -15,6 +15,7 @@ import redis
 import hashlib
 
 import marketplace_tools
+from cache import RedisCache
 
 load_dotenv()
 
@@ -24,19 +25,8 @@ transcribe_client = boto3.client('transcribe')
 translate_client = boto3.client('translate')
 polly_client = boto3.client('polly')
 
-# Initialize Redis client
-REDIS_ENDPOINT = os.getenv("REDIS_ENDPOINT", "localhost")
-REDIS_PORT = int(os.getenv("REDIS_PORT", 6379))
-REDIS_PASSWORD = os.getenv("REDIS_PASSWORD", "")
-
-redis_client = redis.Redis(
-    host=REDIS_ENDPOINT,
-    port=REDIS_PORT,
-    password=REDIS_PASSWORD if REDIS_PASSWORD else None,
-    decode_responses=True,
-    socket_timeout=2,
-    socket_connect_timeout=1
-)
+# Initialize Redis cache
+cache = RedisCache()
 
 # Initialize Gemini client
 client = OpenAI(
@@ -47,37 +37,6 @@ client = OpenAI(
 S3_BUCKET_NAME = os.environ.get('S3_BUCKET_NAME', 'farmassist-voice-gateway-audio')
 TARGET_LLM_LANGUAGE = 'en'
 DEFAULT_FARMER_LANGUAGE = 'hi-IN'
-CACHE_TTL = int(os.getenv("CACHE_TTL", 3600))  # Default 1 hour
-
-def get_cache_key(query: str, language: str) -> str:
-    """Generate consistent cache key from query and language"""
-    normalized_query = query.strip().lower()
-    return f"llm:{hashlib.sha256(f"{language}:{normalized_query}".encode()).hexdigest()}"
-
-def get_cached_response(query: str, language: str) -> str:
-    """Check Redis for cached response"""
-    key = get_cache_key(query, language)
-    try:
-        if cached := redis_client.get(key):
-            print(f"⚡ Cache hit for query: {query[:50]}...")
-            return cached
-    except Exception as e:
-        print(f"Redis error (non-fatal): {str(e)}")
-    return None
-
-def cache_response(query: str, language: str, response: str, ttl: int = CACHE_TTL):
-    """Store response in Redis with expiration"""
-    key = get_cache_key(query, language)
-    try:
-        redis_client.setex(key, ttl, response)
-        print(f"Cached response for query: {query[:50]}... (TTL: {ttl}s)")
-    except Exception as e:
-        print(f"Redis cache write failed (non-fatal): {str(e)}")
-
-def process_tool_calls(response):
-    """Process tool calls if needed (existing function)"""
-    # Your existing implementation
-    pass
 
 def lambda_handler(event, context):
     print(json.dumps(event, indent=2))
@@ -152,10 +111,11 @@ def lambda_handler(event, context):
         llm_response_text = ""
         try:
             # Check cache first
-            cached_response = get_cached_response(text_for_llm, farmer_language_code)
-            if cached_response:
+            if cached_response := cache.get(text_for_llm):
+                print(f"⚡ Cache HIT!")
                 llm_response_text = cached_response
             else:
+                print(f"🔄 Cache MISS - Calling Gemini...")
                 llm_prompt = f"You are an agricultural assistant. Based on the following farmer's query, provide a concise and helpful response (max 3 sentences): '{text_for_llm}'"
                 
                 messages = [{"role": "user", "content": llm_prompt}]
@@ -168,10 +128,10 @@ def lambda_handler(event, context):
                     tool_choice="auto"
                 )
                 
-                if not process_tool_calls(response):
+                if not marketplace_tools.process_tool_calls(response):
                     llm_response_text = response.choices[0].message.content
                     # Cache new responses
-                    cache_response(text_for_llm, farmer_language_code, llm_response_text)
+                    cache.set(text_for_llm, llm_response_text) # default expiration
                 else:
                     llm_response_text = "task completed"
                     
