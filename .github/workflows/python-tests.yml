@@ -54,7 +54,7 @@ jobs:
 
     - name: Print database
       run: |
-        sudo docker-compose exec db psql -U user marketplace_db -c "SELECT * FROM listings;"
+        sudo docker compose exec db psql -U user marketplace_db -c "SELECT * FROM listings;"
 
     - name: Stop Marketplace backend
       run: |
