@@ -26,12 +26,43 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r AWS/requirements.txt
 
-    - name: Setup Marketplace backend
+    - name: Start Marketplace backend
       run: |
         cd AWS/MarketPlace/backend
         docker compose up -d
 
-    - name: Run AWS tests
+    - name: List running containers (initial check)
+        run: docker ps
+
+    - name: Wait for PostgreSQL to be ready
+      run: |
+        echo "Attempting to connect to PostgreSQL..."
+        for i in $(seq 1 10); do
+          nc -z localhost 5432 && echo "PostgreSQL is ready!" && break
+          echo "Waiting for PostgreSQL... ($i/10)"
+          sleep 3
+        done
+        nc -z localhost 5432 || (echo "PostgreSQL did not become ready after waiting." && exit 1)
+
+    - name: Health Check using /get_all_listings
+      run: |
+        echo "Check /get_all_listings..."
+        for i in $(seq 1 30); do
+          # Use -s for silent, -f for fail on HTTP errors (4xx/5xx)
+          # Use -w "%{http_code}" to get the HTTP status code
+          RESPONSE=$(curl -s -w "%{http_code}" -f http://localhost:5000/get_all_listings)
+          HTTP_CODE="${RESPONSE: -3}" # Extract the last 3 characters (HTTP code)
+          BODY="${RESPONSE::-3}"      # Get the body (everything before the last 3 chars)
+
+          if [[ "$HTTP_CODE" == "200" ]]; then
+            echo "Flask app is ready and /get_all_listings returned 200 OK!"
+            break
+          fi
+          echo "Waiting for Flask app /get_all_listings... (Attempt $i/30, HTTP Code: $HTTP_CODE)"
+          sleep 3
+        done
+
+    - name: Run tests
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       run: |

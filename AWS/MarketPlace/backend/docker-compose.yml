@@ -9,7 +9,7 @@ services:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
     ports:
-      - "5432:5432" # Expose PostgreSQL port (only for local access, remove in prod unless needed)
+      - "5432:5432" # Expose PostgreSQL port
     volumes:
       - db_data:/var/lib/postgresql/data # Persistent data volume for PostgreSQL
       - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql # Init script for schema
@@ -23,10 +23,6 @@ services:
       DATABASE_URL: postgresql://user:password@db:5432/marketplace_db # Connect to the 'db' service
     depends_on:
       - db # Ensure 'db' service starts before 'app'
-    # Optional: For development, bind mount the source code
-    # to see changes without rebuilding the image.
-    # volumes:
-    #   - ./server:/app
 
 volumes:
   db_data: # Define the named volume for database persistence

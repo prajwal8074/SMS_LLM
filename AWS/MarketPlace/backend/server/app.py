@@ -102,7 +102,7 @@ def get_all_listings():
         conn = get_db_connection()
         cur = conn.cursor()
         # Fetch all columns including the new seller_name and seller_contact
-        cur.execute("SELECT id, item_name, price, description, seller_name, seller_contact, status FROM listings WHERE status = 'active' ORDER BY created_at DESC;")
+        cur.execute("SELECT * FROM listings;")
         
         # Get column names from the cursor description
         columns = [col[0] for col in cur.description]
