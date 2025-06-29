@@ -27,6 +27,8 @@ jobs:
         pip install -r AWS/requirements.txt
 
     - name: Run tests
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       run: |
         python AWS/Test/test_my_module.py
         python AWS/Test/function_calling_test.py
