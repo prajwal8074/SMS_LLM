@@ -8,14 +8,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# --- Configuration for your deployed server ---
-# Replace with the actual public IP/DNS of your EC2 instance and the port your Flask app is exposed on
 FLASK_SERVER_BASE_URL = os.getenv('FLASK_SERVER_BASE_URL')
 DEMO_SELLER_NAME = 'DEMO SELLER'
 DEMO_SELLER_CONTACT = "9876543210"
-
-# --- Define the actual functions (HTTP clients for your API) ---
-# These functions will now make network requests to your deployed Flask server.
 
 def add_listing_api(item_name: str, price: float, description: str = None):
     """Makes an API call to add a new item listing to the marketplace."""
@@ -145,7 +140,6 @@ def process_tool_calls(ai_response: ChatCompletion):
     """
     Extracts tool calls from an AI response and executes the corresponding functions.
     """
-    # Use .tool_calls directly from the message object
     tool_calls = ai_response.choices[0].message.tool_calls
 
     if not tool_calls:

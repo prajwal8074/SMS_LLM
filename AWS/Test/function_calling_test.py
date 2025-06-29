@@ -40,6 +40,7 @@ class TestFunctionCall(unittest.TestCase):
 		)
 		tool_calls = response.choices[0].message.tool_calls
 		self.assertIsNotNone(tool_calls, response.choices[0].message.content)
+		marketplace_tools.process_tool_calls(response)
 
 if __name__ == '__main__':
 	unittest.main()

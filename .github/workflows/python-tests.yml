@@ -31,25 +31,30 @@ jobs:
         cd AWS/MarketPlace/backend
         docker compose up -d
 
-    - name: List running containers (initial check)
-      run: |
-        docker ps
-
     - name: Wait for PostgreSQL to be ready
       run: |
         chmod +x AWS/Test/wait_for_db.sh
         ./AWS/Test/wait_for_db.sh
 
-    - name: Check using /get_all_listings
+    - name: Wait for app using /get_all_listings
       run: |
         chmod +x AWS/Test/get_all_listings.sh
         ./AWS/Test/get_all_listings.sh
 
+    - name: List running containers
+      run: |
+        docker ps
+
     - name: Run tests
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        FLASK_SERVER_BASE_URL: http://localhost:5000
       run: |
         python AWS/Test/function_calling_test.py
+
+    - name: Print database
+      run: |
+        sudo docker-compose exec db psql -U user marketplace_db -c "SELECT * FROM listings;"
 
     - name: Stop Marketplace backend
       run: |
