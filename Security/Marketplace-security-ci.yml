@@ -15,39 +15,33 @@ env:
   DEPLOY_ENV: "production"
   SECURITY_CONTACT: "annam.ai.sms_llm@mayhem.com"
 
-# 1. Build and Test Job
 jobs:
+  # 1. Build and Test Job
   build-and-test:
     name: Build, Test, and Pre-deploy Checks
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Check out the repository code on the runner.
       - name: Checkout code
         uses: actions/checkout@v4
-        # This ensures the latest code is available for subsequent steps.
 
-      # Step 2: Set up Python environment for testing and tools.
       - name: Set up Python 3.10
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
-      # Step 3: Install dependencies including those for testing, linting, and security.
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pytest flake8 coverage python-dotenv requests safety pip-audit
 
-      # Step 4: Lint the codebase to catch syntax and style errors before running tests.
       - name: Lint with flake8 (critical errors)
         run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 
       - name: Lint with flake8 (style and complexity)
         run: flake8 . --count --max-complexity=10 --max-line-length=127 --statistics
 
-      # Step 5: Run all unit tests and integration tests.
       - name: Run unit tests
         run: |
           python -m unittest discover AWS/Test '*Unittest.py'
@@ -59,19 +53,17 @@ jobs:
       - name: Run end-to-end tests
         run: python AWS/Test/end_to_end_testing.py
 
-      # Step 6: Collect code coverage metrics.
       - name: Collect coverage and show report
         run: |
           coverage run -m unittest discover AWS/Test
           coverage report -m
 
-      # Step 7: Upload coverage to Codecov or another reporting service.
-        name: Upload coverage to Codecov
+      - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
           files: ./coverage.xml
 
-# 2. Dependency and Static Security Job
+  # 2. Dependency and Static Security Job
   security-audit:
     name: Dependency and Static Security Analysis
     runs-on: ubuntu-latest
@@ -81,21 +73,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step 1: Scan for vulnerable dependencies using safety.
       - name: Python Safety Check
         run: safety check --full-report
 
-      # Step 2: Additional dependency audit with pip-audit.
       - name: Run pip-audit
         run: pip-audit
 
-      # Step 3: Scan for secrets in the codebase using trufflehog.
+      # Marketplace-Specific: Pin trufflehog version
       - name: Scan for secrets with trufflehog
-        uses: trufflesecurity/trufflehog@main
+        uses: trufflesecurity/trufflehog@v3.62.0
         with:
           scanArguments: --path=.
 
-      # Step 4: Static code analysis for vulnerabilities using CodeQL.
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
@@ -107,7 +96,6 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
 
-      # Step 5: Presence of SECURITY.md for vulnerability reporting.
       - name: Ensure SECURITY.md policy file exists
         run: |
           if [ ! -f "SECURITY.md" ] && [ ! -f ".github/SECURITY.md" ]; then
@@ -117,14 +105,12 @@ jobs:
             echo "SECURITY.md found."
           fi
 
-      # Step 6: Check for world-writable files (should not exist).
       - name: Check for dangerous file permissions
         run: |
           find . -type f -perm -o+w -not -path "./.git/*" && \
             (echo "World-writable files found! Review needed." && exit 1) || \
             echo "No world-writable files found."
 
-      # Step 7: Check .env.example for secrets.
       - name: Check .env.example for real secrets
         run: |
           if [ -f ".env.example" ]; then
@@ -135,7 +121,7 @@ jobs:
             echo ".env.example not found (OK if not using .env)."
           fi
 
-# 3. Marketplace-Specific Security Job
+  # 3. Marketplace-Specific Security Job
   marketplace-security-checks:
     name: Marketplace-Specific Security Checks
     runs-on: ubuntu-latest
@@ -145,21 +131,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step 1: Ensure user ID handling is secure (based on mobile number only).
       - name: Verify user ID handling (mobile-based)
         run: |
-          # Scan for user_id usage and ensure it's not guessable.
           grep -r --include="*.py" "user_id" . || echo "No direct user_id usage found."
           echo "Check that all user identity is based on mobile phone number, not guessable IDs."
 
-      # Step 2: Check for logging of PII (user IDs, phone, email) in the codebase.
       - name: Check for logging of sensitive info
         run: |
           grep -r --include="*.py" "log" . | grep -iE "user.*id|phone|mobile|email" && \
             (echo "Sensitive info might be logged! Review needed." && exit 1) || \
             echo "No logging of sensitive PII detected."
 
-      # Step 3: Check for insecure usage of eval, HTTP, bare excepts.
       - name: Check for unsafe Python patterns
         run: |
           grep -r --include="*.py" "eval(" . && \
@@ -172,21 +154,19 @@ jobs:
             (echo "Bare except detected! Review needed." && exit 1) || \
             echo "No bare excepts detected."
 
-      # Step 4: Check for presence of TODOs and FIXMEs in sensitive code files.
       - name: Check for TODOs and FIXMEs
         run: |
           grep -r --include="*.py" -Ei "TODO|FIXME" . && \
             (echo "TODO or FIXME found! Review needed." && exit 1) || \
             echo "No TODOs/FIXMEs detected."
 
-      # Step 5: Check for files with dangerous permissions.
       - name: Check for world-writable files
         run: |
           find . -type f -perm -o+w -not -path "./.git/*" && \
             (echo "World-writable files found! Review needed." && exit 1) || \
             echo "No world-writable files found."
 
-# 4. Deployment Job
+  # 4. Deployment Job
   deploy:
     name: Deploy to Production (Marketplace)
     runs-on: ubuntu-latest
@@ -199,14 +179,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step 1: Set up secrets/configs for deployment (placeholder).
       - name: Set up deployment secrets
         run: echo "Setting up deployment secrets (encrypted via GH Actions)..."
-        # In a real workflow, this would set environment variables or fetch secrets.
 
-      # ... [unchanged parts above remain the same]
-
-      # Step 2: Deploy to production (replace with real deployment logic).
       - name: Deploy to production environment
         id: deployment
         run: |
@@ -214,7 +189,6 @@ jobs:
           # Insert deployment CLI commands here (e.g., AWS CLI, kubectl, etc.)
           echo "deployment_url=https://marketplace.example.com" >> "$GITHUB_OUTPUT"
 
-      # Step 3: Post-deployment health check with curl installed
       - name: Ensure curl is available
         run: sudo apt-get update && sudo apt-get install -y curl
 
@@ -224,7 +198,6 @@ jobs:
             (echo "Health check failed!" && exit 1)
           echo "Deployment health check passed."
 
-      # Step 4: Validate secrets before notifying security contact
       - name: Validate email secrets
         run: |
           [ -z "${{ secrets.SECURITY_EMAIL_USER }}" ] && echo "SECURITY_EMAIL_USER missing!" && exit 1
@@ -245,17 +218,3 @@ jobs:
             URL: https://marketplace.example.com
           to: ${{ env.SECURITY_CONTACT }}
           from: github-actions@mayhem.com
-
-# ... [additional sections below remain unchanged]
-
-# Marketplace-Specific: Pin trufflehog version
-      - name: Scan for secrets with trufflehog
-        uses: trufflesecurity/trufflehog@v3.62.0
-        with:
-          scanArguments: --path=.
-
-# Environment block fix (updated output reference)
-environment:
-  name: production
-  url: ${{ steps.deployment.outputs.deployment_url }}
-
