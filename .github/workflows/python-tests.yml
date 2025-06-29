@@ -1,4 +1,4 @@
-name: Python Specific Unit Test
+name: Python Unit Tests
 
 on:
   push:
@@ -19,17 +19,13 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.x'
+        python-version: '3.12'
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        pip install -r AWS/requirements.txt
 
-    - name: Set PYTHONPATH and Run specific test file
+    - name: Run tests
       run: |
-        # Add the 'AWS' directory to PYTHONPATH
-        # This ensures test_my_module.py can find my_module.py
-        export PYTHONPATH=$PYTHONPATH:$(pwd)/AWS
-
-        # Run only the specified test file by its full path
         python AWS/Test/test_my_module.py
