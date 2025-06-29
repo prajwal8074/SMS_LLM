@@ -2,8 +2,11 @@ import requests
 import base64
 import json
 import os
+from dotenv import load_dotenv
 
-API_GATEWAY_URL = "https://7029iecp6i.execute-api.us-west-2.amazonaws.com/v1/process-voice"
+load_dotenv()
+
+API_GATEWAY_URL = os.getenv("API_GATEWAY_URL")
 
 AUDIO_FILE_PATH = "CallRecordings/caller_input.wav"
 FARMER_LANGUAGE = "hi-IN"
