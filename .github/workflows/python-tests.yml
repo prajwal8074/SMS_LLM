@@ -78,3 +78,9 @@ jobs:
     - name: Stop Redis container
       run: |
         docker stop redis-test
+
+    - name: Run main test
+      env:
+        API_GATEWAY_URL: https://7029iecp6i.execute-api.us-west-2.amazonaws.com/v1/process-voice
+      run: |
+        python AWS/Test/test.py
