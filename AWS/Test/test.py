@@ -9,7 +9,7 @@ load_dotenv()
 
 API_GATEWAY_URL = os.getenv("API_GATEWAY_URL")
 
-AUDIO_FILE_PATH = "test.mp3"
+AUDIO_FILE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "test.mp3"))
 FARMER_LANGUAGE = "hi-IN"
 
 class Test(unittest.TestCase):
