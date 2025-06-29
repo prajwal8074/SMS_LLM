@@ -139,8 +139,7 @@ start_voice_recording() {
     # The `timeout` command wraps `sox`
     timeout "${MAX_RECORDING_DURATION}" sox -t pulseaudio "$BLUETOOTH_SOURCE" "$output_file" \
         silence 1 0.1 "$SILENCE_THRESHOLD" \
-        1 0.5 "$SILENCE_THRESHOLD"
-
+        1 0.5 "$SILENCE_THRESHOLD" &
     VOICE_RECORDING_PID=$! # This PID will now be of the 'timeout' command
     echo "Voice recording started (PID: $VOICE_RECORDING_PID). Output file: $output_file"
 }
