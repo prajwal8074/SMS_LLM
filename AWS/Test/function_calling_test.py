@@ -33,7 +33,7 @@ class TestFunctionCall(unittest.TestCase):
 		self.assertIsNone(tool_calls, response.choices[0].message.content)
 
 	def test_add_listing(self):
-		print("\nadd_listing test\n")
+		print("\nTest add_listing tool using function calling...\n")
 		messages = [{"role": "user", "content": "I want to sell a vintage watch for $150. It's a gold-plated timepiece from the 1950s, in excellent working condition with a new leather strap."}]
 		response = client.chat.completions.create(
 			model="gemini-2.0-flash",
@@ -51,7 +51,7 @@ class TestFunctionCall(unittest.TestCase):
 
 			marketplace_tools.process_tool_calls(response)
 
-			print("\nChecking listing in database...\n")
+			print("\nCheck listing using get_all_listings tool...\n")
 			arguments_str = tool_calls[0].function.arguments
 
 			try:

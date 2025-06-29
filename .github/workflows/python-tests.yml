@@ -45,7 +45,7 @@ jobs:
       run: |
         docker ps
 
-    - name: Run tests
+    - name: Run function calling tests
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         FLASK_SERVER_BASE_URL: http://localhost:5000
@@ -62,3 +62,19 @@ jobs:
         cd AWS/MarketPlace/backend
         docker compose down
         sudo systemctl stop postgresql
+
+    - name: Run Redis image in a container
+      run: |
+        docker run -d --name redis-test -p 6379:6379 redis:latest
+
+    - name: Run caching tests
+      env:
+        REDIS_HOST: localhost
+        REDIS_PORT: 6379
+        REDIS_DB: 0
+      run: |
+        python AWS/Test/cache_test.py
+
+    - name: Stop Redis container
+      run: |
+        docker stop redis-test
