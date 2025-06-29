@@ -29,7 +29,7 @@ class TestFunctionCall(unittest.TestCase):
 		tool_calls = response.choices[0].message.tool_calls
 		self.assertIsNone(tool_calls, response.choices[0].message.content)
 
-	def test_call(self):
+	def test_add_listing(self):
 		# Non calling test
 		messages = [{"role": "user", "content": "I want to sell a vintage watch for $150. It's a gold-plated timepiece from the 1950s, in excellent working condition with a new leather strap."}]
 		response = client.chat.completions.create(
@@ -40,7 +40,6 @@ class TestFunctionCall(unittest.TestCase):
 		)
 		tool_calls = response.choices[0].message.tool_calls
 		self.assertIsNotNone(tool_calls, response.choices[0].message.content)
-	
 
 if __name__ == '__main__':
 	unittest.main()
