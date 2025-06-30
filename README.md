@@ -32,19 +32,14 @@
 
 - **Week 4 Integration**
   - [x] Implement OpenAI Client in old lambda function and integrate with Marketplace function calling <p align="right">(**Prajwal**)</p>
-  - [ ] Send phone number to lambda function endpoint <p align="right">(**Prajwal**)</p>
-  - [ ] Cache queries in lambda function corresponding to phone number for context, set expiration of 1 hour <p align="right">(**Aditya**)</p>
-  - [x] Detect incoming audio language in lambda function <p align="right">(**Shubham**)</p>
+  - [ ] Detect incoming audio language in lambda function <p align="right">(**Shubham**)</p>
   - [ ] Deploy Marketplace, Caching and lambda function on AWS and resolve any errors <p align="right">(**Shubham**)</p>
-  - [ ] Add FAQs as permanent cache <p align="right">(**Aditya**)</p>
+  - [ ] Add FAQs as permanent cache <p align="right">(**Akash**)</p>
   - [x] Integrate caching system with OpenAI Client <p align="right">(**Aditya**)</p>
-  - [ ] Create unit tests for CI pipeline <p align="right">(**Prajwal**)</p>
-  - [ ] Integrate new unit tests into CI pipeline <p align="right">(**Akash**)</p>
+  - [x] Create unit tests & CI pipeline <p align="right">(**Prajwal**)</p>
 
 - **Week 5 Pilot Launch**
-  - [ ] Basic analytics tracking
-  - [ ] User documentation
-  - [ ] System monitoring
-  - [ ] Feedback collection
+  - [ ] Send phone number to lambda function endpoint <p align="right">(**Prajwal**)</p>
+  - [ ] Cache queries in lambda function corresponding to phone number for context, set expiration of 1 hour <p align="right">(**Aditya**)</p>
 
-- **Week 6 Buffer Week 2**
+- **Week 6 Buffer Week**
