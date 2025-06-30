@@ -28,6 +28,6 @@ jobs:
           fetch-depth: 0
 
       - name: Run TruffleHog Secret Scan
-        uses: trufflehog/trufflehog-action
+        uses: trufflehog/trufflehog-action:latest
         with:
           args: --fail-on-detect
