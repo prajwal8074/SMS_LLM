@@ -38,7 +38,7 @@
   - [x] Integrate caching system with OpenAI Client <p align="right">(**Aditya**)</p>
   - [x] Create unit tests & CI pipeline <p align="right">(**Prajwal**)</p>
 
-- **Week 5 Pilot Launch**
+- **Week 5 Improve & Deploy**
   - [ ] Send phone number to lambda function endpoint <p align="right">(**Prajwal**)</p>
   - [ ] Cache queries in lambda function corresponding to phone number for context, set expiration of 1 hour <p align="right">(**Shubham**)</p>
   - [ ] Modify cache get method for semantically similar queries <p align="right">(**Aditya**)</p>
