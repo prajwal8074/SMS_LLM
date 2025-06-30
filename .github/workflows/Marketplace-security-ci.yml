@@ -26,11 +26,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Python Safety Check
-        run: |
-          pip install safety
-          safety check --full-report
-
       - name: Run pip-audit
         run: pip-audit
 
