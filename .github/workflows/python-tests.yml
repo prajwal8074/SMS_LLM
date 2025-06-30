@@ -3,10 +3,19 @@ name: Python Unit Tests
 on:
   push:
     branches:
-      - main
+      - main # or your default branch, e.g., master, develop
+    paths-ignore:
+      - 'README.md'
+      - '**/*.md' # To ignore all markdown files
+      - 'docs/**' # To ignore all files in a 'docs' directory
+
   pull_request:
     branches:
-      - main
+      - main # or your default branch
+    paths-ignore:
+      - 'README.md'
+      - '**/*.md'
+      - 'docs/**'
 
 jobs:
   build:
