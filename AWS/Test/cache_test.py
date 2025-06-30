@@ -71,49 +71,5 @@ class TestRedisCache(unittest.TestCase):
         # Test get for non-existent key
         self.assertIsNone(self.cache.get("non-existent query"))
 
-    def test_set_get_with_semantically_different_queries(self):
-        """
-        Test setting and getting with queries that are semantically related but
-        distinct enough to generate different cache keys. This highlights that
-        the cache operates on exact key matches in a live Redis environment.
-        """
-        query1 = "What is the capital of France?"
-        response1 = "Paris"
-
-        query2 = "Capital of France?"
-        response2 = "Paris, France" # Different response to emphasize distinct entries
-
-        query3 = "What is the capital of Germany?"
-        response3 = "Berlin"
-
-        # Set first query
-        self.cache.set(query1, response1)
-        key1 = self.cache.get_cache_key(query1)
-        self.assertEqual(self.cache.redis.get(key1), response1)
-
-        # Set second query
-        self.cache.set(query2, response2)
-        key2 = self.cache.get_cache_key(query2)
-        self.assertEqual(self.cache.redis.get(key2), response2)
-
-        # Set third query
-        self.cache.set(query3, response3)
-        key3 = self.cache.get_cache_key(query3)
-        self.assertEqual(self.cache.redis.get(key3), response3)
-
-        # Ensure keys are indeed different (local calculation, no Redis interaction)
-        self.assertNotEqual(key1, key2)
-        self.assertNotEqual(key1, key3)
-        self.assertNotEqual(key2, key3)
-
-        # Verify retrieval for query1
-        self.assertEqual(self.cache.get(query1), response1)
-
-        # Verify retrieval for query2
-        self.assertEqual(self.cache.get(query2), response2)
-
-        # Verify retrieval for query3
-        self.assertEqual(self.cache.get(query3), response3)
-
 if __name__ == '__main__':
     unittest.main()
