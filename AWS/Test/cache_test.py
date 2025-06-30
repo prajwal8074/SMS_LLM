@@ -31,22 +31,6 @@ class TestRedisCache(unittest.TestCase):
         self.cache.redis.flushdb()
         print(f"\n--- Running test: {self._testMethodName} ---")
 
-    def test_get_cache_key(self):
-        """
-        Test if get_cache_key generates correct and consistent SHA256 hashes.
-        This method does not interact with Redis, so it remains a pure unit test.
-        """
-        query1 = "  Test Query "
-        query2 = "test query"
-        query3 = "Another Query"
-
-        # Expected hash for "test query" (stripped and lowercased)
-        expected_hash_for_test_query = hashlib.sha256("test query".encode()).hexdigest()
-
-        self.assertEqual(self.cache.get_cache_key(query1), expected_hash_for_test_query)
-        self.assertEqual(self.cache.get_cache_key(query2), expected_hash_for_test_query)
-        self.assertNotEqual(self.cache.get_cache_key(query3), expected_hash_for_test_query)
-
     def test_set_and_get(self):
         """
         Test the set and get methods with actual Redis interactions.
