@@ -14,11 +14,7 @@ def main():
 
     if len(sys.argv) == 4:
         try:
-            ttl_str = sys.argv[3].lower()
-            if ttl_str == 'none' or ttl_str == '0':
-                ttl = None # Interpret 'None' or '0' as permanent
-            else:
-                ttl = int(ttl_str)
+            ttl = int(ttl_str)
         except ValueError:
             print(f"Error: Invalid TTL value '{sys.argv[3]}'. Must be an integer, '0', or 'None'.")
             sys.exit(1)
