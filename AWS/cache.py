@@ -27,7 +27,10 @@ class RedisCache:
     def set(self, query: str, response: str, ttl: int = 86400):
         """Store response with expiration (default 24 hours)"""
         key = self.get_cache_key(query)
-        self.redis.setex(key, ttl, response)
+        if ttl is None or ttl == 0:
+            self.redis.set(key, response) # Set permanently
+        else:
+            self.redis.setex(key, ttl, response) # Set with expiration
     
     def cache_hit_rate(self) -> float:
         """Calculate cache effectiveness"""
