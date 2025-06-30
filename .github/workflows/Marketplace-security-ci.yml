@@ -28,8 +28,8 @@ jobs:
 
       - name: Run pip-audit
         run: |
-        pip install pip-audit
-        pip-audit
+          pip install pip-audit
+          pip-audit
 
       # Marketplace-Specific: Pin trufflehog version
       - name: Scan for secrets with trufflehog
