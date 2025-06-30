@@ -29,8 +29,6 @@ jobs:
       # Marketplace-Specific: Pin trufflehog version
       - name: Scan for secrets with trufflehog
         uses: trufflesecurity/trufflehog@v3.62.0
-        with:
-          scanArguments: --path=.
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
