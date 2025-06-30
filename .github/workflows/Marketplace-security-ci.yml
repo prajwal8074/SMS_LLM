@@ -26,10 +26,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Marketplace-Specific: Pin trufflehog version
-      - name: Scan for secrets with trufflehog
-        uses: trufflesecurity/trufflehog@v3.62.0
-
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
