@@ -89,7 +89,6 @@ jobs:
     - name: Run add_cache tests
       run: |
         chmod +x AWS/Test/add_cache_test.sh
-        PYTHON_SCRIPT=AWS/add_cache.py
         ./AWS/Test/add_cache_test.sh
 
     - name: Stop Redis container
