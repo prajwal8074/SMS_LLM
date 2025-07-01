@@ -1,5 +1,4 @@
 echo -e "\n--- Test adding temporary cache manually ---\n"
-PYTHON_SCRIPT="../add_cache.py"
 key=$(python "$PYTHON_SCRIPT" "What is the capital of India?" "New Delhi" 60 | head -n 1)
 echo "Extracted key for testing: '$key'"
 echo "Checking TTL for key in Redis..."
@@ -13,7 +12,6 @@ else
 fi
 
 echo -e "\n--- Test adding permanent cache manually ---\n"
-PYTHON_SCRIPT="../add_cache.py"
 key=$(python "$PYTHON_SCRIPT" "What is the capital of Canada?" "Ottawa" | head -n 1)
 echo "Extracted key for testing: '$key'"
 echo "Checking TTL for key in Redis..."
