@@ -9,50 +9,56 @@ load_dotenv()
 
 API_GATEWAY_URL = os.getenv("API_GATEWAY_URL")
 
-AUDIO_FILE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "test.mp3"))
-FARMER_LANGUAGE = "hi-IN"
-
 class Test(unittest.TestCase):
 
-    def test_send_voice_to_gateway(self):
-        if not os.path.exists(AUDIO_FILE_PATH):
-            print(f"Error: Audio file not found at {AUDIO_FILE_PATH}")
-            return
+	def setUp(self):
+		"""
+		Set up the test environment before each test method.
+		"""
+		print(f"\n--- Running test: {self._testMethodName} ---")
+	
+	def test_send_voice_to_gateway_hindi(self):
+		AUDIO_FILE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "test.mp3"))
+		FARMER_LANGUAGE = "hi-IN"
 
-        try:
-            with open(AUDIO_FILE_PATH, "rb") as audio_file:
-                audio_bytes = audio_file.read()
-                audio_base64 = base64.b64encode(audio_bytes).decode('utf-8')
+		if not os.path.exists(AUDIO_FILE_PATH):
+			print(f"Error: Audio file not found at {AUDIO_FILE_PATH}")
+			return
 
-            payload = {
-                "audio_data": audio_base64,
-                "farmer_language_code": FARMER_LANGUAGE
-            }
+		try:
+			with open(AUDIO_FILE_PATH, "rb") as audio_file:
+				audio_bytes = audio_file.read()
+				audio_base64 = base64.b64encode(audio_bytes).decode('utf-8')
 
-            headers = {
-                "Content-Type": "application/json"
-            }
+			payload = {
+				"audio_data": audio_base64,
+				"farmer_language_code": FARMER_LANGUAGE
+			}
 
-            print(f"Sending audio from {AUDIO_FILE_PATH} ({FARMER_LANGUAGE}) to {API_GATEWAY_URL}...")
-            response = requests.post(API_GATEWAY_URL, headers=headers, data=json.dumps(payload))
-            self.assertEqual(response.status_code, 200, f"\n--- Error (Status Code: {response.status_code}) ---")
-            if response.status_code == 200:
-                print("\nChecking response...\n")
-                result = response.json()
-                self.assertIsNotNone(result.get('message'))
-                self.assertIsNotNone(result.get('transcribed_text'))
-                self.assertIsNotNone(result.get('llm_response'))
-                self.assertIsNotNone(result.get('final_spoken_text'))
-                self.assertIsNotNone(result.get('audio_response_base64'))
-            else:
-                print(response.text)
+			headers = {
+				"Content-Type": "application/json"
+			}
 
-        except requests.exceptions.RequestException as e:
-            print(f"Network or request error: {e}")
-        except json.JSONDecodeError:
-            print(f"Failed to decode JSON response: {response.text}")
-        except Exception as e:
-            print(f"An unexpected error occurred: {e}")
+			print(f"Sending audio from {AUDIO_FILE_PATH} ({FARMER_LANGUAGE}) to {API_GATEWAY_URL}...")
+			response = requests.post(API_GATEWAY_URL, headers=headers, data=json.dumps(payload))
+			self.assertEqual(response.status_code, 200, f"\n--- Error (Status Code: {response.status_code}) ---")
+			if response.status_code == 200:
+				print("\nChecking response...\n")
+				result = response.json()
+				self.assertIsNotNone(result.get('message'))
+				self.assertIsNotNone(result.get('transcribed_text'))
+				self.assertIsNotNone(result.get('llm_response'))
+				self.assertIsNotNone(result.get('final_spoken_text'))
+				self.assertIsNotNone(result.get('audio_response_base64'))
+			else:
+				print(response.text)
+
+		except requests.exceptions.RequestException as e:
+			print(f"Network or request error: {e}")
+		except json.JSONDecodeError:
+			print(f"Failed to decode JSON response: {response.text}")
+		except Exception as e:
+			print(f"An unexpected error occurred: {e}")
 
 if __name__ == '__main__':
-    unittest.main()
+	unittest.main()

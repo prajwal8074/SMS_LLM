@@ -18,9 +18,14 @@ client = OpenAI(
 
 class TestFunctionCall(unittest.TestCase):
 
+	def setUp(self):
+		"""
+		Set up the test environment before each test method.
+		"""
+		print(f"\n--- Running test: {self._testMethodName} ---")
+	
 	def test_non_call(self):
 		# Non calling test
-		print("\nNon calling test\n")
 		messages = [{"role": "user", "content": "Hello"}]
 		response = client.chat.completions.create(
 			model="gemini-2.0-flash",
@@ -33,7 +38,6 @@ class TestFunctionCall(unittest.TestCase):
 		self.assertIsNone(tool_calls, response.choices[0].message.content)
 
 	def test_add_listing(self):
-		print("\nTest add_listing tool using function calling...\n")
 		messages = [{"role": "user", "content": "I want to sell a vintage watch for $150. It's a gold-plated timepiece from the 1950s, in excellent working condition with a new leather strap."}]
 		response = client.chat.completions.create(
 			model="gemini-2.0-flash",
