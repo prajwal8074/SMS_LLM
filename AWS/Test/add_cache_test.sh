@@ -13,7 +13,7 @@ echo -e "\n--- Test adding temporary cache manually ---\n"
 key=$(python "$PARENT_DIR"/add_cache.py "What is the capital of India?" "New Delhi" 60 | head -n 1)
 echo "Extracted key for testing: '$key'"
 echo "Checking TTL for key in Redis..."
-ttl_value=$(docker exec redis-test redis-cli --raw <<< "TTL \"$key\"" | awk '{print $NF}' | tr -d '\r' | xargs)
+ttl_value=$(docker exec redis-test redis-cli TTL "$key" | awk '{print $NF}' | tr -d '\r' | xargs)
 echo "Redis TTL output for key: '$ttl_value'"
 if [ "$ttl_value" -eq 60 ]; then
     echo "SUCCESS: The TTL for key is the same." # Indicate success
@@ -26,7 +26,7 @@ echo -e "\n--- Test adding permanent cache manually ---\n"
 key=$(python "$PARENT_DIR"/add_cache.py "What is the capital of Canada?" "Ottawa" | head -n 1)
 echo "Extracted key for testing: '$key'"
 echo "Checking TTL for key in Redis..."
-ttl_value=$(docker exec redis-test redis-cli --raw <<< "TTL \"$key\"" | awk '{print $NF}' | tr -d '\r' | xargs)
+ttl_value=$(docker exec -it redis-test redis-cli TTL "$key" | awk '{print $NF}' | tr -d '\r' | xargs)
 echo "Redis TTL output for key: '$ttl_value'"
 if [ "$ttl_value" -eq -1 ]; then
     echo "SUCCESS: The entry for key is permanent (TTL: -1)." # Indicate success
