@@ -76,13 +76,21 @@ jobs:
       run: |
         docker run -d --name redis-test -p 6379:6379 redis:latest
 
+    - name: Setup redis env
+      run: |
+        echo "REDIS_HOST=localhost" >> $GITHUB_ENV
+        echo "REDIS_PORT=6379" >> $GITHUB_ENV
+        echo "REDIS_DB=0" >> $GITHUB_ENV
+
     - name: Run caching tests
-      env:
-        REDIS_HOST: localhost
-        REDIS_PORT: 6379
-        REDIS_DB: 0
       run: |
         python AWS/Test/cache_test.py
+
+    - name: Run add_cache tests
+      run: |
+        PYTHON_SCRIPT="AWS/add_cache.py"
+        chmod +x AWS/Test/add_cache_test.sh
+        ./AWS/Test/add_cache_test.sh
 
     - name: Stop Redis container
       run: |

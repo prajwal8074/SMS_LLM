@@ -14,16 +14,15 @@ def main():
 
     if len(sys.argv) == 4:
         try:
-            ttl = int(ttl_str)
+            ttl = int(sys.argv[3])
         except ValueError:
             print(f"Error: Invalid TTL value '{sys.argv[3]}'. Must be an integer, '0', or 'None'.")
             sys.exit(1)
 
     cache = RedisCache()
-    cache.set(query, response, ttl=ttl)
+    key = cache.set(query, response, ttl=ttl)
 
-    print(f"Cache entry set successfully for query: '{query}'")
-    print(f"Response: '{response}'")
+    print(key)
     print(f"TTL: {'Permanent' if ttl is None else str(ttl) + ' seconds'}")
 
 if __name__ == "__main__":

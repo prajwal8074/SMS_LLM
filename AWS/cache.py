@@ -31,3 +31,4 @@ class RedisCache:
             self.redis.set(key, response) # Set permanently
         else:
             self.redis.setex(key, ttl, response) # Set with expiration
+        return key
