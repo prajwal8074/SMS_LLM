@@ -43,5 +43,6 @@
   - [ ] Cache queries in lambda function corresponding to phone number for context, set expiration of 1 hour <p align="right">(**Shubham**)</p>
   - [ ] Modify cache get method for semantically similar queries <p align="right">(**Aditya**)</p>
   - [ ] Ideation of new features/functionalities that can be performed on the call setup <p align="right">(**Akash**)</p>
+  - [ ] Add unit tests for new features <p align="right">(**Prajwal**)</p>
 
 - **Week 6 Buffer Week**
