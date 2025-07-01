@@ -6,13 +6,9 @@ This AWS Lambda function processes voice inputs from farmers, generates AI respo
 https://github.com/user-attachments/assets/17e0aef0-bae6-435f-b930-706cfd088f27
 
 ## Process
-![process](https://github.com/user-attachments/assets/5c39c36b-e3a8-4c67-8f65-d6130d45ee48)
+<img src="https://github.com/user-attachments/assets/5c39c36b-e3a8-4c67-8f65-d6130d45ee48" alt="logic flow" height="2160">
 
-# Farm Assist Voice Gateway
-
-A serverless voice gateway solution for agricultural assistance, leveraging AWS services and AI technologies.
-
-## Key AWS Services Used
+## AWS Services Used
 
 - **AWS CloudFormation**: For Infrastructure as Code (IaC), allowing declarative provisioning and management of all AWS resources.
 - **AWS Lambda**: Serverless compute for the core application logic.
@@ -23,6 +19,25 @@ A serverless voice gateway solution for agricultural assistance, leveraging AWS 
 - **Amazon Polly**: Text-to-Speech (TTS) service with natural-sounding voices.
 - **AWS IAM**: Manages access and permissions across AWS services.
 - **Amazon CloudWatch**: For logging and monitoring.
+
+### Response Caching Mechanism
+
+This project incorporates a caching mechanism using Redis to store query responses, improving performance and reducing the load on external services.
+
+-   **`cache.py`**: This file defines the `RedisCache` class, which encapsulates the logic for interacting with a Redis server. It provides methods for:
+    * Generating a unique SHA256 hash for a given query to use as a cache key.
+    * Retrieving a cached response based on a query.
+    * Storing a query-response pair in the cache, with an optional time-to-live (TTL) for expiration. Environment variables (`REDIS_HOST`, `REDIS_PORT`, `REDIS_DB`) are used for Redis connection details.
+
+-   **`add_cache.py`**: This script is a command-line utility for manually adding entries to the Redis cache.
+    * **Usage**: `python add_cache.py <query> <response> [ttl_in_seconds]`
+    * `<query>`: The query string to be used as the cache key.
+    * `<response>`: The response string to be cached.
+    * `[ttl_in_seconds]`: (Optional) The time-to-live for the cache entry in seconds. If set to `0` or `None`, the entry will be permanent.
+    * Example:
+      - 1 hour cache: ```python3 add_cache.py "What is the capital of Canada?" "Ottawa" 3600```
+      - Permanent cache: ```python3 add_cache.py "What is the capital of Canada?" "Ottawa"```
+    * This script utilizes the `RedisCache` class from `cache.py` to perform the caching operation.
 
 ## Deployment Guide
 
@@ -95,90 +110,16 @@ You can use a simple Python script to test your deployed Voice Gateway.
 - The `requests` library installed (`pip install requests`).
 - A small `.mp3` (or `.wav`) audio file with spoken content.
 
-### Test Script (`test_gateway.py`)
-
-Create a file named `test_gateway.py` with the following content:
-
-```python
-import requests
-import base64
-import json
-import os
-
-# --- Configuration for testing ---
-API_GATEWAY_URL = "YOUR_API_GATEWAY_INVOKE_URL_HERE" # <<< REPLACE THIS!
-# Path to your audio file (ensure it's MP3 or WAV)
-AUDIO_FILE_PATH = "path/to/your/test_audio.mp3" # <<< REPLACE THIS!
-FARMER_LANGUAGE = "hi-IN" # Set the expected language code for the audio
-
-def send_voice_to_gateway(audio_path, lang_code):
-    """Reads an audio file, encodes it, and sends it to the API Gateway."""
-    if not os.path.exists(audio_path):
-        print(f"Error: Audio file not found at {audio_path}")
-        return
-
-    try:
-        with open(audio_path, "rb") as audio_file:
-            audio_bytes = audio_file.read()
-            audio_base64 = base64.b64encode(audio_bytes).decode('utf-8')
-
-        payload = {
-            "audio_data": audio_base64,
-            "farmer_language_code": lang_code
-        }
-
-        headers = {
-            "Content-Type": "application/json"
-        }
-
-        print(f"Sending audio from {audio_path} ({lang_code}) to {API_GATEWAY_URL}...")
-        response = requests.post(API_GATEWAY_URL, headers=headers, data=json.dumps(payload))
-
-        if response.status_code == 200:
-            result = response.json()
-            print("\n--- Success ---")
-            print(f"Message: {result.get('message')}")
-            print(f"Transcribed Text: {result.get('transcribed_text')}")
-            print(f"LLM Response: {result.get('llm_response')}")
-            print(f"Final Spoken Text: {result.get('final_spoken_text')}")
-            print(f"Detected Language: {result.get('detected_language')}")
-
-            # Decode and save the audio response
-            audio_response_base64 = result.get('audio_response_base64')
-            if audio_response_base64:
-                decoded_audio_bytes = base64.b64decode(audio_response_base64)
-                output_audio_path = "output_response.mp3"
-                with open(output_audio_path, "wb") as f:
-                    f.write(decoded_audio_bytes)
-                print(f"Received and saved AI's spoken response to {output_audio_path}")
-            else:
-                print("No audio response received.")
-
-        else:
-            print(f"\n--- Error (Status Code: {response.status_code}) ---")
-            print(response.text)
-
-    except requests.exceptions.RequestException as e:
-        print(f"Network or request error: {e}")
-    except json.JSONDecodeError:
-        print(f"Failed to decode JSON response: {response.text}")
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
-
-# Run the test
-if __name__ == "__main__":
-    send_voice_to_gateway(AUDIO_FILE_PATH, FARMER_LANGUAGE)
-```
-## How to Run the Test Script
+### How to Run Test Script (`AWS/Test/test.py`)
 
 ### Update Placeholders
-1. In `test_gateway.py`:
+1. In `test.py`:
    - Replace `YOUR_API_GATEWAY_INVOKE_URL_HERE` with your actual API Gateway URL
    - Replace `path/to/your/test_audio.mp3` with your audio file path
 
 ### Execute the Script
 ```bash
-python test_gateway.py
+python test.py
 ```
 ## Test Script Output and Debugging
 
@@ -192,51 +133,3 @@ After successfully running the test script, you'll see the following information
 Additionally:
 - The AI's spoken response will be saved as `output_response.mp3` in your current working directory
 - You can play this file to verify the audio quality and response accuracy
-
-### Troubleshooting with CloudWatch
-If you encounter any errors during testing:
-
-1. **Access Lambda Function**:
-   - Go to AWS Console > Lambda
-   - Find your function: `VoiceGatewayProcessor-<YOUR_REGION>` (e.g., `VoiceGatewayProcessor-us-east-1`)
-
-2. **View Logs**:
-   - Click the "Monitor" tab
-   - Select "View logs in CloudWatch"
-   
-
-3. **Analyze Logs**:
-   - Examine the latest log streams
-   - Look for error messages or stack traces
-   - Common issues include:
-     - Invalid API keys
-     - Incorrect IAM permissions
-     - Unsupported audio formats
-     - Service timeouts
-## Cleanup
-
-To avoid incurring ongoing AWS charges, delete the entire CloudFormation stack when finished:
-
-1. **Go to CloudFormation**:
-   - Navigate to the [AWS CloudFormation console](https://console.aws.amazon.com/cloudformation)
-
-2. **Select Your Stack**:
-   - Select your stack (e.g., `FarmAssistVoiceGatewayStack` or your custom name)
-
-3. **Delete Stack**:
-   - Click the **"Delete"** button in the top menu
-
-4. **Confirm Deletion**:
-   - Check the confirmation box when prompted
-   - Click **"Delete stack"**
-
-> **Important Note**: The S3 bucket has `DeletionPolicy: Retain` to prevent accidental data loss.  
-> **You must manually delete the S3 bucket**:
-> 1. Go to [S3 Console](https://s3.console.aws.amazon.com/)
-> 2. Locate your bucket (named similar to `farm-assist-audio-<account-id>-<region>`)
-> 3. First **empty** the bucket:
->    - Select bucket > "Empty"
->    - Confirm by typing "permanently delete"
-> 4. Then **delete** the bucket:
->    - Select bucket > "Delete"
->    - Enter bucket name to confirm
