@@ -3,3 +3,6 @@ requests
 openai
 python-dotenv
 redis
+
+sentence-transformers 
+redis
