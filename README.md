@@ -32,8 +32,8 @@
 
 - **Week 4 Integration**
   - [x] Implement OpenAI Client in old lambda function and integrate with Marketplace function calling <p align="right">(**Prajwal**)</p>
-  - [ ] Detect incoming audio language in lambda function <p align="right">(**Shubham**)</p>
-  - [ ] Deploy Marketplace, Caching and lambda function on AWS and resolve any errors <p align="right">(**Shubham**)</p>
+  - [x] Detect incoming audio language in lambda function <p align="right">(**Shubham**)</p>
+  - [x] Deploy Marketplace, Caching and lambda function on AWS and resolve any errors <p align="right">(**Shubham**)</p>
   - [x] Add manual caching method <p align="right">(**Akash**)</p>
   - [x] Integrate caching system with OpenAI Client <p align="right">(**Aditya**)</p>
   - [x] Create unit tests & CI pipeline <p align="right">(**Prajwal**)</p>
