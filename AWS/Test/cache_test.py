@@ -41,12 +41,12 @@ class TestRedisCache(unittest.TestCase):
 		# Verify by directly getting from Redis using the generated key
 		expected_key = cache.get_cache_key(query)
 		retrieved_from_redis = cache.redis.get(expected_key)
-		self.assertEqual(retrieved_from_redis.decode('utf-8'), response)
+		self.assertEqual(retrieved_from_redis, response)
 		self.assertGreaterEqual(cache.redis.ttl(expected_key), ttl - 5) # Allow for slight time variance
 
 		# Test get method - performs actual call to Redis
 		retrieved_response = cache.get(query)
-		self.assertEqual(retrieved_response.decode('utf-8'), response)
+		self.assertEqual(retrieved_response, response)
 
 		# Test get for non-existent key
 		self.assertIsNone(cache.get("non-existent query"))

@@ -1,40 +1,29 @@
 import sys
 from cache import RedisCache
 
+
 def main():
+    # Expecting arguments: script_name query  response [ttl]
     if len(sys.argv) < 3:
-        print("Usage: python set_cache_entry.py <query> <response> [ttl_in_seconds] [--semantic]")
-        print("Options:")
-        print("  ttl_in_seconds: Set to 0 or 'None' for permanent cache")
-        print("  --semantic: Store as semantic cache entry")
+        print("Usage: python set_cache_entry.py <query> <response> [ttl_in_seconds]")
+        print("  ttl_in_seconds: Optional. Set to 0 or 'None' for permanent cache.")
         sys.exit(1)
 
     query = sys.argv[1]
     response = sys.argv[2]
-    ttl = None
-    semantic = False
+    ttl = None # Default to permanent if not provided or explicitly 'None'
 
-    # Parse arguments
-    for i in range(3, len(sys.argv)):
-        arg = sys.argv[i]
-        if arg == "--semantic":
-            semantic = True
-        else:
-            try:
-                ttl = int(arg)
-            except ValueError:
-                print(f"Warning: Ignoring invalid argument '{arg}'")
+    if len(sys.argv) == 4:
+        try:
+            ttl = int(sys.argv[3])
+        except ValueError:
+            print(f"Error: Invalid TTL value '{sys.argv[3]}'. Must be an integer, '0', or 'None'.")
+            sys.exit(1)
 
     cache = RedisCache()
-    
-    if semantic:
-        key = cache.set_semantic_cache(query, response, ttl=ttl)
-        cache_type = "Semantic"
-    else:
-        key = cache.set(query, response, ttl=ttl)
-        cache_type = "Standard"
+    key = cache.set(query, response, ttl=ttl)
 
-    print(f"{key}")
+    print(key)
     print(f"TTL: {'Permanent' if ttl is None else str(ttl) + ' seconds'}")
 
 if __name__ == "__main__":
