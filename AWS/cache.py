@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 import json
 
-load_dotenv()  # Load environment variables
+load_dotenv()  # Load environment  variables
 
 class RedisCache:
     def __init__(self):
