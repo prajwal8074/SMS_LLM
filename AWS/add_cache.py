@@ -34,7 +34,7 @@ def main():
         key = cache.set(query, response, ttl=ttl)
         cache_type = "Standard"
 
-    print(f"{cache_type} Cache Key: {key}")
+    print(f"{key}")
     print(f"TTL: {'Permanent' if ttl is None else str(ttl) + ' seconds'}")
 
 if __name__ == "__main__":
