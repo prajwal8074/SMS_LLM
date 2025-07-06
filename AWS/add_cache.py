@@ -1,6 +1,7 @@
 import sys
 from cache import RedisCache
 
+
 def main():
     # Expecting arguments: script_name query  response [ttl]
     if len(sys.argv) < 3:
