@@ -2,7 +2,7 @@ import sys
 from cache import RedisCache
 
 def main():
-    # Expecting arguments: script_name query response [ttl]
+    # Expecting arguments: script_name query  response [ttl]
     if len(sys.argv) < 3:
         print("Usage: python set_cache_entry.py <query> <response> [ttl_in_seconds]")
         print("  ttl_in_seconds: Optional. Set to 0 or 'None' for permanent cache.")
