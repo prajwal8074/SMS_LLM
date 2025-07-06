@@ -1,24 +1,34 @@
-from sentence_transformers import SentenceTransformer, util
+import redis
+import hashlib
+import os
+from dotenv import load_dotenv
+import json
 
-class SemanticCache:
+load_dotenv()  # Load environment variables
+
+class RedisCache:
     def __init__(self):
-        self.model = SentenceTransformer('all-MiniLM-L6-v2')  # Efficient embedding model
-        self.cache = []  # List of dicts: {'key': str, 'embedding': tensor, 'value': any}
-
-    def _get_embedding(self, key):
-        return self.model.encode(key, convert_to_tensor=True)
-
-    def get(self, key, threshold=0.9):
-        query_emb = self._get_embedding(key)
-        for item in self.cache:
-            sim = util.cos_sim(query_emb, item['embedding']).item()
-            if sim >= threshold:
-                return item['value']
-        return None
-
-    def set(self, key, value):
-        emb = self._get_embedding(key)
-        self.cache.append({'key': key, 'embedding': emb, 'value': value})
-
-# Global instance of the cache
-cache = SemanticCache()
+        self.redis = redis.Redis(
+            host=os.getenv('REDIS_HOST'),
+            port=int(os.getenv('REDIS_PORT')),
+            db=int(os.getenv('REDIS_DB')),
+            decode_responses=True
+        )
+    
+    def get_cache_key(self, query: str) -> str:
+        """Create unique SHA256 hash from query"""
+        return hashlib.sha256(query.strip().lower().encode()).hexdigest()
+    
+    def get(self, query: str):
+        """Get cached response if exists"""
+        key = self.get_cache_key(query)
+        return self.redis.get(key)
+    
+    def set(self, query: str, response: str, ttl: int = 86400):
+        """Store response with expiration (default 24 hours)"""
+        key = self.get_cache_key(query)
+        if ttl is None:
+            self.redis.set(key, response) # Set permanently
+        else:
+            self.redis.setex(key, ttl, response) # Set with expiration
+        return key
