@@ -8,9 +8,6 @@ from sentence_transformers import SentenceTransformer
 import numpy as np
 import json
 
-from redis. Import IndexDefinition
-from redis.commands.search.indexDefinition import IndexDefinition
-
 load_dotenv()
 
 class RedisCache:
