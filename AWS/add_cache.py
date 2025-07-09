@@ -1,6 +1,6 @@
 import sys
 import time
-from cache import RedisCache # Use the new semantic cache
+from cache import RedisSemanticCache # Use the new semantic cache
 
 def main():
     # Adjusted usage for semantic cache context
