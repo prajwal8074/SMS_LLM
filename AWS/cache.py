@@ -5,8 +5,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
-
 class RedisCache:
     def __init__(self):
         self.redis = redis.Redis(
