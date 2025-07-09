@@ -5,13 +5,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-r = redis.Redis()
-key = "ad888ae842ef53fc7618d3a80145e3715739d33722f15645e1b0e0c02fa05bba"
-# Set the key with a TTL of 60 seconds
-r.set(key, "some_value", ex=60)
-ttl = r.ttl(key)
-assert ttl == 60, f"Expected TTL 60, got {ttl}"
-
 class RedisCache:
     def __init__(self):
         self.redis = redis.Redis(
