@@ -8,7 +8,7 @@ from sentence_transformers import SentenceTransformer
 import numpy as np
 import json
 
-from redis.commands.search.indexDefinition import IndexDefinition
+from redis.commands.search.index_definition import IndexDefinition
 
 load_dotenv()
 
