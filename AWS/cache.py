@@ -10,7 +10,7 @@ import json
 
 load_dotenv()
 
-class RedisSemanticCache:
+class RedisCache:
     def __init__(self):
         # decode_responses=False is crucial here because embeddings are bytes
         self.redis_client = redis.Redis(
