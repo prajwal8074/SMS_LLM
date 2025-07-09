@@ -33,7 +33,7 @@ def main():
     # Determine the query for which to check the cache (could be primary or a semantic match)
     check_query = sys.argv[4] if len(sys.argv) == 5 else primary_query
 
-    semantic_cache = RedisSemanticCache()
+    semantic_cache = RedisCache()
 
     # --- Step 1: Store the primary query and response ---
     print(f"\n--- Attempting to Store Semantic Cache for Query: '{primary_query}' ---")
