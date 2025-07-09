@@ -2,58 +2,37 @@
 
 # Get the absolute path of the script itself, resolving symlinks
 SCRIPT_FULL_PATH="$(readlink -f "$0")"
+
+# Get the directory of the script
 SCRIPT_DIR="$(dirname "$SCRIPT_FULL_PATH")"
+
+# Go one directory up from the script's directory
 PARENT_DIR="$(dirname "$SCRIPT_DIR")"
 
-# Verify Redis connection
-echo "Testing Redis connection..."
-if ! docker exec redis-test redis-cli PING | grep -q "PONG"; then
-    echo "ERROR: Could not connect to Redis"
-    exit 1
-fi
-
 echo -e "\n--- Test adding temporary cache manually ---\n"
-full_output=$(python "$PARENT_DIR"/add_cache.py "What is the capital of India?" "New Delhi" 60)
-key=$(echo "$full_output" | grep "^Cache Key:" | awk '{print $3}')
-echo "Full Python output:"
-echo "$full_output"
+key=$(python "$PARENT_DIR"/add_cache.py "What is the capital of India?" "New Delhi" 60 | head -n 1)
 echo "Extracted key for testing: '$key'"
-
-if [ -z "$key" ]; then
-    echo "ERROR: Failed to extract cache key"
-    exit 1
-fi
-
 echo "Checking TTL for key in Redis..."
 ttl_value=$(docker exec redis-test redis-cli TTL "$key" | awk '{print $NF}' | tr -d '\r' | xargs)
 echo "Redis TTL output for key: '$ttl_value'"
 if [ "$ttl_value" -eq 60 ]; then
-    echo "SUCCESS: The TTL for key is the same."
+    echo "SUCCESS: The TTL for key is the same." # Indicate success
 else
     echo "FAILURE: The TTL for key is NOT the same. Expected 60, got $ttl_value."
-    exit 1
+    exit 1 # Indicate failure
 fi
 
 echo -e "\n--- Test adding permanent cache manually ---\n"
-full_output=$(python "$PARENT_DIR"/add_cache.py "What is the capital of Canada?" "Ottawa")
-key=$(echo "$full_output" | grep "^Cache Key:" | awk '{print $3}')
-echo "Full Python output:"
-echo "$full_output"
+key=$(python "$PARENT_DIR"/add_cache.py "What is the capital of Canada?" "Ottawa" | head -n 1)
 echo "Extracted key for testing: '$key'"
-
-if [ -z "$key" ]; then
-    echo "ERROR: Failed to extract cache key"
-    exit 1
-fi
-
 echo "Checking TTL for key in Redis..."
 ttl_value=$(docker exec redis-test redis-cli TTL "$key" | awk '{print $NF}' | tr -d '\r' | xargs)
 echo "Redis TTL output for key: '$ttl_value'"
 if [ "$ttl_value" -eq -1 ]; then
-    echo "SUCCESS: The entry for key is permanent (TTL: -1)."
+    echo "SUCCESS: The entry for key is permanent (TTL: -1)." # Indicate success
 else
     echo "FAILURE: The entry for key is NOT permanent. Expected -1, got $ttl_value."
-    exit 1
+    exit 1 # Indicate failure
 fi
 
 exit 0
