@@ -50,9 +50,9 @@ class RedisCache:
                 TagField("type", sortable=True), # e.g., 'semantic_cache'
             )
             # Define how the index maps to Redis keys
-            definition = redis.commands.search.IndexDefinition(
-                prefix=["semantic_query:"], # Keys will be like 'semantic_query:<hash>'
-                index_type=["HASH"] # Storing data as Hash objects
+            definition = IndexDefinition(
+                prefix=["semantic_query:"],
+                 index_type="HASH"   # Should be a string, not a list
             )
             try:
                 self.redis_client.ft(self.index_name).create_index(fields=schema, definition=definition)
