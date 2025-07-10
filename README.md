@@ -33,18 +33,19 @@
 - **Week 4 Integration**
   - [x] Implement OpenAI Client in old lambda function and integrate with Marketplace function calling <p align="right">(**Prajwal**)</p>
   - [x] Detect incoming audio language in lambda function <p align="right">(**Shubham**)</p>
-  - [x] Deploy Marketplace, Caching and lambda function on AWS and resolve any errors <p align="right">(**Shubham**)</p>
   - [x] Add manual caching method <p align="right">(**Akash**)</p>
   - [x] Integrate caching system with OpenAI Client <p align="right">(**Aditya**)</p>
   - [x] Create unit tests & CI pipeline <p align="right">(**Prajwal**)</p>
 
 - **Week 5 Improve & Deploy**
-  - [ ] Send phone number to lambda function endpoint <p align="right">(**Prajwal**)</p>
-  - [ ] Cache queries in lambda function corresponding to phone number for context, delete when call ends <p align="right">(**Shubham**)</p>
-  - [ ] Send sms to phone number on order received <p align="right">(**Aditya**)</p>
-  - [ ] Modify cache get method for semantically similar queries <p align="right">(**Aditya**)</p>
-  - [ ] Ideation of new features/functionalities that can be performed on the call setup <p align="right">(**Akash**)</p>
-  - [ ] Use cases presentation <p align="right">(**Akash**)</p>
-  - [ ] Add unit tests for new features <p align="right">(**Prajwal**)</p>
+  - [x] Deploy Marketplace, Caching and lambda function on AWS and resolve any errors <p align="right">(**Shubham**)</p>
+  - [x] Use cases presentation <p align="right">(**Akash**)</p>
+  - [x] Send phone number to lambda function endpoint <p align="right">(**Prajwal**)</p>
 
 - **Week 6 Buffer Week**
+  - [ ] Modify github workflow to use public ip address of the deployed AWS EC2 instance <p align="right">(**Prajwal**)</p>
+  - [ ] Cache queries in lambda function corresponding to phone number for context, delete when call ends <p align="right">(**Shubham**)</p>
+  - [ ] Send sms to phone number on order received <p align="right">(**Aditya**)</p>
+  - [x] Modify cache get method for semantically similar queries <p align="right">(**Prajwal**)</p>
+  - [ ] Ideation of new features/functionalities that can be performed on the call setup <p align="right">(**Akash**)</p>
+  - [ ] Add unit tests for new features <p align="right">(**Akash**)</p>
