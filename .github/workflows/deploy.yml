@@ -18,8 +18,10 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      run: ls
 
+    - name: List Github Files
+      run: ls
+      
     - name: SSH and List Files on EC2
       uses: appleboy/ssh-action@master
       with:
