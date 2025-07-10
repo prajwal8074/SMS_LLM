@@ -23,7 +23,7 @@ jobs:
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
-          cd /home/ubuntu/AWS/MarketPlace/backend
+          cd AWS/MarketPlace/backend
           sudo docker compose down
           sudo docker stop redis-test
 
@@ -38,8 +38,8 @@ jobs:
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
           ls
-          echo "Deleting /home/ubuntu/AWS on EC2..."
-          rm -r /home/ubuntu/AWS || true
+          echo "Deleting AWS on EC2..."
+          rm -r AWS || true
           echo "Deletion complete."
 
     - name: Upload new 'AWS' folder to EC2
@@ -49,7 +49,7 @@ jobs:
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         source: "AWS/"
-        target: "/home/ubuntu/"
+        target: ""
 
     - name: Verify Uploaded Files on EC2
       uses: appleboy/ssh-action@master
@@ -58,9 +58,9 @@ jobs:
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
-          echo "Listing files in the /home/ubuntu/ directory:"
-          ls /home/ubuntu/
-          AWS_DIR="/home/ubuntu/AWS"
+          echo "Listing files in the home directory:"
+          ls
+          AWS_DIR="AWS"
           if [[ ! -d "$AWS_DIR" ]]; then
             echo "Error: Directory '$AWS_DIR' not found."
             exit 1
@@ -74,6 +74,6 @@ jobs:
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
-          cd /home/ubuntu/AWS/MarketPlace/backend
+          cd AWS/MarketPlace/backend
           sudo docker compose up --build -d
           sudo docker start redis-test
