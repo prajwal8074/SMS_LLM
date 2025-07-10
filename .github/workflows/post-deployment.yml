@@ -36,14 +36,13 @@ jobs:
           sudo docker ps
 
     - name: Run function calling tests
-      env:
-        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       uses: appleboy/ssh-action@master
       with:
         host: 44.247.154.176
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
+          export GEMINI_API_KEY='${{ secrets.GEMINI_API_KEY }}'
           source AWS/venv/bin/activate
           python AWS/Test/function_calling_test.py
 
@@ -79,13 +78,12 @@ jobs:
           ./AWS/Test/add_cache_test.sh
 
     - name: Run main test
-      env:
-        API_GATEWAY_URL: https://7029iecp6i.execute-api.us-west-2.amazonaws.com/v1/process-voice
       uses: appleboy/ssh-action@master
       with:
         host: 44.247.154.176
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
+          export API_GATEWAY_URL="https://7029iecp6i.execute-api.us-west-2.amazonaws.com/v1/process-voice"
           source AWS/venv/bin/activate
           python AWS/Test/test.py
