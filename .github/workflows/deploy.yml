@@ -1,4 +1,4 @@
-name: EC2 File Lister
+name: EC2 File Upload
 
 on:
   push:
@@ -12,24 +12,23 @@ on:
   workflow_dispatch: # Allows manual triggering from the GitHub UI
 
 jobs:
-  list_files:
+  upload_aws_folder:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: List Github Files
-      run: ls
-      
-    - name: SSH and List Files on EC2
+    - name: List GitHub Files (local repository content)
+      run: ls -la
+
+    - name: Delete existing 'AWS' folder on EC2
       uses: appleboy/ssh-action@master
       with:
         host: 34.221.214.9
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
-          echo "Connected to EC2 instance"
-          echo "Listing files in /home/ubuntu/your-app/ directory:"
-          ls
-          echo "File listing complete."
+          echo "Deleting /home/ubuntu/AWS on EC2..."
+          rm -r AWS || true
+          echo "Deletion complete."
