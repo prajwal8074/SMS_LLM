@@ -10,8 +10,9 @@ SCRIPT_DIR="$(dirname "$SCRIPT_FULL_PATH")"
 PARENT_DIR="$(dirname "$SCRIPT_DIR")"
 
 echo -e "\n--- Test adding temporary cache manually ---\n"
-key=$(python "$PARENT_DIR"/add_cache.py "What is the capital of India?" "New Delhi" 60 | head -n 1)
-echo "Extracted key for testing: '$key'"
+echo "Testing for TTL: 60"
+key=$(python "$PARENT_DIR"/add_cache.py "What is the capital of India?" "New Delhi" 60 | head -n 2 | tail -n 1)
+echo -e "Extracted key for testing: '$key'\n"
 echo "Checking TTL for key in Redis..."
 ttl_value=$(docker exec redis-test redis-cli TTL "$key" | awk '{print $NF}' | tr -d '\r' | xargs)
 echo "Redis TTL output for key: '$ttl_value'"
@@ -23,8 +24,8 @@ else
 fi
 
 echo -e "\n--- Test adding permanent cache manually ---\n"
-key=$(python "$PARENT_DIR"/add_cache.py "What is the capital of Canada?" "Ottawa" | head -n 1)
-echo "Extracted key for testing: '$key'"
+key=$(python "$PARENT_DIR"/add_cache.py "What is the capital of Canada?" "Ottawa" | head -n 2 | tail -n 1)
+echo -e "Extracted key for testing: '$key'\n"
 echo "Checking TTL for key in Redis..."
 ttl_value=$(docker exec redis-test redis-cli TTL "$key" | awk '{print $NF}' | tr -d '\r' | xargs)
 echo "Redis TTL output for key: '$ttl_value'"
