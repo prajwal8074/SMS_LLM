@@ -1,0 +1,27 @@
+name: EC2 File Lister
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allows manual triggering from the GitHub UI
+
+jobs:
+  list_files:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: SSH and List Files on EC2
+      uses: appleboy/ssh-action@master
+      with:
+        host: 34.221.214.9
+        username: ubuntu
+        key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+        script: |
+          echo "Connected to EC2 instance"
+          echo "Listing files in /home/ubuntu/your-app/ directory:"
+          ls
+          echo "File listing complete."
