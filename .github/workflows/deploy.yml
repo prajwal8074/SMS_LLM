@@ -49,7 +49,7 @@ jobs:
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         source: "AWS/"
-        target: ""
+        target: "/home/ubuntu/"
 
     - name: Verify Uploaded Files on EC2
       uses: appleboy/ssh-action@master
