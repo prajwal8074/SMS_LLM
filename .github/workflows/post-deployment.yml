@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     if: |
       ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
-    
+    steps:
     - name: Install dependencies
       uses: appleboy/ssh-action@master
       with:
