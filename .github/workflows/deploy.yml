@@ -19,6 +19,17 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Stop Containers on EC2
+      uses: appleboy/ssh-action@master
+      with:
+        host: 34.221.214.9
+        username: ubuntu
+        key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+        script: |
+          cd /home/ubuntu/AWS/MarketPlace/backend
+          sudo docker compose down
+          sudo docker stop redis-test
+
     - name: List GitHub Files (local repository content)
       run: ls
 
@@ -69,14 +80,3 @@ jobs:
           cd /home/ubuntu/AWS/MarketPlace/backend
           sudo docker compose up --build -d
           sudo docker start redis-test
-
-    - name: Stop Containers
-      uses: appleboy/ssh-action@master
-      with:
-        host: 34.221.214.9
-        username: ubuntu
-        key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-        script: |
-          cd /home/ubuntu/AWS/MarketPlace/backend
-          sudo docker compose down
-          sudo docker stop redis-test
