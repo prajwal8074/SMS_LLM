@@ -18,7 +18,7 @@ services:
     build: ./server # Build the image from the server/Dockerfile
     restart: always
     ports:
-      - "5000:5000" # Expose Flask app port
+      - "5002:5002" # Expose Flask app port
     environment:
       DATABASE_URL: postgresql://user:password@db:5432/marketplace_db # Connect to the 'db' service
     depends_on:

@@ -51,7 +51,7 @@ jobs:
     - name: Run function calling tests
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        FLASK_SERVER_BASE_URL: http://localhost:5000
+        FLASK_SERVER_BASE_URL: http://localhost:5002
       run: |
         python AWS/Test/function_calling_test.py
 

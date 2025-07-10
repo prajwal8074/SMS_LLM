@@ -1,4 +1,4 @@
-name: EC2 File Upload
+name: Deploy
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
   workflow_dispatch: # Allows manual triggering from the GitHub UI
 
 jobs:
-  upload_aws_folder:
+  Deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -50,6 +50,33 @@ jobs:
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
-          echo "Listing files in the uploaded /home/ubuntu/AWS/ directory:"
+          echo "Listing files in the /home/ubuntu/ directory:"
           ls /home/ubuntu/
-          echo "File upload and verification complete."
+          AWS_DIR="/home/ubuntu/AWS"
+          if [[ ! -d "$AWS_DIR" ]]; then
+            echo "Error: Directory '$AWS_DIR' not found."
+            exit 1
+          fi
+          echo "Directory '$AWS_DIR' found. Proceeding with script..."
+
+    - name: Start Containers
+      uses: appleboy/ssh-action@master
+      with:
+        host: 34.221.214.9
+        username: ubuntu
+        key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+        script: |
+          cd /home/ubuntu/AWS/MarketPlace/backend
+          sudo docker compose up --build -d
+          sudo docker run -d --name redis-test -p 6379:6379 redis:latest
+
+    - name: Stop Containers
+      uses: appleboy/ssh-action@master
+      with:
+        host: 34.221.214.9
+        username: ubuntu
+        key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+        script: |
+          cd /home/ubuntu/AWS/MarketPlace/backend
+          sudo docker compose down
+          sudo docker stop --name redis-test

@@ -238,8 +238,8 @@
                 productListContainer.innerHTML = '<p class="text-center text-gray-600 col-span-full">Loading products...</p>';
 
                 // Fetch data from your Flask backend API
-                // Ensure this URL matches where your Flask app is running (e.g., http://localhost:5000)
-                const response = await fetch('http://localhost:5000/get_all_listings');
+                // Ensure this URL matches where your Flask app is running (e.g., http://localhost:5002)
+                const response = await fetch('http://localhost:5002/get_all_listings');
 
                 // Check if the request was successful
                 if (!response.ok) {

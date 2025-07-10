@@ -133,5 +133,5 @@ if __name__ == '__main__':
     # and the Flask environment is set up.
     # For local development, debug=True is useful. Host 0.0.0.0 makes it accessible
     # from other devices on the network.
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5002)
 
