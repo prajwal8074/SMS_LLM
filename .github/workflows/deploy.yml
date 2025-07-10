@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'README.md'
+      - '**/*.md'
+      - 'docs/**'
+
   workflow_dispatch: # Allows manual triggering from the GitHub UI
 
 jobs:
