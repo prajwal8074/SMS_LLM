@@ -16,7 +16,7 @@ jobs:
     - name: Install dependencies
       uses: appleboy/ssh-action@master
       with:
-        host: 34.221.214.9
+        host: 54.214.58.255
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
@@ -29,7 +29,7 @@ jobs:
     - name: List running containers
       uses: appleboy/ssh-action@master
       with:
-        host: 34.221.214.9
+        host: 54.214.58.255
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
@@ -40,7 +40,7 @@ jobs:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       uses: appleboy/ssh-action@master
       with:
-        host: 34.221.214.9
+        host: 54.214.58.255
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
@@ -50,7 +50,7 @@ jobs:
     - name: Print database
       uses: appleboy/ssh-action@master
       with:
-        host: 34.221.214.9
+        host: 54.214.58.255
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
@@ -60,7 +60,7 @@ jobs:
     - name: Run caching tests
       uses: appleboy/ssh-action@master
       with:
-        host: 34.221.214.9
+        host: 54.214.58.255
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
@@ -70,7 +70,7 @@ jobs:
     - name: Run add_cache tests
       uses: appleboy/ssh-action@master
       with:
-        host: 34.221.214.9
+        host: 54.214.58.255
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
@@ -83,7 +83,7 @@ jobs:
         API_GATEWAY_URL: https://7029iecp6i.execute-api.us-west-2.amazonaws.com/v1/process-voice
       uses: appleboy/ssh-action@master
       with:
-        host: 34.221.214.9
+        host: 54.214.58.255
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
