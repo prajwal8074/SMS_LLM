@@ -68,7 +68,7 @@ jobs:
         script: |
           cd /home/ubuntu/AWS/MarketPlace/backend
           sudo docker compose up --build -d
-          sudo docker run -d --name redis-test -p 6379:6379 redis:latest
+          sudo docker start redis-test
 
     - name: Stop Containers
       uses: appleboy/ssh-action@master
@@ -79,4 +79,4 @@ jobs:
         script: |
           cd /home/ubuntu/AWS/MarketPlace/backend
           sudo docker compose down
-          sudo docker stop --name redis-test
+          sudo docker stop redis-test
