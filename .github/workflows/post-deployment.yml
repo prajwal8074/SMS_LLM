@@ -1,0 +1,66 @@
+name: Post Deployment
+
+on:
+  workflow_run:
+    workflows: ["Deploy"] # Trigger when "Deploy" workflow completes
+    types:
+      - completed # Listen for completion (success or failure)
+  workflow_dispatch: # Allows manual triggering from the GitHub UI
+
+jobs:
+  test-aws:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r AWS/requirements.txt
+
+    - name: List running containers
+      uses: appleboy/ssh-action@master
+      with:
+        host: 34.221.214.9
+        username: ubuntu
+        key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+        script: |
+          docker ps
+
+    - name: Run function calling tests
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      run: |
+        python AWS/Test/function_calling_test.py
+
+    - name: Print database
+      uses: appleboy/ssh-action@master
+      with:
+        host: 34.221.214.9
+        username: ubuntu
+        key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+        script: |
+          cd /home/ubuntuAWS/MarketPlace/backend
+          sudo docker compose exec db psql -U user marketplace_db -c "SELECT * FROM listings;"
+
+    - name: Run caching tests
+      run: |
+        python AWS/Test/cache_test.py
+
+    - name: Run add_cache tests
+      run: |
+        chmod +x AWS/Test/add_cache_test.sh
+        ./AWS/Test/add_cache_test.sh
+
+    - name: Run main test
+      env:
+        API_GATEWAY_URL: https://7029iecp6i.execute-api.us-west-2.amazonaws.com/v1/process-voice
+      run: |
+        python AWS/Test/test.py

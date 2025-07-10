@@ -12,6 +12,8 @@ FLASK_SERVER_BASE_URL = os.getenv('FLASK_SERVER_BASE_URL')
 DEMO_SELLER_NAME = 'DEMO SELLER'
 DEMO_SELLER_CONTACT = "9876543210"
 
+print(f"FLASK_SERVER_BASE_URL: {FLASK_SERVER_BASE_URL}")
+
 def add_listing_api(item_name: str, price: float, description: str = None):
     """Makes an API call to add a new item listing to the marketplace."""
     print(f"\n--- Making API Call: add_listing ---")

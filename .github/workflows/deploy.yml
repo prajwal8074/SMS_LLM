@@ -1,20 +1,16 @@
 name: Deploy
 
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - 'README.md'
-      - '**/*.md'
-      - 'docs/**'
-
+  workflow_run:
+    workflows: ["AWS Unit Tests"]
+    types:
+      - completed # This workflow will trigger when the specified workflow is 'completed'
   workflow_dispatch: # Allows manual triggering from the GitHub UI
 
 jobs:
   Deploy:
     runs-on: ubuntu-latest
-
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v4

@@ -40,14 +40,20 @@ class TestRedisCache(unittest.TestCase):
 
 		print("\nSetting query ...")
 		# Test set method - performs actual call to Redis
-		cache.set(query, response, ttl)
+		key = cache.set(query, response, ttl)
 		
 		# Test get method - performs actual call to Redis
 		print("\nGetting response ...")
 		retrieved_response = cache.get(query)
-		print(f"\nretrieved_response : {retrieved_response}\n")
+		print(f"\nretrieved_response : {retrieved_response}")
 
 		self.assertEqual(retrieved_response, response)
+
+		print("\nDeleting query ...")
+		cache.redis.delete(key)
+
+		print("\nConfirming deletion ...")
+		self.assertIsNone(cache.get(query))
 
 	def test_set_and_get_semantically(self):
 		# Test cases
@@ -62,7 +68,7 @@ class TestRedisCache(unittest.TestCase):
 
 		# Set some items in the cache
 		print("\nSetting query 1 ...\n")
-		cache.set(query1, response1)
+		key = cache.set(query1, response1)
 
 		cached_response = cache.get_semantically(query1)
 		if cached_response:
@@ -103,6 +109,12 @@ class TestRedisCache(unittest.TestCase):
 			print(f"Query '{query4}': Not found in cache.")
 
 		self.assertNotEqual(cached_response, response1)
+
+		print("\nDeleting query ...")
+		cache.redis.delete(key)
+
+		print("\nConfirming deletion ...")
+		self.assertIsNone(cache.get(query1))
 
 if __name__ == '__main__':
 	unittest.main()

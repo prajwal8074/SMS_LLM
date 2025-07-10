@@ -13,6 +13,7 @@ load_dotenv()  # Load environment variables
 
 class RedisCache:
     def __init__(self, embedding_model_name: str = 'all-MiniLM-L6-v2', distance_threshold: float = 0.2): # Adjusted default threshold
+        print(f"REDIS_HOST: {os.getenv('REDIS_HOST')}")
         self.redis = redis.Redis(
             host=os.getenv('REDIS_HOST'),
             port=int(os.getenv('REDIS_PORT')),
@@ -86,7 +87,9 @@ class RedisCache:
     def get(self, query: str):
         """Get cached response if exists"""
         key = self.get_cache_key(query)
-        return self.redis.hget(key, "response").decode('utf-8')
+        response = self.redis.hget(key, "response")
+        if response is not None:
+            return response.decode('utf-8')
     
     def set(self, query: str, response: str, ttl: int = None):
         """Store query and response with their embeddings."""
