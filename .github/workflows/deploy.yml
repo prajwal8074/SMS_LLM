@@ -13,10 +13,8 @@ env:
 jobs:
   Deploy-on-EC2:
     runs-on: ubuntu-latest
-    if: |
-      ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     steps:
-
     - name: Stop Running Containers
       uses: appleboy/ssh-action@master
       with:

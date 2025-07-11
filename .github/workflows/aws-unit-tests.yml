@@ -10,8 +10,7 @@ on:
 jobs:
   test-aws:
     runs-on: ubuntu-latest
-    if: |
-      ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -42,10 +41,11 @@ jobs:
     - name: Install dependencies
       if: steps.cache-restore.outputs.cache-hit != 'true'
       run: |
-        python -m venv AWS/venv
-        source AWS/venv/bin/activate
+        cd AWS
+        python -m venv venv
+        source venv/bin/activate
         python -m pip install --upgrade pip
-        pip install -r AWS/requirements.txt
+        pip install -r requirements.txt
 
     - name: Cache pip installations
       if: success() && steps.cache-restore.outputs.cache-hit != 'true'
@@ -76,10 +76,10 @@ jobs:
     - name: Run function calling tests
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        
       run: |
-        source AWS/venv/bin/activate
-        python AWS/Test/function_calling_test.py
+        cd AWS
+        source venv/bin/activate
+        python Test/function_calling_test.py
 
     - name: Print database
       run: |
@@ -98,14 +98,16 @@ jobs:
 
     - name: Run caching tests
       run: |
-        source AWS/venv/bin/activate
-        python AWS/Test/cache_test.py
+        cd AWS
+        source venv/bin/activate
+        python Test/cache_test.py
 
     - name: Run add_cache tests
       run: |
-        source AWS/venv/bin/activate
-        chmod +x AWS/Test/add_cache_test.sh
-        ./AWS/Test/add_cache_test.sh
+        cd AWS
+        source venv/bin/activate
+        chmod +x Test/add_cache_test.sh
+        ./Test/add_cache_test.sh
 
     - name: Stop Redis container
       run: |
