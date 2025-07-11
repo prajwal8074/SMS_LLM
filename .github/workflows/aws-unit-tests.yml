@@ -34,7 +34,7 @@ jobs:
       id: cache-restore
       uses: actions/cache@v4
       with:
-        path: ~/.cache/pip
+        path: AWS/venv
         key: ${{ runner.os }}-pip-${{ hashFiles('AWS/requirements.txt') }}
         restore-keys: |
           ${{ runner.os }}-pip-
@@ -42,6 +42,8 @@ jobs:
     - name: Install dependencies
       if: steps.cache-restore.outputs.cache-hit != 'true'
       run: |
+        python -m venv venv
+        source AWS/venv/bin/activate
         python -m pip install --upgrade pip
         pip install -r AWS/requirements.txt
 
@@ -49,7 +51,7 @@ jobs:
       if: success() && steps.cache-restore.outputs.cache-hit != 'true'
       uses: actions/cache/save@v4
       with:
-        path: ~/.cache/pip
+        path: AWS/venv
         key: ${{ runner.os }}-pip-${{ hashFiles('AWS/requirements.txt') }}
 
     - name: Start Marketplace backend
@@ -76,6 +78,7 @@ jobs:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         
       run: |
+        source AWS/venv/bin/activate
         python AWS/Test/function_calling_test.py
 
     - name: Print database
@@ -95,10 +98,12 @@ jobs:
 
     - name: Run caching tests
       run: |
+        source AWS/venv/bin/activate
         python AWS/Test/cache_test.py
 
     - name: Run add_cache tests
       run: |
+        source AWS/venv/bin/activate
         chmod +x AWS/Test/add_cache_test.sh
         ./AWS/Test/add_cache_test.sh
 
