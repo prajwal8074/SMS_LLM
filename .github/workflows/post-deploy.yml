@@ -26,6 +26,31 @@ jobs:
           source venv/bin/activate
           pip install -r requirements.txt
 
+    - name: Run function calling tests
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ env.HOST_IP }}
+        username: ubuntu
+        key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+        script: |
+          cd SMS_LLM/AWS
+          set -a
+          source .env
+          source Test/.env
+          set +a
+          source venv/bin/activate
+          python Test/function_calling_test.py
+
+    - name: Print database
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ env.HOST_IP }}
+        username: ubuntu
+        key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+        script: |
+          cd SMS_LLM/AWS/MarketPlace/backend
+          sudo docker compose exec db psql -U user marketplace_db -c "SELECT * FROM listings;"
+
     - name: Run caching tests
       uses: appleboy/ssh-action@master
       with:
