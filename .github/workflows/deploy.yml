@@ -19,7 +19,7 @@ jobs:
     - name: Stop Containers on EC2
       uses: appleboy/ssh-action@master
       with:
-        host: 44.247.154.176
+        host: 34.219.127.204
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
@@ -33,7 +33,7 @@ jobs:
     - name: Delete existing 'AWS' folder on EC2
       uses: appleboy/ssh-action@master
       with:
-        host: 44.247.154.176
+        host: 34.219.127.204
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
@@ -45,7 +45,7 @@ jobs:
     - name: Upload new 'AWS' folder to EC2
       uses: appleboy/scp-action@master
       with:
-        host: 44.247.154.176
+        host: 34.219.127.204
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         source: "AWS/"
@@ -54,7 +54,7 @@ jobs:
     - name: Verify Uploaded Files on EC2
       uses: appleboy/ssh-action@master
       with:
-        host: 44.247.154.176
+        host: 34.219.127.204
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
@@ -70,7 +70,7 @@ jobs:
     - name: Start Containers
       uses: appleboy/ssh-action@master
       with:
-        host: 44.247.154.176
+        host: 34.219.127.204
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |

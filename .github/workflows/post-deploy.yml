@@ -16,7 +16,7 @@ jobs:
     - name: Install dependencies
       uses: appleboy/ssh-action@master
       with:
-        host: 44.247.154.176
+        host: 34.219.127.204
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
@@ -29,7 +29,7 @@ jobs:
     - name: List running containers
       uses: appleboy/ssh-action@master
       with:
-        host: 44.247.154.176
+        host: 34.219.127.204
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
@@ -38,7 +38,7 @@ jobs:
     - name: Print database
       uses: appleboy/ssh-action@master
       with:
-        host: 44.247.154.176
+        host: 34.219.127.204
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
@@ -48,7 +48,7 @@ jobs:
     - name: Run caching tests
       uses: appleboy/ssh-action@master
       with:
-        host: 44.247.154.176
+        host: 34.219.127.204
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
@@ -58,7 +58,7 @@ jobs:
     - name: Run add_cache tests
       uses: appleboy/ssh-action@master
       with:
-        host: 44.247.154.176
+        host: 34.219.127.204
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
@@ -69,7 +69,7 @@ jobs:
     - name: Run main test
       uses: appleboy/ssh-action@master
       with:
-        host: 44.247.154.176
+        host: 34.219.127.204
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
