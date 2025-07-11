@@ -7,6 +7,9 @@ on:
       - completed # Listen for completion (success or failure)
   workflow_dispatch: # Allows manual triggering from the GitHub UI
 
+env:
+  HOST_IP: 44.242.207.112
+
 jobs:
   test-aws:
     runs-on: ubuntu-latest
@@ -16,7 +19,7 @@ jobs:
     - name: Install dependencies
       uses: appleboy/ssh-action@master
       with:
-        host: 34.219.127.204
+        host: ${{ env.HOST_IP }}
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
@@ -29,7 +32,7 @@ jobs:
     - name: List running containers
       uses: appleboy/ssh-action@master
       with:
-        host: 34.219.127.204
+        host: ${{ env.HOST_IP }}
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
@@ -38,7 +41,7 @@ jobs:
     - name: Print database
       uses: appleboy/ssh-action@master
       with:
-        host: 34.219.127.204
+        host: ${{ env.HOST_IP }}
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
@@ -48,7 +51,7 @@ jobs:
     - name: Run caching tests
       uses: appleboy/ssh-action@master
       with:
-        host: 34.219.127.204
+        host: ${{ env.HOST_IP }}
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
@@ -58,7 +61,7 @@ jobs:
     - name: Run add_cache tests
       uses: appleboy/ssh-action@master
       with:
-        host: 34.219.127.204
+        host: ${{ env.HOST_IP }}
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
@@ -69,7 +72,7 @@ jobs:
     - name: Run main test
       uses: appleboy/ssh-action@master
       with:
-        host: 34.219.127.204
+        host: ${{ env.HOST_IP }}
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
