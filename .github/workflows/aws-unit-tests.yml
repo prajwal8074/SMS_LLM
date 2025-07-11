@@ -16,6 +16,13 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Setup env
+      run: |
+        echo "REDIS_HOST=localhost" >> $GITHUB_ENV
+        echo "REDIS_PORT=6379" >> $GITHUB_ENV
+        echo "REDIS_DB=0" >> $GITHUB_ENV
+        echo "FLASK_SERVER_BASE_URL=http://localhost:5002" >> $GITHUB_ENV
+
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
@@ -72,13 +79,6 @@ jobs:
         cd AWS/MarketPlace/backend
         docker compose down
         sudo systemctl stop postgresql
-
-    - name: Setup redis env
-      run: |
-        echo "REDIS_HOST=localhost" >> $GITHUB_ENV
-        echo "REDIS_PORT=6379" >> $GITHUB_ENV
-        echo "REDIS_DB=0" >> $GITHUB_ENV
-        echo "FLASK_SERVER_BASE_URL=http://localhost:5002" >> $GITHUB_ENV
 
     - name: Run Redis image in a container
       run: |
