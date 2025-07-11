@@ -11,7 +11,7 @@ env:
   HOST_IP: 44.242.207.112
 
 jobs:
-  Deploy on EC2:
+  Deploy-on-EC2:
     runs-on: ubuntu-latest
     if: |
       ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
