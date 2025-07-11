@@ -11,64 +11,32 @@ env:
   HOST_IP: 44.242.207.112
 
 jobs:
-  Deploy:
+  Deploy on EC2:
     runs-on: ubuntu-latest
     if: |
       ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
 
-    - name: Stop Containers on EC2
+    - name: Stop Running Containers
       uses: appleboy/ssh-action@master
       with:
         host: ${{ env.HOST_IP }}
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
-          cd AWS/MarketPlace/backend
-          sudo docker compose down
           sudo docker stop redis-test
+          cd SMS_LLM/AWS/MarketPlace/backend
+          sudo docker compose down
 
-    - name: List GitHub Files (local repository content)
-      run: ls
-
-    - name: Delete existing 'AWS' folder on EC2
+    - name: Git Pull
       uses: appleboy/ssh-action@master
       with:
         host: ${{ env.HOST_IP }}
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
-          ls
-          echo "Deleting AWS on EC2..."
-          rm -r AWS || true
-          echo "Deletion complete."
-
-    - name: Upload new 'AWS' folder to EC2
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ env.HOST_IP }}
-        username: ubuntu
-        key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-        source: "AWS/"
-        target: "/home/ubuntu/"
-
-    - name: Verify Uploaded Files on EC2
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ env.HOST_IP }}
-        username: ubuntu
-        key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-        script: |
-          echo "Listing files in the home directory:"
-          ls
-          AWS_DIR="AWS"
-          if [[ ! -d "$AWS_DIR" ]]; then
-            echo "Error: Directory '$AWS_DIR' not found."
-            exit 1
-          fi
-          echo "Directory '$AWS_DIR' found. Proceeding with script..."
+          cd SMS_LLM
+          git pull origin main
 
     - name: Start Containers
       uses: appleboy/ssh-action@master
@@ -77,6 +45,15 @@ jobs:
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
-          cd AWS/MarketPlace/backend
-          sudo docker compose up --build -d
           sudo docker start redis-test
+          cd SMS_LLM/AWS/MarketPlace/backend
+          sudo docker compose up --build -d
+
+    - name: List running containers
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ env.HOST_IP }}
+        username: ubuntu
+        key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+        script: |
+          sudo docker ps
