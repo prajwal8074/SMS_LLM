@@ -21,11 +21,24 @@ class TestFunctionCall(unittest.TestCase):
 	def setUp(self):
 		"""
 		Set up the test environment before each test method.
+		Initializes self.listing_id to None, which will be set if a listing is added.
 		"""
 		print(f"\n--- Running test: {self._testMethodName} ---")
+		self.listing_id = None # Initialize listing_id to None
+
+	def tearDown(self):
+		"""
+		Clean up the test environment after each test method.
+		Deletes the listing if it was created during the test.
+		"""
+		if self.listing_id:
+			print(f"\n--- Deleting listing with ID: {self.listing_id} in tearDown ---")
+			result = marketplace_tools.delete_listing_api(self.listing_id)
+			print(f"Deletion result: {result}")
+			self.assertEqual(result.get("status"), "success", "Failed to delete listing during tearDown.")
+		print(f"\n--- Finished test: {self._testMethodName} ---")
 	
 	def test_non_call(self):
-		# Non calling test
 		messages = [{"role": "user", "content": "Hello"}]
 		response = client.chat.completions.create(
 			model="gemini-2.0-flash",
@@ -53,32 +66,34 @@ class TestFunctionCall(unittest.TestCase):
 			function_name = tool_calls[0].function.name
 			self.assertEqual(function_name, "add_listing")
 
-			marketplace_tools.process_tool_calls(response)
-
-			print("\nCheck listing using get_all_listings tool...\n")
 			arguments_str = tool_calls[0].function.arguments
-
 			try:
 				function_args = json.loads(arguments_str)
 			except json.JSONDecodeError as e:
-				print(f"  Error parsing arguments for '{function_name}': {e}")
+				self.fail(f"Error parsing arguments for '{function_name}': {e}")
+			
+			add_listing_output = marketplace_tools.add_listing_api(**function_args)
+			self.assertEqual(add_listing_output.get("status"), "success")
+			self.listing_id = add_listing_output.get("listing_id")
+			self.assertIsNotNone(self.listing_id, "Listing ID should not be None after adding listing.")
+
+			print("\nCheck listing using get_all_listings tool...\n")
 			
 			actual_data = marketplace_tools.get_all_listings_api()
 			expected_subset = function_args
 
 			found_match = False
 			for listing in actual_data['listings']:
-				# Check if all key-value pairs from expected_subset are present and match in the current listing
 				is_match = True
 				for key, value in expected_subset.items():
 					if key not in listing or listing[key] != value:
 						is_match = False
-						break # Break from inner loop if a mismatch is found
+						break
 				
 				if is_match:
 					found_match = True
 					print("\nListing found\n")
-					break # Break from outer loop if a match is found
+					break
 
 			self.assertTrue(found_match, "No listing in the actual data contains the expected subset of values.")
 

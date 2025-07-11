@@ -56,6 +56,19 @@ def sell_item_api(listing_id: str, buyer_id: str = None):
         print(f"Error in sell_item_api: {e}")
         return {"status": "error", "message": str(e)}
 
+def delete_listing_api(listing_id: str):
+    """Makes an API call to delete an item listing from the marketplace."""
+    print(f"\n--- Making API Call: delete_listing ---")
+    url = f"{FLASK_SERVER_BASE_URL}/delete_listing"
+    payload = {"listing_id": listing_id}
+    try:
+        response = requests.post(url, json=payload)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Error calling delete_listing API: {e}")
+        return {"status": "error", "message": str(e)}
+
 def get_all_listings_api():
     """Makes an API call to retrieve all active item listings."""
     print(f"\n--- Making API Call: get_all_listings ---")

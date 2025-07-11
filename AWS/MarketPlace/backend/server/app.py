@@ -53,6 +53,45 @@ def add_listing():
         print(f"Error adding listing: {e}")
         return jsonify({"error": str(e)}), 500
 
+@app.route('/delete_listing', methods=['POST'])
+def delete_listing():
+    """API endpoint to delete an item listing."""
+    data = request.json
+    listing_id = data.get('listing_id')
+
+    if not listing_id:
+        return jsonify({"error": "listing_id is required"}), 400
+
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor()
+        cur.execute(
+            """
+            DELETE FROM listings
+            WHERE id = %s
+            RETURNING id;
+            """,
+            (listing_id,)
+        )
+        deleted_row = cur.fetchone()
+        conn.commit()
+        cur.close()
+        conn.close()
+
+        if deleted_row:
+            return jsonify({
+                "status": "success",
+                "message": f"Listing '{listing_id}' deleted."
+            }), 200
+        else:
+            return jsonify({
+                "status": "not_found",
+                "message": f"Listing '{listing_id}' not found."
+            }), 404
+    except Exception as e:
+        print(f"Error deleting listing: {e}")
+        return jsonify({"error": str(e)}), 500
+
 @app.route('/sell_item', methods=['POST'])
 def sell_item():
     """API endpoint to mark an existing item listing as sold."""
