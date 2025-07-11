@@ -23,12 +23,13 @@ jobs:
         cache: 'pip'
         cache-dependency-path: AWS/requirements.txt
 
-    - name: Setup redis env
-      run: |
-        echo "REDIS_HOST=localhost" >> $GITHUB_ENV
-        echo "REDIS_PORT=6379" >> $GITHUB_ENV
-        echo "REDIS_DB=0" >> $GITHUB_ENV
-        echo "FLASK_SERVER_BASE_URL=http://localhost:5002" >> $GITHUB_ENV
+    - name: Cache pip dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('AWS/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
 
     - name: Install dependencies
       run: |
@@ -71,6 +72,13 @@ jobs:
         cd AWS/MarketPlace/backend
         docker compose down
         sudo systemctl stop postgresql
+
+    - name: Setup redis env
+      run: |
+        echo "REDIS_HOST=localhost" >> $GITHUB_ENV
+        echo "REDIS_PORT=6379" >> $GITHUB_ENV
+        echo "REDIS_DB=0" >> $GITHUB_ENV
+        echo "FLASK_SERVER_BASE_URL=http://localhost:5002" >> $GITHUB_ENV
 
     - name: Run Redis image in a container
       run: |
