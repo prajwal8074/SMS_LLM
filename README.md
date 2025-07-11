@@ -38,15 +38,16 @@
   - [x] Create unit tests & CI pipeline <p align="right">(**Prajwal**)</p>
 
 - **Week 5 Improve & Deploy**
-  - [x] Deploy Marketplace, Caching and lambda function on AWS and resolve any errors <p align="right">(**Shubham**)</p>
+  - [x] Deploy Marketplace, Caching on AWS and resolve any errors <p align="right">(**Shubham**)</p>
   - [x] Use cases presentation <p align="right">(**Akash**)</p>
   - [x] Send phone number to lambda function endpoint <p align="right">(**Prajwal**)</p>
 
 - **Week 6 Buffer Week**
-  - [ ] Modify github workflow to use public ip address of the deployed AWS EC2 instance <p align="right">(**Prajwal**)</p>
-  - [ ] Create CD pipeline for deployment on AWS <p align="right">(**Prajwal**)</p>
+  - [x] Modify github workflow to use public ip address of the deployed AWS EC2 instance <p align="right">(**Prajwal**)</p>
+  - [x] Create CD pipeline for instant deployment on AWS <p align="right">(**Prajwal**)</p>
+  - [ ] Implement lambda function in EC2 instance and resolve any errors <p align="right">(**Shubham**)</p>
   - [ ] Cache queries in lambda function corresponding to phone number for context, delete when call ends <p align="right">(**Shubham**)</p>
-  - [ ] Send sms to phone number on order received <p align="right">(**Aditya**)</p>
+  - [ ] Send sms to phone number on order received and create unit test for it <p align="right">(**Aditya**)</p>
   - [x] Modify cache get method for semantically similar queries <p align="right">(**Prajwal**)</p>
   - [ ] Ideation of new features/functionalities that can be performed on the call setup <p align="right">(**Akash**)</p>
   - [ ] Add unit tests for new features <p align="right">(**Akash**)</p>
