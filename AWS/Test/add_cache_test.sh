@@ -6,20 +6,20 @@ key2=""
 cleanup_and_log()
 {
     echo -e "\nDeleting query1 ..."
-    docker exec redis-test redis-cli DEL "$key1"
+    sudo docker exec redis-test redis-cli DEL "$key1"
 
     echo -e "\nConfirming deletion for key1..."
-    if [ "$(docker exec redis-test redis-cli EXISTS "$key1")" -eq 0 ]; then
+    if [ "$(sudo docker exec redis-test redis-cli EXISTS "$key1")" -eq 0 ]; then
         echo "SUCCESS: Query 1 deleted." # Indicate success
     else
         echo "FAILURE: Query 1 still exists"
     fi
 
     echo -e "\nDeleting query2 ..."
-    docker exec redis-test redis-cli DEL "$key2"
+    sudo docker exec redis-test redis-cli DEL "$key2"
 
     echo -e "\nConfirming deletion for key2..."
-    if [ "$(docker exec redis-test redis-cli EXISTS "$key2")" -eq 0 ]; then
+    if [ "$(sudo docker exec redis-test redis-cli EXISTS "$key2")" -eq 0 ]; then
         echo "SUCCESS: Query 2 deleted." # Indicate success
     else
         echo "FAILURE: Query 2 still exists"
@@ -42,7 +42,7 @@ echo "Testing for TTL: 60"
 key1=$(python "$PARENT_DIR"/add_cache.py "What is the capital of India?" "New Delhi" 60 | head -n 3 | tail -n 1)
 echo -e "Extracted key for testing: '$key1'\n"
 echo "Checking TTL for key in Redis..."
-ttl_value=$(docker exec redis-test redis-cli TTL "$key1" | awk '{print $NF}' | tr -d '\r' | xargs)
+ttl_value=$(sudo docker exec redis-test redis-cli TTL "$key1" | awk '{print $NF}' | tr -d '\r' | xargs)
 echo "Redis TTL output for key: '$ttl_value'"
 if [ "$ttl_value" -eq 60 ]; then
     echo "SUCCESS: The TTL for key is the same." # Indicate success
@@ -55,7 +55,7 @@ echo -e "\n--- Test adding permanent cache manually ---\n"
 key2=$(python "$PARENT_DIR"/add_cache.py "What is the capital of Canada?" "Ottawa" | head -n 3 | tail -n 1)
 echo -e "Extracted key for testing: '$key2'\n"
 echo "Checking TTL for key in Redis..."
-ttl_value=$(docker exec redis-test redis-cli TTL "$key2" | awk '{print $NF}' | tr -d '\r' | xargs)
+ttl_value=$(sudo docker exec redis-test redis-cli TTL "$key2" | awk '{print $NF}' | tr -d '\r' | xargs)
 echo "Redis TTL output for key: '$ttl_value'"
 if [ "$ttl_value" -eq -1 ]; then
     echo "SUCCESS: The entry for key is permanent (TTL: -1)." # Indicate success
