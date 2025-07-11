@@ -1,19 +1,17 @@
 name: AWS Unit Tests
 
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - 'README.md'
-      - '**/*.md'
-      - 'docs/**'
+  workflow_run:
+    workflows: ["Marketplace Security CI"]
+    types:
+      - completed # This workflow will trigger when the specified workflow is 'completed'
   workflow_dispatch: # Allows manual triggering from the GitHub UI
 
 jobs:
   test-aws:
     runs-on: ubuntu-latest
-
+    if: |
+      ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
