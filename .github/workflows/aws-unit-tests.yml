@@ -81,7 +81,7 @@ jobs:
         source venv/bin/activate
         python Test/function_calling_test.py
 
-    - name: Print database
+    - name: Print database after deletion
       run: |
         cd AWS/MarketPlace/backend
         sudo docker compose exec db psql -U user marketplace_db -c "SELECT * FROM listings;"
@@ -102,12 +102,20 @@ jobs:
         source venv/bin/activate
         python Test/cache_test.py
 
+    - name: Print database after deletion
+      run: |
+        sudo docker exec redis-test redis-cli KEYS '*'
+
     - name: Run add_cache tests
       run: |
         cd AWS
         source venv/bin/activate
         chmod +x Test/add_cache_test.sh
         ./Test/add_cache_test.sh
+
+    - name: Print database after deletion
+      run: |
+        sudo docker exec redis-test redis-cli KEYS '*'
 
     - name: Stop Redis container
       run: |
