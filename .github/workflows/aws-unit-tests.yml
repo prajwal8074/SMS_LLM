@@ -30,7 +30,8 @@ jobs:
         cache: 'pip'
         cache-dependency-path: AWS/requirements.txt
 
-    - name: Get cached pip installations
+    - name: Restore cached pip installations
+      id: cache-restore
       uses: actions/cache@v4
       with:
         path: ~/.cache/pip
@@ -39,11 +40,13 @@ jobs:
           ${{ runner.os }}-pip-
 
     - name: Install dependencies
+      if: steps.cache-restore.outputs.cache-hit != 'true'
       run: |
         python -m pip install --upgrade pip
         pip install -r AWS/requirements.txt
 
     - name: Cache pip installations
+      if: success() && steps.cache-restore.outputs.cache-hit != 'true'
       uses: actions/cache/save@v4
       with:
         path: ~/.cache/pip
