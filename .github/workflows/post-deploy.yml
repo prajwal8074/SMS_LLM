@@ -34,6 +34,9 @@ jobs:
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
           cd SMS_LLM/AWS
+          set -a
+          source .env
+          set +a
           source venv/bin/activate
           python Test/cache_test.py
 
@@ -45,6 +48,9 @@ jobs:
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
           cd SMS_LLM/AWS
+          set -a
+          source .env
+          set +a
           source venv/bin/activate
           chmod +x Test/add_cache_test.sh
           ./Test/add_cache_test.sh
@@ -57,5 +63,8 @@ jobs:
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
           cd SMS_LLM/AWS
+          set -a
+          source .env
+          set +a
           source venv/bin/activate
           python Test/test.py
