@@ -26,6 +26,15 @@ jobs:
           cd SMS_LLM/AWS/MarketPlace/backend
           sudo docker compose down
 
+    - name: List running containers
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ env.HOST_IP }}
+        username: ubuntu
+        key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+        script: |
+          sudo docker ps
+
     - name: Git Pull
       uses: appleboy/ssh-action@master
       with:
