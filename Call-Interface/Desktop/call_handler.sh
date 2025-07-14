@@ -58,23 +58,6 @@ play_audio_to_phone() {
     # Start paplay in the background and store its PID
     paplay --device="$BLUETOOTH_SINK" "$audio_file" &> /dev/null &
     PAPLAY_PID=$! # Store the PID of the last background process
-
-    # Wait for paplay to finish, or until interrupted
-    wait "$PAPLAY_PID"
-
-    # Clear the PID once paplay has finished naturally
-    PAPLAY_PID=""
-
-    if [ $? -ne 0 ]; then
-        # Check if the error was due to being killed by SIGTERM (143) or SIGINT (130)
-        # 143 = 128 + 15 (SIGTERM)
-        # 130 = 128 + 2 (SIGINT)
-        if [ $? -eq 143 ] || [ $? -eq 130 ]; then
-            echo "Audio playback was stopped by interruption."
-        else
-            echo "Error playing audio file."
-        fi
-    fi
 }
 
 stop_playing() {
@@ -82,6 +65,7 @@ stop_playing() {
     if [ -n "$PAPLAY_PID" ]; then # Check if PAPLAY_PID is not empty
         kill "$PAPLAY_PID" 2>/dev/null # Send SIGTERM to paplay process
         wait "$PAPLAY_PID" 2>/dev/null # Wait for it to terminate
+        PAPLAY_PID=""
     fi
 }
 
@@ -161,6 +145,7 @@ run_main_loop() {
     
         mkdir "${RECORDING_DIR}"
         play_audio_to_phone "ask.wav"
+        wait "$PAPLAY_PID"
     
         # Start voice-triggered recording after audio playback
         start_voice_recording
@@ -184,7 +169,9 @@ run_main_loop() {
             sox "$BLANK_FILE" "$FILE_PATH" "$FINAL_FILE_PATH"
             python3 get_response.py
             rm -r "${RECORDING_DIR}"
+            stop_playing
             play_audio_to_phone "$RESPONSE_PATH"
+            wait "$PAPLAY_PID"
         else
             echo "File '$FILE_PATH' does NOT exist."
         fi
@@ -195,11 +182,11 @@ run_main_loop() {
 
 stop_main_loop() {
     echo -e "\nMain script interrupted. Cleaning up..."
-    # Kill the background loop process if it's running
     if [ -n "$LOOP_PROCESS_PID" ]; then
-        echo "Sending SIGTERM to background loop (PID: $LOOP_PROCESS_PID)..."
+        pkill -P "$LOOP_PROCESS_PID"
         kill "$LOOP_PROCESS_PID" 2>/dev/null # Send polite termination signal
         wait "$LOOP_PROCESS_PID" 2>/dev/null # Wait for it to terminate
+        LOOP_PROCESS_PID=""
         if [ $? -ne 0 ]; then
              echo "Background loop (PID: $LOOP_PROCESS_PID) might not have terminated cleanly."
         else
@@ -212,6 +199,8 @@ stop_main_loop() {
 cleanup_on_interrupt() {
     echo "Interrupt signal received. Performing cleanup..."
     stop_voice_recording
+    stop_playing
+    stop_main_loop
     systemctl --user daemon-reload
     systemctl --user --now disable pulseaudio.service pulseaudio.socket
     systemctl --user --now enable pipewire pipewire-pulse
