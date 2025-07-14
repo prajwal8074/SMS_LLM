@@ -49,5 +49,3 @@
   - [ ] Cache queries in lambda function corresponding to phone number for context, delete when call ends <p align="right">(**Shubham**)</p>
   - [ ] Send sms to phone number on order received and create unit test for it <p align="right">(**Aditya**)</p>
   - [x] Modify cache get method for semantically similar queries <p align="right">(**Prajwal**)</p>
-  - [ ] Ideation of new features/functionalities that can be performed on the call setup <p align="right">(**Akash**)</p>
-  - [ ] Add unit tests for new features <p align="right">(**Akash**)</p>
