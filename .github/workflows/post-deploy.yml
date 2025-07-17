@@ -56,4 +56,5 @@ jobs:
         source .env
         set +a
         source venv/bin/activate
-        python Test/test.py
+        cd Test
+        python test.py
