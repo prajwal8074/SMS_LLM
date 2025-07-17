@@ -15,10 +15,14 @@ services:
       - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql # Init script for schema
 
   app:
-    build: ./server # Build the image from the server/Dockerfile
+    build:
+      context: ../.. # This goes up to ~/SMS_LLM/AWS/
+      dockerfile: MarketPlace/backend/server/Dockerfile # Build the image from the server/Dockerfile
     restart: always
     ports:
       - "5002:5002" # Expose Flask app port
+    env_file:
+      - .env
     environment:
       DATABASE_URL: postgresql://user:password@db:5432/marketplace_db # Connect to the 'db' service
     depends_on:

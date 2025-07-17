@@ -1,13 +1,69 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS # Import CORS
+from flask_cors import CORS
 import uuid
 from database import get_db_connection
-import json # Import json for parsing internal arguments if needed, though not directly in this server logic
+import json
 import os
+import base64
+import time
+import boto3
+import sys
+from botocore.exceptions import ClientError
+from openai import OpenAI
+
+# Assuming marketplace_tools.py and cache.py are in the same directory
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..')))
+from cache import RedisCache
+import marketplace_tools
 
 app = Flask(__name__)
-# Enable CORS for all routes. In production, consider limiting origins for security.
 CORS(app)
+
+# Initialize AWS clients globally for the Flask app, or within the function if preferred
+# Ensure AWS credentials are configured in the environment where Flask app runs
+# Initialize AWS clients (if running on EC2 with appropriate IAM role)
+# These clients will use the EC2 instance's IAM role credentials if available,
+# or look for AWS_ACCESS_KEY_ID/AWS_SECRET_ACCESS_KEY/AWS_REGION environment variables.
+try:
+    # Explicitly specify the region for debugging.
+    # Replace 'us-west-2' with your actual AWS region (e.g., 'ap-south-1').
+    AWS_REGION_EXPLICIT = os.environ.get('AWS_REGION', 'us-west-2') # Fallback to .env or default
+
+    s3_client = boto3.client('s3', region_name=AWS_REGION_EXPLICIT)
+    transcribe_client = boto3.client('transcribe', region_name=AWS_REGION_EXPLICIT)
+    translate_client = boto3.client('translate', region_name=AWS_REGION_EXPLICIT)
+    polly_client = boto3.client('polly', region_name=AWS_REGION_EXPLICIT)
+    print(f"AWS Boto3 clients initialized for region: {AWS_REGION_EXPLICIT}")
+except NoRegionError:
+    print("ERROR: AWS_REGION environment variable is not set. Boto3 clients cannot be initialized.")
+    # You might want to exit or raise an error here if AWS services are critical
+except Exception as e:
+    print(f"ERROR: Failed to initialize AWS Boto3 clients: {repr(e)}")
+# Initialize Redis cache if available
+cache = RedisCache() if RedisCache else None
+
+# Initialize the OpenAI client for Gemini API
+GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY')
+client = OpenAI(
+    api_key=GEMINI_API_KEY,
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+)
+
+# Configuration for voice processing
+S3_BUCKET_NAME = os.environ.get('S3_BUCKET_NAME', 'farmassist-voice-gateway-audio')
+TARGET_LLM_LANGUAGE = 'en'
+DEFAULT_FARMER_LANGUAGE = 'hi-IN'
+SUPPORTED_TRANSCRIBE_LANGUAGES = [
+    'en-US', 'hi-IN', 'gu-IN', 'mr-IN', 'bn-IN',
+    'ta-IN', 'te-IN', 'kn-IN', 'ml-IN', 'pa-IN',
+]
+POLLY_DESCRIBE_VOICES_SUPPORTED_LANGUAGES = [
+    'en-IE', 'ar-AE', 'en-US', 'fr-BE', 'en-IN', 'es-MX', 'en-ZA', 'tr-TR', 'ru-RU',
+    'ro-RO', 'pt-PT', 'pl-PL', 'nl-NL', 'it-IT', 'is-IS', 'fr-FR', 'fi-FI', 'es-ES',
+    'de-DE', 'yue-CN', 'ko-KR', 'en-NZ', 'en-GB-WLS', 'hi-IN', 'de-CH', 'arb',
+    'nl-BE', 'cy-GB', 'cs-CZ', 'cmn-CN', 'da-DK', 'en-AU', 'pt-BR', 'nb-NO',
+    'sv-SE', 'ja-JP', 'es-US', 'ca-ES', 'fr-CA', 'en-GB', 'de-AT',
+]
 
 # Dummy functions that interact with the PostgreSQL database
 # These mirror the tool definitions you provided earlier.
@@ -167,10 +223,214 @@ def get_all_listings():
         print(f"Error fetching listings: {e}") # Log the error
         return jsonify({"error": str(e)}), 500
 
+@app.route('/process-voice', methods=['POST'])
+def process_voice():
+    """
+    API endpoint to process voice input, transcribe it,
+    send to LLM, get a response, and convert it to speech.
+    This integrates the core logic from lambda_function.py.
+    """
+    print("Received POST request for voice processing.")
+    audio_filename, transcription_job_name, transcript_s3_key = "", "", ""
+    detected_language = ""
+    cache_status = 'miss' # Default cache status
+
+    try:
+        body_data = request.json
+    except Exception as e:
+        print(f"Error decoding request body: {e}")
+        return jsonify({'message': f'Failed to process request body: {str(e)}'}), 500
+
+    audio_base64 = body_data.get('audio_data')
+    if not audio_base64:
+        return jsonify({'message': 'Missing audio_data in request body'}), 400
+
+    # --- 2. Upload Audio to S3 ---
+    try:
+        audio_bytes = base64.b64decode(audio_base64)
+        unique_id = str(uuid.uuid4())
+        audio_filename = f"incoming_audio/{unique_id}.mp3"
+        s3_client.put_object(Bucket=S3_BUCKET_NAME, Key=audio_filename, Body=audio_bytes)
+        audio_s3_uri = f"s3://{S3_BUCKET_NAME}/{audio_filename}"
+        print(f"Audio uploaded to S3: {audio_s3_uri}")
+    except ClientError as e:
+        print(f"S3 Upload Error: {e}")
+        return jsonify({'message': 'Failed to upload audio to S3'}), 500
+
+    # --- 3. Convert Voice to Text with Auto Language ID ---
+    transcription_job_name = f'voice-to-text-{unique_id}'
+    transcribed_text = ""
+    transcript_s3_key = f'transcripts/{transcription_job_name}.json'
+
+    try:
+        transcribe_client.start_transcription_job(
+            TranscriptionJobName=transcription_job_name,
+            IdentifyLanguage=True,
+            LanguageOptions=SUPPORTED_TRANSCRIBE_LANGUAGES,
+            MediaFormat='mp3',
+            Media={'MediaFileUri': audio_s3_uri},
+            OutputBucketName=S3_BUCKET_NAME,
+            OutputKey=transcript_s3_key
+        )
+        max_attempts = 120
+        for i in range(max_attempts):
+            job_status_response = transcribe_client.get_transcription_job(TranscriptionJobName=transcription_job_name)
+            status = job_status_response['TranscriptionJob']['TranscriptionJobStatus']
+            print(f"Transcription status: {status} ({i+1}/{max_attempts})")
+            if status == 'COMPLETED':
+                detected_language = job_status_response['TranscriptionJob'].get('LanguageCode', DEFAULT_FARMER_LANGUAGE)
+                transcript_response = s3_client.get_object(Bucket=S3_BUCKET_NAME, Key=transcript_s3_key)
+                transcript_content = json.loads(transcript_response['Body'].read().decode('utf-8'))
+                transcribed_text = transcript_content['results']['transcripts'][0]['transcript']
+                print(f"Detected Language: {detected_language}")
+                print(f"Transcribed Text: {transcribed_text}")
+                break
+            elif status == 'FAILED':
+                raise Exception(job_status_response['TranscriptionJob'].get('FailureReason', 'Unknown reason'))
+            time.sleep(5)
+        else:
+            raise Exception("Transcription job timed out.")
+    except Exception as e:
+        print(f"Transcribe Error: {e}")
+        return jsonify({'message': f'Transcription failed: {str(e)}'}), 500
+
+    # --- 4. Translate Transcribed Text for LLM ---
+    text_for_llm = transcribed_text
+    source_language_for_translate = detected_language.split('-')[0]
+    if source_language_for_translate != TARGET_LLM_LANGUAGE:
+        print(f"Translating from {source_language_for_translate} to {TARGET_LLM_LANGUAGE} for LLM.")
+        try:
+            translate_response = translate_client.translate_text(
+                Text=transcribed_text,
+                SourceLanguageCode=source_language_for_translate,
+                TargetLanguageCode=TARGET_LLM_LANGUAGE
+            )
+            text_for_llm = translate_response['TranslatedText']
+            print(f"Translated Text for LLM: {text_for_llm}")
+        except ClientError as e:
+            print(f"Translate Error for LLM input: {e}")
+
+    # --- 5. Generate Response with LLM (Caching & Tool Calling) ---
+    llm_response_text = ""
+    try:
+        if cache and (cached_response := cache.get(text_for_llm)):
+            print("⚡ Cache HIT!")
+            llm_response_text = cached_response
+            cache_status = 'hit'
+        else:
+            print("🔄 Cache MISS - Calling Gemini with tool support...")
+            llm_prompt = (
+                f"You are an agricultural assistant. Based on the following farmer's query, provide a concise and helpful response (max 3 sentences): '{text_for_llm}'. "
+                f"Ensure the response is relevant to agricultural advice."
+            )
+            messages = [{"role": "user", "content": llm_prompt}]
+            
+            # Check if marketplace_tools is available before using it
+            tools_to_use = marketplace_tools.tools if marketplace_tools else []
+
+            response = client.chat.completions.create(
+                model="gemini-2.0-flash",
+                messages=messages,
+                tools=tools_to_use,
+                tool_choice="auto" if tools_to_use else "none" # Use auto only if tools are present
+            )
+            
+            if marketplace_tools and marketplace_tools.process_tool_calls(response):
+                llm_response_text = "The requested task has been completed." # Placeholder for tool action
+            else:
+                llm_response_text = response.choices[0].message.content
+                if cache:
+                    cache.set(text_for_llm, llm_response_text) # Cache new responses
+        
+        print(f"LLM Response: {llm_response_text}")
+
+    except Exception as e:
+        print(f"Error interacting with LLM: {e}")
+        llm_response_text = "I'm sorry, I could not generate an AI response at this time."
+
+    # --- 6. Translate LLM Response Back to Farmer's Language ---
+    final_response_text = llm_response_text
+    polly_language_code = detected_language if detected_language else DEFAULT_FARMER_LANGUAGE
+
+    # If detected language is a regional Indian one without direct Polly support, translate to Hindi
+    target_polly_lang = polly_language_code
+    if polly_language_code.startswith(('gu-', 'mr-', 'bn-', 'ta-', 'te-', 'kn-', 'ml-', 'pa-')):
+         target_polly_lang = 'hi-IN'
+
+    if target_polly_lang.split('-')[0] != TARGET_LLM_LANGUAGE:
+        print(f"Translating response from {TARGET_LLM_LANGUAGE} to {target_polly_lang} for Polly.")
+        try:
+            translate_response = translate_client.translate_text(
+                Text=llm_response_text, SourceLanguageCode=TARGET_LLM_LANGUAGE, TargetLanguageCode=target_polly_lang
+            )
+            final_response_text = translate_response['TranslatedText']
+            polly_language_code = target_polly_lang # Update the language code for Polly
+            print(f"Translated Response for Farmer: {final_response_text}")
+        except ClientError as e:
+            print(f"Translate Error for TTS output: {e}")
+    
+    # --- 7. Convert Text to Speech with Advanced Voice Selection ---
+    audio_stream = None
+    try:
+        polly_voice_id = None
+        polly_engine = 'neural' # Prefer neural voices
+        
+        # Specific high-quality voices
+        if polly_language_code == 'hi-IN': polly_voice_id = 'Kajal'
+        elif polly_language_code == 'en-IN': polly_voice_id = 'Aditi'
+        
+        # Find a voice if not hardcoded
+        if not polly_voice_id:
+            if polly_language_code in POLLY_DESCRIBE_VOICES_SUPPORTED_LANGUAGES:
+                try: # Try for a neural voice first
+                    voices = polly_client.describe_voices(LanguageCode=polly_language_code, Engine='neural')['Voices']
+                    if voices: polly_voice_id = voices[0]['Id']
+                except ClientError: # Fallback to standard
+                    voices = polly_client.describe_voices(LanguageCode=polly_language_code, Engine='standard')['Voices']
+                    if voices:
+                        polly_voice_id = voices[0]['Id']
+                        polly_engine = 'standard'
+        
+        # Final fallback to a default English voice
+        if not polly_voice_id:
+            print(f"No Polly voice for '{polly_language_code}'. Falling back to en-US.")
+            polly_voice_id = 'Joanna'
+            polly_language_code = 'en-US'
+            final_response_text = llm_response_text # Use original English text
+
+        print(f"Using Polly voice '{polly_voice_id}' ({polly_engine}) for language '{polly_language_code}'.")
+        polly_response = polly_client.synthesize_speech(
+            Text=final_response_text, OutputFormat='mp3', VoiceId=polly_voice_id,
+            LanguageCode=polly_language_code, Engine=polly_engine
+        )
+        audio_stream = polly_response['AudioStream'].read()
+        print("Speech synthesized with Polly.")
+    except Exception as e:
+        print(f"Polly Synthesis Error: {e}")
+        return jsonify({'message': 'Failed during speech synthesis.'}), 500
+
+    # --- 8. Clean up S3 files ---
+    try:
+        s3_client.delete_object(Bucket=S3_BUCKET_NAME, Key=audio_filename)
+        s3_client.delete_object(Bucket=S3_BUCKET_NAME, Key=transcript_s3_key)
+        print("Cleaned up temporary S3 files.")
+    except ClientError as e:
+        print(f"Warning: Failed to cleanup S3 objects: {e}")
+
+    # --- 9. Return Synthesized Audio Response ---
+    return jsonify({
+        'message': 'Processing complete',
+        'transcribed_text': transcribed_text,
+        'llm_response': llm_response_text,
+        'final_spoken_text': final_response_text,
+        'audio_response_base64': base64.b64encode(audio_stream).decode('utf-8') if audio_stream else None,
+        'detected_language': detected_language,
+        'cache_status': cache_status
+    }), 200
+
 if __name__ == '__main__':
     # Make sure your .env file is loaded correctly by database.py
     # and the Flask environment is set up.
     # For local development, debug=True is useful. Host 0.0.0.0 makes it accessible
     # from other devices on the network.
     app.run(debug=True, host='0.0.0.0', port=5002)
-
