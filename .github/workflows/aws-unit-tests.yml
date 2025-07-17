@@ -51,7 +51,7 @@ jobs:
       run: |
         cd AWS/MarketPlace/backend
         echo "GEMINI_API_KEY=$GEMINI_API_KEY" > .env
-        docker compose up
+        docker compose up -d
 
     - name: Wait for PostgreSQL to be ready
       run: |
