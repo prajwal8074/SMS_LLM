@@ -223,6 +223,8 @@ def process_voice():
 	print("Received POST request for voice processing.")
 	audio_filename, transcription_job_name, transcript_s3_key = "", "", ""
 	detected_language = ""
+	polly_voice_id = None
+	target_polly_lang = 'hi-IN'
 	cache_status = 'miss' # Default cache status
 
 	try:
@@ -342,7 +344,6 @@ def process_voice():
 	final_response_text = llm_response_text
 
 	# If detected language is a regional Indian one without direct Polly support, translate to Hindi or English
-	target_polly_lang = 'hi-IN'
 	if detected_language.startswith(('gu-', 'mr-', 'bn-', 'pa-')):
 		 target_polly_lang = 'hi-IN'
 	elif detected_language.startswith(('ta-', 'te-', 'kn-', 'ml-')):
@@ -362,7 +363,6 @@ def process_voice():
 	# --- 7. Convert Text to Speech with Advanced Voice Selection ---
 	audio_stream = None
 	try:
-		polly_voice_id = None
 		polly_engine = 'neural' # Prefer neural voices
 		
 		# Specific high-quality voices
