@@ -303,7 +303,7 @@ def process_voice():
     # --- 5. Generate Response with LLM (Caching & Tool Calling) ---
     llm_response_text = ""
     try:
-        if cache and (cached_response := cache.get(text_for_llm)):
+        if cache and (cached_response := cache.get_semantically(text_for_llm)):
             print("⚡ Cache HIT!")
             llm_response_text = cached_response
             cache_status = 'hit'
@@ -344,9 +344,11 @@ def process_voice():
 
     # If detected language is a regional Indian one without direct Polly support, translate to Hindi
     target_polly_lang = polly_language_code
-    if polly_language_code.startswith(('gu-', 'mr-', 'bn-', 'ta-', 'te-', 'kn-', 'ml-', 'pa-')):
+    if polly_language_code.startswith(('gu-', 'mr-', 'bn-', 'pa-')):
          target_polly_lang = 'hi-IN'
-
+    elif polly_language_code.startswith(('ta-', 'te-', 'kn-', 'ml-')):
+         target_polly_lang = 'en-IN'
+    
     if target_polly_lang.split('-')[0] != TARGET_LLM_LANGUAGE:
         print(f"Translating response from {TARGET_LLM_LANGUAGE} to {target_polly_lang} for Polly.")
         try:
