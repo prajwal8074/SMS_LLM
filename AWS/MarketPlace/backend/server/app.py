@@ -336,30 +336,28 @@ def process_voice():
 
     except Exception as e:
         print(f"Error interacting with LLM: {e}")
-        llm_response_text = "I'm sorry, I could not generate an AI response at this time."
+        llm_response_text = "I'm sorry, I could not generate an a response at this time."
 
     # --- 6. Translate LLM Response Back to Farmer's Language ---
     final_response_text = llm_response_text
-    polly_language_code = detected_language if detected_language else DEFAULT_FARMER_LANGUAGE
 
-    # If detected language is a regional Indian one without direct Polly support, translate to Hindi
-    target_polly_lang = polly_language_code
-    if polly_language_code.startswith(('gu-', 'mr-', 'bn-', 'pa-')):
+    # If detected language is a regional Indian one without direct Polly support, translate to Hindi or English
+    target_polly_lang = 'hi-IN'
+    if detected_language.startswith(('gu-', 'mr-', 'bn-', 'pa-')):
          target_polly_lang = 'hi-IN'
-    elif polly_language_code.startswith(('ta-', 'te-', 'kn-', 'ml-')):
+    elif detected_language.startswith(('ta-', 'te-', 'kn-', 'ml-')):
          target_polly_lang = 'en-IN'
     
-    if target_polly_lang.split('-')[0] != TARGET_LLM_LANGUAGE:
-        print(f"Translating response from {TARGET_LLM_LANGUAGE} to {target_polly_lang} for Polly.")
-        try:
-            translate_response = translate_client.translate_text(
-                Text=llm_response_text, SourceLanguageCode=TARGET_LLM_LANGUAGE, TargetLanguageCode=target_polly_lang
-            )
-            final_response_text = translate_response['TranslatedText']
-            polly_language_code = target_polly_lang # Update the language code for Polly
-            print(f"Translated Response for Farmer: {final_response_text}")
-        except ClientError as e:
-            print(f"Translate Error for TTS output: {e}")
+    # if target_polly_lang.split('-')[0] != TARGET_LLM_LANGUAGE:
+    #     print(f"Translating response from {TARGET_LLM_LANGUAGE} to {target_polly_lang} for Polly.")
+    #     try:
+    #         translate_response = translate_client.translate_text(
+    #             Text=llm_response_text, SourceLanguageCode=TARGET_LLM_LANGUAGE, TargetLanguageCode=target_polly_lang
+    #         )
+    #         final_response_text = translate_response['TranslatedText']
+    #         print(f"Translated Response for Farmer: {final_response_text}")
+    #     except ClientError as e:
+    #         print(f"Translate Error for TTS output: {e}")
     
     # --- 7. Convert Text to Speech with Advanced Voice Selection ---
     audio_stream = None
@@ -368,32 +366,32 @@ def process_voice():
         polly_engine = 'neural' # Prefer neural voices
         
         # Specific high-quality voices
-        if polly_language_code == 'hi-IN': polly_voice_id = 'Kajal'
-        elif polly_language_code == 'en-IN': polly_voice_id = 'Kajal'
+        if target_polly_lang == 'hi-IN': polly_voice_id = 'Kajal'
+        elif target_polly_lang == 'en-IN': polly_voice_id = 'Kajal'
         
         # Find a voice if not hardcoded
-        if not polly_voice_id:
-            if polly_language_code in POLLY_DESCRIBE_VOICES_SUPPORTED_LANGUAGES:
-                try: # Try for a neural voice first
-                    voices = polly_client.describe_voices(LanguageCode=polly_language_code, Engine='neural')['Voices']
-                    if voices: polly_voice_id = voices[0]['Id']
-                except ClientError: # Fallback to standard
-                    voices = polly_client.describe_voices(LanguageCode=polly_language_code, Engine='standard')['Voices']
-                    if voices:
-                        polly_voice_id = voices[0]['Id']
-                        polly_engine = 'standard'
+        # if not polly_voice_id:
+        #     if target_polly_lang in POLLY_DESCRIBE_VOICES_SUPPORTED_LANGUAGES:
+        #         try: # Try for a neural voice first
+        #             voices = polly_client.describe_voices(LanguageCode=target_polly_lang, Engine='neural')['Voices']
+        #             if voices: polly_voice_id = voices[0]['Id']
+        #         except ClientError: # Fallback to standard
+        #             voices = polly_client.describe_voices(LanguageCode=target_polly_lang, Engine='standard')['Voices']
+        #             if voices:
+        #                 polly_voice_id = voices[0]['Id']
+        #                 polly_engine = 'standard'
         
         # Final fallback to a default English voice
-        if not polly_voice_id:
-            print(f"No Polly voice for '{polly_language_code}'. Falling back to en-US.")
-            polly_voice_id = 'Kajal'
-            polly_language_code = 'en-IN'
-            final_response_text = llm_response_text # Use original English text
+        # if not polly_voice_id:
+        #     print(f"No Polly voice for '{target_polly_lang}'. Falling back to en-US.")
+        #     polly_voice_id = 'Kajal'
+        #     target_polly_lang = 'en-IN'
+        #     final_response_text = llm_response_text # Use original English text
 
-        print(f"Using Polly voice '{polly_voice_id}' ({polly_engine}) for language '{polly_language_code}'.")
+        print(f"Using Polly voice '{polly_voice_id}' ({polly_engine}) for language '{target_polly_lang}'.")
         polly_response = polly_client.synthesize_speech(
             Text=final_response_text, OutputFormat='mp3', VoiceId=polly_voice_id,
-            LanguageCode=polly_language_code, Engine=polly_engine
+            LanguageCode=target_polly_lang, Engine=polly_engine
         )
         audio_stream = polly_response['AudioStream'].read()
         print("Speech synthesized with Polly.")
