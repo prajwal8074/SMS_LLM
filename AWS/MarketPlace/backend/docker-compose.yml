@@ -14,7 +14,7 @@ services:
       - db_data:/var/lib/postgresql/data
       - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
 
-  redis: # Add the Redis service here
+  redis:
     image: redis:latest
     restart: always
     ports:
@@ -38,7 +38,7 @@ services:
 
     depends_on:
       - db
-      - redis # Make the app depend on Redis as well
+      - redis
 
 volumes:
   db_data:
