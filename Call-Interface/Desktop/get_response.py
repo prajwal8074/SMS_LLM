@@ -41,6 +41,7 @@ def send_voice_to_gateway(audio_path):
             print(f"Final Spoken Text: {result.get('final_spoken_text')}")
             print(f"detected_language: {result.get('detected_language')}")
             print(f"cache_status: {result.get('cache_status')}")
+            print(f"target_polly_lang: {result.get('target_polly_lang')}")
 
             # Decode and save the audio response
             audio_response_base64 = result.get('audio_response_base64')

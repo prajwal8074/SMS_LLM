@@ -415,7 +415,8 @@ def process_voice():
         'final_spoken_text': final_response_text,
         'audio_response_base64': base64.b64encode(audio_stream).decode('utf-8') if audio_stream else None,
         'detected_language': detected_language,
-        'cache_status': cache_status
+        'cache_status': cache_status,
+        'target_polly_lang': target_polly_lang
     }), 200
 
 if __name__ == '__main__':
