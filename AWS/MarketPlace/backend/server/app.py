@@ -349,16 +349,16 @@ def process_voice():
 	elif detected_language.startswith(('ta-', 'te-', 'kn-', 'ml-')):
 		 target_polly_lang = 'en-IN'
 	
-	# if target_polly_lang.split('-')[0] != TARGET_LLM_LANGUAGE:
-	#     print(f"Translating response from {TARGET_LLM_LANGUAGE} to {target_polly_lang} for Polly.")
-	#     try:
-	#         translate_response = translate_client.translate_text(
-	#             Text=llm_response_text, SourceLanguageCode=TARGET_LLM_LANGUAGE, TargetLanguageCode=target_polly_lang
-	#         )
-	#         final_response_text = translate_response['TranslatedText']
-	#         print(f"Translated Response for Farmer: {final_response_text}")
-	#     except ClientError as e:
-	#         print(f"Translate Error for TTS output: {e}")
+	if target_polly_lang.split('-')[0] != TARGET_LLM_LANGUAGE:
+	    print(f"Translating response from {TARGET_LLM_LANGUAGE} to {target_polly_lang} for Polly.")
+	    try:
+	        translate_response = translate_client.translate_text(
+	            Text=llm_response_text, SourceLanguageCode=TARGET_LLM_LANGUAGE, TargetLanguageCode=target_polly_lang
+	        )
+	        final_response_text = translate_response['TranslatedText']
+	        print(f"Translated Response for Farmer: {final_response_text}")
+	    except ClientError as e:
+	        print(f"Translate Error for TTS output: {e}")
 	
 	# --- 7. Convert Text to Speech with Advanced Voice Selection ---
 	audio_stream = None
