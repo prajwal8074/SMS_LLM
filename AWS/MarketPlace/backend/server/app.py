@@ -346,7 +346,7 @@ def process_voice():
 	# If detected language is a regional Indian one without direct Polly support, translate to Hindi or English
 	if detected_language.startswith(('gu-', 'mr-', 'bn-', 'pa-')):
 		 target_polly_lang = 'hi-IN'
-	elif detected_language.startswith(('ta-', 'te-', 'kn-', 'ml-')):
+	elif detected_language.startswith(('en-', 'ta-', 'te-', 'kn-', 'ml-')):
 		 target_polly_lang = 'en-IN'
 	
 	if target_polly_lang.split('-')[0] != TARGET_LLM_LANGUAGE:

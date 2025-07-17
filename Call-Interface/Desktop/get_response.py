@@ -8,8 +8,7 @@ load_dotenv()
 
 API_GATEWAY_URL = "http://35.94.30.150:5002/process-voice"
 
-#AUDIO_FILE_PATH = "CallRecordings/caller_input.wav"
-AUDIO_FILE_PATH = "gu.m4a"
+AUDIO_FILE_PATH = "CallRecordings/caller_input.wav"
 
 def send_voice_to_gateway(audio_path):
     if not os.path.exists(audio_path):
