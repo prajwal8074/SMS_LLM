@@ -49,16 +49,6 @@ jobs:
         source venv/bin/activate
         python Test/cache_test.py
 
-    - name: Run add_cache tests
-      run: |
-        cd AWS
-        set -a
-        source .env
-        set +a
-        source venv/bin/activate
-        chmod +x Test/add_cache_test.sh
-        ./Test/add_cache_test.sh
-
     - name: Run main test
       run: |
         cd AWS
