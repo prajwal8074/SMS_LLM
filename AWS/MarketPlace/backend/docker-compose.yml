@@ -15,6 +15,7 @@ services:
       - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql # Init script for schema
 
   app:
+    image: marketplace-backend:latest
     build:
       context: ../.. # This goes up to ~/SMS_LLM/AWS/
       dockerfile: MarketPlace/backend/server/Dockerfile # Build the image from the server/Dockerfile

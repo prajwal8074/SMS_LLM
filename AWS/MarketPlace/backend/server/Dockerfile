@@ -7,10 +7,10 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code into the container
 
+COPY MarketPlace/backend/server/ .
 COPY .env .
 COPY cache.py .
 COPY marketplace_tools.py .
-COPY MarketPlace/backend/server/ .
 
 # Expose the port the app runs on
 EXPOSE 5002
