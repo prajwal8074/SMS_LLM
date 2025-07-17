@@ -369,7 +369,7 @@ def process_voice():
         
         # Specific high-quality voices
         if polly_language_code == 'hi-IN': polly_voice_id = 'Kajal'
-        elif polly_language_code == 'en-IN': polly_voice_id = 'Aditi'
+        elif polly_language_code == 'en-IN': polly_voice_id = 'Kajal'
         
         # Find a voice if not hardcoded
         if not polly_voice_id:
@@ -386,8 +386,8 @@ def process_voice():
         # Final fallback to a default English voice
         if not polly_voice_id:
             print(f"No Polly voice for '{polly_language_code}'. Falling back to en-US.")
-            polly_voice_id = 'Joanna'
-            polly_language_code = 'en-US'
+            polly_voice_id = 'Kajal'
+            polly_language_code = 'en-IN'
             final_response_text = llm_response_text # Use original English text
 
         print(f"Using Polly voice '{polly_voice_id}' ({polly_engine}) for language '{polly_language_code}'.")
