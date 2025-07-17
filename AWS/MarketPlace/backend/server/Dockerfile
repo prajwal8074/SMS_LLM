@@ -4,6 +4,11 @@ FROM python:3.9-slim-buster
 # Set the working directory in the container
 WORKDIR /app
 
+ENV REDIS_HOST=localhost
+ENV REDIS_PORT=6379
+ENV REDIS_DB=0
+ENV FLASK_SERVER_BASE_URL=http://localhost:5002
+
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code into the container

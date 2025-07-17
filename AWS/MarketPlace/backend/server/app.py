@@ -11,8 +11,7 @@ import sys
 from botocore.exceptions import ClientError
 from openai import OpenAI
 
-# Assuming marketplace_tools.py and cache.py are in the same directory
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..')))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..')))
 from cache import RedisCache
 import marketplace_tools
 
@@ -20,8 +19,6 @@ app = Flask(__name__)
 CORS(app)
 
 try:
-    # Explicitly specify the region for debugging.
-    # Replace 'us-west-2' with your actual AWS region (e.g., 'ap-south-1').
     AWS_REGION_EXPLICIT = 'us-west-2'
 
     s3_client = boto3.client('s3', region_name=AWS_REGION_EXPLICIT)
@@ -31,10 +28,8 @@ try:
     print(f"AWS Boto3 clients initialized for region: {AWS_REGION_EXPLICIT}")
 except NoRegionError:
     print("ERROR: AWS_REGION environment variable is not set. Boto3 clients cannot be initialized.")
-    # You might want to exit or raise an error here if AWS services are critical
 except Exception as e:
     print(f"ERROR: Failed to initialize AWS Boto3 clients: {repr(e)}")
-# Initialize Redis cache if available
 cache = RedisCache() if RedisCache else None
 
 # Initialize the OpenAI client for Gemini API
