@@ -22,7 +22,6 @@ jobs:
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
-          sudo docker stop redis-test
           cd SMS_LLM/AWS/MarketPlace/backend
           sudo docker compose down
 
@@ -52,7 +51,6 @@ jobs:
         username: ubuntu
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
-          sudo docker start redis-test
           cd SMS_LLM/AWS/MarketPlace/backend
           sudo docker compose up -d
 
