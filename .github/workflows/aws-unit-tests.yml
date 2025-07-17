@@ -15,31 +15,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Free up Disk Space
-      run: |
-        echo "Before cleanup:"
-        df -h
-
-        # Remove pre-installed tools that are not needed
-        # This can free up significant space (~5-20GB depending on what's removed)
-        sudo rm -rf /usr/share/dotnet # .NET SDK
-        sudo rm -rf /usr/local/lib/android # Android SDK
-        sudo rm -rf /usr/share/swift # Swift toolchain
-        sudo rm -rf /usr/share/scala # Scala
-        sudo rm -rf /opt/ghc # Haskell GHC
-        sudo rm -rf /opt/hostedtoolcache # GitHub's tool cache for setup-* actions
-
-        # Clean apt caches
-        sudo apt-get clean
-        sudo rm -rf /var/lib/apt/lists/*
-
-        # Docker system prune (removes dangling images, stopped containers, etc.)
-        # Use with caution, ensure you don't need these for other steps
-        docker system prune -af --volumes || true
-
-        echo "After cleanup:"
-        df -h
-
     - name: Setup env
       run: |
         echo "REDIS_HOST=localhost" >> $GITHUB_ENV
@@ -70,27 +45,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
-
-    - name: Build Docker image with GHA caching
-      uses: docker/build-push-action@v5
-      with:
-        context: AWS
-        file: AWS/MarketPlace/backend/server/Dockerfile
-        push: false
-        tags: marketplace-backend:latest
-        load: true
-        cache-from: type=gha,scope=${{ github.ref_name }}
-        cache-to: type=gha,mode=max,scope=${{ github.ref_name }}
-
     - name: Start Marketplace backend
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       run: |
         cd AWS/MarketPlace/backend
         echo "GEMINI_API_KEY=$GEMINI_API_KEY" > .env
-        docker compose up
+        docker compose up -d
 
     - name: Wait for PostgreSQL to be ready
       run: |
