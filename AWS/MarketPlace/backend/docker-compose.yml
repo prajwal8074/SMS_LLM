@@ -16,7 +16,7 @@ services:
 
   app:
     build:
-      context: ../.. # This goes up to ~/SMS_LLM/AWS/
+      context: ../../.. # This goes up to ~/SMS_LLM/AWS/
       dockerfile: MarketPlace/backend/server/Dockerfile # Build the image from the server/Dockerfile
     restart: always
     ports:
