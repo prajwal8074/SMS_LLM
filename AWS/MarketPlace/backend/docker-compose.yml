@@ -2,31 +2,41 @@ version: '3.8'
 
 services:
   db:
-    image: postgres:15-alpine # Using a lightweight PostgreSQL image
-    restart: always # Always restart if it stops
+    image: postgres:15-alpine
+    restart: always
     environment:
       POSTGRES_DB: marketplace_db
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
     ports:
-      - "5432:5432" # Expose PostgreSQL port
+      - "5432:5432"
     volumes:
-      - db_data:/var/lib/postgresql/data # Persistent data volume for PostgreSQL
-      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql # Init script for schema
+      - db_data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  redis:
+    image: redis:latest
+    container_name: redis-test
+    restart: always
+    ports:
+      - "6379:6379"
 
   app:
     build:
-      context: ../.. # This goes up to ~/SMS_LLM/AWS/
-      dockerfile: MarketPlace/backend/server/Dockerfile # Build the image from the server/Dockerfile
+      context: ../..
+      dockerfile: MarketPlace/backend/server/Dockerfile
     restart: always
     ports:
-      - "5002:5002" # Expose Flask app port
+      - "5002:5002"
     env_file:
       - .env
     environment:
-      DATABASE_URL: postgresql://user:password@db:5432/marketplace_db # Connect to the 'db' service
+      DATABASE_URL: postgresql://user:password@db:5432/marketplace_db
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
     depends_on:
-      - db # Ensure 'db' service starts before 'app'
+      - db
+      - redis
 
 volumes:
-  db_data: # Define the named volume for database persistence
+  db_data:

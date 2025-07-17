@@ -49,7 +49,6 @@ jobs:
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       run: |
-        docker run -d --name redis-test -p 6379:6379 redis:latest
         cd AWS/MarketPlace/backend
         echo "GEMINI_API_KEY=$GEMINI_API_KEY" > .env
         docker compose up
@@ -104,7 +103,6 @@ jobs:
 
     - name: Stop Marketplace backend
       run: |
-        docker stop redis-test
         cd AWS/MarketPlace/backend
         docker compose down
         sudo systemctl stop postgresql
