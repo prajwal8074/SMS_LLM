@@ -45,7 +45,7 @@
 - **Week 6 Buffer Week**
   - [x] Modify github workflow to use public ip address of the deployed AWS EC2 instance <p align="right">(**Prajwal**)</p>
   - [x] Create CD pipeline for instant deployment on AWS <p align="right">(**Prajwal**)</p>
-  - [ ] Implement lambda function in EC2 instance and resolve any errors <p align="right">(**Shubham**)</p>
+  - [x] Implement lambda function in EC2 instance and resolve any errors <p align="right">(**Shubham**)</p>
   - [ ] Cache queries in lambda function corresponding to phone number for context, delete when call ends <p align="right">(**Shubham**)</p>
-  - [ ] Send sms to phone number on order received and create unit test for it <p align="right">(**Aditya**)</p>
+  - [x] Send sms to phone number on order received and create unit test for it <p align="right">(**Aditya**)</p>
   - [x] Modify cache get method for semantically similar queries <p align="right">(**Prajwal**)</p>
