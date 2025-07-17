@@ -55,8 +55,11 @@ jobs:
         key: ${{ runner.os }}-pip-${{ hashFiles('AWS/requirements.txt') }}
 
     - name: Start Marketplace backend
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       run: |
         cd AWS/MarketPlace/backend
+        echo "GEMINI_API_KEY=$GEMINI_API_KEY" > .env
         docker compose up -d
 
     - name: Wait for PostgreSQL to be ready

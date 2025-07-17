@@ -19,15 +19,10 @@ import marketplace_tools
 app = Flask(__name__)
 CORS(app)
 
-# Initialize AWS clients globally for the Flask app, or within the function if preferred
-# Ensure AWS credentials are configured in the environment where Flask app runs
-# Initialize AWS clients (if running on EC2 with appropriate IAM role)
-# These clients will use the EC2 instance's IAM role credentials if available,
-# or look for AWS_ACCESS_KEY_ID/AWS_SECRET_ACCESS_KEY/AWS_REGION environment variables.
 try:
     # Explicitly specify the region for debugging.
     # Replace 'us-west-2' with your actual AWS region (e.g., 'ap-south-1').
-    AWS_REGION_EXPLICIT = os.environ.get('AWS_REGION', 'us-west-2') # Fallback to .env or default
+    AWS_REGION_EXPLICIT = 'us-west-2'
 
     s3_client = boto3.client('s3', region_name=AWS_REGION_EXPLICIT)
     transcribe_client = boto3.client('transcribe', region_name=AWS_REGION_EXPLICIT)
@@ -50,7 +45,7 @@ client = OpenAI(
 )
 
 # Configuration for voice processing
-S3_BUCKET_NAME = os.environ.get('S3_BUCKET_NAME', 'farmassist-voice-gateway-audio')
+S3_BUCKET_NAME = 'farmassist-voice-gateway-audio'
 TARGET_LLM_LANGUAGE = 'en'
 DEFAULT_FARMER_LANGUAGE = 'hi-IN'
 SUPPORTED_TRANSCRIBE_LANGUAGES = [
