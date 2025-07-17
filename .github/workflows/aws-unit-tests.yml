@@ -49,6 +49,7 @@ jobs:
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       run: |
+        docker run -d --name redis-test -p 6379:6379 redis:latest
         cd AWS/MarketPlace/backend
         echo "GEMINI_API_KEY=$GEMINI_API_KEY" > .env
         docker compose up
@@ -80,16 +81,6 @@ jobs:
         cd AWS/MarketPlace/backend
         sudo docker compose exec db psql -U user marketplace_db -c "SELECT * FROM listings;"
 
-    - name: Stop Marketplace backend
-      run: |
-        cd AWS/MarketPlace/backend
-        docker compose down
-        sudo systemctl stop postgresql
-
-    - name: Run Redis image in a container
-      run: |
-        docker run -d --name redis-test -p 6379:6379 redis:latest
-
     - name: Run caching tests
       run: |
         cd AWS
@@ -111,6 +102,9 @@ jobs:
       run: |
         sudo docker exec redis-test redis-cli KEYS '*'
 
-    - name: Stop Redis container
+    - name: Stop Marketplace backend
       run: |
         docker stop redis-test
+        cd AWS/MarketPlace/backend
+        docker compose down
+        sudo systemctl stop postgresql
