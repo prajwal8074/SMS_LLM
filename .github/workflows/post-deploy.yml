@@ -7,79 +7,63 @@ on:
       - completed # Listen for completion (success or failure)
   workflow_dispatch: # Allows manual triggering from the GitHub UI
 
-env:
-  HOST_IP: 35.94.30.150
-
 jobs:
   test-aws:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     steps:
-    - name: Install dependencies
-      uses: appleboy/ssh-action@master
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
       with:
-        host: ${{ env.HOST_IP }}
-        username: ubuntu
-        key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-        script: |
-          cd SMS_LLM/AWS
-          source venv/bin/activate
-          pip install -r requirements.txt
+        python-version: '3.12'
+
+    - name: Restore cached pip installations
+      id: cache-restore
+      uses: actions/cache@v4
+      with:
+        path: AWS/venv
+        key: ${{ runner.os }}-pip-${{ hashFiles('AWS/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
 
     - name: Run function calling tests
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ env.HOST_IP }}
-        username: ubuntu
-        key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-        script: |
-          cd SMS_LLM/AWS
-          set -a
-          source .env
-          source Test/.env
-          set +a
-          source venv/bin/activate
-          python Test/function_calling_test.py
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      run: |
+        cd AWS
+        set -a
+        source .env
+        set +a
+        source venv/bin/activate
+        python Test/function_calling_test.py
 
     - name: Run caching tests
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ env.HOST_IP }}
-        username: ubuntu
-        key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-        script: |
-          cd SMS_LLM/AWS
-          set -a
-          source .env
-          set +a
-          source venv/bin/activate
-          python Test/cache_test.py
+      run: |
+        cd AWS
+        set -a
+        source .env
+        set +a
+        source venv/bin/activate
+        python Test/cache_test.py
 
     - name: Run add_cache tests
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ env.HOST_IP }}
-        username: ubuntu
-        key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-        script: |
-          cd SMS_LLM/AWS
-          set -a
-          source .env
-          set +a
-          source venv/bin/activate
-          chmod +x Test/add_cache_test.sh
-          ./Test/add_cache_test.sh
+      run: |
+        cd AWS
+        set -a
+        source .env
+        set +a
+        source venv/bin/activate
+        chmod +x Test/add_cache_test.sh
+        ./Test/add_cache_test.sh
 
     - name: Run main test
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ env.HOST_IP }}
-        username: ubuntu
-        key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-        script: |
-          cd SMS_LLM/AWS
-          set -a
-          source .env
-          set +a
-          source venv/bin/activate
-          python Test/test.py
+      run: |
+        cd AWS
+        set -a
+        source .env
+        set +a
+        source venv/bin/activate
+        python Test/test.py
