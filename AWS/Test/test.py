@@ -35,7 +35,7 @@ class Test(unittest.TestCase):
 				"Content-Type": "application/json"
 			}
 
-			print(f"Sending audio from {AUDIO_FILE_PATH} ({FARMER_LANGUAGE}) to {API_GATEWAY_URL}...")
+			print(f"Sending audio from {AUDIO_FILE_PATH} to {API_GATEWAY_URL}...")
 			response = requests.post(API_GATEWAY_URL, headers=headers, data=json.dumps(payload))
 			self.assertEqual(response.status_code, 200, f"\n--- Error (Status Code: {response.status_code}) ---")
 			if response.status_code == 200:
@@ -80,7 +80,7 @@ class Test(unittest.TestCase):
 				"Content-Type": "application/json"
 			}
 
-			print(f"Sending audio from {AUDIO_FILE_PATH} ({FARMER_LANGUAGE}) to {API_GATEWAY_URL}...")
+			print(f"Sending audio from {AUDIO_FILE_PATH} to {API_GATEWAY_URL}...")
 			response = requests.post(API_GATEWAY_URL, headers=headers, data=json.dumps(payload))
 			self.assertEqual(response.status_code, 200, f"\n--- Error (Status Code: {response.status_code}) ---")
 			if response.status_code == 200:
@@ -125,7 +125,7 @@ class Test(unittest.TestCase):
 				"Content-Type": "application/json"
 			}
 
-			print(f"Sending audio from {AUDIO_FILE_PATH} ({FARMER_LANGUAGE}) to {API_GATEWAY_URL}...")
+			print(f"Sending audio from {AUDIO_FILE_PATH} to {API_GATEWAY_URL}...")
 			response = requests.post(API_GATEWAY_URL, headers=headers, data=json.dumps(payload))
 			self.assertEqual(response.status_code, 200, f"\n--- Error (Status Code: {response.status_code}) ---")
 			if response.status_code == 200:
