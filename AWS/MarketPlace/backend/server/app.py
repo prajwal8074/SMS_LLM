@@ -342,8 +342,7 @@ def process_voice():
 		else:
 			print("🔄 Cache MISS - Calling Gemini with tool support...")
 			llm_prompt = (
-				f"You are an agricultural assistant. Based on the following farmer's query, provide a concise and helpful response (max 3 sentences): '{text_for_llm}'. "
-				f"Ensure the response is relevant to agricultural advice."
+				f"You are an agricultural assistant. Based on the following farmer's query, provide a concise and helpful response. If farmer wants to sell something, create a listing using add_listing. farmer query: '{text_for_llm}'. "
 			)
 			messages = [{"role": "user", "content": llm_prompt}]
 			
@@ -354,7 +353,7 @@ def process_voice():
 				model="gemini-2.0-flash",
 				messages=messages,
 				tools=tools_to_use,
-				tool_choice="auto" if tools_to_use else "none" # Use auto only if tools are present
+				tool_choice="auto"
 			)
 			
 			if marketplace_tools.process_tool_calls(response):

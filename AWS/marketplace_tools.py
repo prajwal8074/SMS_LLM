@@ -115,18 +115,6 @@ tools = [
         ]
       }
     }
-  },
-  {
-    "type": "function",
-    "function": {
-      "name": "get_all_listings",
-      "description": "Retrieves all currently active item listings available on the marketplace.",
-      "parameters": {
-        "type": "object",
-        "properties": {},
-        "required": []
-      }
-    }
   }
 ]
 
@@ -135,7 +123,6 @@ tools = [
 available_tools = {
     "add_listing": add_listing_api,
     "delete_listing": delete_listing_api,
-    "get_all_listings": get_all_listings_api,
 }
 
 # --- Function to process the AI's tool call response (remains largely the same) ---
