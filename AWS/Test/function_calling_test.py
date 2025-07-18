@@ -51,7 +51,7 @@ class TestFunctionCall(unittest.TestCase):
 		self.assertIsNone(tool_calls, response.choices[0].message.content)
 
 	def test_add_listing(self):
-		messages = [{"role": "user", "content": "I want to sell a vintage watch for $150. It's a gold-plated timepiece from the 1950s, in excellent working condition with a new leather strap. Assume all other data required as you see fit."}]
+		messages = [{"role": "user", "content": "I want to sell tomatos for 30 Rs/kg. My name is Gaurav, phone number: 9876543210, assume all other data required as you see fit."}]
 		response = client.chat.completions.create(
 			model="gemini-2.0-flash",
 			messages=messages,

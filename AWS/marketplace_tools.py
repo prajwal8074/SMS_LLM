@@ -12,7 +12,7 @@ FLASK_SERVER_BASE_URL = os.getenv('FLASK_SERVER_BASE_URL')
 
 print(f"FLASK_SERVER_BASE_URL: {FLASK_SERVER_BASE_URL}")
 
-def add_listing_api(item_name: str, price: float, description: str = None, seller_name: str, seller_contact: str):
+def add_listing_api(item_name: str, price: float, seller_name: str, seller_contact: str, description: str = ""):
     """Makes an API call to add a new item listing to the marketplace."""
     print(f"\n--- Making API Call: add_listing ---")
     url = f"{FLASK_SERVER_BASE_URL}/add_listing"
@@ -74,11 +74,6 @@ tools = [
             "type": "number",
             "description": "The price of the item."
           },
-          "description": {
-            "type": "string",
-            "description": "A detailed description of the item.",
-            "nullable": True
-          },
           "seller_name": {
             "type": "string",
             "description": "Seller's name",
@@ -87,6 +82,11 @@ tools = [
           "seller_contact": {
             "type": "string",
             "description": "Seller's 10 digit phone number without any prefix.",
+            "nullable": True
+          },
+          "description": {
+            "type": "string",
+            "description": "A detailed description of the item.",
             "nullable": True
           },
         },
