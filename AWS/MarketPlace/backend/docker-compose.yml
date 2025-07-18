@@ -40,5 +40,15 @@ services:
       - db
       - redis
 
+  html:
+    build:
+      context: ../frontend/
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    restart: always
+    depends_on:
+      - app
+
 volumes:
   db_data:
