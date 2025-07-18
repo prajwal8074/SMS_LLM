@@ -19,6 +19,7 @@ ORIGINAL_DEFAULT_SOURCE=""
 SILENCE_THRESHOLD="1%"            # Initial silence threshold (percentage)
 CALIBRATION_DURATION=3             # Seconds for initial silence calibration
 MAX_RECORDING_DURATION=10
+STOP_SILENCE_DURATION="2.0"
 VOICE_RECORDING_PID=""             # PID of the voice detection process
 VOICE_RECORDING_ACTIVE=false       # Track if voice recording is active
 # SOURCE_STATUS="SUSPENDED"
@@ -122,8 +123,7 @@ start_voice_recording() {
     # Redirect sox's output to /dev/null to keep the console clean
     # The `timeout` command wraps `sox`
     timeout "${MAX_RECORDING_DURATION}" sox -t pulseaudio "$BLUETOOTH_SOURCE" "$output_file" \
-        silence 1 0.1 "$SILENCE_THRESHOLD" \
-        1 0.5 "$SILENCE_THRESHOLD" &
+        silence 1 0.1 "$SILENCE_THRESHOLD" 1 "${STOP_SILENCE_DURATION}" "$SILENCE_THRESHOLD" &
     VOICE_RECORDING_PID=$! # This PID will now be of the 'timeout' command
     echo "Voice recording started (PID: $VOICE_RECORDING_PID). Output file: $output_file"
 }
