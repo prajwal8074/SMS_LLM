@@ -6,8 +6,6 @@ from openai import OpenAI
 import os
 from dotenv import load_dotenv
 
-from twilio.rest import Client
-
 load_dotenv()
 
 FLASK_SERVER_BASE_URL = os.getenv('FLASK_SERVER_BASE_URL')
@@ -81,21 +79,6 @@ def get_all_listings_api():
         print(f"Error calling get_all_listings API: {e}")
         return {"status": "error", "message": str(e)}
 
-def send_sms(to_phone: str, message: str):
-    """Send SMS via Twilio."""
-    try:
-        client = Client(os.getenv('TWILIO_ACCOUNT_SID'), os.getenv('TWILIO_AUTH_TOKEN'))
-        sms = client.messages.create(
-            body=message,
-            from_=os.getenv('TWILIO_PHONE_NUMBER'),
-            to=to_phone
-        )
-        print(f"✅ SMS sent to {to_phone} (SID: {sms.sid})")
-        return {"status": "success", "message_sid": sms.sid}
-    except Exception as e:
-        print(f"❌ SMS failed: {e}")
-        return {"status": "error", "message": str(e)}
-        
 
 tools = [
   {

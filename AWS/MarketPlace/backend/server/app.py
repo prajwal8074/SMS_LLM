@@ -10,6 +10,7 @@ import boto3
 import sys
 from botocore.exceptions import ClientError
 from openai import OpenAI
+from twilio.rest import Client
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..')))
 from cache import RedisCache
@@ -18,9 +19,14 @@ import marketplace_tools
 app = Flask(__name__)
 CORS(app)
 
-try:
-	AWS_REGION_EXPLICIT = 'us-west-2'
+AWS_REGION_EXPLICIT = 'us-west-2'
 
+TWILIO_ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID')
+TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN')
+TWILIO_PHONE_NUMBER = os.getenv('TWILIO_PHONE_NUMBER')
+
+try:
+    sms_client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 	s3_client = boto3.client('s3', region_name=AWS_REGION_EXPLICIT)
 	transcribe_client = boto3.client('transcribe', region_name=AWS_REGION_EXPLICIT)
 	translate_client = boto3.client('translate', region_name=AWS_REGION_EXPLICIT)
@@ -30,7 +36,8 @@ except NoRegionError:
 	print("ERROR: AWS_REGION environment variable is not set. Boto3 clients cannot be initialized.")
 except Exception as e:
 	print(f"ERROR: Failed to initialize AWS Boto3 clients: {repr(e)}")
-cache = RedisCache() if RedisCache else None
+
+cache = RedisCache()
 
 # Initialize the OpenAI client for Gemini API
 GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY')
@@ -143,10 +150,25 @@ def sell_item():
 	"""API endpoint to mark an existing item listing as sold."""
 	data = request.json
 	listing_id = data.get('listing_id')
-	buyer_id = data.get('buyer_id') # Optional, not used in DB schema currently
+	listing_name = data.get('listing_name')
+	buyer_contact = data.get('buyer_contact') # Optional, not used in DB schema currently
 
 	if not listing_id:
 		return jsonify({"error": "listing_id is required"}), 400
+
+	sms_message = f"🛍️ Order Received! You have received an order for '{listing_name}'. Call buyer at {buyer_contact}"
+
+	try:
+	    sms = sms_client.messages.create(
+	        body=sms_message,
+	        from_=TWILIO_PHONE_NUMBER,
+	        to=buyer_contact
+	    )
+	    print(f"✅ SMS sent to {to_phone} (SID: {sms.sid})")
+	    return {"status": "success", "message_sid": sms.sid}
+	except Exception as e:
+	    print(f"❌ SMS failed: {e}")
+	    return {"status": "error", "message": str(e)}
 
 	try:
 		conn = get_db_connection()
@@ -305,7 +327,7 @@ def process_voice():
 	# --- 5. Generate Response with LLM (Caching & Tool Calling) ---
 	llm_response_text = ""
 	try:
-		if cache and (cached_response := cache.get_semantically(text_for_llm)):
+		if (cached_response := cache.get_semantically(text_for_llm)):
 			print("⚡ Cache HIT!")
 			llm_response_text = cached_response
 			cache_status = 'hit'
@@ -318,7 +340,7 @@ def process_voice():
 			messages = [{"role": "user", "content": llm_prompt}]
 			
 			# Check if marketplace_tools is available before using it
-			tools_to_use = marketplace_tools.tools if marketplace_tools else []
+			tools_to_use = marketplace_tools.tools
 
 			response = client.chat.completions.create(
 				model="gemini-2.0-flash",
@@ -327,12 +349,11 @@ def process_voice():
 				tool_choice="auto" if tools_to_use else "none" # Use auto only if tools are present
 			)
 			
-			if marketplace_tools and marketplace_tools.process_tool_calls(response):
+			if marketplace_tools.process_tool_calls(response):
 				llm_response_text = "The requested task has been completed." # Placeholder for tool action
 			else:
 				llm_response_text = response.choices[0].message.content
-				if cache:
-					cache.set(text_for_llm, llm_response_text) # Cache new responses
+				cache.set(text_for_llm, llm_response_text) # Cache new responses
 		
 		print(f"LLM Response: {llm_response_text}")
 
