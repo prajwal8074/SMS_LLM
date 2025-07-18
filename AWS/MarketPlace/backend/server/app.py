@@ -26,7 +26,7 @@ TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN')
 TWILIO_PHONE_NUMBER = os.getenv('TWILIO_PHONE_NUMBER')
 
 try:
-    sms_client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+	sms_client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 	s3_client = boto3.client('s3', region_name=AWS_REGION_EXPLICIT)
 	transcribe_client = boto3.client('transcribe', region_name=AWS_REGION_EXPLICIT)
 	translate_client = boto3.client('translate', region_name=AWS_REGION_EXPLICIT)
@@ -161,15 +161,15 @@ def sell_item():
 		conn = get_db_connection()
 		cur = conn.cursor()
 		query = "SELECT seller_contact FROM listings WHERE id = %s;"
-        cur.execute(query, (listing_id,))
+		cur.execute(query, (listing_id,))
 
-        # Fetch the result
-        result = cur.fetchone()
+		# Fetch the result
+		result = cur.fetchone()
 
-        if result:
-            seller_contact = str(result[0])
-        else:
-            print(f"No listing found with ID: {listing_id}")
+		if result:
+			seller_contact = str(result[0])
+		else:
+			print(f"No listing found with ID: {listing_id}")
 
 		cur.execute(
 			"""
@@ -203,16 +203,16 @@ def sell_item():
 		sms_message = f"🛍️ Order Received! You have received an order for '{listing_name}'. Call buyer at {buyer_contact}"
 
 		try:
-		    sms = sms_client.messages.create(
-		        body=sms_message,
-		        from_=TWILIO_PHONE_NUMBER,
-		        to="+91"+seller_contact
-		    )
-		    print(f"✅ SMS sent to {to_phone} (SID: {sms.sid})")
-		    return {"status": "success", "message_sid": sms.sid}
+			sms = sms_client.messages.create(
+				body=sms_message,
+				from_=TWILIO_PHONE_NUMBER,
+				to="+91"+seller_contact
+			)
+			print(f"✅ SMS sent to {to_phone} (SID: {sms.sid})")
+			return {"status": "success", "message_sid": sms.sid}
 		except Exception as e:
-		    print(f"❌ SMS failed: {e}")
-		    return {"status": "error", "message": str(e)}
+			print(f"❌ SMS failed: {e}")
+			return {"status": "error", "message": str(e)}
 
 @app.route('/get_all_listings', methods=['GET'])
 def get_all_listings():
@@ -383,15 +383,15 @@ def process_voice():
 		 target_polly_lang = 'en-IN'
 	
 	if target_polly_lang.split('-')[0] != TARGET_LLM_LANGUAGE:
-	    print(f"Translating response from {TARGET_LLM_LANGUAGE} to {target_polly_lang} for Polly.")
-	    try:
-	        translate_response = translate_client.translate_text(
-	            Text=llm_response_text, SourceLanguageCode=TARGET_LLM_LANGUAGE, TargetLanguageCode=target_polly_lang
-	        )
-	        final_response_text = translate_response['TranslatedText']
-	        print(f"Translated Response for Farmer: {final_response_text}")
-	    except ClientError as e:
-	        print(f"Translate Error for TTS output: {e}")
+		print(f"Translating response from {TARGET_LLM_LANGUAGE} to {target_polly_lang} for Polly.")
+		try:
+			translate_response = translate_client.translate_text(
+				Text=llm_response_text, SourceLanguageCode=TARGET_LLM_LANGUAGE, TargetLanguageCode=target_polly_lang
+			)
+			final_response_text = translate_response['TranslatedText']
+			print(f"Translated Response for Farmer: {final_response_text}")
+		except ClientError as e:
+			print(f"Translate Error for TTS output: {e}")
 	
 	# --- 7. Convert Text to Speech with Advanced Voice Selection ---
 	audio_stream = None
