@@ -9,12 +9,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 FLASK_SERVER_BASE_URL = os.getenv('FLASK_SERVER_BASE_URL')
-DEMO_SELLER_NAME = 'DEMO SELLER'
-DEMO_SELLER_CONTACT = "9876543210"
 
 print(f"FLASK_SERVER_BASE_URL: {FLASK_SERVER_BASE_URL}")
 
-def add_listing_api(item_name: str, price: float, description: str = None):
+def add_listing_api(item_name: str, price: float, description: str = None, seller_name: str, seller_contact: str):
     """Makes an API call to add a new item listing to the marketplace."""
     print(f"\n--- Making API Call: add_listing ---")
     url = f"{FLASK_SERVER_BASE_URL}/add_listing"
@@ -22,8 +20,8 @@ def add_listing_api(item_name: str, price: float, description: str = None):
         "item_name": item_name,
         "price": price,
         "description": description,
-        "seller_name" : DEMO_SELLER_NAME,
-        "seller_contact" : DEMO_SELLER_CONTACT,
+        "seller_name" : seller_name,
+        "seller_contact" : seller_contact,
     }
     try:
         response = requests.post(url, json=payload)
@@ -80,7 +78,17 @@ tools = [
             "type": "string",
             "description": "A detailed description of the item.",
             "nullable": True
-          }
+          },
+          "seller_name": {
+            "type": "string",
+            "description": "Seller's name",
+            "nullable": True
+          },
+          "seller_contact": {
+            "type": "string",
+            "description": "Seller's 10 digit phone number without any prefix.",
+            "nullable": True
+          },
         },
         "required": [
           "item_name",
