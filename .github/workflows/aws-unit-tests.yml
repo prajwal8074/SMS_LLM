@@ -54,11 +54,10 @@ jobs:
       run: |
         cd AWS/MarketPlace/backend
         echo "GEMINI_API_KEY=$GEMINI_API_KEY" > .env
-        echo "TWILIO_ACCOUNT_SID=$TWILIO_ACCOUNT_SID" > .env
-        echo "TWILIO_AUTH_TOKEN=$TWILIO_AUTH_TOKEN" > .env
-        echo "TWILIO_PHONE_NUMBER=$TWILIO_PHONE_NUMBER" > .env
-        cat .env
-        docker compose up
+        echo "TWILIO_ACCOUNT_SID=$TWILIO_ACCOUNT_SID" >> .env
+        echo "TWILIO_AUTH_TOKEN=$TWILIO_AUTH_TOKEN" >> .env
+        echo "TWILIO_PHONE_NUMBER=$TWILIO_PHONE_NUMBER" >> .env
+        docker compose up -d
 
     - name: Wait for PostgreSQL to be ready
       run: |

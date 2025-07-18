@@ -33,27 +33,6 @@ def add_listing_api(item_name: str, price: float, description: str = None):
         print(f"Error calling add_listing API: {e}")
         return {"status": "error", "message": str(e)}
 
-def sell_item_api(listing_id: str, buyer_id: str = None):
-    """Mark item as sold and notify seller via SMS."""
-    url = f"{os.getenv('FLASK_SERVER_BASE_URL')}/sell_item"
-    payload = {"listing_id": listing_id, "buyer_id": buyer_id}
-    
-    try:
-        response = requests.post(url, json=payload)
-        response.raise_for_status()
-        result = response.json()
-
-        # Send SMS if sale succeeds
-        if result.get("status") == "success":
-            item_name = result.get("item_name", "an item")
-            sms_message = f"🛍️ Order Received! '{item_name}' (ID: {listing_id}) was sold."
-            send_sms(os.getenv('DEMO_SELLER_CONTACT'), sms_message)
-        
-        return result
-    except Exception as e:
-        print(f"Error in sell_item_api: {e}")
-        return {"status": "error", "message": str(e)}
-
 def delete_listing_api(listing_id: str):
     """Makes an API call to delete an item listing from the marketplace."""
     print(f"\n--- Making API Call: delete_listing ---")
@@ -113,19 +92,14 @@ tools = [
   {
     "type": "function",
     "function": {
-      "name": "sell_item",
-      "description": "Marks an existing item listing as sold using its unique listing ID. Can optionally record the buyer's ID.",
+      "name": "delete_listing",
+      "description": "Deletes an existing item listing using its unique listing ID.",
       "parameters": {
         "type": "object",
         "properties": {
           "listing_id": {
             "type": "string",
             "description": "The unique ID of the listing to be marked as sold."
-          },
-          "buyer_id": {
-            "type": "string",
-            "description": "The ID of the buyer who purchased the item (optional).",
-            "nullable": True
           }
         },
         "required": [
@@ -152,7 +126,7 @@ tools = [
 # --- Map tool names (strings) to their corresponding API client functions ---
 available_tools = {
     "add_listing": add_listing_api,
-    "sell_item": sell_item_api,
+    "delete_listing": delete_listing_api,
     "get_all_listings": get_all_listings_api,
 }
 
