@@ -46,6 +46,7 @@ jobs:
         pip install -r requirements.txt
 
     - name: Start Marketplace backend
+      env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
         TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
