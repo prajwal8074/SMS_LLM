@@ -151,7 +151,7 @@ def sell_item():
 	data = request.json
 	listing_id = data.get('listing_id')
 	listing_name = data.get('listing_name')
-	buyer_contact = data.get('buyer_contact') # Optional, not used in DB schema currently
+	buyer_contact = data.get('buyer_contact')
 	seller_contact = "9876543210"
 
 	if not listing_id:
