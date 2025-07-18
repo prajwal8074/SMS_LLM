@@ -52,7 +52,7 @@ jobs:
         echo "TWILIO_ACCOUNT_SID=${{ secrets.TWILIO_ACCOUNT_SID }}" > .env
         echo "TWILIO_AUTH_TOKEN=${{ secrets.TWILIO_AUTH_TOKEN }}" > .env
         echo "TWILIO_PHONE_NUMBER=${{ secrets.TWILIO_PHONE_NUMBER }}" > .env
-        docker compose up -d
+        docker compose up
 
     - name: Wait for PostgreSQL to be ready
       run: |
