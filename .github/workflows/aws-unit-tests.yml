@@ -46,12 +46,16 @@ jobs:
         pip install -r requirements.txt
 
     - name: Start Marketplace backend
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+        TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+        TWILIO_PHONE_NUMBER: ${{ secrets.TWILIO_PHONE_NUMBER }}
       run: |
         cd AWS/MarketPlace/backend
-        echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" > .env
-        echo "TWILIO_ACCOUNT_SID=${{ secrets.TWILIO_ACCOUNT_SID }}" > .env
-        echo "TWILIO_AUTH_TOKEN=${{ secrets.TWILIO_AUTH_TOKEN }}" > .env
-        echo "TWILIO_PHONE_NUMBER=${{ secrets.TWILIO_PHONE_NUMBER }}" > .env
+        echo "GEMINI_API_KEY=$GEMINI_API_KEY" > .env
+        echo "TWILIO_ACCOUNT_SID=$TWILIO_ACCOUNT_SID" > .env
+        echo "TWILIO_AUTH_TOKEN=$TWILIO_AUTH_TOKEN" > .env
+        echo "TWILIO_PHONE_NUMBER=$TWILIO_PHONE_NUMBER" > .env
         docker compose up
 
     - name: Wait for PostgreSQL to be ready
