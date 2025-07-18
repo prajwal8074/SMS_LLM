@@ -152,27 +152,25 @@ def sell_item():
 	listing_id = data.get('listing_id')
 	listing_name = data.get('listing_name')
 	buyer_contact = data.get('buyer_contact') # Optional, not used in DB schema currently
+	seller_contact = "9876543210"
 
 	if not listing_id:
 		return jsonify({"error": "listing_id is required"}), 400
 
-	sms_message = f"🛍️ Order Received! You have received an order for '{listing_name}'. Call buyer at {buyer_contact}"
-
-	try:
-	    sms = sms_client.messages.create(
-	        body=sms_message,
-	        from_=TWILIO_PHONE_NUMBER,
-	        to=buyer_contact
-	    )
-	    print(f"✅ SMS sent to {to_phone} (SID: {sms.sid})")
-	    return {"status": "success", "message_sid": sms.sid}
-	except Exception as e:
-	    print(f"❌ SMS failed: {e}")
-	    return {"status": "error", "message": str(e)}
-
 	try:
 		conn = get_db_connection()
 		cur = conn.cursor()
+		query = "SELECT seller_contact FROM listings WHERE id = %s;"
+        cur.execute(query, (listing_id,))
+
+        # Fetch the result
+        result = cur.fetchone()
+
+        if result:
+            seller_contact = str(result[0])
+        else:
+            print(f"No listing found with ID: {listing_id}")
+
 		cur.execute(
 			"""
 			UPDATE listings
@@ -201,6 +199,20 @@ def sell_item():
 	except Exception as e:
 		print(f"Error selling item: {e}")
 		return jsonify({"error": str(e)}), 500
+	finally:
+		sms_message = f"🛍️ Order Received! You have received an order for '{listing_name}'. Call buyer at {buyer_contact}"
+
+		try:
+		    sms = sms_client.messages.create(
+		        body=sms_message,
+		        from_=TWILIO_PHONE_NUMBER,
+		        to="+91"+seller_contact
+		    )
+		    print(f"✅ SMS sent to {to_phone} (SID: {sms.sid})")
+		    return {"status": "success", "message_sid": sms.sid}
+		except Exception as e:
+		    print(f"❌ SMS failed: {e}")
+		    return {"status": "error", "message": str(e)}
 
 @app.route('/get_all_listings', methods=['GET'])
 def get_all_listings():
