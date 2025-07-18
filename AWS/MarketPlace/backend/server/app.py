@@ -25,8 +25,11 @@ TWILIO_ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID')
 TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN')
 TWILIO_PHONE_NUMBER = os.getenv('TWILIO_PHONE_NUMBER')
 
+GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY')
+
 try:
 	sms_client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+	client = OpenAI(api_key=GEMINI_API_KEY, base_url="https://generativelanguage.googleapis.com/v1beta/openai/")
 	s3_client = boto3.client('s3', region_name=AWS_REGION_EXPLICIT)
 	transcribe_client = boto3.client('transcribe', region_name=AWS_REGION_EXPLICIT)
 	translate_client = boto3.client('translate', region_name=AWS_REGION_EXPLICIT)
@@ -38,13 +41,6 @@ except Exception as e:
 	print(f"ERROR: Failed to initialize AWS Boto3 clients: {repr(e)}")
 
 cache = RedisCache()
-
-# Initialize the OpenAI client for Gemini API
-GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY')
-client = OpenAI(
-	api_key=GEMINI_API_KEY,
-	base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
-)
 
 # Configuration for voice processing
 S3_BUCKET_NAME = 'farmassist-voice-gateway-audio'
