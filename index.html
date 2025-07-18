@@ -25,7 +25,6 @@
     </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Header -->
     <header class="bg-green-700 text-white shadow-md">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-2">
@@ -44,7 +43,6 @@
                 </button>
             </div>
         </div>
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden bg-green-800 md:hidden">
             <div class="container mx-auto px-4 py-2 flex flex-col space-y-2">
                 <a href="#" class="py-2 hover:text-green-200">Home</a>
@@ -55,7 +53,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero-section text-white py-16">
         <div class="container mx-auto px-4 text-center">
             <h1 class="text-4xl md:text-5xl font-bold mb-4">Direct from Farm to Your Home</h1>
@@ -69,12 +66,10 @@
         </div>
     </section>
 
-    <!-- Products Section -->
     <section class="container mx-auto px-4 py-12">
         <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Fresh Farm Products</h2>
         
         <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <!-- Initial loading message -->
             <p class="text-center text-gray-600 col-span-full">Loading products...</p>
         </div>
 
@@ -85,7 +80,6 @@
         </div>
     </section>
 
-    <!-- Why Choose Us -->
     <section class="bg-green-50 py-12">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Why Choose KrishiBazaar?</h2>
@@ -115,7 +109,6 @@
         </div>
     </section>
 
-    <!-- Farmer Testimonials -->
     <section class="container mx-auto px-4 py-12">
         <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">What Our Farmers Say</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -156,7 +149,6 @@
         </div>
     </section>
 
-    <!-- Call to Action -->
     <section class="bg-green-700 text-white py-12">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-3xl font-bold mb-4">Ready to Experience Farm Fresh Products?</h2>
@@ -172,7 +164,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -207,13 +198,6 @@
                         <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-linkedin"></i></a>
                     </div>
-                    <div class="mt-4">
-                        <p class="text-gray-400">Download our app:</p>
-                        <div class="flex space-x-2 mt-2">
-                            <img src="https://via.placeholder.com/120x40?text=App+Store" alt="App Store" class="h-10">
-                            <img src="https://via.placeholder.com/120x40?text=Play+Store" alt="Play Store" class="h-10">
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
@@ -227,6 +211,20 @@
         document.getElementById('menu-btn').addEventListener('click', function() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
         });
+        
+        const imageUrls = [
+            "https://media.istockphoto.com/id/184276818/photo/red-apple.jpg?s=612x612&w=0&k=20&c=NvO-bLsG0DJ_7Ii8SSVoKLurzjmV0Qi4eGfn6nW3l5w=",
+            "https://media.istockphoto.com/id/185284489/photo/orange.jpg?s=612x612&w=0&k=20&c=m4EXknC74i2aYWCbjxbzZ6EtRaJkdSJNtekh4m1PspE=",
+            "https://t3.ftcdn.net/jpg/03/80/51/50/360_F_380515078_buWUDE6goBf99maLHm5VJbwsx4jBIiUk.jpg",
+            "https://t4.ftcdn.net/jpg/05/37/04/61/360_F_537046123_s8JVn2NrClPQDOryhSm8jonYZPfIzPRX.jpg",
+            "https://www.producemarketguide.com/media/user_5q6Kv4eMkN/400/broccoli_commodity-page.png",
+            "https://5.imimg.com/data5/SELLER/Default/2023/9/343190895/HN/FD/BO/64652391/fresh-long-brinjal.jpeg"
+        ];
+
+        function getRandomImageUrl() {
+            const randomIndex = Math.floor(Math.random() * imageUrls.length);
+            return imageUrls[randomIndex];
+        }
 
         // Get the container for product listings and the load more button
         const productListContainer = document.getElementById('product-list');
@@ -239,7 +237,7 @@
 
                 // Fetch data from your Flask backend API
                 // Ensure this URL matches where your Flask app is running (e.g., http://localhost:5002)
-                const response = await fetch('http://localhost:5002/get_all_listings');
+                const response = await fetch('http://35.94.30.150:5002/get_all_listings');
 
                 // Check if the request was successful
                 if (!response.ok) {
@@ -257,7 +255,7 @@
                 if (listings && listings.length > 0) {
                     listings.forEach(listing => {
                         // Map database fields to frontend display names
-                        const imageUrl = listing.image_url || `https://via.placeholder.com/400x300?text=${encodeURIComponent(listing.item_name || 'Product')}`;
+                        const imageUrl = getRandomImageUrl();
                         const farmerName = listing.seller_name || 'Unknown Farmer'; // Use seller_name
                         const contactNumber = listing.seller_contact ? String(listing.seller_contact) : 'N/A'; // Use seller_contact
                         
@@ -270,7 +268,7 @@
                         const productCard = `
                             <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
                                 <div class="h-48 overflow-hidden">
-                                    <img src="${imageUrl}" alt="${listing.item_name}" class="w-full h-full object-cover">
+                                    <img src="${imageUrl}" alt="${listing.item_name}" class="w-full h-full object-contain">
                                 </div>
                                 <div class="p-4">
                                     <h3 class="text-xl font-semibold mb-2 text-gray-800">${listing.item_name}</h3>
@@ -289,6 +287,11 @@
                                         </button>
                                         <button class="call-btn text-white py-2 px-4 rounded-full text-sm flex items-center" data-phone="${contactNumber}">
                                             <i class="fas fa-phone mr-2"></i> Call
+                                        </button>
+                                        <button class="buy-btn bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full text-sm flex items-center" 
+                                                data-listing-id="${listing.id}" 
+                                                data-listing-name="${listing.item_name}">
+                                            <i class="fas fa-shopping-cart mr-2"></i> Buy Now
                                         </button>
                                     </div>
                                 </div>
@@ -342,9 +345,20 @@
                     button.dataset.listenerAttached = true; // Mark as attached
                 }
             });
+
+            document.querySelectorAll('.buy-btn').forEach(button => {
+                if (!button.dataset.listenerAttached) {
+                    button.addEventListener('click', function() {
+                        const listingId = this.dataset.listingId;
+                        const listingName = this.dataset.listingName;
+                        showBuyConfirmationDialog(listingId, listingName);
+                    });
+                    button.dataset.listenerAttached = true;
+                }
+            });
         }
 
-        // Custom message box function (replaces alert and confirm)
+        // Function to show custom message box
         function showCustomMessageBox(message, type = 'alert', callback = null) {
             const existingMessageBox = document.getElementById('custom-message-box');
             if (existingMessageBox) {
@@ -378,6 +392,76 @@
             }
         }
 
+        // Function to show the buy confirmation dialog
+        function showBuyConfirmationDialog(listingId, listingName) {
+            const existingDialog = document.getElementById('buy-dialog');
+            if (existingDialog) {
+                existingDialog.remove();
+            }
+
+            const buyDialog = document.createElement('div');
+            buyDialog.id = 'buy-dialog';
+            buyDialog.className = 'fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50';
+            buyDialog.innerHTML = `
+                <div class="bg-white p-6 rounded-lg shadow-xl max-w-sm w-full mx-4">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Confirm Purchase of ${listingName}</h3>
+                    <p class="text-gray-600 mb-4">Please enter your 10-digit contact number to proceed with the purchase.</p>
+                    <input type="tel" id="buyer-contact-input" class="w-full p-3 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="e.g., 9876543210" maxlength="10">
+                    <div class="flex justify-end space-x-4">
+                        <button id="buy-dialog-cancel-btn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-5 rounded-md transition duration-300">Cancel</button>
+                        <button id="buy-dialog-confirm-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-5 rounded-md transition duration-300">Confirm Buy</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(buyDialog);
+
+            document.getElementById('buy-dialog-cancel-btn').addEventListener('click', () => {
+                buyDialog.remove();
+            });
+
+            document.getElementById('buy-dialog-confirm-btn').addEventListener('click', () => {
+                const buyerContact = document.getElementById('buyer-contact-input').value.trim();
+                if (!/^\d{10}$/.test(buyerContact)) {
+                    showCustomMessageBox('Please enter a valid 10-digit Indian contact number.');
+                    return;
+                }
+                buyDialog.remove();
+                handleBuyNow(listingId, listingName, buyerContact);
+            });
+        }
+
+        // Function to handle the buy now request
+        async function handleBuyNow(listingId, listingName, buyerContact) {
+            const apiUrl = 'http://35.94.30.150:5002/sell_item';
+            const payload = {
+                listing_id: listingId,
+                listing_name: listingName,
+                buyer_contact: buyerContact
+            };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    showCustomMessageBox(`Purchase confirmed!`);
+                    // Optionally, refresh the listings or update the specific product status
+                    fetchListings(); 
+                } else {
+                    showCustomMessageBox(`Purchase failed: ${result.error || 'An unknown error occurred.'}`);
+                }
+            } catch (error) {
+                console.error('Error during purchase:', error);
+                showCustomMessageBox('An error occurred while trying to complete your purchase. Please try again later.');
+            }
+        }
 
         // Call the function to fetch listings when the page loads
         document.addEventListener('DOMContentLoaded', fetchListings);
