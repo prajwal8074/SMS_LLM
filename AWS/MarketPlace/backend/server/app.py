@@ -333,7 +333,7 @@ def process_voice():
 		else:
 			print("🔄 Cache MISS - Calling Gemini with tool support...")
 			llm_prompt = (
-				f"You are an agricultural assistant. Based on the following farmer's query, provide a concise and helpful response. If farmer wants to sell something, create a listing using add_listing. If you need additional data, ask for at max 2 entries at a time. farmer query: '{text_for_llm}'. "
+				f"You are an agricultural assistant. Based on the following farmer's query, provide a concise and helpful response. If farmer wants to sell something, create a listing using add_listing. If you need additional data, ask for at max 3 entries at a time. farmer query: '{text_for_llm}'. "
 			)
 			messages_all.add_entry({"role": "user", "content": llm_prompt})
 			
