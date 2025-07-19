@@ -1,10 +1,10 @@
 import json
-import requests # Used for making HTTP requests
 from openai.types.chat import ChatCompletion, ChatCompletionMessage, ChatCompletionMessageToolCall
 from openai.types.chat.chat_completion_message_tool_call import Function
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
+from database_logic import create_listing_in_db, remove_listing_from_db
 
 load_dotenv()
 
@@ -15,34 +15,18 @@ print(f"FLASK_SERVER_BASE_URL: {FLASK_SERVER_BASE_URL}")
 def add_listing_api(item_name: str, price: float, seller_name: str, seller_contact: str, description: str = ""):
     """Makes an API call to add a new item listing to the marketplace."""
     print(f"\n--- Making API Call: add_listing ---")
-    url = f"{FLASK_SERVER_BASE_URL}/add_listing"
-    payload = {
-        "item_name": item_name,
-        "price": price,
-        "description": description,
-        "seller_name" : seller_name,
-        "seller_contact" : seller_contact,
-    }
-    try:
-        response = requests.post(url, json=payload)
-        response.raise_for_status() # Raise HTTPError for bad responses (4xx or 5xx)
-        return response.json()
-    except requests.exceptions.RequestException as e:
-        print(f"Error calling add_listing API: {e}")
-        return {"status": "error", "message": str(e)}
+    return create_listing_in_db(
+        item_name=item_name,
+        price=price,
+        description=description,
+        seller_name=seller_name,
+        seller_contact=seller_contact
+    )
 
 def delete_listing_api(listing_id: str):
     """Makes an API call to delete an item listing from the marketplace."""
     print(f"\n--- Making API Call: delete_listing ---")
-    url = f"{FLASK_SERVER_BASE_URL}/delete_listing"
-    payload = {"listing_id": listing_id}
-    try:
-        response = requests.post(url, json=payload)
-        response.raise_for_status()
-        return response.json()
-    except requests.exceptions.RequestException as e:
-        print(f"Error calling delete_listing API: {e}")
-        return {"status": "error", "message": str(e)}
+    return remove_listing_from_db(listing_id)
 
 def get_all_listings_api():
     """Makes an API call to retrieve all active item listings."""

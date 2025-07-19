@@ -256,7 +256,7 @@
                     listings.forEach(listing => {
                         // Map database fields to frontend display names
                         const imageUrl = getRandomImageUrl();
-                        const farmerName = listing.seller_name || 'Unknown Farmer'; // Use seller_name
+                        const farmerName = listing.seller_name || 'Unknown Seller'; // Use seller_name
                         const contactNumber = listing.seller_contact ? String(listing.seller_contact) : 'N/A'; // Use seller_contact
                         
                         // These fields are not in your current init.sql, so they will use defaults/placeholders

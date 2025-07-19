@@ -75,32 +75,18 @@ def add_listing():
 	if not item_name or price is None or seller_contact is None:
 		return jsonify({"error": "item_name, price, and seller_contact are required"}), 400
 
-	try:
-		conn = get_db_connection()
-		cur = conn.cursor()
-		# Insert into listings table, including new seller_name and seller_contact
-		# The 'id' and 'created_at', 'updated_at' are handled by DB defaults
-		cur.execute(
-			"""
-			INSERT INTO listings (item_name, price, description, seller_name, seller_contact, status)
-			VALUES (%s, %s, %s, %s, %s, 'active')
-			RETURNING id;
-			""",
-			(item_name, price, description, seller_name, seller_contact)
-		)
-		new_listing_id = cur.fetchone()[0]
-		conn.commit()
-		cur.close()
-		conn.close()
-		return jsonify({
-			"status": "success",
-			"message": f"Listing for '{item_name}' added.",
-			"listing_id": str(new_listing_id)
-		}), 201
-	except Exception as e:
-		# Log the error for debugging purposes
-		print(f"Error adding listing: {e}")
-		return jsonify({"error": str(e)}), 500
+	result = create_listing_in_db(
+        item_name=item_name,
+        price=price,
+        description=description,
+        seller_name=seller_name,
+        seller_contact=seller_contact
+    )
+
+    if result.get("status") == "success":
+        return jsonify(result), 201
+    else:
+        return jsonify({"error": result.get("message")}), 500
 
 @app.route('/delete_listing', methods=['POST'])
 def delete_listing():
@@ -111,35 +97,14 @@ def delete_listing():
 	if not listing_id:
 		return jsonify({"error": "listing_id is required"}), 400
 
-	try:
-		conn = get_db_connection()
-		cur = conn.cursor()
-		cur.execute(
-			"""
-			DELETE FROM listings
-			WHERE id = %s
-			RETURNING id;
-			""",
-			(listing_id,)
-		)
-		deleted_row = cur.fetchone()
-		conn.commit()
-		cur.close()
-		conn.close()
-
-		if deleted_row:
-			return jsonify({
-				"status": "success",
-				"message": f"Listing '{listing_id}' deleted."
-			}), 200
-		else:
-			return jsonify({
-				"status": "not_found",
-				"message": f"Listing '{listing_id}' not found."
-			}), 404
-	except Exception as e:
-		print(f"Error deleting listing: {e}")
-		return jsonify({"error": str(e)}), 500
+	result = remove_listing_from_db(listing_id)
+    
+    if result.get("status") == "success":
+        return jsonify(result), 200
+    elif result.get("status") == "not_found":
+        return jsonify(result), 404
+    else:
+        return jsonify({"error": result.get("message")}), 500
 
 @app.route('/sell_item', methods=['POST'])
 def sell_item():
