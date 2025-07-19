@@ -11,6 +11,7 @@ import sys
 from botocore.exceptions import ClientError
 from openai import OpenAI
 from twilio.rest import Client
+from database_logic import create_listing_in_db, remove_listing_from_db
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..')))
 from cache import RedisCache
