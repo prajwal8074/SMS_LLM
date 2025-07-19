@@ -4,7 +4,11 @@ from openai.types.chat.chat_completion_message_tool_call import Function
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
-from database_logic import create_listing_in_db, remove_listing_from_db
+
+try:
+    from database_logic import create_listing_in_db, remove_listing_from_db
+except ImportError:
+    print("Skipped database_logic module import")
 
 load_dotenv()
 
@@ -12,7 +16,7 @@ FLASK_SERVER_BASE_URL = os.getenv('FLASK_SERVER_BASE_URL')
 
 print(f"FLASK_SERVER_BASE_URL: {FLASK_SERVER_BASE_URL}")
 
-def add_listing_api(item_name: str, price: float, seller_name: str, seller_contact: str, description: str = ""):
+def add_listing(item_name: str, price: float, seller_name: str, seller_contact: str, description: str = ""):
     """Makes an API call to add a new item listing to the marketplace."""
     print(f"\n--- Making API Call: add_listing ---")
     return create_listing_in_db(
