@@ -23,10 +23,42 @@ def add_listing_api(item_name: str, price: float, seller_name: str, seller_conta
         seller_contact=seller_contact
     )
 
-def delete_listing_api(listing_id: str):
+def delete_listing(listing_id: str):
     """Makes an API call to delete an item listing from the marketplace."""
     print(f"\n--- Making API Call: delete_listing ---")
     return remove_listing_from_db(listing_id)
+
+def add_listing_api(item_name: str, price: float, seller_name: str, seller_contact: str, description: str = ""):
+    """Makes an API call to add a new item listing to the marketplace."""
+    print(f"\n--- Making API Call: add_listing ---")
+    url = f"{FLASK_SERVER_BASE_URL}/add_listing"
+    payload = {
+        "item_name": item_name,
+        "price": price,
+        "description": description,
+        "seller_name" : seller_name,
+        "seller_contact" : seller_contact,
+    }
+    try:
+        response = requests.post(url, json=payload)
+        response.raise_for_status() # Raise HTTPError for bad responses (4xx or 5xx)
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Error calling add_listing API: {e}")
+        return {"status": "error", "message": str(e)}
+
+def delete_listing_api(listing_id: str):
+    """Makes an API call to delete an item listing from the marketplace."""
+    print(f"\n--- Making API Call: delete_listing ---")
+    url = f"{FLASK_SERVER_BASE_URL}/delete_listing"
+    payload = {"listing_id": listing_id}
+    try:
+        response = requests.post(url, json=payload)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Error calling delete_listing API: {e}")
+        return {"status": "error", "message": str(e)}
 
 def get_all_listings_api():
     """Makes an API call to retrieve all active item listings."""
@@ -105,8 +137,8 @@ tools = [
 
 # --- Map tool names (strings) to their corresponding API client functions ---
 available_tools = {
-    "add_listing": add_listing_api,
-    "delete_listing": delete_listing_api,
+    "add_listing": add_listing,
+    "delete_listing": delete_listing,
 }
 
 # --- Function to process the AI's tool call response (remains largely the same) ---
