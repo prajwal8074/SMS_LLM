@@ -4,6 +4,7 @@ from openai.types.chat.chat_completion_message_tool_call import Function
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
+import requests
 
 try:
     from database_logic import create_listing_in_db, remove_listing_from_db
