@@ -76,17 +76,17 @@ def add_listing():
 		return jsonify({"error": "item_name, price, and seller_contact are required"}), 400
 
 	result = create_listing_in_db(
-        item_name=item_name,
-        price=price,
-        description=description,
-        seller_name=seller_name,
-        seller_contact=seller_contact
-    )
+		item_name=item_name,
+		price=price,
+		description=description,
+		seller_name=seller_name,
+		seller_contact=seller_contact
+	)
 
-    if result.get("status") == "success":
-        return jsonify(result), 201
-    else:
-        return jsonify({"error": result.get("message")}), 500
+	if result.get("status") == "success":
+		return jsonify(result), 201
+	else:
+		return jsonify({"error": result.get("message")}), 500
 
 @app.route('/delete_listing', methods=['POST'])
 def delete_listing():
@@ -98,13 +98,13 @@ def delete_listing():
 		return jsonify({"error": "listing_id is required"}), 400
 
 	result = remove_listing_from_db(listing_id)
-    
-    if result.get("status") == "success":
-        return jsonify(result), 200
-    elif result.get("status") == "not_found":
-        return jsonify(result), 404
-    else:
-        return jsonify({"error": result.get("message")}), 500
+	
+	if result.get("status") == "success":
+		return jsonify(result), 200
+	elif result.get("status") == "not_found":
+		return jsonify(result), 404
+	else:
+		return jsonify({"error": result.get("message")}), 500
 
 @app.route('/sell_item', methods=['POST'])
 def sell_item():
