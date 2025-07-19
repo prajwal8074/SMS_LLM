@@ -43,6 +43,7 @@ class Test(unittest.TestCase):
 				result = response.json()
 				self.assertIsNotNone(result.get('message'))
 				self.assertIsNotNone(result.get('transcribed_text'))
+				self.assertIsNotNone(result.get('text_for_llm'))
 				self.assertIsNotNone(result.get('llm_response'))
 				self.assertIsNotNone(result.get('final_spoken_text'))
 				self.assertIsNotNone(result.get('audio_response_base64'))

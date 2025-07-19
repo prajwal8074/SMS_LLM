@@ -11,8 +11,9 @@ import sys
 from botocore.exceptions import ClientError
 from openai import OpenAI
 from twilio.rest import Client
-from database_logic import create_listing_in_db, remove_listing_from_db
+from collections import deque
 
+from database_logic import create_listing_in_db, remove_listing_from_db
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..')))
 from cache import RedisCache
 import marketplace_tools
@@ -59,8 +60,32 @@ POLLY_DESCRIBE_VOICES_SUPPORTED_LANGUAGES = [
 	'sv-SE', 'ja-JP', 'es-US', 'ca-ES', 'fr-CA', 'en-GB', 'de-AT',
 ]
 
-# Dummy functions that interact with the PostgreSQL database
-# These mirror the tool definitions you provided earlier.
+class FixedSizeArray:
+    def __init__(self, size):
+        # Initialize a deque with a maximum length
+        if not isinstance(size, int) or size <= 0:
+            raise ValueError("Size must be a positive integer.")
+        self.array = deque(maxlen=size)
+        self.size = size
+
+    def add_entry(self, entry):
+        """Adds a new entry to the array. If the array is full, the oldest entry is removed."""
+        self.array.append(entry)
+        print(f"Added '{entry}'. Current array: {list(self.array)}")
+
+    def get_all_entries(self):
+        """Returns all entries in the array as a list (from oldest to newest)."""
+        return list(self.array)
+
+    def get_size(self):
+        """Returns the current number of entries in the array."""
+        return len(self.array)
+
+    def get_max_size(self):
+        """Returns the maximum allowed size of the array."""
+        return self.size
+
+messages_all = FixedSizeArray(8)
 
 @app.route('/add_listing', methods=['POST'])
 def add_listing():
@@ -310,14 +335,14 @@ def process_voice():
 			llm_prompt = (
 				f"You are an agricultural assistant. Based on the following farmer's query, provide a concise and helpful response. If farmer wants to sell something, create a listing using add_listing. farmer query: '{text_for_llm}'. "
 			)
-			messages = [{"role": "user", "content": llm_prompt}]
+			messages_all.add_entry({"role": "user", "content": llm_prompt})
 			
 			# Check if marketplace_tools is available before using it
 			tools_to_use = marketplace_tools.tools
 
 			response = client.chat.completions.create(
 				model="gemini-2.0-flash",
-				messages=messages,
+				messages=messages_all.get_all_entries(),
 				tools=tools_to_use,
 				tool_choice="auto"
 			)
@@ -327,6 +352,8 @@ def process_voice():
 			else:
 				llm_response_text = response.choices[0].message.content
 				cache.set(text_for_llm, llm_response_text) # Cache new responses
+
+			messages_all.add_entry({"role": "assistant", "content": llm_response_text})
 		
 		print(f"LLM Response: {llm_response_text}")
 
@@ -405,6 +432,7 @@ def process_voice():
 	return jsonify({
 		'message': 'Processing complete',
 		'transcribed_text': transcribed_text,
+		'text_for_llm': text_for_llm,
 		'llm_response': llm_response_text,
 		'final_spoken_text': final_response_text,
 		'audio_response_base64': base64.b64encode(audio_stream).decode('utf-8') if audio_stream else None,

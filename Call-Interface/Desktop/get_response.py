@@ -36,6 +36,7 @@ def send_voice_to_gateway(audio_path):
             print("\n--- Success ---")
             print(f"Message: {result.get('message')}")
             print(f"Transcribed Text: {result.get('transcribed_text')}")
+            print(f"text_for_llm: {result.get('text_for_llm')}")
             print(f"LLM Response: {result.get('llm_response')}")
             print(f"Final Spoken Text: {result.get('final_spoken_text')}")
             print(f"detected_language: {result.get('detected_language')}")
