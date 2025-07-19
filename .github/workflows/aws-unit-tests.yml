@@ -107,6 +107,11 @@ jobs:
       run: |
         sudo docker exec redis-test redis-cli KEYS '*'
 
+    - name: Print backend-app server log
+      if: always()
+      run: |
+        sudo docker logs backend-app-1
+
     - name: Stop Marketplace backend
       run: |
         cd AWS/MarketPlace/backend
