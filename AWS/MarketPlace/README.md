@@ -41,8 +41,7 @@ MarketPlace/
    ├── client.py                  # gemini client using OpenAI library, implements function calling
    └── docker-compose.yml         # Defines and links the 'app' and 'db' services
 ```
-## Setup (local for now)
-*Updated terminal path: Marketplace/backend/*
+## Demo
 ### Start Docker container
 <img src="https://github.com/user-attachments/assets/c0eadcbb-2db3-44ba-9b78-5e58830aa0a5" height="480">
 
