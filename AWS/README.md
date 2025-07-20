@@ -5,20 +5,24 @@ This AWS Lambda function processes voice inputs from farmers, generates AI respo
 ## Demo Video
 https://github.com/user-attachments/assets/17e0aef0-bae6-435f-b930-706cfd088f27
 
+## Response Caching
+   - Semantic Caching: The application uses a sophisticated caching system with Redis and Sentence Transformers to cache responses based on the meaning of a query, not just the exact text. This can significantly improve performance and reduce redundant processing.
+   - Cache Management: The add_cache.py script provides a way to manually add entries to the cache.
+   - <img width="1920" height="1080" alt="Screenshot from 2025-07-19 05-11-36" src="https://github.com/user-attachments/assets/b8bed692-dce5-4ac0-bb6e-99241dbbfc10" />
+
 ## Process
 <img src="https://github.com/user-attachments/assets/5c39c36b-e3a8-4c67-8f65-d6130d45ee48" alt="logic flow" height="2160">
 
 ## AWS Services Used
 
 - **AWS CloudFormation**: For Infrastructure as Code (IaC), allowing declarative provisioning and management of all AWS resources.
-- **AWS Lambda**: Serverless compute for the core application logic.
-- **Amazon API Gateway**: A fully managed service to create, publish, maintain, monitor, and secure APIs.
 - **Amazon S3**: Scalable object storage for audio and transcription data.
 - **Amazon Transcribe**: Automated speech recognition (ASR) service.
 - **Amazon Translate**: Neural machine translation service.
 - **Amazon Polly**: Text-to-Speech (TTS) service with natural-sounding voices.
 - **AWS IAM**: Manages access and permissions across AWS services.
 - **Amazon CloudWatch**: For logging and monitoring.
+- **Amazon EC2**: For Deployment.
 
 ### Response Caching Mechanism
 
