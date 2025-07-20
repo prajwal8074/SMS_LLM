@@ -16,6 +16,8 @@
 * **Get All Listings**: Retrieve a list of all active items on the marketplace.
 * **AI Integration**: A Python client capable of interacting with the OpenAI API to trigger these marketplace functions through natural language prompts.
 * **View Listings**: Mock Marketplace website to view listings in the database
+* **Buy Now** button sends an sms like this to seller's phone number
+   * <img width="330" height="100" alt="Screenshot_20250720-090848" src="https://github.com/user-attachments/assets/29dd56c8-a4f3-41d5-a311-3f7b22774702" />
 
 ## Technologies Used
 
@@ -50,8 +52,19 @@ MarketPlace/
 ```
 ## Demo
 
+### Start Docker container
+<img src="https://github.com/user-attachments/assets/c0eadcbb-2db3-44ba-9b78-5e58830aa0a5" height="480">
+
+### Check if both containers are running
+<img src="https://github.com/user-attachments/assets/af915d6e-73a9-4e04-a9b0-0a1e6e96f240" height="480">
+
+### Check Database before function call
+<img src="https://github.com/user-attachments/assets/824760a5-b7fd-47c4-b078-62d05f3d9724" height="480">
+
+### Run client which should create a function call
+
 <details>
-  <summary>Client.py (removed later)</summary>
+  <summary><b>Client.py (removed later)</b></summary>
 
 ```
 import json
@@ -251,16 +264,6 @@ process_tool_calls(response)
 ```
 </details>
 
-### Start Docker container
-<img src="https://github.com/user-attachments/assets/c0eadcbb-2db3-44ba-9b78-5e58830aa0a5" height="480">
-
-### Check if both containers are running
-<img src="https://github.com/user-attachments/assets/af915d6e-73a9-4e04-a9b0-0a1e6e96f240" height="480">
-
-### Check Database before function call
-<img src="https://github.com/user-attachments/assets/824760a5-b7fd-47c4-b078-62d05f3d9724" height="480">
-
-### Run client which should create a function call
 <img src="https://github.com/user-attachments/assets/70444895-81be-4e60-8547-2e729639433a" height="480">
 
 ### Check Database after function call
