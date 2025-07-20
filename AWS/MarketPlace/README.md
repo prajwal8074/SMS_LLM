@@ -61,6 +61,5 @@ MarketPlace/
 ### Website after function call
 *Open html file in 'frontend' folder*
 
-![Screenshot (8)](https://github.com/user-attachments/assets/3556c633-9abb-4620-9e84-7c669f9efd2e)
-
+<img width="1902" height="971" alt="Screenshot from 2025-07-20 02-16-48" src="https://github.com/user-attachments/assets/dfe77f28-016e-4559-92b9-f3aa058b3d33" />
 
