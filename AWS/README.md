@@ -339,7 +339,65 @@ pip install requests
 python test_gateway.py
 ```
 You should see an output similar to the Demo video above.
+## 8. Security Considerations
+For a production environment, consider these best practices:
 
+**HTTPS/SSL**: Implement HTTPS for your Flask API using a reverse proxy like Nginx and a free SSL certificate from Let's Encrypt (via Certbot). This encrypts all traffic.
+
+**Least Privilege IAM Role**: Refine the EC2 instance's IAM role to grant only the minimum necessary permissions to AWS services.
+
+**Security Group Restrictions**: Restrict inbound rules in your EC2 Security Group to only allow necessary IPs (e.g., your client application's IP range, not 0.0.0.0/0).
+
+**Secrets Management**: Do not store sensitive API keys (Gemini, Firebase, Redis password) directly in .env files in production. Use AWS Secrets Manager or similar secure solutions.
+
+**Logging and Monitoring**: Set up comprehensive CloudWatch logging and metrics for your EC2 instance and Flask application.
+
+**Dedicated Redis**: For production, use AWS ElastiCache for Redis instead of a self-hosted Redis on the same EC2 instance for better scalability, reliability, and management.
+
+## 9. Troubleshooting Common Issues
+
+**ConnectionError: [WinError 10061] No connection could be made because the target machine actively refused it**:
+
+*Cause*: Flask/Gunicorn is not running on the EC2 instance, or it's not listening on 0.0.0.0 on the specified port.
+
+*Fix*: SSH into EC2, cd to your app directory, activate venv, and run `gunicorn --workers 4 --bind 0.0.0.0:5002 app:app`. Verify with `sudo netstat -tulnp | grep 5002`.
+
+**ConnectTimeoutError: Connection to YOUR_EC2_PUBLIC_IP timed out**:
+
+*Cause*: EC2 Security Group is blocking inbound traffic on the Flask port.
+
+*Fix*: In AWS Console, go to EC2 -> Security Groups, select your instance's security group, edit inbound rules, and add a Custom TCP rule for port 5002 with source 0.0.0.0/0 or My IP.
+
+**ModuleNotFoundError: No module named 'app'**:
+
+*Cause*: Gunicorn cannot find your app.py file.
+
+*Fix*: Ensure you are in the exact directory where app.py resides when you run the gunicorn command. (e.g., `cd ~/farmassist_voice_gateway/backend/server/`).
+
+**botocore.exceptions.NoRegionError: You must specify a region.**:
+
+*Cause*: Boto3 (AWS SDK) cannot determine which AWS region to use.
+
+*Fix*: Add `AWS_REGION=your-aws-region` (e.g., `AWS_REGION=us-west-2`) to your .env file and restart Gunicorn. Ensure this region matches where your S3 bucket, Transcribe, Translate, and Polly services are located.
+
+**redis.exceptions.ResponseError: semantic_cache_idx: no such index or Index already exists**:
+
+*Cause*: Race condition during RediSearch index creation by multiple Gunicorn workers.
+
+*Fix*: Ensure your cache.py uses robust index creation logic (as provided in the repository). Also, confirm RediSearch module is loaded on your Redis server.
+
+**General Errors (after initial connection)**:
+
+Check Gunicorn logs: If you ran Gunicorn with nohup, check the gunicorn.log file for detailed Python tracebacks.
+
+## 10. Cleanup
+To avoid incurring ongoing AWS charges, you can delete the resources when you are finished.
+
+**Terminate EC2 Instance**: Go to the EC2 Dashboard -> Instances. Select your instance, click "Instance state" -> "Terminate instance".
+
+**Delete S3 Bucket**: If you created a dedicated S3 bucket, go to the S3 console, select your bucket, and delete it (after emptying it).
+
+**Delete IAM Role**: If you created a specific IAM role for this EC2 instance, go to IAM -> Roles and delete it.
 ## 10. Cleanup
 To avoid incurring ongoing AWS charges, you can delete the resources when you are finished.
 
