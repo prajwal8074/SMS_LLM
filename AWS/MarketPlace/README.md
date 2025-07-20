@@ -1,5 +1,12 @@
 # Marketplace Application
 
+## Website
+*Open html file in 'frontend' folder*
+
+<img width="1902" height="971" alt="Screenshot from 2025-07-20 02-16-48" src="https://github.com/user-attachments/assets/dfe77f28-016e-4559-92b9-f3aa058b3d33" />
+
+---
+
 - This project provides a basic mock marketplace application, demonstrating a backend API (Flask + PostgreSQL) containerized with Docker
 - A Python client that integrates tool calling (using gemini-2.0-flash) with the OpenAI Library for multi-LLM compatibility.
 
@@ -56,9 +63,3 @@ MarketPlace/
 
 ### Check Database after function call
 <img src="https://github.com/user-attachments/assets/fdf9500a-0e1e-4276-8ef3-56fb9360de8d" height="480">
-
-### Website after function call
-*Open html file in 'frontend' folder*
-
-<img width="1902" height="971" alt="Screenshot from 2025-07-20 02-16-48" src="https://github.com/user-attachments/assets/dfe77f28-016e-4559-92b9-f3aa058b3d33" />
-
