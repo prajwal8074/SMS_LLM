@@ -66,7 +66,7 @@ MarketPlace/
 <details>
   <summary><b>Client.py (removed later)</b></summary>
 
-```
+```python
 import json
 import requests # Used for making HTTP requests
 from openai.types.chat import ChatCompletion, ChatCompletionMessage, ChatCompletionMessageToolCall
