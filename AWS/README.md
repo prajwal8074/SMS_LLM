@@ -5,7 +5,7 @@ This AWS Lambda function processes voice inputs from farmers, generates AI respo
 ## Demo Video
 https://github.com/user-attachments/assets/17e0aef0-bae6-435f-b930-706cfd088f27
 
-## Response Caching
+## Response Caching Demo
    - Semantic Caching: The application uses a sophisticated caching system with Redis and Sentence Transformers to cache responses based on the meaning of a query, not just the exact text. This can significantly improve performance and reduce redundant processing.
    - Cache Management: The add_cache.py script provides a way to manually add entries to the cache.
    - <img width="1920" height="1080" alt="Screenshot from 2025-07-19 05-11-36" src="https://github.com/user-attachments/assets/b8bed692-dce5-4ac0-bb6e-99241dbbfc10" />
@@ -44,6 +44,8 @@ This project incorporates a caching mechanism using Redis to store query respons
     * This script utilizes the `RedisCache` class from `cache.py` to perform the caching operation.
 
 ## Deployment Guide
+### Check the workflow .github/workflows/deploy.yml for better understanding
+### Also check the workflow aws-unit-tests.yml.yml for understanding project features
 
 ## Table of Contents
 - [System Architecture Overview](#1-system-architecture-overview)
@@ -148,9 +150,10 @@ PuTTY requires keys in .ppk format. First, convert your .pem to .ppk using PuTTY
 4. Click "Open"
 5. Accept the host key if prompted
 
-## 3.3. Set Up Python Environment
+## 3.3. Set Up Environment
 
-Once connected via SSH:
+Once connected via SSH:<br>
+**Setup ```gh auth login```**
 
 ### Update Package Lists
 ```bash
@@ -164,11 +167,7 @@ sudo apt install python3 python3-pip python3.12-venv git -y
 # For older Ubuntu versions (e.g., 22.04):
 sudo apt install python3 python3-pip python3-venv -y
 ```
-### Create a Project Directory
-```bash
-mkdir -p ~/farmassist_voice_gateway/backend/server
-cd ~/farmassist_voice_gateway/backend/server
-```
+
 ## 4. AWS IAM Role Configuration
 
 Your EC2 instance needs an IAM Role with permissions to interact with AWS services like S3, Transcribe, Translate, and Polly.
@@ -209,40 +208,33 @@ Your EC2 instance needs an IAM Role with permissions to interact with AWS servic
 
 #### Clone the Repository
 ```bash
-cd ~
-git clone YOUR_REPOSITORY_URL_HERE ~/farmassist_voice_gateway
-cd ~/farmassist_voice_gateway/backend/server/
+git clone https://github.com/annam-ai-iitropar/team_7B.git ~/farmassist_voice_gateway
 ```
-## 6. Running the Flask Application
-For a robust deployment, use Gunicorn to serve your Flask application.
+**Start Containers**
 
-1. **Ensure you are in the `server` directory**
-```bash
-cd ~/farmassist_voice_gateway/backend/server/
+```
+docker run -d --name redis-test -p 6379:6379 redis:latest
+cd ~/farmassist_voice_gateway/AWS/MarketPlace/backend
+sudo docker compose up
 ```
 
-2. **Activate your virtual environment**
-```bash
-source ~/farmassist_voice_gateway/venv/bin/activate
+**you should see all of the below without any additional errors to ensure the containers are fully functional**<br>
+The specific output with prefix 'backend-app-1' should look like:
 ```
-3. **Start Gunicorn**
+[2025-07-20 05:27:06 +0000] [1] [INFO] Starting gunicorn 21.2.0
+[2025-07-20 05:27:06 +0000] [1] [INFO] Listening at: http://0.0.0.0:5002 (1)
+[2025-07-20 05:27:06 +0000] [1] [INFO] Using worker: sync
+[2025-07-20 05:27:06 +0000] [6] [INFO] Booting worker with pid: 6
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+FLASK_SERVER_BASE_URL: http://localhost:5002
+AWS Boto3 clients initialized for region: us-west-2
+REDIS_HOST: redis
+RediSearch index 'semantic_cache_idx' created successfully.
+```
 
-For foreground (for immediate debugging, stops when SSH session closes):
-```bash
-gunicorn --workers 4 --bind 0.0.0.0:5002 app:app
-```
-Keep this terminal open while testing.
-
-For background (recommended for continuous operation):
-```bash
-nohup gunicorn --workers 4 --bind 0.0.0.0:5002 app:app > gunicorn.log 2>&1 &
-disown -a # Detach from terminal so you can close SSH session
-```
-Verify Gunicorn is running:
-```bash
-ps aux | grep gunicorn
-```
-You should see multiple gunicorn processes.
 ## 7. Testing the Gateway
 
 Use the provided Python script on your local PC to test your deployed EC2 Flask API.
@@ -250,7 +242,8 @@ Use the provided Python script on your local PC to test your deployed EC2 Flask 
 ### 7.1. Local Test Script (`test_gateway.py`)
 
 Create a file named `test_gateway.py` with this content:
-
+<details><summary>test_gateway.py</summary>
+   
 ```python
 import requests
 import base64
@@ -319,12 +312,14 @@ def send_voice_to_gateway(audio_path, lang_code):
 if __name__ == "__main__":
     send_voice_to_gateway(AUDIO_FILE_PATH, FARMER_LANGUAGE)
 ```
+</details>
+
 ## 7.2. Run the Test Script
 
 Follow these steps to test your deployed API:
 
-1. **Save the script**  
-   Create a file named `test_gateway.py` on your local machine and paste the [test script content](#71-local-test-script-test_gatewaypy) into it.
+1. **YOUR_EC2_PUBLIC_IP**  
+   Replace YOUR_EC2_PUBLIC_IP with your public ip address assigned to the EC2 instance
 
 2. **Prepare your audio file**  
    Place your test audio file (MP3 or WAV format) in a known location and update the path in the script:
@@ -343,56 +338,7 @@ pip install requests
 ```python
 python test_gateway.py
 ```
-## 8. Security Considerations
-For a production environment, consider these best practices:
-
-**HTTPS/SSL**: Implement HTTPS for your Flask API using a reverse proxy like Nginx and a free SSL certificate from Let's Encrypt (via Certbot). This encrypts all traffic.
-
-**Least Privilege IAM Role**: Refine the EC2 instance's IAM role to grant only the minimum necessary permissions to AWS services.
-
-**Security Group Restrictions**: Restrict inbound rules in your EC2 Security Group to only allow necessary IPs (e.g., your client application's IP range, not 0.0.0.0/0).
-
-**Secrets Management**: Do not store sensitive API keys (Gemini, Firebase, Redis password) directly in .env files in production. Use AWS Secrets Manager or similar secure solutions.
-
-**Logging and Monitoring**: Set up comprehensive CloudWatch logging and metrics for your EC2 instance and Flask application.
-
-**Dedicated Redis**: For production, use AWS ElastiCache for Redis instead of a self-hosted Redis on the same EC2 instance for better scalability, reliability, and management.
-
-## 9. Troubleshooting Common Issues
-
-**ConnectionError: [WinError 10061] No connection could be made because the target machine actively refused it**:
-
-*Cause*: Flask/Gunicorn is not running on the EC2 instance, or it's not listening on 0.0.0.0 on the specified port.
-
-*Fix*: SSH into EC2, cd to your app directory, activate venv, and run `gunicorn --workers 4 --bind 0.0.0.0:5002 app:app`. Verify with `sudo netstat -tulnp | grep 5002`.
-
-**ConnectTimeoutError: Connection to YOUR_EC2_PUBLIC_IP timed out**:
-
-*Cause*: EC2 Security Group is blocking inbound traffic on the Flask port.
-
-*Fix*: In AWS Console, go to EC2 -> Security Groups, select your instance's security group, edit inbound rules, and add a Custom TCP rule for port 5002 with source 0.0.0.0/0 or My IP.
-
-**ModuleNotFoundError: No module named 'app'**:
-
-*Cause*: Gunicorn cannot find your app.py file.
-
-*Fix*: Ensure you are in the exact directory where app.py resides when you run the gunicorn command. (e.g., `cd ~/farmassist_voice_gateway/backend/server/`).
-
-**botocore.exceptions.NoRegionError: You must specify a region.**:
-
-*Cause*: Boto3 (AWS SDK) cannot determine which AWS region to use.
-
-*Fix*: Add `AWS_REGION=your-aws-region` (e.g., `AWS_REGION=us-west-2`) to your .env file and restart Gunicorn. Ensure this region matches where your S3 bucket, Transcribe, Translate, and Polly services are located.
-
-**redis.exceptions.ResponseError: semantic_cache_idx: no such index or Index already exists**:
-
-*Cause*: Race condition during RediSearch index creation by multiple Gunicorn workers.
-
-*Fix*: Ensure your cache.py uses robust index creation logic (as provided in the repository). Also, confirm RediSearch module is loaded on your Redis server.
-
-**General Errors (after initial connection)**:
-
-Check Gunicorn logs: If you ran Gunicorn with nohup, check the gunicorn.log file for detailed Python tracebacks.
+You should see an output similar to the Demo video above.
 
 ## 10. Cleanup
 To avoid incurring ongoing AWS charges, you can delete the resources when you are finished.
