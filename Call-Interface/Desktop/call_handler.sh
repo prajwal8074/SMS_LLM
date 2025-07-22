@@ -2,7 +2,7 @@
 
 # --- Configuration ---
 BLUETOOTH_SINK="" # IMPORTANT: Replace with your actual Bluetooth sink name
-BLUETOOTH_SOURCE="" # IMPORTANT: Replace with your actual Bluetooth source name
+BLUETOOTH_SOURCE="" # IMPORTANT: Replace with your actual Bluetooth source nameghjf
 RECORDING_DIR="CallRecordings"
 FILE_PATH="CallRecordings/caller_input_temp.wav"
 FINAL_FILE_PATH="CallRecordings/caller_input.wav"
