@@ -17,4 +17,4 @@ EXPOSE 5002
 
 # Run the Flask application
 # Use gunicorn for a production-ready WSGI server
-CMD ["gunicorn", "--bind", "0.0.0.0:5002", "app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5002", "--timeout", "300", "app:app"]
