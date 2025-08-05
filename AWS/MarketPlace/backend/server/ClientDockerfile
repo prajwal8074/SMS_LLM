@@ -12,7 +12,6 @@ COPY MarketPlace/backend/server/ .
 COPY cache.py .
 COPY marketplace_tools.py .
 
-# Expose the port the app runs on
 EXPOSE 5002
 
 # Run the Flask application
