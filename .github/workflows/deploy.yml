@@ -42,7 +42,7 @@ jobs:
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
           cd SMS_LLM
-          git pull origin main
+          git pull origin1 main
 
     - name: Start Containers
       uses: appleboy/ssh-action@master
