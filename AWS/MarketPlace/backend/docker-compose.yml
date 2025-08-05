@@ -38,7 +38,6 @@ services:
       FLASK_SERVER_BASE_URL: http://localhost:5002
     depends_on:
       - db
-      - redis
 
   client:
     build:
