@@ -58,7 +58,6 @@ services:
     depends_on:
       - db
       - redis
-      - app
 
   html:
     build:
