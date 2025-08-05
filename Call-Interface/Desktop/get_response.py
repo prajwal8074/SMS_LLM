@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_GATEWAY_URL = "http://35.94.30.150:5002/process-voice"
+API_GATEWAY_URL = "http://35.94.30.150:5003/process-voice"
 
 AUDIO_FILE_PATH = "CallRecordings/caller_input.wav"
 

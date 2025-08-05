@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 import unittest
 
-API_GATEWAY_URL = "http://35.94.30.150:5002/process-voice"
+API_GATEWAY_URL = "http://35.94.30.150:5003/process-voice"
 
 class Test(unittest.TestCase):
 

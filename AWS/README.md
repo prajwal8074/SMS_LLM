@@ -252,7 +252,7 @@ import os
 import sys
 
 # --- Configuration ---
-API_GATEWAY_URL = "http://YOUR_EC2_PUBLIC_IP:5002/api/process-voice"  # Replace with your EC2 IP
+API_GATEWAY_URL = "http://YOUR_EC2_PUBLIC_IP:5003/api/process-voice"  # Replace with your EC2 IP
 AUDIO_FILE_PATH = "path/to/your/test_audio.mp3"  # Replace with your audio file path
 FARMER_LANGUAGE = "hi-IN"  # Language code (e.g., "hi-IN", "en-US")
 

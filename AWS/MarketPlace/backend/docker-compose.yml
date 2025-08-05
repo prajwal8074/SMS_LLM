@@ -40,6 +40,26 @@ services:
       - db
       - redis
 
+  client:
+    build:
+      context: ../..
+      dockerfile: MarketPlace/backend/server/ClientDockerfile
+    restart: always
+    ports:
+      - "5003:5003"
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://user:password@db:5432/marketplace_db
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_DB: 0
+      FLASK_SERVER_BASE_URL: http://localhost:5002
+    depends_on:
+      - db
+      - redis
+      - app
+
   html:
     build:
       context: ../frontend/

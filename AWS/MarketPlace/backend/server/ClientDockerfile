@@ -4,7 +4,7 @@ FROM python:3.9-slim-buster
 # Set the working directory in the container
 WORKDIR /app
 
-COPY MarketPlace/backend/server/requirements.txt .
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code into the container
 
@@ -17,4 +17,4 @@ EXPOSE 5002
 
 # Run the Flask application
 # Use gunicorn for a production-ready WSGI server
-CMD ["gunicorn", "--bind", "0.0.0.0:5002", "--timeout", "300", "app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5003", "--timeout", "300", "client:client"]
