@@ -4,7 +4,7 @@
 *Open html file in 'frontend' folder*
 
 <img width="1902" height="971" alt="Screenshot from 2025-07-20 02-16-48" src="https://github.com/user-attachments/assets/dfe77f28-016e-4559-92b9-f3aa058b3d33" />
-
+<img width="2048" height="602" alt="image" src="https://github.com/user-attachments/assets/675fd91e-e220-411e-9741-439b774b5150" />
 ---
 
 - This project provides a basic mock marketplace application, demonstrating a backend API (Flask + PostgreSQL) containerized with Docker
@@ -17,7 +17,7 @@
 * **AI Integration**: A Python client capable of interacting with the OpenAI API to trigger these marketplace functions through natural language prompts.
 * **View Listings**: Mock Marketplace website to view listings in the database
 * **Buy Now** button sends an sms like this to seller's phone number
-   * <img width="330" height="100" alt="Screenshot_20250720-090848" src="https://github.com/user-attachments/assets/29dd56c8-a4f3-41d5-a311-3f7b22774702" />
+   * <img width="330" height="100" alt="Screenshot_20250720-090848" src="https://github.com/user-attachments/assets/dc3cbaaa-c362-4a4f-85b6-9eefd79a1c1e" />
 
 ## Technologies Used
 
@@ -53,13 +53,13 @@ MarketPlace/
 ## Demo
 
 ### Start Docker container
-<img src="https://github.com/user-attachments/assets/c0eadcbb-2db3-44ba-9b78-5e58830aa0a5" height="480">
+<img src="https://github.com/user-attachments/assets/f2bb7ca5-34cb-4e8f-8222-c9d305d7ed3d" height="480">
 
 ### Check if both containers are running
-<img src="https://github.com/user-attachments/assets/af915d6e-73a9-4e04-a9b0-0a1e6e96f240" height="480">
+<img src="https://github.com/user-attachments/assets/02ff70d3-1af9-494c-8be3-f82bb3dae684" height="480">
 
 ### Check Database before function call
-<img src="https://github.com/user-attachments/assets/824760a5-b7fd-47c4-b078-62d05f3d9724" height="480">
+<img src="https://github.com/user-attachments/assets/bbf44af5-85c4-4d1c-b0d6-bc0fcc565898" height="480">
 
 ### Run client which should create a function call
 
@@ -264,7 +264,7 @@ process_tool_calls(response)
 ```
 </details>
 
-<img src="https://github.com/user-attachments/assets/70444895-81be-4e60-8547-2e729639433a" height="480">
+<img src="https://github.com/user-attachments/assets/77c595e5-124c-4a26-89d3-c55a53443565" height="480">
 
 ### Check Database after function call
-<img src="https://github.com/user-attachments/assets/fdf9500a-0e1e-4276-8ef3-56fb9360de8d" height="480">
+<img src="https://github.com/user-attachments/assets/dadef2e8-6fea-492a-9957-977f5e53d567" height="480">
