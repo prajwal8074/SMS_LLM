@@ -3,8 +3,8 @@
 ## Website
 *Open html file in 'frontend' folder*
 
-<img width="1902" height="971" alt="Screenshot from 2025-07-20 02-16-48" src="https://github.com/user-attachments/assets/dfe77f28-016e-4559-92b9-f3aa058b3d33" />
-<img width="2048" height="602" alt="image" src="https://github.com/user-attachments/assets/675fd91e-e220-411e-9741-439b774b5150" />
+<img width="1902" height="971" alt="Screenshot from 2025-07-20 02-16-48" src="https://github.com/user-attachments/assets/dc3cbaaa-c362-4a4f-85b6-9eefd79a1c1e" />
+
 ---
 
 - This project provides a basic mock marketplace application, demonstrating a backend API (Flask + PostgreSQL) containerized with Docker
@@ -17,7 +17,7 @@
 * **AI Integration**: A Python client capable of interacting with the OpenAI API to trigger these marketplace functions through natural language prompts.
 * **View Listings**: Mock Marketplace website to view listings in the database
 * **Buy Now** button sends an sms like this to seller's phone number
-   * <img width="330" height="100" alt="Screenshot_20250720-090848" src="https://github.com/user-attachments/assets/dc3cbaaa-c362-4a4f-85b6-9eefd79a1c1e" />
+   * <img width="330" height="100" alt="Screenshot_20250720-090848" src="https://github.com/user-attachments/assets/675fd91e-e220-411e-9741-439b774b5150" />
 
 ## Technologies Used
 
