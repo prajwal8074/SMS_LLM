@@ -2,10 +2,11 @@
 - Creates a IVR like system on personal phone number
 
 ## Call Response Interface Demo:
-<video src="https://github.com/user-attachments/assets/7c3c27ac-ed9b-4642-b554-4cc15bda1e0f" style="max-width: 100%;">Demo Video</video>
+<video src="https://github.com/user-attachments/assets/bdf1b9fc-4d9a-46a4-a681-0865b633da2c" style="max-width: 100%;">Demo Video</video>
+
 
 ## Logic Flow
-<img src="https://github.com/user-attachments/assets/85060546-f2aa-41e1-a96c-53a9616a209c" alt="logic flow" height="720">
+<img src="https://github.com/user-attachments/assets/369847e9-734c-467c-8f95-6144d89d8d53" alt="logic flow" height="720">
 
 ## How to reproduce
 ### Requirements: Ubuntu system, Android device
