@@ -1,17 +1,20 @@
+
 # Voice Processing Gateway for Agricultural Assistance
 
 This AWS Lambda function processes voice inputs from farmers, generates AI responses using Gemini, and returns audio responses. The system handles multilingual conversations using AWS Transcribe, Translate, and Polly services.
 
 ## Demo Video
-https://github.com/user-attachments/assets/17e0aef0-bae6-435f-b930-706cfd088f27
+
+https://github.com/user-attachments/assets/c641f8a1-c766-4bc0-811e-be045ab34602
+
 
 ## Response Caching Demo
    - Semantic Caching: The application uses a sophisticated caching system with Redis and Sentence Transformers to cache responses based on the meaning of a query, not just the exact text. This can significantly improve performance and reduce redundant processing.
    - Cache Management: The add_cache.py script provides a way to manually add entries to the cache.
-   - <img width="1920" height="1080" alt="Screenshot from 2025-07-19 05-11-36" src="https://github.com/user-attachments/assets/b8bed692-dce5-4ac0-bb6e-99241dbbfc10" />
+   - <img width="1920" height="1080" alt="Screenshot from 2025-07-19 05-11-36" src="https://github.com/user-attachments/assets/b1dc4325-e00d-4dee-b891-6cfd9718a0da" />
 
 ## Process
-<img src="https://github.com/user-attachments/assets/5c39c36b-e3a8-4c67-8f65-d6130d45ee48" alt="logic flow" height="2160">
+<img src="https://github.com/user-attachments/assets/b0966003-638d-466c-9c13-fe5580be588a" alt="logic flow" height="2160">
 
 ## AWS Services Used
 
