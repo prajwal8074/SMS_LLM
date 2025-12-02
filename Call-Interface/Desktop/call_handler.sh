@@ -143,7 +143,7 @@ run_main_loop() {
     while true; do
         change_pulseaudio_source "$NULL_SOURCE" # Change source when call is picked up
     
-        mkdir "${RECORDING_DIR}"
+        mkdir -p "${RECORDING_DIR}"
         play_audio_to_phone "ask.wav"
         wait "$PAPLAY_PID"
     
@@ -248,7 +248,7 @@ adb logcat -v raw AutoCall:I *:S | while IFS= read -r line; do
         # Calibrate silence threshold from Bluetooth source
         #calibrate_silence_threshold
 
-        SOURCE_STATUS=$(get_source_status "$BLUETOOTH_SOURCE")
+        # SOURCE_STATUS=$(get_source_status "$BLUETOOTH_SOURCE")
         
         # Run the run_main_loop function in a subshell and background it
         ( run_main_loop ) &
